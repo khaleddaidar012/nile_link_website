@@ -1,0 +1,11 @@
+name = "nilelink-website"
+pages_build_output_dir = ".next"
+
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# No service bindings are needed for this project.
+# Environment variables (MONGODB_URI, EMAIL_*, ANALYTICS_*, SMTP_*, etc.)
+# must be set in the Cloudflare Pages dashboard under:
+#   <your-pages-project> > Settings > Environment variables
+# or via `wrangler pages secret put <KEY>`.
