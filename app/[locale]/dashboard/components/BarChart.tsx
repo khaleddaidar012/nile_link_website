@@ -44,7 +44,10 @@ export function BarChartCard({ data, title, subtitle, color = "#2563eb", height 
               backgroundColor: "rgba(255,255,255,0.95)",
               fontSize: "13px",
             }}
-            labelFormatter={(v) => new Date(v).toLocaleDateString()}
+            labelFormatter={(v) => {
+              if (typeof v !== "string" && typeof v !== "number") return ""
+              return new Date(v).toLocaleDateString()
+            }}
           />
           <Bar
             dataKey="value"
