@@ -1,0 +1,231 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - banner [ref=f4e3]:
+      - generic [ref=f4e6]:
+        - link "+2 0100 0842099" [ref=f4e7] [cursor=pointer]:
+          - /url: tel:+201000842099
+        - link "Send email to info@nilelinklogistics.com" [ref=f4e10] [cursor=pointer]:
+          - /url: mailto:info@nilelinklogistics.com
+          - text: info@nilelinklogistics.com
+      - navigation [ref=f4e14]:
+        - generic [ref=f4e15]:
+          - link "NL NileLink" [ref=f4e16] [cursor=pointer]:
+            - /url: /en
+            - generic [ref=f4e17]: NL
+            - generic [ref=f4e18]: NileLink
+          - generic [ref=f4e19]:
+            - link "Home" [ref=f4e21] [cursor=pointer]:
+              - /url: /en
+            - link "About Us" [ref=f4e23] [cursor=pointer]:
+              - /url: /en/about
+            - link "Services" [ref=f4e25] [cursor=pointer]:
+              - /url: /en/services
+            - link "Request a Quote" [ref=f4e29] [cursor=pointer]:
+              - /url: /en/request-quote
+            - link "Contact Us" [ref=f4e31] [cursor=pointer]:
+              - /url: /en/contact
+          - generic [ref=f4e32]:
+            - button "English" [ref=f4e34]
+            - link [ref=f4e40] [cursor=pointer]:
+              - /url: /en/request-quote
+              - button "Get a Quote" [ref=f4e41]
+    - main [ref=f4e42]:
+      - generic [ref=f4e47]:
+        - heading "Comprehensive Logistics Solutions" [level=1] [ref=f4e48]
+        - paragraph [ref=f4e49]: NileLink is committed to providing its clients with the best and cost-effective services to cover all logistics requests.
+      - generic [ref=f4e51]:
+        - generic [ref=f4e52]:
+          - generic [ref=f4e53]: Our Services
+          - heading "Comprehensive Logistics Solutions" [level=2] [ref=f4e54]
+        - generic [ref=f4e56]:
+          - generic [ref=f4e58]:
+            - generic [ref=f4e59]:
+              - heading "Sea Freight" [level=3] [ref=f4e66]
+              - paragraph [ref=f4e67]: Cost-effective and versatile shipping solution for large or bulky shipments. Offering FCL and LCL container options with global coverage through strategic partnerships.
+              - list [ref=f4e68]:
+                - listitem [ref=f4e69]: FCL & LCL containers
+                - listitem [ref=f4e73]: Global port network
+                - listitem [ref=f4e77]: Flexible sailing schedules
+                - listitem [ref=f4e81]: Real-time tracking
+            - img "Sea Freight" [ref=f4e86]
+          - generic [ref=f4e88]:
+            - generic [ref=f4e89]:
+              - heading "Air Freight" [level=3] [ref=f4e94]
+              - paragraph [ref=f4e95]: Fast and reliable international shipping service via air transportation. Ideal for time-sensitive goods ensuring swift delivery and efficient logistics.
+              - list [ref=f4e96]:
+                - listitem [ref=f4e97]: Express & standard options
+                - listitem [ref=f4e101]: Consolidation services
+                - listitem [ref=f4e105]: Time-sensitive cargo
+                - listitem [ref=f4e109]: Global coverage
+            - img "Air Freight" [ref=f4e114]
+          - generic [ref=f4e116]:
+            - generic [ref=f4e117]:
+              - heading "Road Freight" [level=3] [ref=f4e125]
+              - paragraph [ref=f4e126]: Seamless overland transportation services including trucking and intermodal solutions. Ensuring safe and timely delivery of goods within specified regions.
+              - list [ref=f4e127]:
+                - listitem [ref=f4e128]: Domestic & cross-border
+                - listitem [ref=f4e132]: Full & partial loads
+                - listitem [ref=f4e136]: Intermodal solutions
+                - listitem [ref=f4e140]: Real-time GPS tracking
+            - img "Road Freight" [ref=f4e145]
+          - generic [ref=f4e147]:
+            - generic [ref=f4e148]:
+              - heading "Customs Clearance" [level=3] [ref=f4e155]
+              - paragraph [ref=f4e156]: Expert handling of customs procedures, documentation, and compliance to ensure smooth passage through international borders.
+              - list [ref=f4e157]:
+                - listitem [ref=f4e158]: Documentation handled
+                - listitem [ref=f4e162]: Compliance guaranteed
+                - listitem [ref=f4e166]: Fast clearance
+                - listitem [ref=f4e170]: Regulatory expertise
+            - img "Customs Clearance" [ref=f4e175]
+          - generic [ref=f4e177]:
+            - generic [ref=f4e178]:
+              - heading "Warehousing" [level=3] [ref=f4e184]
+              - paragraph [ref=f4e185]: Secure and efficient storage solutions for goods including short-term and long-term options. Full inventory management and order fulfillment.
+              - list [ref=f4e186]:
+                - listitem [ref=f4e187]: Short & long-term storage
+                - listitem [ref=f4e191]: Inventory management
+                - listitem [ref=f4e195]: Order fulfillment
+                - listitem [ref=f4e199]: Climate-controlled options
+            - img "Warehousing" [ref=f4e204]
+          - generic [ref=f4e206]:
+            - generic [ref=f4e207]:
+              - heading "Specialized Services" [level=3] [ref=f4e213]
+              - paragraph [ref=f4e214]: Tailored solutions for unique cargo needs such as temperature-sensitive items, hazardous materials, and oversized project cargo.
+              - list [ref=f4e215]:
+                - listitem [ref=f4e216]: Temperature-controlled
+                - listitem [ref=f4e220]: Hazardous materials
+                - listitem [ref=f4e224]: Oversized project cargo
+                - listitem [ref=f4e228]: Custom solutions
+            - img "Specialized Services" [ref=f4e233]
+      - generic [ref=f4e235]:
+        - generic [ref=f4e236]:
+          - generic [ref=f4e237]: Choose the Right Option
+          - heading "Shipping Methods Compared" [level=2] [ref=f4e238]
+        - generic [ref=f4e240]:
+          - generic [ref=f4e241]:
+            - heading "Sea Freight" [level=3] [ref=f4e247]
+            - generic [ref=f4e248]:
+              - generic [ref=f4e249]:
+                - generic [ref=f4e250]: Transit
+                - generic [ref=f4e254]: 7–30 days
+              - generic [ref=f4e255]:
+                - generic [ref=f4e256]: Cost
+                - generic [ref=f4e259]: $$
+              - generic [ref=f4e260]:
+                - generic [ref=f4e261]: Capacity
+                - generic [ref=f4e265]: Unlimited
+            - generic [ref=f4e266]: "Best for: Large shipments, non-urgent"
+          - generic [ref=f4e267]:
+            - heading "Air Freight" [level=3] [ref=f4e271]
+            - generic [ref=f4e272]:
+              - generic [ref=f4e273]:
+                - generic [ref=f4e274]: Transit
+                - generic [ref=f4e278]: 1–5 days
+              - generic [ref=f4e279]:
+                - generic [ref=f4e280]: Cost
+                - generic [ref=f4e283]: $$$
+              - generic [ref=f4e284]:
+                - generic [ref=f4e285]: Capacity
+                - generic [ref=f4e289]: Limited
+            - generic [ref=f4e290]: "Best for: Time-sensitive, high-value"
+          - generic [ref=f4e291]:
+            - heading "Road Freight" [level=3] [ref=f4e298]
+            - generic [ref=f4e299]:
+              - generic [ref=f4e300]:
+                - generic [ref=f4e301]: Transit
+                - generic [ref=f4e305]: 1–7 days
+              - generic [ref=f4e306]:
+                - generic [ref=f4e307]: Cost
+                - generic [ref=f4e310]: $
+              - generic [ref=f4e311]:
+                - generic [ref=f4e312]: Capacity
+                - generic [ref=f4e316]: Medium
+            - generic [ref=f4e317]: "Best for: Regional, door-to-door"
+      - generic [ref=f4e321]:
+        - heading "Ready to Ship?" [level=2] [ref=f4e322]
+        - paragraph [ref=f4e323]: Get in touch with our team today for a free, no-obligation quote. We are available 24/7 to assist you.
+        - link [ref=f4e324] [cursor=pointer]:
+          - /url: /en/request-quote
+          - button "Request a Quote" [ref=f4e325]
+    - contentinfo [ref=f4e328]:
+      - generic [ref=f4e329]:
+        - generic [ref=f4e330]:
+          - generic [ref=f4e331]:
+            - link "NL NileLink" [ref=f4e332] [cursor=pointer]:
+              - /url: /en
+              - generic [ref=f4e333]: NL
+              - generic [ref=f4e334]: NileLink
+            - paragraph [ref=f4e335]: Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.
+            - generic [ref=f4e336]:
+              - link "Facebook" [ref=f4e337] [cursor=pointer]:
+                - /url: https://www.facebook.com/nilelinklogistics/
+              - link "WhatsApp" [ref=f4e340] [cursor=pointer]:
+                - /url: https://wa.me/201000018549
+              - link "LinkedIn" [ref=f4e343] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nilelinklogistics/about/?viewAsMember=true
+              - link "Send email to info@nilelinklogistics.com" [ref=f4e346] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+          - generic [ref=f4e349]:
+            - heading "Quick Links" [level=3] [ref=f4e350]
+            - list [ref=f4e351]:
+              - listitem [ref=f4e352]:
+                - link "Home" [ref=f4e353] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=f4e358]:
+                - link "About Us" [ref=f4e359] [cursor=pointer]:
+                  - /url: /en/about
+              - listitem [ref=f4e364]:
+                - link "Services" [ref=f4e365] [cursor=pointer]:
+                  - /url: /en/services
+              - listitem [ref=f4e370]:
+                - link "Request a Quote" [ref=f4e371] [cursor=pointer]:
+                  - /url: /en/request-quote
+              - listitem [ref=f4e376]:
+                - link "Contact Us" [ref=f4e377] [cursor=pointer]:
+                  - /url: /en/contact
+          - generic [ref=f4e382]:
+            - heading "Our Services" [level=3] [ref=f4e383]
+            - list [ref=f4e384]:
+              - listitem [ref=f4e385]:
+                - link "Sea Freight" [ref=f4e386] [cursor=pointer]:
+                  - /url: /en/services#sea-freight
+              - listitem [ref=f4e391]:
+                - link "Air Freight" [ref=f4e392] [cursor=pointer]:
+                  - /url: /en/services#air-freight
+              - listitem [ref=f4e397]:
+                - link "Road Freight" [ref=f4e398] [cursor=pointer]:
+                  - /url: /en/services#road-freight
+              - listitem [ref=f4e403]:
+                - link "Customs Clearance" [ref=f4e404] [cursor=pointer]:
+                  - /url: /en/services#customs-clearance
+              - listitem [ref=f4e409]:
+                - link "Warehousing" [ref=f4e410] [cursor=pointer]:
+                  - /url: /en/services#warehousing
+              - listitem [ref=f4e415]:
+                - link "Specialized Services" [ref=f4e416] [cursor=pointer]:
+                  - /url: /en/services#specialized
+          - generic [ref=f4e421]:
+            - heading "Contact Info" [level=3] [ref=f4e422]
+            - generic [ref=f4e423]:
+              - generic [ref=f4e428]:
+                - paragraph [ref=f4e429]: Head Office
+                - paragraph [ref=f4e430]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f4e431]: Damietta, Egypt
+              - generic [ref=f4e435]:
+                - link "+2 0100 0842099" [ref=f4e436] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f4e437] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f4e442] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+        - generic [ref=f4e444]:
+          - paragraph [ref=f4e445]: © 2026 NileLink. All Rights Reserved.
+          - generic [ref=f4e446]:
+            - link "Privacy Policy" [ref=f4e447] [cursor=pointer]:
+              - /url: /en
+            - link "Terms of Service" [ref=f4e448] [cursor=pointer]:
+              - /url: /en
+    - button "Scroll to top"
+  - region "Notifications alt+T"

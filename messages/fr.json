@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "NileLink | Solutions Logistiques Globales",
+    "description": "NileLink est une société de transit leader en Égypte, offrant des services de fret maritime, aérien, routier, de dédouanement et d'entreposage dans le monde entier."
+  },
+  "navbar": {
+    "getQuote": "Demander un devis"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "seaFreight": "Fret Maritime",
+    "airFreight": "Fret Aérien",
+    "roadFreight": "Fret Routier",
+    "customsClearance": "Dédouanement",
+    "warehousing": "Entreposage",
+    "specialized": "Services Spécialisés",
+    "requestQuote": "Demander un devis",
+    "contact": "Contact",
+    "dashboard": "Tableau de bord"
+  },
+  "hero": {
+    "title": "Solutions Logistiques Globales",
+    "subtitle": "Votre Partenaire N°1 dans le Transport International",
+    "description": "Des services de fret maritime, aérien et terrestre fiables à travers le monde. NileLink offre l'excellence dans chaque envoi.",
+    "ctaQuote": "Obtenir un devis",
+    "ctaServices": "Nos Services"
+  },
+  "aboutPreview": {
+    "subtitle": "À propos de NileLink",
+    "title": "Votre Partenaire de Confiance en Logistique Globale",
+    "description": "Chez NileLink, nous sommes une force leader dans l'industrie du fret, dédiée à fournir des solutions logistiques inégalées. Forts d'un riche historique et d'un engagement envers l'excellence, notre mission est d'offrir des services fiables et innovants qui permettent aux entreprises de naviguer les complexités du commerce mondial.",
+    "learnMore": "En savoir plus"
+  },
+  "services": {
+    "subtitle": "Nos Services",
+    "title": "Solutions Logistiques Complètes",
+    "description": "NileLink s'engage à fournir à ses clients les meilleurs services rentables pour couvrir tous les besoins logistiques.",
+    "seaFreight": {
+      "title": "Fret Maritime",
+      "description": "Solution d'expédition économique et polyvalente pour les envois volumineux. Offrant des options de conteneurs FCL et LCL avec une couverture mondiale grâce à des partenariats stratégiques.",
+      "features": {
+        "item1": "Conteneurs FCL et LCL",
+        "item2": "Réseau portuaire mondial",
+        "item3": "Horaires de navigation flexibles",
+        "item4": "Suivi en temps réel"
+      }
+    },
+    "airFreight": {
+      "title": "Fret Aérien",
+      "description": "Service d'expédition international rapide et fiable par transport aérien. Idéal pour les marchandises urgentes garantissant une livraison rapide et une logistique efficace.",
+      "features": {
+        "item1": "Options express et standard",
+        "item2": "Services de consolidation",
+        "item3": "Marchandises urgentes",
+        "item4": "Couverture mondiale"
+      }
+    },
+    "roadFreight": {
+      "title": "Fret Routier",
+      "description": "Services de transport terrestre fluides incluant le camionnage et les solutions intermodales. Garantissant une livraison sûre et ponctuelle des marchandises.",
+      "features": {
+        "item1": "National et transfrontalier",
+        "item2": "Chargements complets et partiels",
+        "item3": "Solutions intermodales",
+        "item4": "Suivi GPS en temps réel"
+      }
+    },
+    "customsClearance": {
+      "title": "Dédouanement",
+      "description": "Gestion experte des procédures douanières, de la documentation et de la conformité pour assurer un passage fluide aux frontières internationales.",
+      "features": {
+        "item1": "Traitement des documents",
+        "item2": "Conformité garantie",
+        "item3": "Dédouanement rapide",
+        "item4": "Expertise réglementaire"
+      }
+    },
+    "warehousing": {
+      "title": "Entreposage",
+      "description": "Solutions de stockage sécurisées et efficaces pour les marchandises, incluant des options à court et long terme. Gestion complète des stocks et exécution des commandes.",
+      "features": {
+        "item1": "Stockage court et long terme",
+        "item2": "Gestion des stocks",
+        "item3": "Exécution des commandes",
+        "item4": "Options climatisées"
+      }
+    },
+    "specialized": {
+      "title": "Services Spécialisés",
+      "description": "Solutions sur mesure pour les besoins de fret uniques tels que les articles sensibles à la température, les matières dangereuses et les projets de fret hors normes.",
+      "features": {
+        "item1": "Température contrôlée",
+        "item2": "Matières dangereuses",
+        "item3": "Projet de fret hors normes",
+        "item4": "Solutions personnalisées"
+      }
+    },
+    "comparison": {
+      "title": "Comparaison des Méthodes d'Expédition",
+      "subtitle": "Choisissez la bonne option",
+      "seaFreight": {
+        "method": "Fret Maritime",
+        "transit": "7–30 jours",
+        "cost": "$$",
+        "capacity": "Illimité",
+        "bestFor": "Envois volumineux, non urgents"
+      },
+      "airFreight": {
+        "method": "Fret Aérien",
+        "transit": "1–5 jours",
+        "cost": "$$$",
+        "capacity": "Limité",
+        "bestFor": "Urgent, haute valeur"
+      },
+      "roadFreight": {
+        "method": "Fret Routier",
+        "transit": "1–7 jours",
+        "cost": "$",
+        "capacity": "Moyen",
+        "bestFor": "Régional, porte-à-porte"
+      },
+      "labels": {
+        "transit": "Transit",
+        "cost": "Coût",
+        "capacity": "Capacité",
+        "bestFor": "Idéal pour"
+      }
+    },
+    "viewAll": "Voir tous les services",
+    "learnMore": "En savoir plus"
+  },
+  "whyChooseUs": {
+    "subtitle": "Pourquoi choisir NileLink",
+    "title": "L'Avantage NileLink",
+    "globalReach": {
+      "title": "Portée Globale",
+      "description": "Bénéficiez de notre vaste réseau et de nos partenariats, facilitant des opérations logistiques fluides à l'échelle mondiale."
+    },
+    "expertTeam": {
+      "title": "Équipe d'Experts",
+      "description": "Comptez sur des professionnels chevronnés avec des années d'expérience, garantissant précision et fiabilité dans chaque envoi."
+    },
+    "customerCentric": {
+      "title": "Centré sur le Client",
+      "description": "Votre satisfaction est notre priorité. Nous travaillons en étroite collaboration pour comprendre vos besoins et offrir des solutions qui dépassent les attentes."
+    },
+    "compliance": {
+      "title": "Conformité et Réglementation",
+      "description": "Naviguez les réglementations du commerce international en toute confiance. Nous assurons une conformité stricte aux procédures douanières et aux normes réglementaires."
+    }
+  },
+  "globalCoverage": {
+    "subtitle": "Réseau Mondial",
+    "title": "Couverture d'Expédition Mondiale",
+    "description": "Avec un réseau mondial de partenaires, nous sommes prêts à expédier vos marchandises n'importe où au meilleur prix compétitif."
+  },
+"faq": {
+    "subtitle": "FAQ",
+    "title": "Questions Fréquentes",
+    "items": [
+      {
+        "question": "Quels types de marchandises expédiez-vous ?",
+        "answer": "Nous expédions tous types de marchandises : biens généraux, denrées périssables, matières dangereuses, projets de fret hors normes et articles à température contrôlée."
+      },
+      {
+        "question": "Combien de temps prend le fret maritime ?",
+        "answer": "Les délais de transit varient selon la route. Généralement, le fret maritime depuis l'Égypte vers les grands ports mondiaux prend de 7 à 30 jours selon la destination."
+      },
+      {
+        "question": "Proposez-vous la livraison porte-à-porte ?",
+        "answer": "Oui, nous offrons des solutions logistiques complètes porte-à-porte couvrant l'enlèvement, le transport, le dédouanement et la livraison finale."
+      },
+      {
+        "question": "Comment puis-je suivre mon envoi ?",
+        "answer": "Nous fournissons un suivi en temps réel pour tous les envois. Une fois votre cargaison en transit, vous recevrez un numéro de suivi et des mises à jour régulières."
+      },
+      {
+        "question": "Quels documents sont nécessaires pour l'expédition internationale ?",
+        "answer": "Les documents requis incluent généralement la facture commerciale, la liste de colisage, le connaissement ou la lettre de transport aérien, et le certificat d'origine. Notre équipe gère toute la documentation douanière."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Prêt à expédier ?",
+    "description": "Contactez notre équipe dès aujourd'hui pour un devis gratuit et sans engagement. Nous sommes disponibles 24h/24 et 7j/7 pour vous aider.",
+    "button": "Demander un devis"
+  },
+  "about": {
+    "hero": {
+      "title": "À propos de NileLink",
+      "description": "Découvrez notre histoire, notre mission et notre engagement envers l'excellence en logistique mondiale."
+    },
+    "whoWeAre": {
+      "title": "Qui Sommes-Nous",
+      "description1": "Chez NileLink, nous sommes une force leader dans l'industrie du fret, dédiée à fournir des solutions logistiques inégalées.",
+      "description2": "Forts d'un riche historique et d'un engagement envers l'excellence, notre mission est d'offrir des services fiables et innovants qui permettent aux entreprises de naviguer les complexités du commerce mondial. Soutenue par une équipe de professionnels chevronnés et des partenariats stratégiques, NileLink se positionne comme un partenaire de confiance dans l'optimisation des chaînes d'approvisionnement."
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "description": "NileLink est dédiée à autonomiser les entreprises grâce à des solutions logistiques mondiales fluides. Notre mission est d'être le partenaire de confiance, offrant des services de fret innovants et fiables qui optimisent les chaînes d'approvisionnement."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Être la référence mondiale en excellence logistique, établissant la norme en matière d'innovation, de fiabilité et de satisfaction client dans l'industrie du fret."
+    },
+    "coreValues": {
+      "title": "Nos Valeurs Fondamentales",
+      "subtitle": "Ce qui nous anime",
+      "integrity": {
+        "title": "Intégrité",
+        "description": "Nous menons nos affaires avec les plus hautes normes éthiques, transparence et honnêteté dans chaque transaction."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Nous exploitons la technologie de pointe et des solutions créatives pour optimiser les chaînes d'approvisionnement."
+      },
+      "customerFocus": {
+        "title": "Orientation Client",
+        "description": "Nos clients sont au cœur de tout ce que nous faisons. Nous offrons des solutions personnalisées."
+      },
+      "reliability": {
+        "title": "Fiabilité",
+        "description": "Un service cohérent et fiable auquel nos clients peuvent faire confiance pour chaque envoi."
+      },
+      "sustainability": {
+        "title": "Durabilité",
+        "description": "Engagés dans des pratiques respectueuses de l'environnement en logistique mondiale."
+      },
+      "safety": {
+        "title": "Sécurité",
+        "description": "Des normes de sécurité rigoureuses protègent votre cargaison, notre équipe et l'environnement."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contactez-Nous",
+      "description": "Communiquez avec notre équipe 24h/24 et 7j/7 pour toutes vos demandes, réclamations ou demandes de devis."
+    },
+    "hq": "Siège Social",
+    "alexandria": "Bureau d'Alexandrie",
+    "phone": "Téléphone",
+    "email": "Email",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "name": "Votre Nom",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "subject": "Sujet",
+      "message": "Votre Message",
+      "submit": "Envoyer le message",
+      "success": "Message envoyé avec succès ! Nous vous répondrons bientôt.",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "tagline": "Votre partenaire de confiance en expédition en Égypte",
+    "support247": "Assistance dédiée",
+    "support247Desc": "Notre équipe est prête à vous aider pour vos besoins d'expédition.",
+    "quickResponse": {
+      "title": "Réponse rapide",
+      "description": "Notre équipe répond généralement dans les 2 heures pendant les heures d'ouverture."
+    }
+  },
+  "quote": {
+    "hero": {
+      "title": "Demander un devis",
+      "description": "Veuillez remplir le formulaire ci-dessous. Notre équipe examinera votre demande et vous contactera avec le meilleur tarif possible."
+    },
+    "form": {
+      "title": "Obtenez votre devis gratuit",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "company": "Société",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "city": "Ville",
+      "state": "État",
+      "postcode": "Code Postal",
+      "country": "Pays",
+      "freightType": "Type de Fret",
+      "freightAir": "Fret Aérien",
+      "freightRoad": "Fret Routier",
+      "freightOcean": "Fret Maritime",
+      "weight": "Poids (kg)",
+      "quantity": "Quantité",
+      "length": "Longueur (cm)",
+      "height": "Hauteur (cm)",
+      "width": "Largeur (cm)",
+      "from": "De",
+      "to": "À",
+      "notes": "Notes supplémentaires",
+      "submit": "Soumettre la demande",
+      "success": "Demande de devis soumise avec succès ! Nous vous contacterons prochainement.",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  },
+  "footer": {
+    "description": "Votre partenaire de confiance en logistique mondiale. NileLink propose des solutions complètes de fret maritime, aérien et terrestre avec un engagement d'excellence.",
+    "quickLinks": "Liens rapides",
+    "services": "Nos Services",
+    "contact": "Contact Us",
+    "copyright": "Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "notFound": {
+    "title": "Page non trouvée",
+    "description": "La page que vous recherchez n'existe pas.",
+    "goHome": "Accueil"
+  }
+}
+
+

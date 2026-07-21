@@ -1,0 +1,192 @@
+- generic [active] [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - banner [ref=f10e3]:
+      - generic [ref=f10e6]:
+        - link "+2 0100 0842099" [ref=f10e7] [cursor=pointer]:
+          - /url: tel:+201000842099
+        - link "Send email to info@nilelinklogistics.com" [ref=f10e10] [cursor=pointer]:
+          - /url: mailto:info@nilelinklogistics.com
+          - text: info@nilelinklogistics.com
+      - navigation [ref=f10e14]:
+        - generic [ref=f10e15]:
+          - link "NL NileLink" [ref=f10e16] [cursor=pointer]:
+            - /url: /en
+            - generic [ref=f10e17]: NL
+            - generic [ref=f10e18]: NileLink
+          - generic [ref=f10e19]:
+            - link "Home" [ref=f10e21] [cursor=pointer]:
+              - /url: /en
+            - link "About Us" [ref=f10e23] [cursor=pointer]:
+              - /url: /en/about
+            - link "Services" [ref=f10e25] [cursor=pointer]:
+              - /url: /en/services
+            - link "Request a Quote" [ref=f10e29] [cursor=pointer]:
+              - /url: /en/request-quote
+            - link "Contact Us" [ref=f10e31] [cursor=pointer]:
+              - /url: /en/contact
+          - generic [ref=f10e32]:
+            - button "English" [ref=f10e34]
+            - button "Toggle theme" [ref=f10e271]
+            - link [ref=f10e40] [cursor=pointer]:
+              - /url: /en/request-quote
+              - button "Get a Quote" [ref=f10e41]
+    - main [ref=f10e42]:
+      - generic [ref=f10e47]:
+        - heading "Request a Quote" [level=1] [ref=f10e48]
+        - paragraph [ref=f10e49]: Please fill out the form below. Our team will check your request and get back to you with the best possible rate.
+      - generic [ref=f10e52]:
+        - generic [ref=f10e54]:
+          - heading "Get Your Free Quote" [level=2] [ref=f10e55]
+          - generic [ref=f10e56]:
+            - generic [ref=f10e57]:
+              - generic [ref=f10e58]:
+                - generic [ref=f10e59]: First Name *
+                - textbox [ref=f10e60]
+              - generic [ref=f10e61]:
+                - generic [ref=f10e62]: Last Name *
+                - textbox [ref=f10e63]
+            - generic [ref=f10e64]:
+              - generic [ref=f10e65]:
+                - generic [ref=f10e66]: Company
+                - textbox [ref=f10e67]
+              - generic [ref=f10e68]:
+                - generic [ref=f10e69]: Email *
+                - textbox [ref=f10e70]
+            - generic [ref=f10e71]:
+              - generic [ref=f10e72]:
+                - generic [ref=f10e73]: Phone *
+                - textbox [ref=f10e74]
+              - generic [ref=f10e75]:
+                - generic [ref=f10e76]: Freight Type *
+                - combobox [ref=f10e77]:
+                  - option "Air Freight" [selected]
+                  - option "Road Freight"
+                  - option "Ocean Freight"
+            - generic [ref=f10e78]:
+              - generic [ref=f10e79]:
+                - generic [ref=f10e80]: Weight (kg)
+                - spinbutton [ref=f10e81]
+              - generic [ref=f10e82]:
+                - generic [ref=f10e83]: Quantity
+                - spinbutton [ref=f10e84]
+            - generic [ref=f10e85]:
+              - generic [ref=f10e86]:
+                - generic [ref=f10e87]: From *
+                - textbox [ref=f10e88]
+              - generic [ref=f10e89]:
+                - generic [ref=f10e90]: To *
+                - textbox [ref=f10e91]
+            - generic [ref=f10e92]:
+              - generic [ref=f10e93]: Additional Notes
+              - textbox [ref=f10e94]
+            - button "Submit Request" [ref=f10e95]
+        - generic [ref=f10e100]:
+          - generic [ref=f10e101]:
+            - heading "NileLink" [level=3] [ref=f10e102]
+            - paragraph [ref=f10e103]: Your Trusted shipping partner in Egypt
+            - generic [ref=f10e104]:
+              - generic [ref=f10e109]:
+                - paragraph [ref=f10e110]: Head Office
+                - paragraph [ref=f10e111]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f10e112]: Damietta, Egypt
+              - generic [ref=f10e117]:
+                - paragraph [ref=f10e118]: Alexandria Office
+                - paragraph [ref=f10e119]: El Raml Station, Concorde Building
+                - paragraph [ref=f10e120]: Alexandria, Egypt
+              - generic [ref=f10e124]:
+                - link "+2 0100 0842099" [ref=f10e125] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f10e126] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f10e131] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+              - generic [ref=f10e135]:
+                - paragraph [ref=f10e136]: Dedicated Assistance
+                - paragraph [ref=f10e137]: Our team is ready to assist you with your shipping needs.
+          - generic [ref=f10e138]:
+            - heading "Quick Response" [level=3] [ref=f10e139]
+            - paragraph [ref=f10e140]: Our team typically responds within 2 hours during business hours.
+    - contentinfo [ref=f10e141]:
+      - generic [ref=f10e142]:
+        - generic [ref=f10e143]:
+          - generic [ref=f10e144]:
+            - link "NL NileLink" [ref=f10e145] [cursor=pointer]:
+              - /url: /en
+              - generic [ref=f10e146]: NL
+              - generic [ref=f10e147]: NileLink
+            - paragraph [ref=f10e148]: Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.
+            - generic [ref=f10e149]:
+              - link "Facebook" [ref=f10e150] [cursor=pointer]:
+                - /url: https://www.facebook.com/nilelinklogistics/
+              - link "WhatsApp" [ref=f10e153] [cursor=pointer]:
+                - /url: https://wa.me/201000018549
+              - link "LinkedIn" [ref=f10e156] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nilelinklogistics/about/?viewAsMember=true
+              - link "Send email to info@nilelinklogistics.com" [ref=f10e159] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+          - generic [ref=f10e162]:
+            - heading "Quick Links" [level=3] [ref=f10e163]
+            - list [ref=f10e164]:
+              - listitem [ref=f10e165]:
+                - link "Home" [ref=f10e166] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=f10e171]:
+                - link "About Us" [ref=f10e172] [cursor=pointer]:
+                  - /url: /en/about
+              - listitem [ref=f10e177]:
+                - link "Services" [ref=f10e178] [cursor=pointer]:
+                  - /url: /en/services
+              - listitem [ref=f10e183]:
+                - link "Request a Quote" [ref=f10e184] [cursor=pointer]:
+                  - /url: /en/request-quote
+              - listitem [ref=f10e189]:
+                - link "Contact Us" [ref=f10e190] [cursor=pointer]:
+                  - /url: /en/contact
+          - generic [ref=f10e195]:
+            - heading "Our Services" [level=3] [ref=f10e196]
+            - list [ref=f10e197]:
+              - listitem [ref=f10e198]:
+                - link "Sea Freight" [ref=f10e199] [cursor=pointer]:
+                  - /url: /en/services#sea-freight
+              - listitem [ref=f10e204]:
+                - link "Air Freight" [ref=f10e205] [cursor=pointer]:
+                  - /url: /en/services#air-freight
+              - listitem [ref=f10e210]:
+                - link "Road Freight" [ref=f10e211] [cursor=pointer]:
+                  - /url: /en/services#road-freight
+              - listitem [ref=f10e216]:
+                - link "Customs Clearance" [ref=f10e217] [cursor=pointer]:
+                  - /url: /en/services#customs-clearance
+              - listitem [ref=f10e222]:
+                - link "Warehousing" [ref=f10e223] [cursor=pointer]:
+                  - /url: /en/services#warehousing
+              - listitem [ref=f10e228]:
+                - link "Specialized Services" [ref=f10e229] [cursor=pointer]:
+                  - /url: /en/services#specialized
+          - generic [ref=f10e234]:
+            - heading "Contact Info" [level=3] [ref=f10e235]
+            - generic [ref=f10e236]:
+              - generic [ref=f10e241]:
+                - paragraph [ref=f10e242]: Head Office
+                - paragraph [ref=f10e243]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f10e244]: Damietta, Egypt
+              - generic [ref=f10e248]:
+                - link "+2 0100 0842099" [ref=f10e249] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f10e250] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f10e255] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+        - generic [ref=f10e257]:
+          - paragraph [ref=f10e258]: © 2026 NileLink. All Rights Reserved.
+          - generic [ref=f10e259]:
+            - link "Privacy Policy" [ref=f10e260] [cursor=pointer]:
+              - /url: /en
+            - link "Terms of Service" [ref=f10e261] [cursor=pointer]:
+              - /url: /en
+    - button "Scroll to top"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f10e267] [cursor=pointer]
+  - alert [ref=f10e274]

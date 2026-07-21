@@ -1,0 +1,145 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - banner [ref=f5e3]:
+      - navigation [ref=f5e4]:
+        - generic [ref=f5e5]:
+          - link "NL NileLink" [ref=f5e6] [cursor=pointer]:
+            - /url: /en
+            - generic [ref=f5e7]: NL
+            - generic [ref=f5e8]: NileLink
+          - generic [ref=f5e9]:
+            - button "Toggle theme" [ref=f5e10]
+            - button "Toggle menu" [ref=f5e13]
+    - main [ref=f5e15]:
+      - generic [ref=f5e20]:
+        - heading "About NileLink" [level=1] [ref=f5e21]
+        - paragraph [ref=f5e22]: Discover our story, mission, and commitment to excellence in global logistics.
+      - generic [ref=f5e25]:
+        - generic [ref=f5e26]:
+          - heading "Who We Are" [level=2] [ref=f5e29]
+          - paragraph [ref=f5e31]: At NileLink, we are a leading force in the freight forwarding industry, dedicated to delivering unparalleled logistics solutions.
+          - paragraph [ref=f5e32]: With a rich history and a commitment to excellence, our mission is to provide reliable and innovative services that empower businesses to navigate the complexities of global trade. Backed by a team of seasoned professionals and strategic partnerships, NileLink stands as a trusted partner in optimizing supply chains and ensuring the seamless movement of goods across borders.
+        - generic [ref=f5e33]:
+          - img "Container ship at sea" [ref=f5e35]
+          - img "Shipping containers" [ref=f5e37]
+          - img "Cargo plane" [ref=f5e39]
+          - img "Truck fleet" [ref=f5e41]
+      - generic [ref=f5e44]:
+        - generic [ref=f5e45]:
+          - heading "Our Mission" [level=3] [ref=f5e51]
+          - paragraph [ref=f5e52]: NileLink is dedicated to empowering businesses through seamless global logistics solutions. Our mission is to be the trusted partner of choice, providing innovative and reliable freight forwarding services that optimize supply chains, overcome challenges, and drive success.
+        - generic [ref=f5e53]:
+          - heading "Our Vision" [level=3] [ref=f5e58]
+          - paragraph [ref=f5e59]: To be the global benchmark in logistics excellence, setting the standard for innovation, reliability, and customer satisfaction in the freight forwarding industry.
+      - generic [ref=f5e61]:
+        - generic [ref=f5e62]:
+          - generic [ref=f5e63]: What Drives Us
+          - heading "Our Core Values" [level=2] [ref=f5e64]
+        - generic [ref=f5e66]:
+          - generic [ref=f5e67]:
+            - heading "Integrity" [level=3] [ref=f5e71]
+            - paragraph [ref=f5e72]: We conduct business with the highest ethical standards, transparency, and honesty in every transaction.
+          - generic [ref=f5e73]:
+            - heading "Innovation" [level=3] [ref=f5e77]
+            - paragraph [ref=f5e78]: We leverage cutting-edge technology and creative solutions to optimize supply chains.
+          - generic [ref=f5e79]:
+            - heading "Customer Focus" [level=3] [ref=f5e86]
+            - paragraph [ref=f5e87]: Our clients are at the heart of everything we do. We deliver personalized solutions.
+          - generic [ref=f5e88]:
+            - heading "Reliability" [level=3] [ref=f5e95]
+            - paragraph [ref=f5e96]: Consistent, dependable service that our clients can trust for every shipment.
+          - generic [ref=f5e97]:
+            - heading "Sustainability" [level=3] [ref=f5e102]
+            - paragraph [ref=f5e103]: Committed to environmentally responsible practices in global logistics.
+          - generic [ref=f5e104]:
+            - heading "Safety" [level=3] [ref=f5e108]
+            - paragraph [ref=f5e109]: Rigorous safety standards protect your cargo, our team, and the environment.
+      - generic [ref=f5e113]:
+        - heading "Ready to Ship?" [level=2] [ref=f5e114]
+        - paragraph [ref=f5e115]: Get in touch with our team today for a free, no-obligation quote. We are available 24/7 to assist you.
+        - link [ref=f5e116] [cursor=pointer]:
+          - /url: /en/request-quote
+          - button "Request a Quote" [ref=f5e117]
+    - contentinfo [ref=f5e120]:
+      - generic [ref=f5e121]:
+        - generic [ref=f5e122]:
+          - generic [ref=f5e123]:
+            - link "NL NileLink" [ref=f5e124] [cursor=pointer]:
+              - /url: /en
+              - generic [ref=f5e125]: NL
+              - generic [ref=f5e126]: NileLink
+            - paragraph [ref=f5e127]: Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.
+            - generic [ref=f5e128]:
+              - link "Facebook" [ref=f5e129] [cursor=pointer]:
+                - /url: https://www.facebook.com/nilelinklogistics/
+              - link "WhatsApp" [ref=f5e132] [cursor=pointer]:
+                - /url: https://wa.me/201000018549
+              - link "LinkedIn" [ref=f5e135] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nilelinklogistics/about/?viewAsMember=true
+              - link "Send email to info@nilelinklogistics.com" [ref=f5e138] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+          - generic [ref=f5e141]:
+            - heading "Quick Links" [level=3] [ref=f5e142]
+            - list [ref=f5e143]:
+              - listitem [ref=f5e144]:
+                - link "Home" [ref=f5e145] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=f5e150]:
+                - link "About Us" [ref=f5e151] [cursor=pointer]:
+                  - /url: /en/about
+              - listitem [ref=f5e156]:
+                - link "Services" [ref=f5e157] [cursor=pointer]:
+                  - /url: /en/services
+              - listitem [ref=f5e162]:
+                - link "Request a Quote" [ref=f5e163] [cursor=pointer]:
+                  - /url: /en/request-quote
+              - listitem [ref=f5e168]:
+                - link "Contact Us" [ref=f5e169] [cursor=pointer]:
+                  - /url: /en/contact
+          - generic [ref=f5e174]:
+            - heading "Our Services" [level=3] [ref=f5e175]
+            - list [ref=f5e176]:
+              - listitem [ref=f5e177]:
+                - link "Sea Freight" [ref=f5e178] [cursor=pointer]:
+                  - /url: /en/services#sea-freight
+              - listitem [ref=f5e183]:
+                - link "Air Freight" [ref=f5e184] [cursor=pointer]:
+                  - /url: /en/services#air-freight
+              - listitem [ref=f5e189]:
+                - link "Road Freight" [ref=f5e190] [cursor=pointer]:
+                  - /url: /en/services#road-freight
+              - listitem [ref=f5e195]:
+                - link "Customs Clearance" [ref=f5e196] [cursor=pointer]:
+                  - /url: /en/services#customs-clearance
+              - listitem [ref=f5e201]:
+                - link "Warehousing" [ref=f5e202] [cursor=pointer]:
+                  - /url: /en/services#warehousing
+              - listitem [ref=f5e207]:
+                - link "Specialized Services" [ref=f5e208] [cursor=pointer]:
+                  - /url: /en/services#specialized
+          - generic [ref=f5e213]:
+            - heading "Contact Info" [level=3] [ref=f5e214]
+            - generic [ref=f5e215]:
+              - generic [ref=f5e220]:
+                - paragraph [ref=f5e221]: Head Office
+                - paragraph [ref=f5e222]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f5e223]: Damietta, Egypt
+              - generic [ref=f5e227]:
+                - link "+2 0100 0842099" [ref=f5e228] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f5e229] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f5e234] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+        - generic [ref=f5e236]:
+          - paragraph [ref=f5e237]: © 2026 NileLink. All Rights Reserved.
+          - generic [ref=f5e238]:
+            - link "Privacy Policy" [ref=f5e239] [cursor=pointer]:
+              - /url: /en
+            - link "Terms of Service" [ref=f5e240] [cursor=pointer]:
+              - /url: /en
+    - button "Scroll to top"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e246] [cursor=pointer]
+  - alert [ref=f5e250]

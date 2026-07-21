@@ -1,0 +1,237 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - banner [ref=f6e3]:
+      - generic [ref=f6e6]:
+        - link "+2 0100 0842099" [ref=f6e7] [cursor=pointer]:
+          - /url: tel:+201000842099
+        - link "Send email to info@nilelinklogistics.com" [ref=f6e10] [cursor=pointer]:
+          - /url: mailto:info@nilelinklogistics.com
+          - text: info@nilelinklogistics.com
+      - navigation [ref=f6e14]:
+        - generic [ref=f6e15]:
+          - link "NL NileLink" [ref=f6e16] [cursor=pointer]:
+            - /url: /en
+            - generic [ref=f6e17]: NL
+            - generic [ref=f6e18]: NileLink
+          - generic [ref=f6e19]:
+            - button "English" [ref=f6e21]
+            - button "Toggle menu" [ref=f6e27]
+    - main [ref=f6e29]:
+      - generic [ref=f6e30]:
+        - generic [ref=f6e36]:
+          - generic [ref=f6e37]: Your No.1 Partner in International Shipping
+          - heading "Global Logistics Solutions" [level=1] [ref=f6e40]
+          - paragraph [ref=f6e41]: Reliable sea, air, and land freight services across the globe. NileLink delivers excellence in every shipment.
+          - generic [ref=f6e42]:
+            - link [ref=f6e43] [cursor=pointer]:
+              - /url: /en/request-quote
+              - button "Get a Quote" [ref=f6e44]
+            - link [ref=f6e47] [cursor=pointer]:
+              - /url: /en/services
+              - button "Our Services" [ref=f6e48]
+        - generic [ref=f6e49]: Scroll
+      - generic [ref=f6e55]:
+        - generic [ref=f6e56]:
+          - generic [ref=f6e57]:
+            - generic [ref=f6e58]: About NileLink
+            - heading "Your Trusted Partner in Global Logistics" [level=2] [ref=f6e59]
+          - paragraph [ref=f6e61]: At NileLink, we are a leading force in the freight forwarding industry, dedicated to delivering unparalleled logistics solutions. With a rich history and a commitment to excellence, our mission is to provide reliable and innovative services that empower businesses to navigate the complexities of global trade.
+          - link [ref=f6e62] [cursor=pointer]:
+            - /url: /en/about
+            - button "Learn More About Us" [ref=f6e63]
+        - generic [ref=f6e66]:
+          - img "Global logistics container ship" [ref=f6e68]
+          - generic [ref=f6e75]:
+            - paragraph [ref=f6e76]: 15+
+            - paragraph [ref=f6e77]: Years Experience
+      - generic [ref=f6e79]:
+        - generic [ref=f6e80]:
+          - generic [ref=f6e81]: Our Services
+          - heading "Comprehensive Logistics Solutions" [level=2] [ref=f6e82]
+        - paragraph [ref=f6e84]: NileLink is committed to providing its clients with the best and cost-effective services to cover all logistics requests.
+        - generic [ref=f6e85]:
+          - generic [ref=f6e86]:
+            - img "Sea Freight" [ref=f6e88]
+            - generic [ref=f6e95]:
+              - heading "Sea Freight" [level=3] [ref=f6e96]
+              - paragraph [ref=f6e97]: Cost-effective and versatile shipping solution for large or bulky shipments. Offering FCL and LCL container options with global coverage through strategic partnerships.
+              - link "Learn More" [ref=f6e98] [cursor=pointer]:
+                - /url: /en/services#seaFreight
+          - generic [ref=f6e101]:
+            - img "Air Freight" [ref=f6e103]
+            - generic [ref=f6e108]:
+              - heading "Air Freight" [level=3] [ref=f6e109]
+              - paragraph [ref=f6e110]: Fast and reliable international shipping service via air transportation. Ideal for time-sensitive goods ensuring swift delivery and efficient logistics.
+              - link "Learn More" [ref=f6e111] [cursor=pointer]:
+                - /url: /en/services#airFreight
+          - generic [ref=f6e114]:
+            - img "Road Freight" [ref=f6e116]
+            - generic [ref=f6e124]:
+              - heading "Road Freight" [level=3] [ref=f6e125]
+              - paragraph [ref=f6e126]: Seamless overland transportation services including trucking and intermodal solutions. Ensuring safe and timely delivery of goods within specified regions.
+              - link "Learn More" [ref=f6e127] [cursor=pointer]:
+                - /url: /en/services#roadFreight
+          - generic [ref=f6e130]:
+            - img "Customs Clearance" [ref=f6e132]
+            - generic [ref=f6e139]:
+              - heading "Customs Clearance" [level=3] [ref=f6e140]
+              - paragraph [ref=f6e141]: Expert handling of customs procedures, documentation, and compliance to ensure smooth passage through international borders.
+              - link "Learn More" [ref=f6e142] [cursor=pointer]:
+                - /url: /en/services#customsClearance
+          - generic [ref=f6e145]:
+            - img "Warehousing" [ref=f6e147]
+            - generic [ref=f6e153]:
+              - heading "Warehousing" [level=3] [ref=f6e154]
+              - paragraph [ref=f6e155]: Secure and efficient storage solutions for goods including short-term and long-term options. Full inventory management and order fulfillment.
+              - link "Learn More" [ref=f6e156] [cursor=pointer]:
+                - /url: /en/services#warehousing
+          - generic [ref=f6e159]:
+            - img "Specialized Services" [ref=f6e161]
+            - generic [ref=f6e167]:
+              - heading "Specialized Services" [level=3] [ref=f6e168]
+              - paragraph [ref=f6e169]: Tailored solutions for unique cargo needs such as temperature-sensitive items, hazardous materials, and oversized project cargo.
+              - link "Learn More" [ref=f6e170] [cursor=pointer]:
+                - /url: /en/services#specialized
+        - link [ref=f6e174] [cursor=pointer]:
+          - /url: /en/services
+          - button "View All Services" [ref=f6e175]
+      - generic [ref=f6e179]:
+        - generic [ref=f6e180]:
+          - generic [ref=f6e181]: Why Choose NileLink
+          - heading "The NileLink Advantage" [level=2] [ref=f6e182]
+        - generic [ref=f6e184]:
+          - generic [ref=f6e185]:
+            - heading "Global Reach" [level=3] [ref=f6e190]
+            - paragraph [ref=f6e191]: Benefit from our extensive network and partnerships, facilitating smooth logistics operations on a global scale.
+          - generic [ref=f6e192]:
+            - heading "Expert Team" [level=3] [ref=f6e199]
+            - paragraph [ref=f6e200]: Rely on seasoned professionals with years of experience, ensuring precision and reliability in every shipment.
+          - generic [ref=f6e201]:
+            - heading "Customer-Centric" [level=3] [ref=f6e205]
+            - paragraph [ref=f6e206]: Your satisfaction is our priority. We work closely to understand your requirements and deliver solutions that exceed expectations.
+          - generic [ref=f6e207]:
+            - heading "Compliance & Regulations" [level=3] [ref=f6e212]
+            - paragraph [ref=f6e213]: Navigate international trade regulations with confidence. We ensure strict compliance with customs procedures and regulatory standards.
+      - generic [ref=f6e215]:
+        - generic [ref=f6e216]:
+          - generic [ref=f6e217]: Global Network
+          - heading "Worldwide Shipping Coverage" [level=2] [ref=f6e218]
+        - paragraph [ref=f6e220]: With a worldwide network of partners around the globe, we are ready to ship your goods anywhere with the best competitive price.
+        - img "World map - global network" [ref=f6e222]
+        - generic [ref=f6e224]:
+          - generic [ref=f6e225]:
+            - generic [ref=f6e226]: 🌎
+            - text: North America
+          - generic [ref=f6e227]:
+            - generic [ref=f6e228]: 🌍
+            - text: Europe
+          - generic [ref=f6e229]:
+            - generic [ref=f6e230]: 🌏
+            - text: Asia Pacific
+          - generic [ref=f6e231]:
+            - generic [ref=f6e232]: 🏜️
+            - text: Middle East
+          - generic [ref=f6e233]:
+            - generic [ref=f6e234]: 🌍
+            - text: Africa
+          - generic [ref=f6e235]:
+            - generic [ref=f6e236]: 🌎
+            - text: South America
+      - generic [ref=f6e238]:
+        - generic [ref=f6e239]:
+          - generic [ref=f6e240]: FAQ
+          - heading "Frequently Asked Questions" [level=2] [ref=f6e241]
+        - generic [ref=f6e243]:
+          - button "What types of cargo do you ship?" [ref=f6e245]
+          - button "How long does sea freight take?" [ref=f6e250]
+          - button "Do you offer door-to-door delivery?" [ref=f6e255]
+          - button "How can I track my shipment?" [ref=f6e260]
+          - button "What documentation is required for international shipping?" [ref=f6e265]
+      - generic [ref=f6e273]:
+        - heading "Ready to Ship?" [level=2] [ref=f6e274]
+        - paragraph [ref=f6e275]: Get in touch with our team today for a free, no-obligation quote. We are available 24/7 to assist you.
+        - link [ref=f6e276] [cursor=pointer]:
+          - /url: /en/request-quote
+          - button "Request a Quote" [ref=f6e277]
+    - contentinfo [ref=f6e280]:
+      - generic [ref=f6e281]:
+        - generic [ref=f6e282]:
+          - generic [ref=f6e283]:
+            - link "NL NileLink" [ref=f6e284] [cursor=pointer]:
+              - /url: /en
+              - generic [ref=f6e285]: NL
+              - generic [ref=f6e286]: NileLink
+            - paragraph [ref=f6e287]: Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.
+            - generic [ref=f6e288]:
+              - link "Facebook" [ref=f6e289] [cursor=pointer]:
+                - /url: https://www.facebook.com/nilelinklogistics/
+              - link "WhatsApp" [ref=f6e292] [cursor=pointer]:
+                - /url: https://wa.me/201000018549
+              - link "LinkedIn" [ref=f6e295] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nilelinklogistics/about/?viewAsMember=true
+              - link "Send email to info@nilelinklogistics.com" [ref=f6e298] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+          - generic [ref=f6e301]:
+            - heading "Quick Links" [level=3] [ref=f6e302]
+            - list [ref=f6e303]:
+              - listitem [ref=f6e304]:
+                - link "Home" [ref=f6e305] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=f6e310]:
+                - link "About Us" [ref=f6e311] [cursor=pointer]:
+                  - /url: /en/about
+              - listitem [ref=f6e316]:
+                - link "Services" [ref=f6e317] [cursor=pointer]:
+                  - /url: /en/services
+              - listitem [ref=f6e322]:
+                - link "Request a Quote" [ref=f6e323] [cursor=pointer]:
+                  - /url: /en/request-quote
+              - listitem [ref=f6e328]:
+                - link "Contact Us" [ref=f6e329] [cursor=pointer]:
+                  - /url: /en/contact
+          - generic [ref=f6e334]:
+            - heading "Our Services" [level=3] [ref=f6e335]
+            - list [ref=f6e336]:
+              - listitem [ref=f6e337]:
+                - link "Sea Freight" [ref=f6e338] [cursor=pointer]:
+                  - /url: /en/services#sea-freight
+              - listitem [ref=f6e343]:
+                - link "Air Freight" [ref=f6e344] [cursor=pointer]:
+                  - /url: /en/services#air-freight
+              - listitem [ref=f6e349]:
+                - link "Road Freight" [ref=f6e350] [cursor=pointer]:
+                  - /url: /en/services#road-freight
+              - listitem [ref=f6e355]:
+                - link "Customs Clearance" [ref=f6e356] [cursor=pointer]:
+                  - /url: /en/services#customs-clearance
+              - listitem [ref=f6e361]:
+                - link "Warehousing" [ref=f6e362] [cursor=pointer]:
+                  - /url: /en/services#warehousing
+              - listitem [ref=f6e367]:
+                - link "Specialized Services" [ref=f6e368] [cursor=pointer]:
+                  - /url: /en/services#specialized
+          - generic [ref=f6e373]:
+            - heading "Contact Info" [level=3] [ref=f6e374]
+            - generic [ref=f6e375]:
+              - generic [ref=f6e380]:
+                - paragraph [ref=f6e381]: Head Office
+                - paragraph [ref=f6e382]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f6e383]: Damietta, Egypt
+              - generic [ref=f6e387]:
+                - link "+2 0100 0842099" [ref=f6e388] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f6e389] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f6e394] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+        - generic [ref=f6e396]:
+          - paragraph [ref=f6e397]: © 2026 NileLink. All Rights Reserved.
+          - generic [ref=f6e398]:
+            - link "Privacy Policy" [ref=f6e399] [cursor=pointer]:
+              - /url: /en
+            - link "Terms of Service" [ref=f6e400] [cursor=pointer]:
+              - /url: /en
+    - button "Scroll to top"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f6e406] [cursor=pointer]

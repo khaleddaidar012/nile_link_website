@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "NileLink | 全球物流解决方案",
+    "description": "NileLink 是埃及领先的货运代理公司，提供全球海运、空运、陆运、报关和仓储服务。"
+  },
+  "navbar": {
+    "getQuote": "获取报价"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "services": "服务",
+    "seaFreight": "海运",
+    "airFreight": "空运",
+    "roadFreight": "陆运",
+    "customsClearance": "报关",
+    "warehousing": "仓储",
+    "specialized": "专业服务",
+    "requestQuote": "请求报价",
+    "contact": "联系我们",
+    "dashboard": "仪表板"
+  },
+  "hero": {
+    "title": "全球物流解决方案",
+    "subtitle": "您在国际航运中的首选合作伙伴",
+    "description": "值得信赖的海运、空运和陆运服务，覆盖全球。NileLink 在每一批货物中提供卓越品质。",
+    "ctaQuote": "获取报价",
+    "ctaServices": "我们的服务"
+  },
+  "aboutPreview": {
+    "subtitle": "关于 NileLink",
+    "title": "您在全球物流中值得信赖的合作伙伴",
+    "description": "在 NileLink，我们是货运代理行业的领先力量，致力于提供无与伦比的物流解决方案。凭借丰富的历史和对卓越的承诺，我们的使命是提供可靠和创新的服务，使企业能够应对全球贸易的复杂性。",
+    "learnMore": "了解更多"
+  },
+  "services": {
+    "subtitle": "我们的服务",
+    "title": "全面的物流解决方案",
+    "description": "NileLink 致力于为客户提供最佳且最具成本效益的服务，以满足所有物流需求。",
+    "seaFreight": {
+      "title": "海运",
+      "description": "为大宗或笨重货物提供经济实惠且多功能的运输解决方案。通过战略合作伙伴关系提供整箱和拼箱集装箱选项，覆盖全球。",
+      "features": {
+        "item1": "整箱和拼箱集装箱",
+        "item2": "全球港口网络",
+        "item3": "灵活的船期",
+        "item4": "实时跟踪"
+      }
+    },
+    "airFreight": {
+      "title": "空运",
+      "description": "通过航空运输提供快速可靠的国际货运服务。适合时间敏感的货物，确保快速交付和高效的物流。",
+      "features": {
+        "item1": "快递和标准选项",
+        "item2": "集运服务",
+        "item3": "时间敏感货物",
+        "item4": "全球覆盖"
+      }
+    },
+    "roadFreight": {
+      "title": "陆运",
+      "description": "无缝陆路运输服务，包括卡车运输和多式联运解决方案。确保货物安全准时送达。",
+      "features": {
+        "item1": "国内和跨境",
+        "item2": "整车和零担",
+        "item3": "多式联运解决方案",
+        "item4": "实时GPS跟踪"
+      }
+    },
+    "customsClearance": {
+      "title": "报关",
+      "description": "专业的海关手续、文件和合规处理，确保货物顺利通过国际边境。",
+      "features": {
+        "item1": "文件处理",
+        "item2": "合规保证",
+        "item3": "快速清关",
+        "item4": "监管专业知识"
+      }
+    },
+    "warehousing": {
+      "title": "仓储",
+      "description": "安全高效的货物存储解决方案，包括短期和长期选项。全面的库存管理和订单履行。",
+      "features": {
+        "item1": "短期和长期存储",
+        "item2": "库存管理",
+        "item3": "订单履行",
+        "item4": "温控选项"
+      }
+    },
+    "specialized": {
+      "title": "专业服务",
+      "description": "针对特殊货物需求的定制解决方案，如温控物品、危险品和超大项目货物。",
+      "features": {
+        "item1": "温控",
+        "item2": "危险品",
+        "item3": "超大项目货物",
+        "item4": "定制解决方案"
+      }
+    },
+    "comparison": {
+      "title": "运输方式比较",
+      "subtitle": "选择正确的选项",
+      "seaFreight": {
+        "method": "海运",
+        "transit": "7-30天",
+        "cost": "$$",
+        "capacity": "无限",
+        "bestFor": "大批量货物，非紧急"
+      },
+      "airFreight": {
+        "method": "空运",
+        "transit": "1-5天",
+        "cost": "$$$",
+        "capacity": "有限",
+        "bestFor": "时间敏感，高价值"
+      },
+      "roadFreight": {
+        "method": "陆运",
+        "transit": "1-7天",
+        "cost": "$",
+        "capacity": "中等",
+        "bestFor": "区域，门到门"
+      },
+      "labels": {
+        "transit": "运输时间",
+        "cost": "成本",
+        "capacity": "容量",
+        "bestFor": "最适合"
+      }
+    },
+    "viewAll": "查看所有服务",
+    "learnMore": "了解更多"
+  },
+  "whyChooseUs": {
+    "subtitle": "为什么选择 NileLink",
+    "title": "NileLink 的优势",
+    "globalReach": {
+      "title": "全球覆盖",
+      "description": "利用我们广泛的分销网络和合作伙伴关系，在全球范围内实现顺畅的物流运营。"
+    },
+    "expertTeam": {
+      "title": "专业团队",
+      "description": "依靠经验丰富的专业人士，他们在每批货物中确保精准和可靠。"
+    },
+    "customerCentric": {
+      "title": "以客户为中心",
+      "description": "您的满意是我们的首要任务。我们紧密合作，了解您的需求并提供超出期望的解决方案。"
+    },
+    "compliance": {
+      "title": "合规与法规",
+      "description": "自信应对国际贸易法规。我们确保严格遵守海关程序和监管标准。"
+    }
+  },
+  "globalCoverage": {
+    "subtitle": "全球网络",
+    "title": "全球运输覆盖",
+    "description": "凭借遍布全球的合作伙伴网络，我们随时准备以最具竞争力的价格将您的货物运送到任何地方。"
+  },
+"faq": {
+    "subtitle": "常见问题",
+    "title": "常见问题解答",
+    "items": [
+      {
+        "question": "你们运输哪些类型的货物？",
+        "answer": "我们运输所有类型的货物，包括一般货物、易腐品、危险品、超大项目货物和温控物品。"
+      },
+      {
+        "question": "海运需要多长时间？",
+        "answer": "运输时间因路线而异。通常，从埃及到主要全球港口的海运需要7到30天，具体取决于目的地。"
+      },
+      {
+        "question": "你们提供门到门送货服务吗？",
+        "answer": "是的，我们提供全面的门到门物流解决方案，包括提货、运输、报关和最终交付。"
+      },
+      {
+        "question": "我如何追踪我的货物？",
+        "answer": "我们为所有货物提供实时追踪。一旦您的货物在运输中，您将收到一个追踪号码和定期更新。"
+      },
+      {
+        "question": "国际运输需要哪些文件？",
+        "answer": "所需文件通常包括商业发票、装箱单、提单或空运单以及原产地证书。我们的团队处理所有海关文件。"
+      }
+    ]
+  },
+  "cta": {
+    "title": "准备好发货了吗？",
+    "description": "立即联系我们的团队，获取免费且无义务的报价。我们全天候为您服务。",
+    "button": "请求报价"
+  },
+  "about": {
+    "hero": {
+      "title": "关于 NileLink",
+      "description": "了解我们的故事、使命以及对全球物流卓越的承诺。"
+    },
+    "whoWeAre": {
+      "title": "关于我们",
+      "description1": "在 NileLink，我们是货运代理行业的领先力量，致力于提供无与伦比的物流解决方案。",
+      "description2": "凭借丰富的历史和对卓越的承诺，我们的使命是提供可靠和创新的服务。在经验丰富的专业人士和战略合作伙伴的支持下，NileLink 是优化供应链的可信合作伙伴。"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "description": "NileLink 致力于通过无缝的全球物流解决方案赋能企业。我们的使命是成为您值得信赖的合作伙伴，提供创新可靠的货运服务。"
+    },
+    "vision": {
+      "title": "我们的愿景",
+      "description": "成为全球物流卓越的标杆，为货运代理行业的创新、可靠性和客户满意度设定标准。"
+    },
+    "coreValues": {
+      "title": "我们的核心价值观",
+      "subtitle": "我们的动力",
+      "integrity": {
+        "title": "诚信",
+        "description": "我们在每笔交易中以最高的道德标准、透明度和诚实开展业务。"
+      },
+      "innovation": {
+        "title": "创新",
+        "description": "我们利用尖端技术和创意解决方案优化供应链。"
+      },
+      "customerFocus": {
+        "title": "客户至上",
+        "description": "客户是我们一切工作的核心。我们提供个性化解决方案。"
+      },
+      "reliability": {
+        "title": "可靠性",
+        "description": "为每次运输提供客户可以信赖的持续、可靠的服务。"
+      },
+      "sustainability": {
+        "title": "可持续性",
+        "description": "致力于在全球物流中采取对环境负责的做法。"
+      },
+      "safety": {
+        "title": "安全",
+        "description": "严格的安全标准保护您的货物、我们的团队和环境。"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "联系我们",
+      "description": "全天候与我们的团队沟通，处理您的所有咨询、投诉或报价请求。"
+    },
+    "hq": "总部",
+    "alexandria": "亚历山大办事处",
+    "phone": "电话",
+    "email": "邮箱",
+    "form": {
+      "title": "给我们留言",
+      "name": "您的姓名",
+      "email": "邮箱地址",
+      "phone": "电话号码",
+      "subject": "主题",
+      "message": "您的留言",
+      "submit": "发送留言",
+      "success": "消息发送成功！我们将尽快回复您。",
+      "error": "发生错误。请重试。"
+    },
+    "tagline": "您在埃及值得信赖的航运合作伙伴",
+    "support247": "专属协助",
+    "support247Desc": "我们的团队随时准备协助您满足运输需求。",
+    "quickResponse": {
+      "title": "快速响应",
+      "description": "我们的团队通常在工作时间内的2小时内回复。"
+    }
+  },
+  "quote": {
+    "hero": {
+      "title": "请求报价",
+      "description": "请填写以下表格。我们的团队将审核您的请求，并以最优惠的价格与您联系。"
+    },
+    "form": {
+      "title": "获取免费报价",
+      "firstName": "名",
+      "lastName": "姓",
+      "company": "公司",
+      "email": "邮箱",
+      "phone": "电话",
+      "address": "地址",
+      "city": "城市",
+      "state": "州/省",
+      "postcode": "邮政编码",
+      "country": "国家",
+      "freightType": "货运类型",
+      "freightAir": "空运",
+      "freightRoad": "陆运",
+      "freightOcean": "海运",
+      "weight": "重量 (kg)",
+      "quantity": "数量",
+      "length": "长度 (cm)",
+      "height": "高度 (cm)",
+      "width": "宽度 (cm)",
+      "from": "出发地",
+      "to": "目的地",
+      "notes": "附加说明",
+      "submit": "提交请求",
+      "success": "报价请求提交成功！我们将尽快与您联系。",
+      "error": "发生错误。请重试。"
+    }
+  },
+  "footer": {
+    "description": "您在全球物流中值得信赖的合作伙伴。NileLink 提供全面的海运、空运和陆运解决方案，致力于卓越服务。",
+    "quickLinks": "快速链接",
+    "services": "我们的服务",
+    "contact": "Contact Us",
+    "copyright": "保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您正在查找的页面不存在。",
+    "goHome": "返回首页"
+  }
+}
+
+

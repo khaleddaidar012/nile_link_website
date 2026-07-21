@@ -1,0 +1,39 @@
+"use client"
+
+import { useTranslations } from "next-intl"
+import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import { Container } from "@/components/ui/Container"
+import { Button } from "@/components/ui/Button"
+import { Link } from "@/navigation"
+
+export function AboutCTA() {
+  const t = useTranslations("cta")
+
+  return (
+    <section className="relative overflow-hidden bg-secondary-900 py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(14,165,233,0.15),transparent_50%)]" />
+      <Container className="relative z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            {t("title")}
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-white/70">
+            {t("description")}
+          </p>
+          <Link href="/request-quote">
+            <Button size="lg" className="mt-8 gap-2">
+              {t("button")}
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
+        </motion.div>
+      </Container>
+    </section>
+  )
+}

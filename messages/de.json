@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "NileLink | Globale Logistiklösungen",
+    "description": "NileLink ist ein führendes Speditionsunternehmen in Ägypten, das weltweit See-, Luft-, Landfracht, Zollabfertigung und Lagerhaltung anbietet."
+  },
+  "navbar": {
+    "getQuote": "Angebot einholen"
+  },
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Leistungen",
+    "seaFreight": "Seefracht",
+    "airFreight": "Luftfracht",
+    "roadFreight": "Landfracht",
+    "customsClearance": "Zollabfertigung",
+    "warehousing": "Lagerhaltung",
+    "specialized": "Spezialdienste",
+    "requestQuote": "Angebot anfordern",
+    "contact": "Kontakt",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Globale Logistiklösungen",
+    "subtitle": "Ihr Partner Nr. 1 im internationalen Versand",
+    "description": "Zuverlässige See-, Luft- und Landfrachtdienste weltweit. NileLink liefert Exzellenz in jeder Sendung.",
+    "ctaQuote": "Angebot einholen",
+    "ctaServices": "Unsere Leistungen"
+  },
+  "aboutPreview": {
+    "subtitle": "Über NileLink",
+    "title": "Ihr vertrauenswürdiger Partner für globale Logistik",
+    "description": "Bei NileLink sind wir eine führende Kraft in der Speditionsbranche, die sich der Bereitstellung unübertroffener Logistiklösungen verschrieben hat. Mit einer reichen Geschichte und einem Engagement für Exzellenz ist es unsere Mission, zuverlässige und innovative Dienstleistungen anzubieten, die Unternehmen befähigen, die Komplexität des globalen Handels zu meistern.",
+    "learnMore": "Mehr erfahren"
+  },
+  "services": {
+    "subtitle": "Unsere Leistungen",
+    "title": "Umfassende Logistiklösungen",
+    "description": "NileLink verpflichtet sich, seinen Kunden die besten und kosteneffektivsten Dienstleistungen zu bieten, um alle logistischen Anforderungen zu erfüllen.",
+    "seaFreight": {
+      "title": "Seefracht",
+      "description": "Kosteneffiziente und vielseitige Versandlösung für große oder sperrige Sendungen. Bietet FCL- und LCL-Containeroptionen mit globaler Abdeckung durch strategische Partnerschaften.",
+      "features": {
+        "item1": "FCL- und LCL-Container",
+        "item2": "Globales Hafennetz",
+        "item3": "Flexible Fahrpläne",
+        "item4": "Echtzeit-Tracking"
+      }
+    },
+    "airFreight": {
+      "title": "Luftfracht",
+      "description": "Schneller und zuverlässiger internationaler Versandservice per Lufttransport. Ideal für zeitkritische Güter, die eine schnelle Lieferung und effiziente Logistik gewährleisten.",
+      "features": {
+        "item1": "Express- und Standardoptionen",
+        "item2": "Konsolidierungsdienste",
+        "item3": "Zeitkritische Fracht",
+        "item4": "Globale Abdeckung"
+      }
+    },
+    "roadFreight": {
+      "title": "Landfracht",
+      "description": "Nahtlose Überlandtransportdienste einschließlich LKW- und intermodaler Lösungen. Gewährleistet sichere und pünktliche Lieferung der Waren.",
+      "features": {
+        "item1": "Inländisch und grenzüberschreitend",
+        "item2": "Voll- und Teilladungen",
+        "item3": "Intermodale Lösungen",
+        "item4": "Echtzeit-GPS-Tracking"
+      }
+    },
+    "customsClearance": {
+      "title": "Zollabfertigung",
+      "description": "Fachkundige Abwicklung von Zollverfahren, Dokumentation und Compliance für einen reibungslosen Grenzübertritt.",
+      "features": {
+        "item1": "Dokumentenbearbeitung",
+        "item2": "Compliance garantiert",
+        "item3": "Schnelle Abfertigung",
+        "item4": "Regulierungsexpertise"
+      }
+    },
+    "warehousing": {
+      "title": "Lagerhaltung",
+      "description": "Sichere und effiziente Lagerlösungen für Waren, einschließlich Kurz- und Langzeitoptionen. Vollständige Bestandsverwaltung und Auftragsabwicklung.",
+      "features": {
+        "item1": "Kurz- und Langzeitlagerung",
+        "item2": "Bestandsverwaltung",
+        "item3": "Auftragsabwicklung",
+        "item4": "Klimatisierte Optionen"
+      }
+    },
+    "specialized": {
+      "title": "Spezialdienste",
+      "description": "Maßgeschneiderte Lösungen für besondere Frachtbedürfnisse wie temperaturempfindliche Artikel, Gefahrgüter und übergroße Projektfracht.",
+      "features": {
+        "item1": "Temperaturkontrolliert",
+        "item2": "Gefahrgüter",
+        "item3": "Übergroße Projektfracht",
+        "item4": "Individuelle Lösungen"
+      }
+    },
+    "comparison": {
+      "title": "Versandmethoden im Vergleich",
+      "subtitle": "Wählen Sie die richtige Option",
+      "seaFreight": {
+        "method": "Seefracht",
+        "transit": "7–30 Tage",
+        "cost": "$$",
+        "capacity": "Unbegrenzt",
+        "bestFor": "Große Sendungen, nicht eilig"
+      },
+      "airFreight": {
+        "method": "Luftfracht",
+        "transit": "1–5 Tage",
+        "cost": "$$$",
+        "capacity": "Begrenzt",
+        "bestFor": "Zeitkritisch, hochwertig"
+      },
+      "roadFreight": {
+        "method": "Landfracht",
+        "transit": "1–7 Tage",
+        "cost": "$",
+        "capacity": "Mittel",
+        "bestFor": "Regional, Tür-zu-Tür"
+      },
+      "labels": {
+        "transit": "Transitzeit",
+        "cost": "Kosten",
+        "capacity": "Kapazität",
+        "bestFor": "Am besten für"
+      }
+    },
+    "viewAll": "Alle Leistungen anzeigen",
+    "learnMore": "Mehr erfahren"
+  },
+  "whyChooseUs": {
+    "subtitle": "Warum NileLink wählen",
+    "title": "Der NileLink-Vorteil",
+    "globalReach": {
+      "title": "Globale Reichweite",
+      "description": "Profitieren Sie von unserem umfangreichen Netzwerk und Partnerschaften, die reibungslose Logistikabläufe auf globaler Ebene ermöglichen."
+    },
+    "expertTeam": {
+      "title": "Expertenteam",
+      "description": "Verlassen Sie sich auf erfahrene Profis mit jahrelanger Erfahrung, die Präzision und Zuverlässigkeit bei jeder Sendung gewährleisten."
+    },
+    "customerCentric": {
+      "title": "Kundenorientiert",
+      "description": "Ihre Zufriedenheit hat für uns oberste Priorität. Wir arbeiten eng mit Ihnen zusammen, um Ihre Anforderungen zu verstehen und Lösungen zu liefern, die die Erwartungen übertreffen."
+    },
+    "compliance": {
+      "title": "Compliance & Vorschriften",
+      "description": "Navigieren Sie sicher durch internationale Handelsvorschriften. Wir stellen die strikte Einhaltung von Zollverfahren und regulatorischen Standards sicher."
+    }
+  },
+  "globalCoverage": {
+    "subtitle": "Globales Netzwerk",
+    "title": "Weltweite Versandabdeckung",
+    "description": "Mit einem weltweiten Netzwerk von Partnern sind wir bereit, Ihre Waren überallhin zum besten wettbewerbsfähigen Preis zu versenden."
+  },
+"faq": {
+    "subtitle": "FAQ",
+    "title": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "question": "Welche Arten von Fracht versenden Sie?",
+        "answer": "Wir versenden alle Arten von Fracht, einschließlich allgemeiner Güter, verderblicher Waren, Gefahrgüter, übergroßer Projektfracht und temperaturempfindlicher Artikel."
+      },
+      {
+        "question": "Wie lange dauert die Seefracht?",
+        "answer": "Die Transitzeiten variieren je nach Route. In der Regel dauert die Seefracht von Ägypten zu großen globalen Häfen zwischen 7 und 30 Tagen, abhängig vom Zielort."
+      },
+      {
+        "question": "Bieten Sie Tür-zu-Tür-Lieferung an?",
+        "answer": "Ja, wir bieten umfassende Tür-zu-Tür-Logistiklösungen an, die Abholung, Transport, Zollabfertigung und Endzustellung umfassen."
+      },
+      {
+        "question": "Wie kann ich meine Sendung verfolgen?",
+        "answer": "Wir bieten Echtzeit-Tracking für alle Sendungen. Sobald Ihre Fracht in Transit ist, erhalten Sie eine Sendungsnummer und regelmäßige Updates."
+      },
+      {
+        "question": "Welche Dokumente werden für den internationalen Versand benötigt?",
+        "answer": "Erforderliche Dokumente umfassen in der Regel Handelsrechnung, Packliste, Konnossement oder Luftfrachtbrief und Ursprungszeugnis. Unser Team kümmert sich um die gesamte Zolldokumentation."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit für den Versand?",
+    "description": "Kontaktieren Sie noch heute unser Team für ein unverbindliches Angebot. Wir sind rund um die Uhr für Sie da.",
+    "button": "Angebot anfordern"
+  },
+  "about": {
+    "hero": {
+      "title": "Über NileLink",
+      "description": "Entdecken Sie unsere Geschichte, Mission und unser Engagement für Exzellenz in der globalen Logistik."
+    },
+    "whoWeAre": {
+      "title": "Wer wir sind",
+      "description1": "Bei NileLink sind wir eine führende Kraft in der Speditionsbranche, die sich der Bereitstellung unübertroffener Logistiklösungen verschrieben hat.",
+      "description2": "Mit einer reichen Geschichte und einem Engagement für Exzellenz ist es unsere Mission, zuverlässige und innovative Dienstleistungen anzubieten. Unterstützt von einem Team erfahrener Profis und strategischer Partnerschaften steht NileLink als vertrauenswürdiger Partner bei der Optimierung von Lieferketten."
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "description": "NileLink ist bestrebt, Unternehmen durch nahtlose globale Logistiklösungen zu stärken. Unsere Mission ist es, der vertrauenswürdige Partner zu sein, der innovative und zuverlässige Speditionsdienste bietet."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "description": "Der globale Maßstab für Logistikexzellenz zu sein und den Standard für Innovation, Zuverlässigkeit und Kundenzufriedenheit in der Speditionsbranche zu setzen."
+    },
+    "coreValues": {
+      "title": "Unsere Grundwerte",
+      "subtitle": "Was uns antreibt",
+      "integrity": {
+        "title": "Integrität",
+        "description": "Wir führen Geschäfte mit höchsten ethischen Standards, Transparenz und Ehrlichkeit in jeder Transaktion."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Wir nutzen modernste Technologie und kreative Lösungen zur Optimierung von Lieferketten."
+      },
+      "customerFocus": {
+        "title": "Kundenfokus",
+        "description": "Unsere Kunden stehen im Mittelpunkt alles was wir tun. Wir liefern personalisierte Lösungen."
+      },
+      "reliability": {
+        "title": "Zuverlässigkeit",
+        "description": "Konsistenter, verlässlicher Service, dem unsere Kunden bei jeder Sendung vertrauen können."
+      },
+      "sustainability": {
+        "title": "Nachhaltigkeit",
+        "description": "Wir engagieren uns für umweltverantwortliche Praktiken in der globalen Logistik."
+      },
+      "safety": {
+        "title": "Sicherheit",
+        "description": "Strenge Sicherheitsstandards schützen Ihre Fracht, unser Team und die Umwelt."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Kommunizieren Sie rund um die Uhr mit unserem Team für alle Anfragen, Beschwerden oder Angebotsanfragen."
+    },
+    "hq": "Hauptsitz",
+    "alexandria": "Büro Alexandria",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "form": {
+      "title": "Senden Sie uns eine Nachricht",
+      "name": "Ihr Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "subject": "Betreff",
+      "message": "Ihre Nachricht",
+      "submit": "Nachricht senden",
+      "success": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
+      "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "tagline": "Ihr zuverlässiger Versandpartner in Ägypten",
+    "support247": "Engagierte Unterstützung",
+    "support247Desc": "Unser Team steht Ihnen bei Ihren Versandanforderungen zur Seite.",
+    "quickResponse": {
+      "title": "Schnelle Antwort",
+      "description": "Unser Team antwortet in der Regel innerhalb von 2 Stunden während der Geschäftszeiten."
+    }
+  },
+  "quote": {
+    "hero": {
+      "title": "Angebot anfordern",
+      "description": "Bitte füllen Sie das untenstehende Formular aus. Unser Team wird Ihre Anfrage prüfen und sich mit dem besten Tarif bei Ihnen melden."
+    },
+    "form": {
+      "title": "Holen Sie sich Ihr kostenloses Angebot",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "company": "Unternehmen",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "city": "Stadt",
+      "state": "Bundesland",
+      "postcode": "Postleitzahl",
+      "country": "Land",
+      "freightType": "Frachtart",
+      "freightAir": "Luftfracht",
+      "freightRoad": "Landfracht",
+      "freightOcean": "Seefracht",
+      "weight": "Gewicht (kg)",
+      "quantity": "Menge",
+      "length": "Länge (cm)",
+      "height": "Höhe (cm)",
+      "width": "Breite (cm)",
+      "from": "Von",
+      "to": "Nach",
+      "notes": "Zusätzliche Anmerkungen",
+      "submit": "Anfrage absenden",
+      "success": "Angebotsanfrage erfolgreich übermittelt! Wir werden uns in Kürze bei Ihnen melden.",
+      "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    }
+  },
+  "footer": {
+    "description": "Ihr vertrauenswürdiger Partner in der globalen Logistik. NileLink bietet umfassende See-, Luft- und Landfrachtlösungen mit einem Engagement für Exzellenz.",
+    "quickLinks": "Schnelllinks",
+    "services": "Unsere Leistungen",
+    "contact": "Contact Us",
+    "copyright": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die von Ihnen gesuchte Seite existiert nicht.",
+    "goHome": "Zur Startseite"
+  }
+}
+
+

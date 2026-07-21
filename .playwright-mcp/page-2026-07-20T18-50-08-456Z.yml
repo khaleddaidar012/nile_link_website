@@ -1,0 +1,132 @@
+- generic [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - banner [ref=f11e3]:
+      - generic [ref=f11e6]:
+        - link "+2 0100 0842099" [ref=f11e7] [cursor=pointer]:
+          - /url: tel:+201000842099
+        - link "Send email to info@nilelinklogistics.com" [ref=f11e10] [cursor=pointer]:
+          - /url: mailto:info@nilelinklogistics.com
+          - text: info@nilelinklogistics.com
+      - navigation [ref=f11e14]:
+        - generic [ref=f11e15]:
+          - link "NL NileLink" [ref=f11e16] [cursor=pointer]:
+            - /url: /en
+            - generic [ref=f11e17]: NL
+            - generic [ref=f11e18]: NileLink
+          - generic [ref=f11e19]:
+            - link "Home" [ref=f11e21] [cursor=pointer]:
+              - /url: /en
+            - link "About Us" [ref=f11e23] [cursor=pointer]:
+              - /url: /en/about
+            - link "Services" [ref=f11e25] [cursor=pointer]:
+              - /url: /en/services
+            - link "Request a Quote" [ref=f11e29] [cursor=pointer]:
+              - /url: /en/request-quote
+            - link "Contact Us" [ref=f11e31] [cursor=pointer]:
+              - /url: /en/contact
+          - generic [ref=f11e32]:
+            - button "English" [ref=f11e34]
+            - link [ref=f11e40] [cursor=pointer]:
+              - /url: /en/request-quote
+              - button "Get a Quote" [ref=f11e41]
+    - main [ref=f11e42]:
+      - generic [ref=f11e44]:
+        - generic [ref=f11e45]:
+          - generic [ref=f11e46]:
+            - heading "Analytics Dashboard" [level=1] [ref=f11e51]
+            - paragraph [ref=f11e52]: Sign in to access analytics
+          - generic [ref=f11e53]:
+            - generic [ref=f11e54]:
+              - generic [ref=f11e55]: Username
+              - textbox "Username" [active] [ref=f11e56]:
+                - /placeholder: Enter username
+            - generic [ref=f11e57]:
+              - generic [ref=f11e58]: Password
+              - generic [ref=f11e59]:
+                - textbox "Password" [ref=f11e60]:
+                  - /placeholder: Enter password
+                - button [ref=f11e61]
+            - button "Sign In" [ref=f11e65]
+        - paragraph [ref=f11e66]: Authorized personnel only
+    - contentinfo [ref=f11e67]:
+      - generic [ref=f11e68]:
+        - generic [ref=f11e69]:
+          - generic [ref=f11e70]:
+            - link "NL NileLink" [ref=f11e71] [cursor=pointer]:
+              - /url: /en
+              - generic [ref=f11e72]: NL
+              - generic [ref=f11e73]: NileLink
+            - paragraph [ref=f11e74]: Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.
+            - generic [ref=f11e75]:
+              - link "Facebook" [ref=f11e76] [cursor=pointer]:
+                - /url: https://www.facebook.com/nilelinklogistics/
+              - link "WhatsApp" [ref=f11e79] [cursor=pointer]:
+                - /url: https://wa.me/201000018549
+              - link "LinkedIn" [ref=f11e82] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nilelinklogistics/about/?viewAsMember=true
+              - link "Send email to info@nilelinklogistics.com" [ref=f11e85] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+          - generic [ref=f11e88]:
+            - heading "Quick Links" [level=3] [ref=f11e89]
+            - list [ref=f11e90]:
+              - listitem [ref=f11e91]:
+                - link "Home" [ref=f11e92] [cursor=pointer]:
+                  - /url: /en
+              - listitem [ref=f11e97]:
+                - link "About Us" [ref=f11e98] [cursor=pointer]:
+                  - /url: /en/about
+              - listitem [ref=f11e103]:
+                - link "Services" [ref=f11e104] [cursor=pointer]:
+                  - /url: /en/services
+              - listitem [ref=f11e109]:
+                - link "Request a Quote" [ref=f11e110] [cursor=pointer]:
+                  - /url: /en/request-quote
+              - listitem [ref=f11e115]:
+                - link "Contact Us" [ref=f11e116] [cursor=pointer]:
+                  - /url: /en/contact
+          - generic [ref=f11e121]:
+            - heading "Our Services" [level=3] [ref=f11e122]
+            - list [ref=f11e123]:
+              - listitem [ref=f11e124]:
+                - link "Sea Freight" [ref=f11e125] [cursor=pointer]:
+                  - /url: /en/services#sea-freight
+              - listitem [ref=f11e130]:
+                - link "Air Freight" [ref=f11e131] [cursor=pointer]:
+                  - /url: /en/services#air-freight
+              - listitem [ref=f11e136]:
+                - link "Road Freight" [ref=f11e137] [cursor=pointer]:
+                  - /url: /en/services#road-freight
+              - listitem [ref=f11e142]:
+                - link "Customs Clearance" [ref=f11e143] [cursor=pointer]:
+                  - /url: /en/services#customs-clearance
+              - listitem [ref=f11e148]:
+                - link "Warehousing" [ref=f11e149] [cursor=pointer]:
+                  - /url: /en/services#warehousing
+              - listitem [ref=f11e154]:
+                - link "Specialized Services" [ref=f11e155] [cursor=pointer]:
+                  - /url: /en/services#specialized
+          - generic [ref=f11e160]:
+            - heading "Contact Info" [level=3] [ref=f11e161]
+            - generic [ref=f11e162]:
+              - generic [ref=f11e167]:
+                - paragraph [ref=f11e168]: Head Office
+                - paragraph [ref=f11e169]: Al-Basarta, next to the Ebad Al-Rahman Mosque
+                - paragraph [ref=f11e170]: Damietta, Egypt
+              - generic [ref=f11e174]:
+                - link "+2 0100 0842099" [ref=f11e175] [cursor=pointer]:
+                  - /url: tel:+201000842099
+                - link "+2 01222965980" [ref=f11e176] [cursor=pointer]:
+                  - /url: tel:+201222965980
+              - link "Send email to info@nilelinklogistics.com" [ref=f11e181] [cursor=pointer]:
+                - /url: mailto:info@nilelinklogistics.com
+                - text: info@nilelinklogistics.com
+        - generic [ref=f11e183]:
+          - paragraph [ref=f11e184]: © 2026 NileLink. All Rights Reserved.
+          - generic [ref=f11e185]:
+            - link "Privacy Policy" [ref=f11e186] [cursor=pointer]:
+              - /url: /en
+            - link "Terms of Service" [ref=f11e187] [cursor=pointer]:
+              - /url: /en
+    - button "Scroll to top"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f11e193] [cursor=pointer]

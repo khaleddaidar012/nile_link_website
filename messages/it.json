@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "title": "NileLink | Soluzioni Logistiche Globali",
+    "description": "NileLink è un'azienda di spedizioni leader in Egitto, che offre servizi di trasporto marittimo, aereo, terrestre, sdoganamento e magazzinaggio in tutto il mondo."
+  },
+  "navbar": {
+    "getQuote": "Richiedi un preventivo"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "seaFreight": "Trasporto Marittimo",
+    "airFreight": "Trasporto Aereo",
+    "roadFreight": "Trasporto Terrestre",
+    "customsClearance": "Sdoganamento",
+    "warehousing": "Magazzinaggio",
+    "specialized": "Servizi Specializzati",
+    "requestQuote": "Richiedi un preventivo",
+    "contact": "Contattaci",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Soluzioni Logistiche Globali",
+    "subtitle": "Il Vostro Partner N°1 nelle Spedizioni Internazionali",
+    "description": "Servizi di trasporto marittimo, aereo e terrestre affidabili in tutto il mondo. NileLink offre eccellenza in ogni spedizione.",
+    "ctaQuote": "Ottieni un preventivo",
+    "ctaServices": "I Nostri Servizi"
+  },
+  "aboutPreview": {
+    "subtitle": "Chi è NileLink",
+    "title": "Il Vostro Partner di Fiducia nella Logistica Globale",
+    "description": "In NileLink, siamo una forza leader nel settore delle spedizioni, dedicata a fornire soluzioni logistiche senza pari. Con una ricca storia e un impegno per l'eccellenza, la nostra missione è offrire servizi affidabili e innovativi che consentano alle aziende di navigare le complessità del commercio globale.",
+    "learnMore": "Scopri di più"
+  },
+  "services": {
+    "subtitle": "I Nostri Servizi",
+    "title": "Soluzioni Logistiche Complete",
+    "description": "NileLink si impegna a fornire ai propri clienti i migliori servizi convenienti per coprire tutte le esigenze logistiche.",
+    "seaFreight": {
+      "title": "Trasporto Marittimo",
+      "description": "Soluzione di spedizione economica e versatile per carichi grandi o voluminosi. Offre opzioni di container FCL e LCL con copertura globale grazie a partnership strategiche.",
+      "features": {
+        "item1": "Contenitori FCL e LCL",
+        "item2": "Rete portuale globale",
+        "item3": "Orari di navigazione flessibili",
+        "item4": "Tracciamento in tempo reale"
+      }
+    },
+    "airFreight": {
+      "title": "Trasporto Aereo",
+      "description": "Servizio di spedizione internazionale rapido e affidabile via trasporto aereo. Ideale per merci urgenti che richiedono consegna veloce e logistica efficiente.",
+      "features": {
+        "item1": "Opzioni express e standard",
+        "item2": "Servizi di consolidamento",
+        "item3": "Merci urgenti",
+        "item4": "Copertura globale"
+      }
+    },
+    "roadFreight": {
+      "title": "Trasporto Terrestre",
+      "description": "Servizi di trasporto via terra senza soluzione di continuità, inclusi camionaggio e soluzioni intermodali. Garanzia di consegna sicura e puntuale delle merci.",
+      "features": {
+        "item1": "Nazionale e transfrontaliero",
+        "item2": "Carichi completi e parziali",
+        "item3": "Soluzioni intermodali",
+        "item4": "Tracciamento GPS in tempo reale"
+      }
+    },
+    "customsClearance": {
+      "title": "Sdoganamento",
+      "description": "Gestione esperta delle procedure doganali, della documentazione e della conformità per garantire un passaggio agevole attraverso i confini internazionali.",
+      "features": {
+        "item1": "Gestione documentale",
+        "item2": "Conformità garantita",
+        "item3": "Sdoganamento rapido",
+        "item4": "Competenza normativa"
+      }
+    },
+    "warehousing": {
+      "title": "Magazzinaggio",
+      "description": "Soluzioni di stoccaggio sicure ed efficienti per merci, incluse opzioni a breve e lungo termine. Gestione completa dell'inventario e evasione degli ordini.",
+      "features": {
+        "item1": "Stoccaggio breve e lungo termine",
+        "item2": "Gestione inventario",
+        "item3": "Evasione ordini",
+        "item4": "Opzioni climatizzate"
+      }
+    },
+    "specialized": {
+      "title": "Servizi Specializzati",
+      "description": "Soluzioni su misura per esigenze di carico uniche come articoli sensibili alla temperatura, materiali pericolosi e progetti di carico fuori misura.",
+      "features": {
+        "item1": "Temperatura controllata",
+        "item2": "Materiali pericolosi",
+        "item3": "Carichi fuori misura",
+        "item4": "Soluzioni personalizzate"
+      }
+    },
+    "comparison": {
+      "title": "Confronto Metodi di Spedizione",
+      "subtitle": "Scegli l'opzione giusta",
+      "seaFreight": {
+        "method": "Trasporto Marittimo",
+        "transit": "7–30 giorni",
+        "cost": "$$",
+        "capacity": "Illimitato",
+        "bestFor": "Carichi grandi, non urgenti"
+      },
+      "airFreight": {
+        "method": "Trasporto Aereo",
+        "transit": "1–5 giorni",
+        "cost": "$$$",
+        "capacity": "Limitato",
+        "bestFor": "Urgenti, alto valore"
+      },
+      "roadFreight": {
+        "method": "Trasporto Terrestre",
+        "transit": "1–7 giorni",
+        "cost": "$",
+        "capacity": "Medio",
+        "bestFor": "Regionale, porta a porta"
+      },
+      "labels": {
+        "transit": "Transito",
+        "cost": "Costo",
+        "capacity": "Capacità",
+        "bestFor": "Ideale per"
+      }
+    },
+    "viewAll": "Vedi tutti i servizi",
+    "learnMore": "Scopri di più"
+  },
+  "whyChooseUs": {
+    "subtitle": "Perché scegliere NileLink",
+    "title": "Il Vantaggio NileLink",
+    "globalReach": {
+      "title": "Copertura Globale",
+      "description": "Beneficia della nostra vasta rete e partnership, facilitando operazioni logistiche fluide su scala globale."
+    },
+    "expertTeam": {
+      "title": "Team di Esperti",
+      "description": "Affidati a professionisti esperti con anni di esperienza, che garantiscono precisione e affidabilità in ogni spedizione."
+    },
+    "customerCentric": {
+      "title": "Orientamento al Cliente",
+      "description": "La tua soddisfazione è la nostra priorità. Lavoriamo a stretto contatto per comprendere le tue esigenze e fornire soluzioni che superano le aspettative."
+    },
+    "compliance": {
+      "title": "Conformità e Regolamenti",
+      "description": "Naviga le normative del commercio internazionale con fiducia. Garantiamo la stretta conformità alle procedure doganali e agli standard normativi."
+    }
+  },
+  "globalCoverage": {
+    "subtitle": "Rete Globale",
+    "title": "Copertura di Spedizione Mondiale",
+    "description": "Con una rete mondiale di partner in tutto il mondo, siamo pronti a spedire le tue merci ovunque al miglior prezzo competitivo."
+  },
+"faq": {
+    "subtitle": "FAQ",
+    "title": "Domande Frequenti",
+    "items": [
+      {
+        "question": "Quali tipi di merci spedite?",
+        "answer": "Spediamo tutti i tipi di merci, inclusi beni generali, deperibili, materiali pericolosi, carichi industriali fuori misura e articoli a temperatura controllata."
+      },
+      {
+        "question": "Quanto tempo impiega il trasporto marittimo?",
+        "answer": "I tempi di transito variano in base alla rotta. Tipicamente, il trasporto marittimo dall'Egitto ai principali porti globali richiede da 7 a 30 giorni a seconda della destinazione."
+      },
+      {
+        "question": "Offrite la consegna porta a porta?",
+        "answer": "Sì, offriamo soluzioni logistiche complete porta a porta che coprono ritiro, trasporto, sdoganamento e consegna finale."
+      },
+      {
+        "question": "Come posso tracciare la mia spedizione?",
+        "answer": "Forniamo tracciamento in tempo reale per tutte le spedizioni. Una volta che il tuo carico è in transito, riceverai un numero di tracciamento e aggiornamenti regolari."
+      },
+      {
+        "question": "Quali documenti sono necessari per la spedizione internazionale?",
+        "answer": "La documentazione richiesta include tipicamente fattura commerciale, lista di imballaggio, polizza di carico o lettera di vettura aerea e certificato di origine. Il nostro team gestisce tutta la documentazione doganale."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Pronto a spedire?",
+    "description": "Contatta il nostro team oggi per un preventivo gratuito e senza impegno. Siamo disponibili 24/7 per assisterti.",
+    "button": "Richiedi un preventivo"
+  },
+  "about": {
+    "hero": {
+      "title": "Chi è NileLink",
+      "description": "Scopri la nostra storia, missione e impegno per l'eccellenza nella logistica globale."
+    },
+    "whoWeAre": {
+      "title": "Chi Siamo",
+      "description1": "In NileLink, siamo una forza leader nel settore delle spedizioni, dedicata a fornire soluzioni logistiche senza pari.",
+      "description2": "Con una ricca storia e un impegno per l'eccellenza, la nostra missione è offrire servizi affidabili e innovativi. Supportata da un team di professionisti esperti e partnership strategiche, NileLink è un partner fidato nell'ottimizzazione delle catene di approvvigionamento."
+    },
+    "mission": {
+      "title": "La Nostra Missione",
+      "description": "NileLink è dedicata a potenziare le aziende attraverso soluzioni logistiche globali senza soluzione di continuità. La nostra missione è essere il partner di fiducia, offrendo servizi di spedizione innovativi e affidabili."
+    },
+    "vision": {
+      "title": "La Nostra Visione",
+      "description": "Essere il punto di riferimento globale per l'eccellenza logistica, stabilendo lo standard per innovazione, affidabilità e soddisfazione del cliente nel settore delle spedizioni."
+    },
+    "coreValues": {
+      "title": "I Nostri Valori Fondamentali",
+      "subtitle": "Ciò che ci guida",
+      "integrity": {
+        "title": "Integrità",
+        "description": "Conduciamo affari con i più alti standard etici, trasparenza e onestà in ogni transazione."
+      },
+      "innovation": {
+        "title": "Innovazione",
+        "description": "Sfruttiamo tecnologia all'avanguardia e soluzioni creative per ottimizzare le catene di approvvigionamento."
+      },
+      "customerFocus": {
+        "title": "Attenzione al Cliente",
+        "description": "I nostri clienti sono al centro di tutto ciò che facciamo. Offriamo soluzioni personalizzate."
+      },
+      "reliability": {
+        "title": "Affidabilità",
+        "description": "Servizio coerente e affidabile di cui i nostri clienti possono fidarsi per ogni spedizione."
+      },
+      "sustainability": {
+        "title": "Sostenibilità",
+        "description": "Impegnati in pratiche ambientalmente responsabili nella logistica globale."
+      },
+      "safety": {
+        "title": "Sicurezza",
+        "description": "Standard di sicurezza rigorosi proteggono il tuo carico, il nostro team e l'ambiente."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contattaci",
+      "description": "Comunica con il nostro team 24/7 per tutte le tue richieste, reclami o richieste di preventivo."
+    },
+    "hq": "Sede Centrale",
+    "alexandria": "Ufficio di Alessandria",
+    "phone": "Telefono",
+    "email": "Email",
+    "form": {
+      "title": "Inviaci un messaggio",
+      "name": "Il tuo nome",
+      "email": "Indirizzo Email",
+      "phone": "Numero di Telefono",
+      "subject": "Oggetto",
+      "message": "Il tuo messaggio",
+      "submit": "Invia messaggio",
+      "success": "Messaggio inviato con successo! Ti risponderemo presto.",
+      "error": "Si è verificato un errore. Riprova."
+    },
+    "tagline": "Il tuo partner di fiducia nelle spedizioni in Egitto",
+    "support247": "Assistenza dedicata",
+    "support247Desc": "Il nostro team è pronto ad assisterti per le tue esigenze di spedizione.",
+    "quickResponse": {
+      "title": "Risposta rapida",
+      "description": "Il nostro team risponde solitamente entro 2 ore durante l'orario di ufficio."
+    }
+  },
+  "quote": {
+    "hero": {
+      "title": "Richiedi un preventivo",
+      "description": "Compila il modulo qui sotto. Il nostro team esaminerà la tua richiesta e ti contatterà con la migliore tariffa possibile."
+    },
+    "form": {
+      "title": "Ottieni il tuo preventivo gratuito",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "company": "Azienda",
+      "email": "Email",
+      "phone": "Telefono",
+      "address": "Indirizzo",
+      "city": "Città",
+      "state": "Provincia",
+      "postcode": "CAP",
+      "country": "Paese",
+      "freightType": "Tipo di Trasporto",
+      "freightAir": "Trasporto Aereo",
+      "freightRoad": "Trasporto Terrestre",
+      "freightOcean": "Trasporto Marittimo",
+      "weight": "Peso (kg)",
+      "quantity": "Quantità",
+      "length": "Lunghezza (cm)",
+      "height": "Altezza (cm)",
+      "width": "Larghezza (cm)",
+      "from": "Da",
+      "to": "A",
+      "notes": "Note aggiuntive",
+      "submit": "Invia richiesta",
+      "success": "Richiesta di preventivo inviata con successo! Ti contatteremo a breve.",
+      "error": "Si è verificato un errore. Riprova."
+    }
+  },
+  "footer": {
+    "description": "Il tuo partner di fiducia nella logistica globale. NileLink offre soluzioni complete di trasporto marittimo, aereo e terrestre con un impegno per l'eccellenza.",
+    "quickLinks": "Link rapidi",
+    "services": "I Nostri Servizi",
+    "contact": "Contact Us",
+    "copyright": "Tutti i diritti riservati.",
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste.",
+    "goHome": "Vai alla home"
+  }
+}
+
+
