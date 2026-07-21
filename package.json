@@ -7,10 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy:pages": "npm run build && wrangler pages deploy .next --project-name nilelink-website"
+    "cf-build": "opennextjs-cloudflare build",
+    "cf-preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf-deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@opennextjs/cloudflare": "1.20.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "jose": "^6.2.3",
@@ -38,6 +44,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "patch-package": "^8.0.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.0.0"

@@ -20,6 +20,18 @@
 # production
 /build
 
+# opennext
+/.open-next/
+
+# cloudflare dev vars
+.dev.vars
+
+# cloudflare wrangler state
+/.wrangler/
+
+# opennext test configs
+test-config*.mjs
+
 # misc
 .DS_Store
 *.pem

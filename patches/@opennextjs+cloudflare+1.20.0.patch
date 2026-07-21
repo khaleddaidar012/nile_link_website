@@ -1,0 +1,32 @@
+diff --git a/dist/cli/build/utils/copy-package-cli-files.js b/dist/cli/build/utils/copy-package-cli-files.js
+index 2a94450..a3e0a27 100644
+--- a/dist/cli/build/utils/copy-package-cli-files.js
++++ b/dist/cli/build/utils/copy-package-cli-files.js
+@@ -1,12 +1,26 @@
+ import fs from "node:fs";
+ import path from "node:path";
+ import { getOutputWorkerPath } from "../bundle-server.js";
++
++function copyDirSync(src, dest) {
++    fs.mkdirSync(dest, { recursive: true });
++    const entries = fs.readdirSync(src, { withFileTypes: true });
++    for (const entry of entries) {
++        const sp = path.join(src, entry.name);
++        const dp = path.join(dest, entry.name);
++        if (entry.isDirectory()) {
++            copyDirSync(sp, dp);
++        } else {
++            fs.copyFileSync(sp, dp);
++        }
++    }
++}
++
+ export function copyPackageCliFiles(packageDistDir, buildOpts) {
+     console.log("# copyPackageTemplateFiles");
+     const sourceDir = path.join(packageDistDir, "cli/templates");
+     const destinationDir = path.join(buildOpts.outputDir, "cloudflare-templates");
+-    fs.mkdirSync(destinationDir, { recursive: true });
+-    fs.cpSync(sourceDir, destinationDir, { recursive: true });
++    copyDirSync(sourceDir, destinationDir);
+     fs.copyFileSync(path.join(packageDistDir, "cli/templates/worker.js"), getOutputWorkerPath(buildOpts));
+ }
