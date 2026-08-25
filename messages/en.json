@@ -1,0 +1,584 @@
+{
+  "metadata": {
+    "title": "NileLink | Global Logistics Solutions",
+    "description": "NileLink is a leading freight forwarding company in Egypt, offering sea freight, air freight, road freight, customs clearance, and warehousing services worldwide."
+  },
+  "navbar": {
+    "getQuote": "Get a Quote"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "seaFreight": "Sea Freight",
+    "airFreight": "Air Freight",
+    "roadFreight": "Road Freight",
+    "customsClearance": "Customs Clearance",
+    "warehousing": "Warehousing",
+    "specialized": "Specialized Services",
+    "requestQuote": "Request a Quote",
+    "contact": "Contact Us",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Global Logistics Solutions",
+    "subtitle": "Your No.1 Partner in International Shipping",
+    "description": "Reliable sea, air, and land freight services across the globe. NileLink delivers excellence in every shipment.",
+    "ctaQuote": "Get a Quote",
+    "ctaServices": "Our Services"
+  },
+  "aboutPreview": {
+    "subtitle": "About NileLink",
+    "title": "Your Trusted Partner in Global Logistics",
+    "description": "At NileLink, we are a leading force in the freight forwarding industry, dedicated to delivering unparalleled logistics solutions. With a rich history and a commitment to excellence, our mission is to provide reliable and innovative services that empower businesses to navigate the complexities of global trade.",
+    "learnMore": "Learn More About Us"
+  },
+  "services": {
+    "subtitle": "Our Services",
+    "title": "Comprehensive Logistics Solutions",
+    "description": "NileLink is committed to providing its clients with the best and cost-effective services to cover all logistics requests.",
+    "seaFreight": {
+      "title": "Sea Freight",
+      "description": "Cost-effective and versatile shipping solution for large or bulky shipments. Offering FCL and LCL container options with global coverage through strategic partnerships.",
+      "features": {
+        "item1": "FCL & LCL containers",
+        "item2": "Global port network",
+        "item3": "Flexible sailing schedules",
+        "item4": "Real-time tracking"
+      }
+    },
+    "airFreight": {
+      "title": "Air Freight",
+      "description": "Fast and reliable international shipping service via air transportation. Ideal for time-sensitive goods ensuring swift delivery and efficient logistics.",
+      "features": {
+        "item1": "Express & standard options",
+        "item2": "Consolidation services",
+        "item3": "Time-sensitive cargo",
+        "item4": "Global coverage"
+      }
+    },
+    "roadFreight": {
+      "title": "Road Freight",
+      "description": "Seamless overland transportation services including trucking and intermodal solutions. Ensuring safe and timely delivery of goods within specified regions.",
+      "features": {
+        "item1": "Domestic & cross-border",
+        "item2": "Full & partial loads",
+        "item3": "Intermodal solutions",
+        "item4": "Real-time GPS tracking"
+      }
+    },
+    "customsClearance": {
+      "title": "Customs Clearance",
+      "description": "Expert handling of customs procedures, documentation, and compliance to ensure smooth passage through international borders.",
+      "features": {
+        "item1": "Documentation handled",
+        "item2": "Compliance guaranteed",
+        "item3": "Fast clearance",
+        "item4": "Regulatory expertise"
+      }
+    },
+    "warehousing": {
+      "title": "Warehousing",
+      "description": "Secure and efficient storage solutions for goods including short-term and long-term options. Full inventory management and order fulfillment.",
+      "features": {
+        "item1": "Short & long-term storage",
+        "item2": "Inventory management",
+        "item3": "Order fulfillment",
+        "item4": "Climate-controlled options"
+      }
+    },
+    "specialized": {
+      "title": "Specialized Services",
+      "description": "Tailored solutions for unique cargo needs such as temperature-sensitive items, hazardous materials, and oversized project cargo.",
+      "features": {
+        "item1": "Temperature-controlled",
+        "item2": "Hazardous materials",
+        "item3": "Oversized project cargo",
+        "item4": "Custom solutions"
+      }
+    },
+    "comparison": {
+      "title": "Shipping Methods Compared",
+      "subtitle": "Choose the Right Option",
+      "seaFreight": {
+        "method": "Sea Freight",
+        "transit": "7\u201330 days",
+        "cost": "$$",
+        "capacity": "Unlimited",
+        "bestFor": "Large shipments, non-urgent"
+      },
+      "airFreight": {
+        "method": "Air Freight",
+        "transit": "1\u20135 days",
+        "cost": "$$$",
+        "capacity": "Limited",
+        "bestFor": "Time-sensitive, high-value"
+      },
+      "roadFreight": {
+        "method": "Road Freight",
+        "transit": "1\u20137 days",
+        "cost": "$",
+        "capacity": "Medium",
+        "bestFor": "Regional, door-to-door"
+      },
+      "labels": {
+        "transit": "Transit",
+        "cost": "Cost",
+        "capacity": "Capacity",
+        "bestFor": "Best for"
+      }
+    },
+    "viewAll": "View All Services",
+    "learnMore": "Learn More"
+  },
+  "whyChooseUs": {
+    "subtitle": "Why Choose NileLink",
+    "title": "The NileLink Advantage",
+    "globalReach": {
+      "title": "Global Reach",
+      "description": "Benefit from our extensive network and partnerships, facilitating smooth logistics operations on a global scale."
+    },
+    "expertTeam": {
+      "title": "Expert Team",
+      "description": "Rely on seasoned professionals with years of experience, ensuring precision and reliability in every shipment."
+    },
+    "customerCentric": {
+      "title": "Customer-Centric",
+      "description": "Your satisfaction is our priority. We work closely to understand your requirements and deliver solutions that exceed expectations."
+    },
+    "compliance": {
+      "title": "Compliance & Regulations",
+      "description": "Navigate international trade regulations with confidence. We ensure strict compliance with customs procedures and regulatory standards."
+    }
+  },
+  "globalCoverage": {
+    "subtitle": "Global Network",
+    "title": "Worldwide Shipping Coverage",
+    "description": "With a worldwide network of partners around the globe, we are ready to ship your goods anywhere with the best competitive price."
+  },
+"faq": {
+    "subtitle": "FAQ",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What types of cargo do you ship?",
+        "answer": "We ship all types of cargo including general goods, perishables, hazardous materials, oversized project cargo, and temperature-controlled items."
+      },
+      {
+        "question": "How long does sea freight take?",
+        "answer": "Transit times vary by route. Typically, sea freight from Egypt to major global ports ranges from 7 to 30 days depending on the destination."
+      },
+      {
+        "question": "Do you offer door-to-door delivery?",
+        "answer": "Yes, we offer comprehensive door-to-door logistics solutions covering pickup, transportation, customs clearance, and final delivery."
+      },
+      {
+        "question": "How can I track my shipment?",
+        "answer": "We provide real-time tracking for all shipments. Once your cargo is in transit, you will receive a tracking number and regular updates."
+      },
+      {
+        "question": "What documentation is required for international shipping?",
+        "answer": "Required documentation typically includes commercial invoice, packing list, bill of lading or air waybill, and certificate of origin. Our team handles all customs documentation."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Ship?",
+    "description": "Get in touch with our team today for a free, no-obligation quote. We are available 24/7 to assist you.",
+    "button": "Request a Quote"
+  },
+  "about": {
+    "hero": {
+      "title": "About NileLink",
+      "description": "Discover our story, mission, and commitment to excellence in global logistics."
+    },
+    "whoWeAre": {
+      "title": "Who We Are",
+      "description1": "At NileLink, we are a leading force in the freight forwarding industry, dedicated to delivering unparalleled logistics solutions.",
+      "description2": "With a rich history and a commitment to excellence, our mission is to provide reliable and innovative services that empower businesses to navigate the complexities of global trade. Backed by a team of seasoned professionals and strategic partnerships, NileLink stands as a trusted partner in optimizing supply chains and ensuring the seamless movement of goods across borders."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "NileLink is dedicated to empowering businesses through seamless global logistics solutions. Our mission is to be the trusted partner of choice, providing innovative and reliable freight forwarding services that optimize supply chains, overcome challenges, and drive success."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the global benchmark in logistics excellence, setting the standard for innovation, reliability, and customer satisfaction in the freight forwarding industry."
+    },
+    "coreValues": {
+      "title": "Our Core Values",
+      "subtitle": "What Drives Us",
+      "integrity": {
+        "title": "Integrity",
+        "description": "We conduct business with the highest ethical standards, transparency, and honesty in every transaction."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We leverage cutting-edge technology and creative solutions to optimize supply chains."
+      },
+      "customerFocus": {
+        "title": "Customer Focus",
+        "description": "Our clients are at the heart of everything we do. We deliver personalized solutions."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "Consistent, dependable service that our clients can trust for every shipment."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "Committed to environmentally responsible practices in global logistics."
+      },
+      "safety": {
+        "title": "Safety",
+        "description": "Rigorous safety standards protect your cargo, our team, and the environment."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "companyName": "Nile Link Logistics Services",
+      "description": "Your trusted logistics partner providing reliable sea, air, and land freight solutions across Egypt and worldwide."
+    },
+    "hq": "Head Office",
+    "hqAddressStreet": "Awal Tareeq Al-Anania - Opposite the Ice Factory",
+    "hqAddressCity": "Damietta, Egypt",
+    "alexandria": "Alexandria Office",
+    "alexandriaAddressStreet": "El Raml Station, Concorde Building",
+    "alexandriaAddressCity": "Alexandria, Egypt",
+    "phone": "Phone",
+    "email": "Email",
+    "form": {
+      "title": "Send Us a Message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success": "Your message has been sent successfully! We will get back to you shortly.",
+      "error": "Something went wrong. Please try again.",
+      "errors": {
+        "nameRequired": "Please enter your name",
+        "emailInvalid": "Please enter a valid email address",
+        "messageMin": "Your message must be at least 10 characters"
+      }
+    },
+    "tagline": "Your Trusted shipping partner in Egypt",
+    "support247": "Dedicated Assistance",
+    "support247Desc": "Our team is ready to assist you with your shipping needs.",
+    "quickResponse": {
+      "title": "Quick Response",
+      "description": "Our team typically responds within 2 hours during business hours."
+    },
+    "channels": {
+      "phone": {
+        "title": "Phone",
+        "description": "Call us directly for immediate assistance."
+      },
+      "email": {
+        "title": "Email",
+        "description": "Send us a message and we will respond promptly."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Chat with our team instantly on WhatsApp."
+      },
+      "facebook": {
+        "title": "Facebook",
+        "description": "Follow us on Facebook for updates and news."
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "description": "Connect with us professionally on LinkedIn."
+      },
+      "maps": {
+        "title": "Google Maps",
+        "description": "Find our office location and get directions."
+      },
+      "instagram": {
+        "title": "Instagram",
+        "description": "Follow us on Instagram for updates and behind-the-scenes content."
+      },
+      "x": {
+        "title": "X (Twitter)",
+        "description": "Follow us on X for news and industry insights."
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Join our Discord community to stay in touch."
+      }
+    }
+  },
+  "quote": {
+    "hero": {
+      "title": "Request a Quote",
+      "description": "Please fill out the form below. Our team will check your request and get back to you with the best possible rate."
+    },
+    "form": {
+      "title": "Get Your Free Quote",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "state": "State",
+      "postcode": "Postcode / Zip",
+      "country": "Country",
+      "freightType": "Freight Type",
+      "freightAir": "Air Freight",
+      "freightRoad": "Road Freight",
+      "freightOcean": "Ocean Freight",
+      "weight": "Weight (kg)",
+      "quantity": "Quantity",
+      "length": "Length (cm)",
+      "height": "Height (cm)",
+      "width": "Width (cm)",
+      "from": "From",
+      "to": "To",
+      "notes": "Additional Notes",
+      "submit": "Submit Request",
+      "success": "Quote request submitted successfully! We will contact you shortly.",
+      "error": "An error occurred. Please try again."
+    }
+  },
+  "footer": {
+    "description": "Your trusted partner in global logistics. NileLink provides comprehensive sea, air, and land freight solutions with a commitment to excellence.",
+    "quickLinks": "Quick Links",
+    "services": "Our Services",
+    "contact": "Contact Info",
+    "copyright": "All Rights Reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist.",
+    "goHome": "Go Home"
+  },
+  "auth": {
+    "login": {
+      "title": "Client Portal Login",
+      "subtitle": "Access your NileLink shipping, document & customs dashboard",
+      "identifier": "Email or Username",
+      "identifierPlaceholder": "name@company.com or username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "rememberMe": "Remember this device",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In to Portal",
+      "noAccount": "Don't have an enterprise account?",
+      "registerLink": "Register Company",
+      "error": "Invalid email or password. Please try again."
+    },
+    "register": {
+      "title": "Create Enterprise Account",
+      "subtitle": "Register your company for NileLink digital freight & document services",
+      "personalSection": "Account Administrator",
+      "companySection": "Company & Legal Details",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Business Email",
+      "phone": "Mobile Phone (WhatsApp enabled)",
+      "password": "Password",
+      "companyName": "Legal Company Name",
+      "crNumber": "Commercial Registration (CR) Number",
+      "taxNumber": "Tax Card Number",
+      "industry": "Industry / Sector",
+      "country": "Country",
+      "city": "City",
+      "terms": "I agree to the Terms of Service and Privacy Policy",
+      "submit": "Complete Registration",
+      "hasAccount": "Already registered?",
+      "loginLink": "Sign In"
+    },
+    "forgotPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your registered email address to receive password recovery instructions",
+      "email": "Registered Email",
+      "submit": "Send Recovery Link",
+      "backToLogin": "Back to Login",
+      "successTitle": "Check Your Inbox",
+      "successDesc": "If an account matches that email, we have sent instructions to reset your password."
+    },
+    "resetPassword": {
+      "title": "Set New Password",
+      "subtitle": "Please enter a strong password for your account",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Update Password",
+      "success": "Your password has been reset successfully! Redirecting to login..."
+    },
+    "verifyEmail": {
+      "title": "Email Verification",
+      "verifying": "Verifying your email address...",
+      "successTitle": "Email Verified Successfully!",
+      "successDesc": "Your account is now fully verified. You can proceed to access your portal.",
+      "continueBtn": "Go to Client Portal",
+      "errorTitle": "Verification Failed",
+      "errorDesc": "The verification link is invalid or has expired."
+    }
+  },
+  "portal": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "documents": "Documents & Legal",
+      "requests": "Service Requests",
+      "financials": "Financials & Invoices",
+      "notifications": "Notifications",
+      "profile": "Company Profile",
+      "logout": "Sign Out",
+      "collapse": "Collapse Sidebar"
+    },
+    "header": {
+      "search": "Search documents, shipments...",
+      "notifications": "Notifications",
+      "viewAll": "View all notifications",
+      "markAllRead": "Mark all as read",
+      "noNotifications": "No unread notifications",
+      "clientPortal": "Client Portal",
+      "adminPortal": "Admin Portal"
+    },
+    "dashboard": {
+      "welcomeBack": "Welcome back",
+      "overviewSubtitle": "Manage your corporate documents, shipments, and compliance status.",
+      "accountStatus": "Account Status",
+      "activeDocs": "Active Documents",
+      "expiringDocs": "Expiring Soon",
+      "pendingReview": "Pending Review",
+      "quickUpload": "Quick Document Upload",
+      "quickUploadDesc": "Drag & drop your updated legal files here",
+      "recentActivity": "Recent Activity Timeline",
+      "noActivity": "No recent activity recorded."
+    },
+    "healthBanners": {
+      "allValid": "All company documents are verified and up to date.",
+      "warning": "Warning: You have documents expiring soon. Please renew to avoid service disruption.",
+      "critical": "Critical: Mandatory documents have expired. Service actions may be restricted.",
+      "uploadBtn": "Upload New Document",
+      "renewBtn": "Renew Expired Document"
+    }
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "Analytics & Overview",
+      "reviewQueue": "Document Review Queue",
+      "customers": "Customer Accounts",
+      "documents": "All Documents",
+      "notifications": "Notification Center",
+      "staff": "Staff & Roles",
+      "logs": "Audit Activity Logs"
+    },
+    "dashboard": {
+      "title": "Operations & Expiry Analytics",
+      "totalClients": "Total Clients",
+      "activeClients": "Active Clients",
+      "inactiveClients": "Inactive / Warning",
+      "pendingReview": "Pending Review Queue",
+      "expiringSoon": "Expiring in ≤10 Days",
+      "expiredTotal": "Expired Documents",
+      "tickerWarning": "Urgent Expiry Alert: {count} documents across {clients} clients will expire within the next 10 days.",
+      "reviewCta": "Review Documents Now"
+    },
+    "customerTable": {
+      "title": "Customer Accounts Overview",
+      "client": "Client / Company",
+      "totalDocs": "Documents",
+      "expiring": "Expiring (≤10d)",
+      "expired": "Expired",
+      "status": "Account Status",
+      "actions": "Actions",
+      "inspect": "Inspect Documents",
+      "sendWarning": "Send Expiry Warning"
+    }
+  },
+  "documents": {
+    "upload": {
+      "title": "Upload Corporate Documents",
+      "subtitle": "Support up to 20 documents per company account. Max 10MB per file (PDF, PNG, JPG).",
+      "dropzone": "Drag & drop legal files here, or click to browse",
+      "selectedFiles": "Staged Files for Upload",
+      "quotaUsed": "Document Quota Used",
+      "quotaLimit": "20 documents limit reached",
+      "uploadAll": "Start Uploading Files",
+      "uploading": "Uploading {current} of {total} files...",
+      "success": "All documents uploaded successfully! Status set to Pending Review.",
+      "retry": "Retry Failed File",
+      "cancel": "Cancel Upload"
+    },
+    "table": {
+      "title": "Company Documents Registry",
+      "colName": "Document Name",
+      "colCategory": "Category",
+      "colStartDate": "Start Date",
+      "colExpiryDate": "Expiry Date",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "preview": "Preview",
+      "download": "Download",
+      "renew": "Renew / Replace"
+    },
+    "categories": {
+      "commercial_register": "Commercial Registration",
+      "tax_card": "Tax Card",
+      "license": "Import / Export License",
+      "customs_certificate": "Customs Clearance Certificate",
+      "contract": "Shipping Agreement / Contract",
+      "other": "General Document"
+    },
+    "statuses": {
+      "pending_review": "Pending Review",
+      "approved": "Approved / Active",
+      "expiring_soon": "Expiring Soon",
+      "expired": "Expired",
+      "rejected": "Rejected"
+    }
+  },
+  "expiry": {
+    "normal": "Valid",
+    "warning": "Warning ({days} days left)",
+    "urgent": "Urgent ({days} days left)",
+    "critical": "Critical ({days} days left)",
+    "expired": "Expired ({days} days ago)",
+    "expiresToday": "Expires Today"
+  },
+  "auth": {
+    "login": {
+      "title": "Portal Sign In",
+      "subtitle": "Access your shipping operations, document verification & legal registry",
+      "tab": "Sign In",
+      "identifier": "Email or Username",
+      "identifierPlaceholder": "name@company.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Remember this device",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In to Portal",
+      "noAccount": "Don't have an enterprise account?",
+      "registerLink": "Register Company",
+      "error": "Invalid email/username or password"
+    },
+    "register": {
+      "title": "Register New Company Account",
+      "subtitle": "Register your enterprise for NileLink digital freight & document compliance",
+      "tab": "Register Company",
+      "companySection": "Company Legal Information",
+      "companyName": "Legal Company Name",
+      "companyNamePlaceholder": "e.g. Nile Logistics International S.A.E.",
+      "crNumber": "Commercial Register (CR) No.",
+      "taxNumber": "Tax Card Number",
+      "personalSection": "Account Administrator",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Work Email",
+      "phone": "Mobile Phone (WhatsApp Enabled)",
+      "password": "Password (min 8 chars)",
+      "terms": "I agree to the Terms of Service & Egyptian Customs Compliance Policies",
+      "submit": "Complete Company Registration",
+      "hasAccount": "Already registered?",
+      "loginLink": "Sign In"
+    }
+  }
+}

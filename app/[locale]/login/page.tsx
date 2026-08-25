@@ -1,0 +1,27 @@
+import { Container } from "@/components/ui/Container"
+import { LoginForm } from "@/components/auth/LoginForm"
+
+type Props = {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ callbackUrl?: string; tab?: string }>
+}
+
+export default async function LoginPage({ searchParams }: Props) {
+  const { callbackUrl, tab } = await searchParams
+  const initialMode = tab === "register" ? "register" : "login"
+
+  return (
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-secondary-950 via-slate-900 to-secondary-950 px-4 pt-36 pb-20 md:pt-44 md:pb-28">
+      {/* Background ambient decorative glow orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-1/4 h-96 w-96 rounded-full bg-primary-500/15 blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary-600/5 blur-[120px]" />
+      </div>
+
+      <Container className="relative z-10 flex w-full items-center justify-center">
+        <LoginForm callbackUrl={callbackUrl} initialMode={initialMode} />
+      </Container>
+    </div>
+  )
+}

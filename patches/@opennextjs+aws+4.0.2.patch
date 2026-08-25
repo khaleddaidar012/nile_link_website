@@ -1,0 +1,184 @@
+diff --git a/node_modules/@opennextjs/aws/dist/build/copyTracedFiles.js b/node_modules/@opennextjs/aws/dist/build/copyTracedFiles.js
+index 9701b04..33d4d17 100644
+--- a/node_modules/@opennextjs/aws/dist/build/copyTracedFiles.js
++++ b/node_modules/@opennextjs/aws/dist/build/copyTracedFiles.js
+@@ -1,5 +1,5 @@
+ import url from "node:url";
+-import { chmodSync, copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, readlinkSync, statSync, symlinkSync, writeFileSync, } from "node:fs";
++import { chmodSync, copyFileSync, cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, statSync, symlinkSync, writeFileSync, } from "node:fs";
+ import path from "node:path";
+ import { loadAppPathsManifest, loadBuildId, loadConfig, loadFunctionsConfigManifest, loadMiddlewareManifest, loadPagesManifest, loadPrerenderManifest, } from "../adapters/config/util.js";
+ import { getCrossPlatformPathRegex } from "../utils/regex.js";
+@@ -228,8 +228,37 @@ File ${serverPath} does not exist
+                 symlinkSync(symlink, to);
+             }
+             catch (e) {
++                // Handle symlink/junction failures gracefully (e.g. Windows without admin rights)
+                 if (e.code !== "EEXIST") {
+-                    throw e;
++                    try {
++                        const symStat = statSync(symlink);
++                        if (symStat.isDirectory()) {
++                            // Junction pointing to a directory: create directory and copy contents
++                            mkdirSync(to, { recursive: true });
++                            const items = readdirSync(symlink);
++                            for (const item of items) {
++                                try {
++                                    const itemSrc = path.join(symlink, item);
++                                    const itemDst = path.join(to, item);
++                                    if (statSync(itemSrc).isFile()) {
++                                        copyFileAndMakeOwnerWritable(itemSrc, itemDst);
++                                    }
++                                } catch {}
++                            }
++                        } else {
++                            copyFileAndMakeOwnerWritable(symlink, to);
++                        }
++                    } catch (e2) {
++                        if (existsSync(from)) {
++                            try {
++                                copyFileAndMakeOwnerWritable(from, to);
++                            } catch (e3) {
++                                logger.debug("Error copying traced file:", e3);
++                            }
++                        } else {
++                            logger.debug("Error copying traced file:", e2);
++                        }
++                    }
+                 }
+             }
+         }
+@@ -238,7 +267,13 @@ File ${serverPath} does not exist
+             // where some files listed in the .nft.json might not be present in the standalone folder
+             // TODO: investigate that further - is it expected?
+             try {
+-                copyFileAndMakeOwnerWritable(from, to);
++                const fromStat = lstatSync(from);
++                if (fromStat.isDirectory() || fromStat.isSymbolicLink()) {
++                    // Junction / reparse point on Windows: create directory silently
++                    mkdirSync(to, { recursive: true });
++                } else {
++                    copyFileAndMakeOwnerWritable(from, to);
++                }
+             }
+             catch (e) {
+                 logger.debug("Error copying file:", e);
+diff --git a/node_modules/@opennextjs/aws/dist/build/createAssets.js b/node_modules/@opennextjs/aws/dist/build/createAssets.js
+index ddb21f9..1753987 100644
+--- a/node_modules/@opennextjs/aws/dist/build/createAssets.js
++++ b/node_modules/@opennextjs/aws/dist/build/createAssets.js
+@@ -3,6 +3,30 @@ import path from "node:path";
+ import { loadConfig } from "../adapters/config/util.js";
+ import { safeParseJsonFile } from "../utils/safe-json-parse.js";
+ import logger from "../logger.js";
++
++// cross-platform recursive directory copy (works with Unicode paths on Windows)
++function copyDirSync(src, dest, opts = {}) {
++    fs.mkdirSync(dest, { recursive: true });
++    const entries = fs.readdirSync(src, { withFileTypes: true });
++    for (const entry of entries) {
++        const srcPath = path.join(src, entry.name);
++        const destPath = path.join(dest, entry.name);
++        if (entry.isDirectory()) {
++            copyDirSync(srcPath, destPath, opts);
++        } else if (entry.isFile() || entry.isSymbolicLink()) {
++            try {
++                fs.copyFileSync(srcPath, destPath, fs.constants.COPYFILE_FICLONE);
++            } catch {
++                if (opts.dereference && entry.isSymbolicLink()) {
++                    const target = fs.readlinkSync(srcPath);
++                    fs.copyFileSync(target, destPath);
++                } else {
++                    fs.copyFileSync(srcPath, destPath);
++                }
++            }
++        }
++    }
++}
+ import { isBinaryContentType } from "../utils/binary.js";
+ import * as buildHelper from "./helper.js";
+ /**
+@@ -37,12 +61,9 @@ export function createStaticAssets(options, { useBasePath = false } = {}) {
+      * Note: BUILD_ID is used by the SST infra.
+      */
+     fs.copyFileSync(path.join(appBuildOutputPath, ".next/BUILD_ID"), path.join(outputPath, "BUILD_ID"));
+-    fs.cpSync(path.join(appBuildOutputPath, ".next/static"), path.join(outputPath, "_next", "static"), { recursive: true });
++    copyDirSync(path.join(appBuildOutputPath, ".next/static"), path.join(outputPath, "_next", "static"));
+     if (fs.existsSync(appPublicPath)) {
+-        fs.cpSync(appPublicPath, outputPath, {
+-            recursive: true,
+-            dereference: true,
+-        });
++        copyDirSync(appPublicPath, outputPath, { dereference: true });
+     }
+     const appSrcPath = fs.existsSync(path.join(appPath, "src"))
+         ? "src/app"
+@@ -159,7 +180,7 @@ export function createCacheAssets(options) {
+     if (fs.existsSync(fetchCachePath)) {
+         const fetchOutputPath = path.join(outputDir, "cache", "__fetch", buildId);
+         fs.mkdirSync(fetchOutputPath, { recursive: true });
+-        fs.cpSync(fetchCachePath, fetchOutputPath, { recursive: true });
++        copyDirSync(fetchCachePath, fetchOutputPath);
+         buildHelper.traverseFiles(fetchCachePath, () => true, ({ absolutePath, relativePath }) => {
+             const fileContent = fs.readFileSync(absolutePath, "utf8");
+             const fileData = safeParseJsonFile(fileContent, absolutePath);
+diff --git a/node_modules/@opennextjs/aws/dist/build/helper.js b/node_modules/@opennextjs/aws/dist/build/helper.js
+index 6524181..53fabba 100644
+--- a/node_modules/@opennextjs/aws/dist/build/helper.js
++++ b/node_modules/@opennextjs/aws/dist/build/helper.js
+@@ -348,7 +348,15 @@ export function initOutputDir(options) {
+     fs.rmSync(options.outputDir, { recursive: true, force: true });
+     const { buildDir } = options;
+     fs.mkdirSync(buildDir, { recursive: true });
+-    fs.cpSync(options.tempBuildDir, buildDir, { recursive: true });
++    // Manual copy to work around Node.js cpSync issues on Windows with Unicode paths
++    const entries = fs.readdirSync(options.tempBuildDir);
++    for (const entry of entries) {
++        const src = path.join(options.tempBuildDir, entry);
++        const dst = path.join(buildDir, entry);
++        if (fs.statSync(src).isFile()) {
++            fs.copyFileSync(src, dst);
++        }
++    }
+ }
+ /**
+  * @returns Whether the edge runtime is used
+diff --git a/node_modules/@opennextjs/aws/dist/build/installDeps.js b/node_modules/@opennextjs/aws/dist/build/installDeps.js
+index 5b85cd7..05b18f0 100644
+--- a/node_modules/@opennextjs/aws/dist/build/installDeps.js
++++ b/node_modules/@opennextjs/aws/dist/build/installDeps.js
+@@ -34,8 +34,32 @@ export function installDependencies(outputDir, installOptions) {
+                 SHARP_IGNORE_GLOBAL_LIBVIPS: "1",
+             },
+         });
+-        // Copy the node_modules to the outputDir
+-        fs.cpSync(path.join(tempInstallDir, "node_modules"), path.join(outputDir, "node_modules"), { recursive: true, force: true, dereference: true });
++        // Copy the node_modules to the outputDir (manual copy for Windows Unicode path compat)
++        const nmSrc = path.join(tempInstallDir, "node_modules");
++        const nmDst = path.join(outputDir, "node_modules");
++        fs.mkdirSync(nmDst, { recursive: true });
++        const copyEntries = fs.readdirSync(nmSrc, { withFileTypes: true });
++        for (const entry of copyEntries) {
++            const s = path.join(nmSrc, entry.name);
++            const d = path.join(nmDst, entry.name);
++            if (entry.isDirectory()) {
++                fs.mkdirSync(d, { recursive: true });
++                const sub = fs.readdirSync(s, { withFileTypes: true });
++                for (const subEntry of sub) {
++                    const ss = path.join(s, subEntry.name);
++                    const dd = path.join(d, subEntry.name);
++                    if (subEntry.isFile()) {
++                        try { fs.copyFileSync(ss, dd); } catch {}
++                    } else if (subEntry.isSymbolicLink()) {
++                        try { const t = fs.readlinkSync(ss); fs.copyFileSync(t, dd); } catch {}
++                    }
++                }
++            } else if (entry.isFile()) {
++                try { fs.copyFileSync(s, d); } catch {}
++            } else if (entry.isSymbolicLink()) {
++                try { const t = fs.readlinkSync(s); fs.copyFileSync(t, d); } catch {}
++            }
++        }
+         // https://github.com/nodejs/node/issues/59168
+         // This is a workaround for all Node versions. It seems to be an issue continue to affect new versions aswell.
+         // Therefor I think the most logical solution is to always run this workaround instead of trying to figure out which versions are affected.
