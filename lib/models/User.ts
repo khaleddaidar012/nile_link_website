@@ -3,6 +3,12 @@ import mongoose, { Schema, Document, Model } from "mongoose"
 export type UserRole = "customer" | "customer_admin" | "staff" | "super_admin"
 export type UserStatus = "active" | "inactive" | "suspended" | "pending_verification"
 
+export interface IStaffPermissions {
+  canSendAlerts: boolean
+  canReviewDocuments: boolean
+  canManageCustomers: boolean
+}
+
 export interface IUser extends Document {
   email: string
   username?: string
@@ -14,11 +20,20 @@ export interface IUser extends Document {
   phone?: string
   avatarUrl?: string
   status: UserStatus
+  staffPermissions?: IStaffPermissions
   emailVerified: boolean
   emailVerificationToken?: string
   emailVerificationExpires?: Date
+  emailVerificationOtp?: string
+  emailVerificationOtpExpires?: Date
+  whatsappVerified: boolean
+  whatsappVerificationCode?: string
+  whatsappVerificationExpires?: Date
   passwordResetToken?: string
   passwordResetExpires?: Date
+  passwordResetOtp?: string
+  passwordResetOtpExpires?: Date
+  passwordResetChannel?: "email" | "whatsapp"
   lastLoginAt?: Date
   createdAt: Date
   updatedAt: Date
@@ -82,6 +97,11 @@ const UserSchema = new Schema<IUser>(
       default: "active",
       index: true,
     },
+    staffPermissions: {
+      canSendAlerts: { type: Boolean, default: true },
+      canReviewDocuments: { type: Boolean, default: true },
+      canManageCustomers: { type: Boolean, default: false },
+    },
     emailVerified: {
       type: Boolean,
       default: false,
@@ -94,12 +114,45 @@ const UserSchema = new Schema<IUser>(
       type: Date,
       default: null,
     },
+    emailVerificationOtp: {
+      type: String,
+      default: null,
+    },
+    emailVerificationOtpExpires: {
+      type: Date,
+      default: null,
+    },
+    whatsappVerified: {
+      type: Boolean,
+      default: false,
+    },
+    whatsappVerificationCode: {
+      type: String,
+      default: null,
+    },
+    whatsappVerificationExpires: {
+      type: Date,
+      default: null,
+    },
     passwordResetToken: {
       type: String,
       default: null,
     },
     passwordResetExpires: {
       type: Date,
+      default: null,
+    },
+    passwordResetOtp: {
+      type: String,
+      default: null,
+    },
+    passwordResetOtpExpires: {
+      type: Date,
+      default: null,
+    },
+    passwordResetChannel: {
+      type: String,
+      enum: ["email", "whatsapp", null],
       default: null,
     },
     lastLoginAt: {

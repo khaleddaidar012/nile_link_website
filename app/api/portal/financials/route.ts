@@ -1,17 +1,28 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import { Invoice } from "@/lib/models"
+import { Invoice, User } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function GET(req: NextRequest) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || !session.customerId) {
+    if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     await connectDB()
-    const invoices = await Invoice.find({ customerId: session.customerId })
+
+    let customerId = session.customerId
+    if (!customerId) {
+      const user = await User.findById(session.userId)
+      customerId = user?.customerId?.toString()
+    }
+
+    if (!customerId) {
+      return NextResponse.json({ invoices: [], summary: { totalInvoiced: 0, paidAmount: 0, pendingBalance: 0 } })
+    }
+
+    const invoices = await Invoice.find({ customerId })
       .sort({ issueDate: -1 })
       .lean()
 

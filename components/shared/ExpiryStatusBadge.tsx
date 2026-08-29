@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { ShieldCheck, Clock, AlertTriangle, AlertOctagon, XCircle, Send, Ban } from "lucide-react"
 import { calculateExpiry } from "@/lib/utils/expiry-calculator"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,7 @@ interface ExpiryStatusBadgeProps {
 
 export function ExpiryStatusBadge({ status, expiryDate, className }: ExpiryStatusBadgeProps) {
   const t = useTranslations()
+  const locale = useLocale()
 
   if (status === "pending_review") {
     return (
@@ -23,7 +24,7 @@ export function ExpiryStatusBadge({ status, expiryDate, className }: ExpiryStatu
         )}
       >
         <Send className="h-3 w-3" />
-        <span>{t("documents.statuses.pending_review") || "Pending Review"}</span>
+        <span>{t("documents.statuses.pending_review") || "قيد المراجعة"}</span>
       </span>
     )
   }
@@ -37,7 +38,7 @@ export function ExpiryStatusBadge({ status, expiryDate, className }: ExpiryStatu
         )}
       >
         <Ban className="h-3 w-3" />
-        <span>{t("documents.statuses.rejected") || "Rejected"}</span>
+        <span>{t("documents.statuses.rejected") || "مرفوض"}</span>
       </span>
     )
   }
@@ -53,7 +54,7 @@ export function ExpiryStatusBadge({ status, expiryDate, className }: ExpiryStatu
         )}
       >
         <ShieldCheck className="h-3 w-3" />
-        <span>{t("documents.statuses.approved") || "Approved"}</span>
+        <span>{t("documents.statuses.approved") || "معتمد / ساري"}</span>
       </span>
     )
   }
@@ -73,16 +74,36 @@ export function ExpiryStatusBadge({ status, expiryDate, className }: ExpiryStatu
     }
   }
 
+  const getLocalizedLabel = () => {
+    if (locale === "ar") {
+      switch (expiry.tier) {
+        case "expired":
+          return `منتهي (منذ ${Math.abs(expiry.daysRemaining)} يوم)`
+        case "critical":
+          return expiry.daysRemaining === 0
+            ? "ينتهي اليوم"
+            : `حرج (متبقي ${expiry.daysRemaining} يوم)`
+        case "urgent":
+          return `عاجل (متبقي ${expiry.daysRemaining} أيام)`
+        case "warning":
+          return `تحذير (متبقي ${expiry.daysRemaining} يوم)`
+        default:
+          return `ساري (متبقي ${expiry.daysRemaining} يوم)`
+      }
+    }
+    return expiry.label
+  }
+
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
         expiry.colorClasses.badge,
         className
       )}
     >
       {getIcon()}
-      <span>{expiry.label}</span>
+      <span>{getLocalizedLabel()}</span>
     </span>
   )
 }

@@ -146,3 +146,17 @@
   transition: background-color 5000s ease-in-out 0s;
   caret-color: #38bdf8 !important;
 }
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  40%, 100% {
+    transform: translateX(300%) skewX(-25deg);
+  }
+}
+
+.animate-shine-sweep {
+  animation: shine-sweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+

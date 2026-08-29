@@ -8,6 +8,8 @@ import { useTheme } from "@/components/layout/ThemeProvider"
 import { Container } from "@/components/ui/Container"
 import { Button } from "@/components/ui/Button"
 import { Link, usePathname } from "@/navigation"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { EmailLink } from "@/components/ui/EmailLink"
 import { AuthNavActions } from "@/components/auth/AuthNavActions"
 import { cn } from "@/lib/utils"
@@ -61,6 +63,17 @@ export function Navbar() {
 
   const currentLang = languages.find((l) => l.code === locale) || languages[0]
 
+  // Suppress public website navbar on Client Portal and Admin Portal routes
+  const isPortalOrAdmin =
+    pathname?.startsWith("/portal") ||
+    pathname?.startsWith("/admin") ||
+    pathname?.includes("/portal") ||
+    pathname?.includes("/admin")
+
+  if (isPortalOrAdmin) {
+    return null
+  }
+
   return (
     <header
       className={cn(
@@ -87,11 +100,18 @@ export function Navbar() {
 
       <nav className="border-b border-transparent">
         <Container className="flex h-16 items-center justify-between md:h-20">
-          <Link href="/" className="flex items-center gap-1.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-500 text-sm font-bold text-white">
-              NL
+          <Link href="/" className="flex items-center gap-1 sm:gap-1.5 transition-transform hover:scale-[1.02]">
+            <div className="relative h-[52px] w-[52px] sm:h-[56px] sm:w-[56px] shrink-0 translate-y-[5px]">
+              <Image
+                src={logoImg}
+                alt="NileLink Logistics"
+                fill
+                sizes="60px"
+                priority
+                className="object-contain"
+              />
             </div>
-            <span className="flex flex-col leading-none">
+            <span className="flex flex-col justify-center leading-none">
               <span
                 className={cn(
                   "text-sm font-bold tracking-wide transition-colors sm:text-base",
@@ -108,7 +128,7 @@ export function Navbar() {
               />
               <span
                 className={cn(
-                  "text-[9px] font-medium uppercase tracking-[0.2em] transition-colors sm:text-[11px]",
+                  "text-[9px] font-semibold uppercase tracking-[0.35em] transition-colors sm:text-[10px]",
                   scrolled ? "text-secondary-600 dark:text-white" : "text-white"
                 )}
               >

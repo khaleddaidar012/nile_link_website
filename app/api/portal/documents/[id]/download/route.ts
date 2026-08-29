@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
-import fs from "fs/promises"
 import { connectDB } from "@/lib/mongodb"
 import { Document as DocumentModel } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
-import { getDocumentFilePath } from "@/lib/storage/document-storage"
+import { getFileStreamFromR2 } from "@/lib/storage/r2-storage"
 import { logDocumentActivity } from "@/lib/services/activity-log-service"
 
 type Props = {
@@ -32,12 +31,11 @@ export async function GET(req: NextRequest, { params }: Props) {
       return NextResponse.json({ error: "Forbidden: Access denied" }, { status: 403 })
     }
 
-    const filePath = await getDocumentFilePath(
-      document.storedFileName,
-      document.customerId.toString()
-    )
+    const storageKey =
+      document.storageKey ||
+      `clients/${document.customerId.toString()}/documents/${document.storedFileName}`
 
-    const fileBuffer = await fs.readFile(filePath)
+    const { body, contentType, contentLength } = await getFileStreamFromR2(storageKey)
 
     await logDocumentActivity({
       documentId: document._id,
@@ -50,11 +48,14 @@ export async function GET(req: NextRequest, { params }: Props) {
       userAgent: req.headers.get("user-agent") || "",
     })
 
-    return new NextResponse(fileBuffer, {
+    const isInline = req.nextUrl.searchParams.get("view") === "inline"
+    const dispositionType = isInline ? "inline" : "attachment"
+
+    return new NextResponse(body as any, {
       headers: {
-        "Content-Type": document.mimeType || "application/octet-stream",
-        "Content-Disposition": `attachment; filename="${encodeURIComponent(document.fileName)}"`,
-        "Content-Length": fileBuffer.length.toString(),
+        "Content-Type": document.mimeType || contentType || "application/octet-stream",
+        "Content-Disposition": `${dispositionType}; filename="${encodeURIComponent(document.fileName)}"`,
+        "Content-Length": contentLength.toString(),
       },
     })
   } catch (error: unknown) {

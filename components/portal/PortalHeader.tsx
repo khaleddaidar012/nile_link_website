@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import { Moon, Sun, User, LogOut, Globe, ChevronDown } from "lucide-react"
 import { Link, usePathname } from "@/navigation"
@@ -14,11 +14,17 @@ interface PortalHeaderProps {
 }
 
 const languages = [
-  { code: "en", label: "English" },
   { code: "ar", label: "العربية" },
+  { code: "en", label: "English" },
+  { code: "fr", label: "Français" },
+  { code: "de", label: "Deutsch" },
+  { code: "it", label: "Italiano" },
+  { code: "zh", label: "中文" },
+  { code: "bg", label: "Български" },
 ]
 
 export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
+  const t = useTranslations()
   const locale = useLocale()
   const pathname = usePathname()
   const { user, customer, logout } = usePortal()
@@ -26,7 +32,7 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
   const [langOpen, setLangOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-secondary-200/80 bg-white/90 px-6 backdrop-blur-md dark:border-secondary-800 dark:bg-secondary-900/90">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-secondary-200/80 bg-white/90 px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/80">
       <div>
         <h1 className="text-base font-bold text-secondary-900 dark:text-white sm:text-lg">
           {title || (customer ? customer.companyName : "Client Portal")}
@@ -88,9 +94,20 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
               {user.firstName ? user.firstName[0].toUpperCase() : <User className="h-4 w-4" />}
             </div>
             <div className="hidden text-left text-xs sm:block rtl:text-right">
-              <p className="font-bold text-secondary-900 dark:text-white leading-tight">
-                {user.firstName} {user.lastName}
-              </p>
+              <div className="flex items-center gap-1.5">
+                <p className="font-bold text-secondary-900 dark:text-white leading-tight">
+                  {user.firstName} {user.lastName}
+                </p>
+                {(!user.emailVerified || !user.whatsappVerified) && (
+                  <Link
+                    href="/portal/verification"
+                    title="Account Pending Verification"
+                    className="rounded bg-amber-100 px-1.5 py-0.2 text-[9px] font-bold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 hover:bg-amber-200"
+                  >
+                    {t("portal.verification.unverified") || "غير موثق"}
+                  </Link>
+                )}
+              </div>
               <p className="text-[10px] text-secondary-500 capitalize dark:text-secondary-400">
                 {user.role.replace("_", " ")}
               </p>

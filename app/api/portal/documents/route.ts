@@ -1,13 +1,25 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import { Document as DocumentModel } from "@/lib/models"
+import { Document as DocumentModel, User } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function GET(req: NextRequest) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || !session.customerId) {
+    if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    await connectDB()
+
+    let customerId = session.customerId
+    if (!customerId) {
+      const user = await User.findById(session.userId)
+      customerId = user?.customerId?.toString()
+    }
+
+    if (!customerId) {
+      return NextResponse.json({ documents: [], pagination: { total: 0, page: 1, limit: 20, pages: 0 } })
     }
 
     const { searchParams } = new URL(req.url)
@@ -17,10 +29,8 @@ export async function GET(req: NextRequest) {
     const page = parseInt(searchParams.get("page") || "1", 10)
     const limit = parseInt(searchParams.get("limit") || "20", 10)
 
-    await connectDB()
-
     const query: Record<string, unknown> = {
-      customerId: session.customerId,
+      customerId,
       isArchived: false,
     }
 

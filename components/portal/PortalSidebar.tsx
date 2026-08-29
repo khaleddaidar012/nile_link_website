@@ -15,8 +15,9 @@ import {
   ShieldCheck,
   AlertTriangle,
   XCircle,
-  Ship,
 } from "lucide-react"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { Link, usePathname } from "@/navigation"
 import { usePortal } from "./PortalContext"
 import { cn } from "@/lib/utils"
@@ -75,24 +76,24 @@ export function PortalSidebar() {
     if (!customer) return null
     if (customer.accountStatus === "active") {
       return (
-        <span className="flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+        <span className="flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
           <ShieldCheck className="h-3 w-3" />
-          <span>Active</span>
+          <span>{t("documents.statuses.approved") || "Active"}</span>
         </span>
       )
     }
     if (customer.accountStatus === "warning") {
       return (
-        <span className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-400 animate-pulse">
+        <span className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 animate-pulse">
           <AlertTriangle className="h-3 w-3" />
-          <span>Action</span>
+          <span>{t("documents.statuses.expiring_soon") || "Action"}</span>
         </span>
       )
     }
     return (
-      <span className="flex items-center gap-1 rounded-full border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[10px] font-bold text-rose-400">
+      <span className="flex items-center gap-1 rounded-full border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400">
         <XCircle className="h-3 w-3" />
-        <span>Restricted</span>
+        <span>{t("documents.statuses.expired") || "Restricted"}</span>
       </span>
     )
   }
@@ -100,33 +101,45 @@ export function PortalSidebar() {
   return (
     <aside
       className={cn(
-        "sticky top-0 hidden h-screen flex-col border-r border-slate-800 bg-slate-950 text-slate-100 shadow-2xl transition-all duration-300 md:flex",
+        "sticky top-0 hidden h-screen flex-col border-r border-secondary-200 bg-white text-secondary-900 shadow-sm transition-all duration-300 dark:border-slate-800/80 dark:bg-[#0d1322]/90 backdrop-blur-xl dark:text-white md:flex",
         collapsed ? "w-20" : "w-64"
       )}
     >
       {/* Brand Header */}
-      <div className="flex h-16 items-center justify-between border-b border-slate-800 px-4">
+      <div className="flex h-16 items-center justify-between border-b border-secondary-100 px-4 dark:border-slate-800">
         {!collapsed && (
           <Link href="/portal" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-primary-700 to-primary-500 text-sm font-bold text-white shadow-md shadow-primary-500/20">
-              <Ship className="h-5 w-5" />
+            <div className="relative h-[32px] w-[32px] shrink-0">
+              <Image
+                src={logoImg}
+                alt="NileLink"
+                fill
+                sizes="32px"
+                className="object-contain"
+              />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-bold tracking-wide text-white">NileLink</span>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-primary-400">
-                Client Portal
+            <div className="flex flex-col justify-center leading-none">
+              <span className="text-sm font-bold tracking-wide text-secondary-900 dark:text-white">NileLink</span>
+              <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
+                {t("nav.clientPortal") || "Client Portal"}
               </span>
             </div>
           </Link>
         )}
         {collapsed && (
-          <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-primary-600 text-white shadow">
-            <Ship className="h-5 w-5" />
+          <div className="relative mx-auto h-[32px] w-[32px]">
+            <Image
+              src={logoImg}
+              alt="NileLink"
+              fill
+              sizes="32px"
+              className="object-contain"
+            />
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
+          className="rounded-lg p-1.5 text-secondary-400 hover:bg-secondary-100 hover:text-secondary-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors"
           title={t("portal.sidebar.collapse") || "Collapse Sidebar"}
         >
           {collapsed ? (
@@ -139,17 +152,22 @@ export function PortalSidebar() {
 
       {/* Company Status Pill */}
       {!collapsed && customer && (
-        <div className="mx-3 mt-4 rounded-xl border border-slate-800 bg-slate-900/70 p-3.5 backdrop-blur-sm">
+        <div className="mx-3 mt-4 rounded-xl border border-secondary-200 bg-secondary-50/70 p-3.5 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/70">
           <div className="flex items-center justify-between gap-2">
-            <span className="truncate text-xs font-bold text-white">
+            <span className="truncate text-xs font-bold text-secondary-900 dark:text-white">
               {customer.companyName}
             </span>
             {getStatusBadge()}
           </div>
           {documentStats && (
-            <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400">
-              <span>{documentStats.totalDocs} / {documentStats.maxAllowed} documents</span>
-              <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-2 flex items-center justify-between text-[11px] text-secondary-500 dark:text-slate-400">
+              <span>
+                {t("documents.registeredCount", {
+                  count: documentStats.totalDocs,
+                  max: documentStats.maxAllowed,
+                }) || `${documentStats.totalDocs} / ${documentStats.maxAllowed} documents`}
+              </span>
+              <div className="h-1.5 w-16 overflow-hidden rounded-full bg-secondary-200 dark:bg-slate-800">
                 <div
                   className="h-full bg-primary-500"
                   style={{
@@ -177,13 +195,13 @@ export function PortalSidebar() {
                 "group relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all",
                 isActive
                   ? "bg-primary-600 text-white shadow-lg shadow-primary-600/30"
-                  : "text-slate-400 hover:bg-slate-900 hover:text-white"
+                  : "text-secondary-600 hover:bg-secondary-100 hover:text-secondary-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-white"
               )}
             >
               <item.icon
                 className={cn(
                   "h-5 w-5 shrink-0 transition-transform group-hover:scale-110",
-                  isActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                  isActive ? "text-white" : "text-secondary-400 group-hover:text-secondary-900 dark:text-slate-400 dark:group-hover:text-white"
                 )}
               />
               {!collapsed && <span className="flex-1 truncate">{item.label}</span>}
@@ -203,10 +221,10 @@ export function PortalSidebar() {
       </nav>
 
       {/* Sign Out Action */}
-      <div className="border-t border-slate-800 p-3">
+      <div className="border-t border-secondary-100 p-3 dark:border-slate-800">
         <button
           onClick={logout}
-          className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-400 transition-colors hover:bg-rose-950/40 hover:text-rose-300"
+          className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700 dark:text-rose-400 dark:hover:bg-rose-950/40 dark:hover:text-rose-300"
         >
           <LogOut className="h-5 w-5 shrink-0 rtl:rotate-180" />
           {!collapsed && <span>{t("portal.sidebar.logout") || "Sign Out"}</span>}

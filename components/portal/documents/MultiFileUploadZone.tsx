@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -25,6 +25,7 @@ export type DocumentCategory =
   | "customs_certificate"
   | "contract"
   | "other"
+  | string
 
 interface StagedFile {
   id: string
@@ -34,6 +35,12 @@ interface StagedFile {
   progress: number
   status: "staged" | "uploading" | "success" | "error"
   errorMessage?: string
+}
+
+interface DynamicCategoryOption {
+  key: string
+  nameEn: string
+  nameAr: string
 }
 
 interface MultiFileUploadZoneProps {
@@ -53,6 +60,18 @@ export function MultiFileUploadZone({
   const [isDragging, setIsDragging] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [overallProgress, setOverallProgress] = useState(0)
+  const [dynamicCategories, setDynamicCategories] = useState<DynamicCategoryOption[]>([])
+
+  useEffect(() => {
+    fetch("/api/settings/document-categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.categories?.length) {
+          setDynamicCategories(data.categories)
+        }
+      })
+      .catch(() => {})
+  }, [])
 
   const availableSlots = Math.max(0, maxAllowed - currentCount - stagedFiles.length)
 
@@ -207,7 +226,10 @@ export function MultiFileUploadZone({
             {t("documents.upload.quotaUsed") || "Document Quota"}
           </span>
           <p className="mt-0.5 text-base font-bold text-secondary-900 dark:text-white">
-            {currentCount + stagedFiles.length} / {maxAllowed} Documents Registered
+            {t("documents.quotaHeader", {
+              count: currentCount + stagedFiles.length,
+              max: maxAllowed,
+            }) || `${currentCount + stagedFiles.length} / ${maxAllowed} Documents Registered`}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -227,7 +249,7 @@ export function MultiFileUploadZone({
             />
           </div>
           <span className="text-xs font-bold text-secondary-600 dark:text-secondary-300">
-            {availableSlots} slots remaining
+            {t("documents.slotsRemaining", { slots: availableSlots }) || `${availableSlots} slots remaining`}
           </span>
         </div>
       </div>
@@ -266,7 +288,8 @@ export function MultiFileUploadZone({
             {t("documents.upload.dropzone") || "Drag & drop files here, or click to browse"}
           </h3>
           <p className="mt-1.5 text-xs text-secondary-500 dark:text-secondary-400 max-w-sm">
-            Supports PDF, PNG, JPG, WEBP up to 10MB each. You can upload up to <span className="font-bold text-primary-600 dark:text-primary-400">{availableSlots} more files</span> in this batch.
+            {t("documents.dropzoneHint", { slots: availableSlots }) ||
+              `Supports PDF, PNG, JPG, WEBP up to 10MB each. You can upload up to ${availableSlots} more files in this batch.`}
           </p>
         </div>
       ) : (
@@ -285,7 +308,7 @@ export function MultiFileUploadZone({
           <div className="mb-2 flex items-center justify-between text-xs font-bold text-primary-900 dark:text-primary-200">
             <span className="flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin text-primary-600" />
-              <span>Uploading document batch...</span>
+              <span>{t("documents.batchUploading") || "Uploading document batch..."}</span>
             </span>
             <span>{overallProgress}%</span>
           </div>
@@ -304,7 +327,8 @@ export function MultiFileUploadZone({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h4 className="text-xs font-bold text-secondary-700 uppercase tracking-wider dark:text-secondary-300">
-                {t("documents.upload.selectedFiles") || "Staged Files"} ({stagedFiles.length})
+                {t("documents.stagedCount", { count: stagedFiles.length }) ||
+                  `${t("documents.upload.selectedFiles") || "Staged Files"} (${stagedFiles.length})`}
               </h4>
               <Button
                 size="sm"
@@ -315,7 +339,7 @@ export function MultiFileUploadZone({
                 {isUploading ? (
                   <span className="flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    <span>Uploading...</span>
+                    <span>{t("documents.upload.uploading", { current: 1, total: stagedFiles.length }) || "Uploading..."}</span>
                   </span>
                 ) : (
                   <span className="flex items-center gap-1.5">
@@ -363,12 +387,34 @@ export function MultiFileUploadZone({
                       disabled={isUploading || staged.status === "success"}
                       className="rounded-xl border border-secondary-200 bg-secondary-50/50 px-3 py-2 text-xs font-semibold text-secondary-700 focus:border-primary-500 focus:outline-none dark:border-secondary-700 dark:bg-secondary-800 dark:text-secondary-300"
                     >
-                      <option value="commercial_register">Commercial Register</option>
-                      <option value="tax_card">Tax Card</option>
-                      <option value="license">Import/Export License</option>
-                      <option value="customs_certificate">Customs Certificate</option>
-                      <option value="contract">Contract / Agreement</option>
-                      <option value="other">Other Document</option>
+                      {dynamicCategories.length > 0 ? (
+                        dynamicCategories.map((c) => (
+                          <option key={c.key} value={c.key}>
+                            {c.nameEn} ({c.nameAr})
+                          </option>
+                        ))
+                      ) : (
+                        <>
+                          <option value="commercial_register">
+                            {t("documents.categories.commercial_register") || "Commercial Register"}
+                          </option>
+                          <option value="tax_card">
+                            {t("documents.categories.tax_card") || "Tax Card"}
+                          </option>
+                          <option value="license">
+                            {t("documents.categories.license") || "Import/Export License"}
+                          </option>
+                          <option value="customs_certificate">
+                            {t("documents.categories.customs_certificate") || "Customs Certificate"}
+                          </option>
+                          <option value="contract">
+                            {t("documents.categories.contract") || "Contract / Agreement"}
+                          </option>
+                          <option value="other">
+                            {t("documents.categories.other") || "Other Document"}
+                          </option>
+                        </>
+                      )}
                     </select>
 
                     {/* Progress / Status Indicator */}
@@ -382,7 +428,7 @@ export function MultiFileUploadZone({
                       {staged.status === "success" && (
                         <span className="flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                           <CheckCircle2 className="h-4 w-4" />
-                          <span>Uploaded</span>
+                          <span>{t("documents.uploadedBadge") || "Uploaded"}</span>
                         </span>
                       )}
                       {staged.status === "error" && (

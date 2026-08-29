@@ -1,16 +1,26 @@
+import Image from "next/image"
 import { Container } from "@/components/ui/Container"
-import { ForgotPasswordForm } from "@/components/auth/ForgotPasswordForm"
+import { ForgotPasswordWizard } from "@/components/auth/ForgotPasswordWizard"
 
 export default async function ForgotPasswordPage() {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-secondary-950 via-slate-900 to-secondary-950 px-4 pt-36 pb-20 md:pt-44 md:pb-28">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-1/4 h-96 w-96 rounded-full bg-primary-500/15 blur-3xl" />
-        <div className="absolute bottom-10 left-1/4 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-36 pb-20 md:pt-44 md:pb-28">
+      {/* Official Branded Logistics Hero Background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="NileLink Freight & Logistics"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-950/90 via-slate-900/85 to-secondary-950/95" />
+        <div className="absolute inset-0 bg-primary-950/20 backdrop-blur-[2px]" />
       </div>
 
       <Container className="relative z-10 flex w-full items-center justify-center">
-        <ForgotPasswordForm />
+        <ForgotPasswordWizard />
       </Container>
     </div>
   )

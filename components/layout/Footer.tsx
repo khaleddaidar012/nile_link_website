@@ -3,8 +3,10 @@
 import { useTranslations } from "next-intl"
 import { Phone, Mail, MapPin, ArrowUpRight, ArrowUp } from "lucide-react"
 import { FaFacebook, FaWhatsapp, FaLinkedin, FaEnvelope } from "react-icons/fa"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { Container } from "@/components/ui/Container"
-import { Link } from "@/navigation"
+import { Link, usePathname } from "@/navigation"
 import { EmailLink } from "@/components/ui/EmailLink"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
@@ -18,6 +20,7 @@ const footerLinks = [
       { href: "/services", label: "nav.services" },
       { href: "/request-quote", label: "nav.requestQuote" },
       { href: "/contact", label: "nav.contact" },
+      { href: "/login", label: "nav.portalLogin" },
     ],
   },
   {
@@ -42,6 +45,7 @@ const socialLinks = [
 
 export function Footer() {
   const t = useTranslations()
+  const pathname = usePathname()
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
@@ -49,6 +53,17 @@ export function Footer() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Suppress public footer on Client Portal and Admin Portal routes
+  const isPortalOrAdmin =
+    pathname?.startsWith("/portal") ||
+    pathname?.startsWith("/admin") ||
+    pathname?.includes("/portal") ||
+    pathname?.includes("/admin")
+
+  if (isPortalOrAdmin) {
+    return null
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -60,16 +75,30 @@ export function Footer() {
         <Container className="section-padding">
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-1">
-              <Link href="/" className="mb-4 flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-500 text-sm font-bold text-white">
-                  NL
+              <Link href="/" className="mb-4 inline-flex items-center gap-2 rounded-2xl bg-white px-3.5 py-2 border border-slate-100 shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
+                <div className="relative h-[48px] w-[48px] sm:h-[52px] sm:w-[52px] shrink-0">
+                  <Image
+                    src={logoImg}
+                    alt="NileLink Logistics"
+                    fill
+                    sizes="56px"
+                    className="object-contain"
+                  />
                 </div>
-                <span className="text-xl font-bold">NileLink</span>
+                <span className="flex flex-col justify-center leading-none pr-1 rtl:pl-1 rtl:pr-0">
+                  <span className="text-base font-bold tracking-wide text-secondary-900 sm:text-lg">
+                    Nile Link
+                  </span>
+                  <span className="my-0.5 border-t border-primary-500" />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.38em] text-secondary-600 sm:text-[11px]">
+                    Logistics
+                  </span>
+                </span>
               </Link>
-              <p className="mt-4 text-sm leading-relaxed text-secondary-400">
+              <p className="mt-3 text-sm leading-relaxed text-secondary-400">
                 {t("footer.description")}
               </p>
-              <div className="mt-6 flex gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 {socialLinks.map((social) =>
                   "href" in social && social.href ? (
                     <a
@@ -77,7 +106,7 @@ export function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-800 text-secondary-400 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-500 hover:text-white hover:shadow-xl"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-800/90 text-secondary-300 border border-white/5 shadow-md transition-all duration-300 hover:scale-110 hover:bg-primary-600 hover:text-white hover:shadow-primary-500/25"
                       aria-label={social.label}
                     >
                       <social.icon className="h-4 w-4" />
@@ -85,7 +114,7 @@ export function Footer() {
                   ) : (
                     <EmailLink
                       key={social.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-800 text-secondary-400 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-500 hover:text-white hover:shadow-xl"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-800/90 text-secondary-300 border border-white/5 shadow-md transition-all duration-300 hover:scale-110 hover:bg-primary-600 hover:text-white hover:shadow-primary-500/25"
                       aria-label={social.label}
                     >
                       <social.icon className="h-4 w-4" />
@@ -97,17 +126,17 @@ export function Footer() {
 
             {footerLinks.map((group) => (
               <div key={group.title}>
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary-400">
+                <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">
                   {t(group.title)}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="group flex items-center gap-1 text-sm text-secondary-400 transition-colors hover:text-primary-400"
+                        className="group flex items-center gap-1.5 text-sm text-secondary-400 transition-colors hover:text-primary-400"
                       >
-                        <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                        <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-90" />
                         <span>{t(link.label)}</span>
                       </Link>
                     </li>
@@ -117,7 +146,7 @@ export function Footer() {
             ))}
 
             <div>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary-400">
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">
                 {t("footer.contact")}
               </h3>
               <div className="space-y-4">

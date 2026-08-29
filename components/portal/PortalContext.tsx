@@ -13,6 +13,7 @@ export interface PortalUser {
   phone?: string
   avatarUrl?: string
   emailVerified: boolean
+  whatsappVerified?: boolean
 }
 
 export interface PortalCustomer {

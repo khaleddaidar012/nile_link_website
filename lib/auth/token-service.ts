@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify, JWTPayload } from "jose"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
-import { UserRole } from "@/lib/models/User"
+import { UserRole, IStaffPermissions } from "@/lib/models/User"
 import { AccountStatus } from "@/lib/models/Customer"
 
 export const ACCESS_COOKIE_NAME = "nilelink_access_token"
@@ -18,6 +18,10 @@ export interface UserTokenData {
   accountStatus?: AccountStatus
   firstName: string
   lastName: string
+  phone?: string
+  staffPermissions?: IStaffPermissions
+  emailVerified?: boolean
+  whatsappVerified?: boolean
 }
 
 export interface AuthSessionPayload extends JWTPayload, UserTokenData {}

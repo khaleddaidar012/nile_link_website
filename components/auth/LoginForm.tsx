@@ -24,9 +24,13 @@ import {
   LogIn,
   UserPlus,
 } from "lucide-react"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { Link, useRouter } from "@/navigation"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
+import { isBusinessEmail, evaluatePasswordStrength } from "@/lib/auth/password"
+import { PasswordRequirements } from "@/components/auth/PasswordRequirements"
 
 // Schema for Login
 const loginSchema = z.object({
@@ -38,21 +42,35 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>
 
 // Schema for Registration
-const registerSchema = z.object({
-  firstName: z.string().min(2, "First name is required"),
-  lastName: z.string().min(2, "Last name is required"),
-  email: z.string().email("Valid business email is required"),
-  phone: z.string().min(8, "Phone number is required"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-  companyName: z.string().min(2, "Company name is required"),
-  commercialRegisterNumber: z.string().min(3, "Commercial Registration number is required"),
-  taxCardNumber: z.string().min(3, "Tax Card number is required"),
-  industry: z.string().default("Logistics & Trade"),
-  city: z.string().default("Cairo"),
-  terms: z.boolean().refine((v) => v === true, {
-    message: "You must accept the terms of service",
-  }),
-})
+const registerSchema = z
+  .object({
+    firstName: z.string().min(2, "First name is required"),
+    lastName: z.string().min(2, "Last name is required"),
+    email: z
+      .string()
+      .min(1, "Email is required")
+      .email("Valid email is required"),
+    phone: z.string().min(8, "Phone number is required"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .refine((val) => evaluatePasswordStrength(val).isValid, {
+        message: "Password does not meet all security requirements",
+      }),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
+    companyName: z.string().min(2, "Company name is required"),
+    commercialRegisterNumber: z.string().min(3, "Commercial Registration number is required"),
+    taxCardNumber: z.string().min(3, "Tax Card number is required"),
+    industry: z.string().default("Logistics & Trade"),
+    city: z.string().default("Cairo"),
+    terms: z.boolean().refine((v) => v === true, {
+      message: "You must accept the terms of service",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })
 
 type RegisterFormData = z.infer<typeof registerSchema>
 
@@ -77,7 +95,7 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
     setValue: setLoginValue,
     formState: { errors: loginErrors },
   } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema) as any,
     defaultValues: {
       identifier: "",
       password: "",
@@ -89,9 +107,10 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
   const {
     register: registerRegister,
     handleSubmit: handleRegisterSubmit,
+    watch: watchRegister,
     formState: { errors: regErrors },
   } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema) as any,
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -104,14 +123,16 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
       industry: "Logistics & Trade",
       city: "Cairo",
       terms: true,
+      confirmPassword: "",
     },
   })
 
-  const fillQuickAccount = (identifier: string, pass: string) => {
-    setLoginValue("identifier", identifier, { shouldValidate: true })
-    setLoginValue("password", pass, { shouldValidate: true })
-    setServerError(null)
-  }
+  const registerPassword = watchRegister("password") || ""
+  const registerConfirmPassword = watchRegister("confirmPassword") || ""
+  const passwordsMatch =
+    registerPassword.length > 0 &&
+    registerConfirmPassword.length > 0 &&
+    registerPassword === registerConfirmPassword
 
   const onLoginSubmit = async (data: LoginFormData) => {
     setIsSubmitting(true)
@@ -166,9 +187,9 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
 
       setRegisterSuccess(true)
       setTimeout(() => {
-        router.push("/portal")
+        router.push("/portal/verification")
         router.refresh()
-      }, 2000)
+      }, 500)
     } catch {
       setServerError("A network error occurred. Please try again.")
     } finally {
@@ -183,88 +204,118 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
       transition={{ duration: 0.3 }}
       className={cn(
         "w-full rounded-2xl border border-secondary-200/80 bg-white/95 p-6 sm:p-8 shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95 transition-all duration-300",
-        mode === "register" ? "max-w-2xl" : "max-w-md"
+        mode === "register" && !registerSuccess ? "max-w-2xl" : "max-w-md"
       )}
     >
       {/* Brand Header */}
       <div className="mb-6 text-center">
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary-700 to-primary-500 text-lg font-bold text-white shadow-md shadow-primary-500/20">
-          NL
+        <div className="mb-3 inline-flex items-center gap-3">
+          <div className="relative h-[58px] w-[58px] shrink-0">
+            <Image
+              src={logoImg}
+              alt="NileLink Logistics"
+              fill
+              sizes="60px"
+              priority
+              className="object-contain"
+            />
+          </div>
+          <span className="flex flex-col text-left rtl:text-right leading-none">
+            <span className="text-xl font-bold tracking-wide text-secondary-900 dark:text-white">
+              Nile Link
+            </span>
+            <span className="my-0.5 border-t border-primary-500" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.38em] text-secondary-500 dark:text-secondary-400">
+              Logistics
+            </span>
+          </span>
         </div>
         <h1 className="text-2xl font-bold tracking-tight text-secondary-900 dark:text-white">
-          {mode === "login"
+          {registerSuccess
+            ? (t("auth.register.title") || "Register New Company Account")
+            : mode === "login"
             ? (t("auth.login.title") || "Client & Staff Portal Login")
             : (t("auth.register.title") || "Register New Company Account")}
         </h1>
         <p className="mt-1.5 text-xs text-secondary-600 dark:text-secondary-400">
-          {mode === "login"
+          {registerSuccess
+            ? (t("auth.register.redirectingToVerification") || "Redirecting to channel verification...")
+            : mode === "login"
             ? (t("auth.login.subtitle") || "Access shipping operations, document verification & legal registry")
             : (t("auth.register.subtitle") || "Create an enterprise account to upload documents and track freight")}
         </p>
       </div>
 
-      {/* Mode Switcher Tabs */}
-      <div className="mb-6 grid grid-cols-2 gap-1.5 rounded-xl border border-secondary-200 bg-secondary-100/60 p-1 dark:border-secondary-800 dark:bg-secondary-800/60">
-        <button
-          type="button"
-          onClick={() => {
-            setMode("login")
-            setServerError(null)
-          }}
-          className={cn(
-            "flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold transition-all",
-            mode === "login"
-              ? "bg-white text-primary-600 shadow-sm dark:bg-secondary-900 dark:text-white"
-              : "text-secondary-600 hover:text-secondary-900 dark:text-secondary-400 dark:hover:text-white"
-          )}
-        >
-          <LogIn className="h-4 w-4" />
-          <span>{t("auth.login.tab") || "Sign In"}</span>
-        </button>
+      {!registerSuccess && (
+        <>
+          {/* Mode Switcher Tabs */}
+          <div className="mb-6 grid grid-cols-2 gap-1.5 rounded-xl border border-secondary-200 bg-secondary-100/60 p-1 dark:border-secondary-800 dark:bg-secondary-800/60">
+            <button
+              type="button"
+              onClick={() => {
+                setMode("login")
+                setServerError(null)
+              }}
+              className={cn(
+                "flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold transition-all",
+                mode === "login"
+                  ? "bg-white text-primary-600 shadow-sm dark:bg-secondary-900 dark:text-white"
+                  : "text-secondary-600 hover:text-secondary-900 dark:text-secondary-400 dark:hover:text-white"
+              )}
+            >
+              <LogIn className="h-4 w-4" />
+              <span>{t("auth.login.tab") || "Sign In"}</span>
+            </button>
 
-        <button
-          type="button"
-          onClick={() => {
-            setMode("register")
-            setServerError(null)
-          }}
-          className={cn(
-            "flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold transition-all",
-            mode === "register"
-              ? "bg-white text-primary-600 shadow-sm dark:bg-secondary-900 dark:text-white"
-              : "text-secondary-600 hover:text-secondary-900 dark:text-secondary-400 dark:hover:text-white"
-          )}
-        >
-          <UserPlus className="h-4 w-4" />
-          <span>{t("auth.register.tab") || "Register Account"}</span>
-        </button>
-      </div>
+            <button
+              type="button"
+              onClick={() => {
+                setMode("register")
+                setServerError(null)
+              }}
+              className={cn(
+                "flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold transition-all",
+                mode === "register"
+                  ? "bg-white text-primary-600 shadow-sm dark:bg-secondary-900 dark:text-white"
+                  : "text-secondary-600 hover:text-secondary-900 dark:text-secondary-400 dark:hover:text-white"
+              )}
+            >
+              <UserPlus className="h-4 w-4" />
+              <span>{t("auth.register.tab") || "Register Account"}</span>
+            </button>
+          </div>
 
-      {/* Error Banner */}
-      {serverError && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="mb-4 flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300"
-        >
-          <AlertCircle className="h-4 w-4 shrink-0 text-rose-500" />
-          <span>{serverError}</span>
-        </motion.div>
+          {/* Error Banner */}
+          {serverError && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="mb-4 flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0 text-rose-500" />
+              <span>{serverError}</span>
+            </motion.div>
+          )}
+        </>
       )}
 
       {/* Registration Success View */}
       {registerSuccess && (
-        <div className="py-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="py-8 text-center"
+        >
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
             <CheckCircle2 className="h-7 w-7" />
           </div>
           <h3 className="text-lg font-bold text-secondary-900 dark:text-white">
-            Company Registered Successfully!
+            {t("auth.register.successTitle") || "Company Registered Successfully!"}
           </h3>
           <p className="mt-1 text-xs text-secondary-500">
-            Redirecting to the NileLink Client Portal...
+            {t("auth.register.redirectingToVerification") || "Redirecting to channel verification..."}
           </p>
-        </div>
+        </motion.div>
       )}
 
       {!registerSuccess && (
@@ -278,32 +329,6 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.2 }}
             >
-              {/* 1-Click Quick Fill Test Credentials */}
-              <div className="mb-5 rounded-xl border border-primary-500/20 bg-primary-50/50 p-3 dark:bg-primary-950/30">
-                <div className="flex items-center gap-1.5 text-[11px] font-bold text-primary-900 dark:text-primary-300 uppercase tracking-wider mb-2">
-                  <Sparkles className="h-3.5 w-3.5 text-primary-600 dark:text-primary-400" />
-                  <span>1-Click Test Credentials</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => fillQuickAccount("mohamed@alexexport.com", "SecurePass123!")}
-                    className="flex items-center justify-center gap-1.5 rounded-lg border border-primary-300/60 bg-white py-1.5 px-2 text-[11px] font-bold text-primary-800 shadow-sm transition-all hover:bg-primary-50 dark:border-primary-800 dark:bg-secondary-800 dark:text-primary-300 dark:hover:bg-secondary-700"
-                  >
-                    <User className="h-3 w-3" />
-                    <span>Client Account</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => fillQuickAccount("staff@nilelink.com", "StaffAdmin2026!")}
-                    className="flex items-center justify-center gap-1.5 rounded-lg border border-indigo-300/60 bg-white py-1.5 px-2 text-[11px] font-bold text-indigo-800 shadow-sm transition-all hover:bg-indigo-50 dark:border-indigo-800 dark:bg-secondary-800 dark:text-indigo-300 dark:hover:bg-secondary-700"
-                  >
-                    <Shield className="h-3 w-3" />
-                    <span>Staff Admin</span>
-                  </button>
-                </div>
-              </div>
-
               <form onSubmit={handleLoginSubmit(onLoginSubmit)} className="space-y-4">
                 <div>
                   <label className="mb-1.5 block text-xs font-bold text-secondary-700 uppercase tracking-wider dark:text-secondary-300">
@@ -317,7 +342,7 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                       placeholder={t("auth.login.identifierPlaceholder") || "name@company.com"}
                       {...registerLogin("identifier")}
                       className={cn(
-                        "w-full rounded-xl border bg-slate-100/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 rtl:pr-10 rtl:pl-4",
+                        "w-full rounded-xl border bg-slate-100/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-4 pl-10 py-2.5 text-xs font-medium transition-all rtl:pr-10 rtl:pl-4",
                         loginErrors.identifier
                           ? "border-red-500 focus:border-red-500 dark:border-red-500"
                           : "border-secondary-200 focus:border-primary-500 dark:border-secondary-700 dark:focus:border-primary-400"
@@ -564,9 +589,9 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                       {regErrors.phone && <p className="mt-1 text-xs text-red-500">{regErrors.phone.message}</p>}
                     </div>
 
-                    <div className="sm:col-span-2">
+                    <div>
                       <label className="mb-1 block text-xs font-semibold text-secondary-700 dark:text-secondary-300">
-                        {t("auth.register.password") || "Password (min 8 chars)"} *
+                        {t("auth.register.password") || "Password"} *
                       </label>
                       <div className="relative">
                         <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
@@ -583,6 +608,52 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                         />
                       </div>
                       {regErrors.password && <p className="mt-1 text-xs text-red-500">{regErrors.password.message}</p>}
+                    </div>
+
+                    <div>
+                      <div className="mb-1 flex items-center justify-between">
+                        <label className="block text-xs font-semibold text-secondary-700 dark:text-secondary-300">
+                          {t("auth.register.confirmPassword") || "Confirm Password"} *
+                        </label>
+                        {registerConfirmPassword.length > 0 && (
+                          <span
+                            className={cn(
+                              "text-[10px] font-bold",
+                              passwordsMatch ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"
+                            )}
+                          >
+                            {passwordsMatch
+                              ? (t("auth.register.passwordMatch") || "Passwords match ✓")
+                              : (t("auth.register.passwordMismatch") || "Passwords do not match")}
+                          </span>
+                        )}
+                      </div>
+                      <div className="relative">
+                        <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
+                        <input
+                          type="password"
+                          placeholder={t("auth.register.confirmPasswordPlaceholder") || "Re-enter password"}
+                          {...registerRegister("confirmPassword")}
+                          className={cn(
+                            "w-full rounded-xl border bg-secondary-50/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-3.5 pl-9 py-2.5 text-xs font-medium transition-all rtl:pr-9 rtl:pl-3.5",
+                            regErrors.confirmPassword
+                              ? "border-red-500 focus:border-red-500 dark:border-red-500"
+                              : passwordsMatch
+                                ? "border-emerald-500 focus:border-emerald-500 dark:border-emerald-500"
+                                : "border-secondary-200 focus:border-primary-500 dark:border-secondary-700 dark:focus:border-primary-400"
+                          )}
+                        />
+                        {passwordsMatch && (
+                          <CheckCircle2 className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-emerald-500 rtl:right-auto rtl:left-3" />
+                        )}
+                      </div>
+                      {regErrors.confirmPassword && (
+                        <p className="mt-1 text-xs text-red-500">{regErrors.confirmPassword.message}</p>
+                      )}
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <PasswordRequirements password={registerPassword} />
                     </div>
                   </div>
                 </div>

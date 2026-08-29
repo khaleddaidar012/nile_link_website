@@ -27,6 +27,13 @@ export async function POST(req: NextRequest, { params }: Props) {
       return NextResponse.json({ error: "Forbidden: Staff access required" }, { status: 403 })
     }
 
+    if (session.role === "staff" && !session.staffPermissions?.canReviewDocuments) {
+      return NextResponse.json(
+        { error: "Access denied. You lack the 'canReviewDocuments' permission." },
+        { status: 403 }
+      )
+    }
+
     const { id } = await params
     const body = await req.json()
     const parsed = verifySchema.safeParse(body)

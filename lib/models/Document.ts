@@ -24,10 +24,13 @@ export interface IDocument extends MongooseDoc {
   category: DocumentCategory
   fileName: string
   storedFileName: string
+  storageKey: string
   fileUrl: string
   fileSize: number
   mimeType: string
   fileHash?: string
+  entityType?: string
+  entityId?: mongoose.Types.ObjectId
   status: DocumentStatus
   startDate?: Date
   expiryDate?: Date
@@ -81,6 +84,11 @@ const DocumentSchema = new Schema<IDocument>(
       type: String,
       required: true,
     },
+    storageKey: {
+      type: String,
+      required: true,
+      index: true,
+    },
     fileUrl: {
       type: String,
       required: true,
@@ -96,6 +104,14 @@ const DocumentSchema = new Schema<IDocument>(
     fileHash: {
       type: String,
       index: true,
+    },
+    entityType: {
+      type: String,
+      default: "Customer",
+    },
+    entityId: {
+      type: Schema.Types.ObjectId,
+      default: null,
     },
     status: {
       type: String,

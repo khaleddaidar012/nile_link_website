@@ -20,6 +20,9 @@ import { ExpiryStatusBadge } from "@/components/shared/ExpiryStatusBadge"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
 
+import { LiveDocumentViewerModal } from "@/components/shared/LiveDocumentViewerModal"
+import { RejectionReasonModal } from "./RejectionReasonModal"
+
 export interface CustomerDocumentItem {
   id: string
   title: string
@@ -50,6 +53,10 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")
 
+  // Modal States
+  const [previewDoc, setPreviewDoc] = useState<CustomerDocumentItem | null>(null)
+  const [rejectionTarget, setRejectionTarget] = useState<CustomerDocumentItem | null>(null)
+
   const fetchDocuments = async () => {
     setLoading(true)
     try {
@@ -75,22 +82,22 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
   }, [search, selectedCategory, selectedStatus])
 
   const categories = [
-    { id: "all", label: "All Categories" },
-    { id: "commercial_register", label: "Commercial Register" },
-    { id: "tax_card", label: "Tax Card" },
-    { id: "license", label: "Import/Export License" },
-    { id: "customs_certificate", label: "Customs Certificate" },
-    { id: "contract", label: "Contracts" },
-    { id: "other", label: "Other" },
+    { id: "all", label: t("documents.allCategories") || "All Categories" },
+    { id: "commercial_register", label: t("documents.categories.commercial_register") || "Commercial Register" },
+    { id: "tax_card", label: t("documents.categories.tax_card") || "Tax Card" },
+    { id: "license", label: t("documents.categories.license") || "Import/Export License" },
+    { id: "customs_certificate", label: t("documents.categories.customs_certificate") || "Customs Certificate" },
+    { id: "contract", label: t("documents.categories.contract") || "Contracts & Agreements" },
+    { id: "other", label: t("documents.categories.other") || "Other Document" },
   ]
 
   const statuses = [
-    { id: "all", label: "All Statuses" },
-    { id: "approved", label: "Approved / Active" },
-    { id: "expiring_soon", label: "Expiring Soon" },
-    { id: "pending_review", label: "Pending Review" },
-    { id: "expired", label: "Expired" },
-    { id: "rejected", label: "Rejected" },
+    { id: "all", label: t("documents.allStatuses") || "All Statuses" },
+    { id: "approved", label: t("documents.statuses.approved") || "Approved / Active" },
+    { id: "expiring_soon", label: t("documents.statuses.expiring_soon") || "Expiring Soon" },
+    { id: "pending_review", label: t("documents.statuses.pending_review") || "Pending Review" },
+    { id: "expired", label: t("documents.statuses.expired") || "Expired" },
+    { id: "rejected", label: t("documents.statuses.rejected") || "Rejected" },
   ]
 
   const formatDate = (dateStr?: string | null) => {
@@ -126,7 +133,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
           <Search className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3.5 rtl:left-auto" />
           <input
             type="text"
-            placeholder="Search documents by name or file..."
+            placeholder={t("documents.searchPlaceholder") || "Search documents by name or file..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-xl border border-secondary-200 bg-white py-2.5 pr-4 pl-10 text-xs font-medium transition-all focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-secondary-800 dark:bg-secondary-900 dark:text-white rtl:pr-10 rtl:pl-4 shadow-sm"
@@ -184,7 +191,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                   <td colSpan={6} className="py-12 text-center text-secondary-400">
                     <div className="flex items-center justify-center gap-2">
                       <RefreshCw className="h-4 w-4 animate-spin text-primary-500" />
-                      <span>Loading documents registry...</span>
+                      <span>{t("documents.loading") || "Loading documents registry..."}</span>
                     </div>
                   </td>
                 </tr>
@@ -195,10 +202,10 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                       <FileText className="h-7 w-7" />
                     </div>
                     <p className="mt-3 text-sm font-bold text-secondary-900 dark:text-white">
-                      No documents found
+                      {t("documents.noDocsFound") || "No documents registered yet"}
                     </p>
                     <p className="mt-1 text-xs text-secondary-500 dark:text-secondary-400 max-w-sm mx-auto">
-                      Upload your corporate legal files (Commercial Register, Tax Card, Licenses) to manage compliance.
+                      {t("documents.noDocsSub") || "Upload your corporate legal files (Commercial Register, Tax Card, Licenses) to manage compliance."}
                     </p>
                   </td>
                 </tr>
@@ -221,17 +228,21 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                             {doc.fileName} • {(doc.fileSize / (1024 * 1024)).toFixed(2)} MB
                           </p>
                           {doc.rejectionReason && (
-                            <p className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-rose-600 dark:text-rose-400">
-                              <AlertCircle className="h-3 w-3 shrink-0" />
-                              <span>Reason: {doc.rejectionReason}</span>
-                            </p>
+                            <button
+                              type="button"
+                              onClick={() => setRejectionTarget(doc)}
+                              className="mt-1 flex items-center gap-1.5 rounded-md bg-rose-50 px-2 py-0.5 text-[11px] font-bold text-rose-700 hover:bg-rose-100 dark:bg-rose-950/60 dark:text-rose-300 transition-colors"
+                            >
+                              <AlertCircle className="h-3.5 w-3.5 shrink-0 text-rose-600 animate-pulse" />
+                              <span>سبب الرفض: {doc.rejectionReason} (انقر للتفاصيل)</span>
+                            </button>
                           )}
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-4">
                       <span className={cn("inline-flex items-center rounded-lg border px-2.5 py-0.5 text-[11px] font-semibold capitalize", getCategoryBadgeClass(doc.category))}>
-                        {doc.category.replace("_", " ")}
+                        {t(`documents.categories.${doc.category}`) || doc.category.replace("_", " ")}
                       </span>
                     </td>
                     <td className="px-4 py-4 font-mono text-xs text-secondary-600 dark:text-secondary-300">
@@ -248,6 +259,17 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                     </td>
                     <td className="px-5 py-4 text-right rtl:text-left">
                       <div className="flex items-center justify-end gap-1.5 rtl:justify-start">
+                        {/* Live Preview Eye Button (No Download Required) */}
+                        <button
+                          type="button"
+                          onClick={() => setPreviewDoc(doc)}
+                          className="flex h-8 w-8 items-center justify-center rounded-xl border border-primary-500/30 bg-primary-50 text-primary-600 shadow-sm transition-all hover:bg-primary-600 hover:text-white dark:border-primary-500/20 dark:bg-primary-950/60 dark:text-primary-400"
+                          title="Preview Live Document"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </button>
+
+                        {/* Download File Link */}
                         <a
                           href={`/api/portal/documents/${doc.id}/download`}
                           target="_blank"
@@ -257,6 +279,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                         >
                           <Download className="h-4 w-4" />
                         </a>
+
                         {(doc.status === "expiring_soon" ||
                           doc.status === "expired" ||
                           doc.status === "rejected") && (
@@ -278,6 +301,30 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
           </table>
         </div>
       </div>
+
+      {/* Live Document Viewer Modal */}
+      {previewDoc && (
+        <LiveDocumentViewerModal
+          isOpen={!!previewDoc}
+          onClose={() => setPreviewDoc(null)}
+          fileUrl={previewDoc.fileUrl || `/api/portal/documents/${previewDoc.id}/download`}
+          fileName={previewDoc.fileName}
+          title={previewDoc.title}
+          mimeType={previewDoc.mimeType}
+        />
+      )}
+
+      {/* Rejection Reason Popup Modal */}
+      {rejectionTarget && (
+        <RejectionReasonModal
+          isOpen={!!rejectionTarget}
+          onClose={() => setRejectionTarget(null)}
+          onRenewClick={() => onRenewClick && onRenewClick(rejectionTarget)}
+          docTitle={rejectionTarget.title}
+          rejectionReason={rejectionTarget.rejectionReason}
+          reviewNotes={rejectionTarget.reviewNotes}
+        />
+      )}
     </div>
   )
 }

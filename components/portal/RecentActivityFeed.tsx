@@ -1,53 +1,89 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useTranslations } from "next-intl"
-import { Clock, FileText, CheckCircle2, AlertTriangle, Send, CreditCard } from "lucide-react"
+import { useTranslations, useLocale } from "next-intl"
+import { Clock, FileText, CheckCircle2, AlertTriangle, Send, CreditCard, ShieldCheck } from "lucide-react"
 
 interface ActivityItem {
   id: string
   title: string
   description: string
   timeAgo: string
-  type: "upload" | "approve" | "warning" | "request" | "payment"
+  type: "upload" | "approve" | "warning" | "request" | "payment" | "verify"
+  rawType?: string
 }
 
 export function RecentActivityFeed() {
   const t = useTranslations()
+  const locale = useLocale()
   const [activities, setActivities] = useState<ActivityItem[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Fetch notifications/activities for client
     fetch("/api/portal/notifications?limit=6")
       .then((res) => res.json())
       .then((data) => {
         if (data.notifications && data.notifications.length > 0) {
           setActivities(
-            data.notifications.map((n: { _id: string; title: string; message: string; createdAt: string; type: string }) => ({
-              id: n._id,
-              title: n.title,
-              description: n.message,
-              timeAgo: new Date(n.createdAt).toLocaleDateString("en-GB", {
+            data.notifications.map((n: { _id: string; title: string; message: string; createdAt: string; type: string }) => {
+              const typeLower = (n.type || "").toLowerCase()
+              let actType: ActivityItem["type"] = "upload"
+
+              if (typeLower.includes("approve")) actType = "approve"
+              else if (typeLower.includes("expir") || typeLower.includes("warn")) actType = "warning"
+              else if (typeLower.includes("verif") || typeLower.includes("channel")) actType = "verify"
+              else if (typeLower.includes("pay") || typeLower.includes("inv")) actType = "payment"
+              else if (typeLower.includes("req")) actType = "request"
+
+              const date = new Date(n.createdAt)
+              const formattedDate = date.toLocaleDateString(locale === "ar" ? "ar-EG" : locale, {
                 day: "2-digit",
                 month: "short",
                 hour: "2-digit",
                 minute: "2-digit",
-              }),
-              type: n.type.includes("approve")
-                ? "approve"
-                : n.type.includes("expir")
-                  ? "warning"
-                  : "upload",
-            }))
+              })
+
+              return {
+                id: n._id,
+                title: n.title,
+                description: n.message,
+                timeAgo: formattedDate,
+                type: actType,
+                rawType: n.type,
+              }
+            })
           )
         } else {
-          setActivities([])
+          // Provide default sample activities if no notifications exist yet
+          const now = new Date()
+          const sampleDate = now.toLocaleDateString(locale === "ar" ? "ar-EG" : locale, {
+            day: "2-digit",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+
+          setActivities([
+            {
+              id: "act-1",
+              title: t("portal.dashboard.activity.accountCreatedTitle") || "Corporate Account Registered",
+              description: t("portal.dashboard.activity.accountCreatedDesc") || "Account created and ready for compliance verification",
+              timeAgo: sampleDate,
+              type: "verify",
+            },
+            {
+              id: "act-2",
+              title: t("portal.dashboard.activity.uploadGuideTitle") || "Document Upload Guidelines",
+              description: t("portal.dashboard.activity.uploadGuideDesc") || "Please upload your Commercial Register and Tax Card for clearance approval",
+              timeAgo: sampleDate,
+              type: "upload",
+            },
+          ])
         }
       })
       .catch(() => setActivities([]))
       .finally(() => setLoading(false))
-  }, [])
+  }, [t, locale])
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -59,9 +95,19 @@ export function RecentActivityFeed() {
         return <CreditCard className="h-4 w-4 text-indigo-500" />
       case "request":
         return <Send className="h-4 w-4 text-primary-500" />
+      case "verify":
+        return <ShieldCheck className="h-4 w-4 text-cyan-500" />
       default:
         return <FileText className="h-4 w-4 text-primary-500" />
     }
+  }
+
+  const getLocalizedTitle = (act: ActivityItem) => {
+    if (act.type === "approve") return t("portal.dashboard.activity.approveTitle") || act.title
+    if (act.type === "warning") return t("portal.dashboard.activity.warningTitle") || act.title
+    if (act.type === "verify") return t("portal.dashboard.activity.verifyTitle") || act.title
+    if (act.type === "upload") return t("portal.dashboard.activity.uploadTitle") || act.title
+    return act.title
   }
 
   return (
@@ -74,7 +120,9 @@ export function RecentActivityFeed() {
       </div>
 
       {loading ? (
-        <div className="py-8 text-center text-xs text-secondary-400">Loading activity...</div>
+        <div className="py-8 text-center text-xs text-secondary-400">
+          {t("common.loading") || "Loading activity..."}
+        </div>
       ) : activities.length === 0 ? (
         <div className="py-8 text-center text-xs text-secondary-400">
           {t("portal.dashboard.noActivity") || "No recent activity recorded."}
@@ -88,7 +136,7 @@ export function RecentActivityFeed() {
               </div>
               <div className="flex-1">
                 <p className="text-xs font-semibold text-secondary-900 dark:text-white">
-                  {act.title}
+                  {getLocalizedTitle(act)}
                 </p>
                 <p className="mt-0.5 text-[11px] text-secondary-500 line-clamp-2">
                   {act.description}

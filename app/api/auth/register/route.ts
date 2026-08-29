@@ -2,14 +2,19 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { connectDB } from "@/lib/mongodb"
 import { User, Customer } from "@/lib/models"
-import { hashPassword, generateSecureToken, validatePasswordComplexity } from "@/lib/auth/password"
+import { hashPassword, generateSecureToken, validatePasswordComplexity, isBusinessEmail } from "@/lib/auth/password"
 import { createAccessToken, createRefreshToken, setAuthCookies } from "@/lib/auth/token-service"
 
 const registerSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters").trim(),
   lastName: z.string().min(2, "Last name must be at least 2 characters").trim(),
-  email: z.string().email("Invalid email address").toLowerCase().trim(),
+  email: z
+    .string()
+    .email("Invalid email address")
+    .toLowerCase()
+    .trim(),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  confirmPassword: z.string().optional(),
   phone: z.string().min(8, "Phone number is required").trim(),
   companyName: z.string().min(2, "Company name is required").trim(),
   commercialRegisterNumber: z.string().min(3, "Commercial Registration number is required").trim(),
@@ -26,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Validation error", details: parsed.error.format() },
+        { error: parsed.error.issues[0]?.message || "Validation error", details: parsed.error.format() },
         { status: 400 }
       )
     }
@@ -36,6 +41,7 @@ export async function POST(req: NextRequest) {
       lastName,
       email,
       password,
+      confirmPassword,
       phone,
       companyName,
       commercialRegisterNumber,
@@ -44,6 +50,13 @@ export async function POST(req: NextRequest) {
       country,
       city,
     } = parsed.data
+
+    if (confirmPassword && password !== confirmPassword) {
+      return NextResponse.json(
+        { error: "Password and Confirm Password do not match" },
+        { status: 400 }
+      )
+    }
 
     const passwordCheck = validatePasswordComplexity(password)
     if (!passwordCheck.valid) {

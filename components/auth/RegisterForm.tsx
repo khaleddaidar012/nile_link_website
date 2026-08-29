@@ -6,26 +6,52 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-import { Building2, User, Mail, Lock, Phone, FileText, CheckCircle2, ArrowRight, Loader2, AlertCircle } from "lucide-react"
+import {
+  Building2,
+  User,
+  Mail,
+  Lock,
+  Phone,
+  FileText,
+  CheckCircle2,
+  ArrowRight,
+  Loader2,
+  AlertCircle,
+} from "lucide-react"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { Link, useRouter } from "@/navigation"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
+import { evaluatePasswordStrength } from "@/lib/auth/password"
+import { PasswordRequirements } from "@/components/auth/PasswordRequirements"
 
-const registerSchema = z.object({
-  firstName: z.string().min(2, "First name is required"),
-  lastName: z.string().min(2, "Last name is required"),
-  email: z.string().email("Valid business email is required"),
-  phone: z.string().min(8, "Phone number is required"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-  companyName: z.string().min(2, "Company name is required"),
-  commercialRegisterNumber: z.string().min(3, "Commercial Registration number is required"),
-  taxCardNumber: z.string().min(3, "Tax Card number is required"),
-  industry: z.string().default("Logistics & Trade"),
-  city: z.string().default("Cairo"),
-  terms: z.boolean().refine((v) => v === true, {
-    message: "You must accept the terms of service",
-  }),
-})
+const registerSchema = z
+  .object({
+    firstName: z.string().min(2, "First name is required"),
+    lastName: z.string().min(2, "Last name is required"),
+    email: z.string().min(1, "Email is required").email("Valid email is required"),
+    phone: z.string().min(8, "Phone number is required"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .refine((val) => evaluatePasswordStrength(val).isValid, {
+        message: "Password does not meet all security requirements",
+      }),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
+    companyName: z.string().min(2, "Company name is required"),
+    commercialRegisterNumber: z.string().min(3, "Commercial Registration number is required"),
+    taxCardNumber: z.string().min(3, "Tax Card number is required"),
+    industry: z.string().default("Logistics & Trade"),
+    city: z.string().default("Cairo"),
+    terms: z.boolean().refine((v) => v === true, {
+      message: "You must accept the terms of service",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })
 
 type RegisterFormData = z.infer<typeof registerSchema>
 
@@ -39,15 +65,17 @@ export function RegisterForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema) as any,
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
       phone: "",
       password: "",
+      confirmPassword: "",
       companyName: "",
       commercialRegisterNumber: "",
       taxCardNumber: "",
@@ -56,6 +84,13 @@ export function RegisterForm() {
       terms: true,
     },
   })
+
+  const registerPassword = watch("password") || ""
+  const registerConfirmPassword = watch("confirmPassword") || ""
+  const passwordsMatch =
+    registerPassword.length > 0 &&
+    registerConfirmPassword.length > 0 &&
+    registerPassword === registerConfirmPassword
 
   const onSubmit = async (data: RegisterFormData) => {
     setIsSubmitting(true)
@@ -77,9 +112,9 @@ export function RegisterForm() {
 
       setIsSuccess(true)
       setTimeout(() => {
-        router.push("/portal")
+        router.push("/portal/verification")
         router.refresh()
-      }, 2000)
+      }, 500)
     } catch {
       setServerError("A network error occurred. Please try again.")
     } finally {
@@ -101,7 +136,7 @@ export function RegisterForm() {
           {t("auth.register.title") || "Registration Successful!"}
         </h2>
         <p className="mt-2 text-sm text-secondary-600 dark:text-secondary-400">
-          Your company account has been created. Redirecting to the NileLink Client Portal...
+          {t("auth.register.redirectingToVerification") || "Redirecting to channel verification..."}
         </p>
       </motion.div>
     )
@@ -115,6 +150,27 @@ export function RegisterForm() {
       className="w-full max-w-2xl rounded-2xl border border-secondary-200/80 bg-white/95 p-8 shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95"
     >
       <div className="mb-6 text-center">
+        <div className="mb-3 inline-flex items-center gap-3">
+          <div className="relative h-[58px] w-[58px] shrink-0">
+            <Image
+              src={logoImg}
+              alt="NileLink Logistics"
+              fill
+              sizes="60px"
+              priority
+              className="object-contain"
+            />
+          </div>
+          <span className="flex flex-col text-left rtl:text-right leading-none">
+            <span className="text-xl font-bold tracking-wide text-secondary-900 dark:text-white">
+              Nile Link
+            </span>
+            <span className="my-0.5 border-t border-primary-500" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.38em] text-secondary-500 dark:text-secondary-400">
+              Logistics
+            </span>
+          </span>
+        </div>
         <h1 className="text-2xl font-bold tracking-tight text-secondary-900 dark:text-white">
           {t("auth.register.title") || "Create Enterprise Account"}
         </h1>
@@ -148,7 +204,7 @@ export function RegisterForm() {
               </label>
               <input
                 type="text"
-                placeholder="e.g. Nile Logistics International S.A.E."
+                placeholder={t("auth.register.companyNamePlaceholder") || "e.g. Nile Logistics International S.A.E."}
                 {...register("companyName")}
                 className={cn(
                   "w-full rounded-xl border bg-secondary-50/50 px-3.5 py-2.5 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white",
@@ -166,7 +222,7 @@ export function RegisterForm() {
                 <FileText className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
                   type="text"
-                  placeholder="123456"
+                  placeholder="CR-12345"
                   {...register("commercialRegisterNumber")}
                   className={cn(
                     "w-full rounded-xl border bg-secondary-50/50 pr-3.5 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-3.5",
@@ -185,7 +241,7 @@ export function RegisterForm() {
                 <FileText className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
                   type="text"
-                  placeholder="987-654-321"
+                  placeholder="TAX-98765"
                   {...register("taxCardNumber")}
                   className={cn(
                     "w-full rounded-xl border bg-secondary-50/50 pr-3.5 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-3.5",
@@ -275,9 +331,9 @@ export function RegisterForm() {
               {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
             </div>
 
-            <div className="sm:col-span-2">
+            <div>
               <label className="mb-1 block text-xs font-semibold text-secondary-700 dark:text-secondary-300">
-                {t("auth.register.password") || "Password (min 8 chars, 1 uppercase, 1 number)"} *
+                {t("auth.register.password") || "Password"} *
               </label>
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
@@ -293,17 +349,63 @@ export function RegisterForm() {
               </div>
               {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
             </div>
+
+            <div>
+              <div className="mb-1 flex items-center justify-between">
+                <label className="block text-xs font-semibold text-secondary-700 dark:text-secondary-300">
+                  {t("auth.register.confirmPassword") || "Confirm Password"} *
+                </label>
+                {registerConfirmPassword.length > 0 && (
+                  <span
+                    className={cn(
+                      "text-[10px] font-bold",
+                      passwordsMatch ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"
+                    )}
+                  >
+                    {passwordsMatch
+                      ? (t("auth.register.passwordMatch") || "Passwords match ✓")
+                      : (t("auth.register.passwordMismatch") || "Passwords do not match")}
+                  </span>
+                )}
+              </div>
+              <div className="relative">
+                <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
+                <input
+                  type="password"
+                  placeholder={t("auth.register.confirmPasswordPlaceholder") || "Re-enter password"}
+                  {...register("confirmPassword")}
+                  className={cn(
+                    "w-full rounded-xl border bg-secondary-50/50 pr-3.5 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-3.5",
+                    errors.confirmPassword
+                      ? "border-red-500 focus:border-red-500"
+                      : passwordsMatch
+                        ? "border-emerald-500 focus:border-emerald-500"
+                        : "border-secondary-200 dark:border-secondary-700"
+                  )}
+                />
+                {passwordsMatch && (
+                  <CheckCircle2 className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-emerald-500 rtl:right-auto rtl:left-3" />
+                )}
+              </div>
+              {errors.confirmPassword && (
+                <p className="mt-1 text-xs text-red-500">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+
+            <div className="sm:col-span-2">
+              <PasswordRequirements password={registerPassword} />
+            </div>
           </div>
         </div>
 
         <div className="flex items-center">
           <input
-            id="terms"
+            id="terms-register"
             type="checkbox"
             {...register("terms")}
             className="h-4 w-4 rounded border-secondary-300 text-primary-600 focus:ring-primary-500"
           />
-          <label htmlFor="terms" className="ml-2 block text-xs text-secondary-600 dark:text-secondary-400 rtl:mr-2 rtl:ml-0">
+          <label htmlFor="terms-register" className="ml-2 block text-xs text-secondary-600 dark:text-secondary-400 rtl:mr-2 rtl:ml-0">
             {t("auth.register.terms") || "I agree to the Terms of Service and Privacy Policy"}
           </label>
         </div>

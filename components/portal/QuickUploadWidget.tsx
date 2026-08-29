@@ -22,7 +22,7 @@ export function QuickUploadWidget() {
       <div className="mt-5">
         <Link href="/portal/documents">
           <Button size="sm" className="w-full rounded-xl bg-white text-secondary-900 shadow hover:bg-white/90 font-semibold">
-            <span>Manage & Upload Documents</span>
+            <span>{t("portal.dashboard.manageUploadBtn") || "Manage & Upload Documents"}</span>
             <ArrowRight className="ml-1.5 h-4 w-4 rtl:mr-1.5 rtl:ml-0 rtl:rotate-180" />
           </Button>
         </Link>

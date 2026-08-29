@@ -2,7 +2,7 @@
 
 Read and deeply analyze the file:
 
-`plan.md`
+`needs.md`
 
 Your job is **NOT to implement any code**.
 

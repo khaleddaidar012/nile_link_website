@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
+import mongoose from "mongoose"
 import { connectDB } from "@/lib/mongodb"
-import { Document as DocumentModel, Customer, Notification } from "@/lib/models"
+import { Document as DocumentModel, Customer, Notification, User } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
-import { saveDocumentFile } from "@/lib/storage/document-storage"
+import { uploadFileToR2, generateStorageKey } from "@/lib/storage/r2-storage"
 import { logDocumentActivity } from "@/lib/services/activity-log-service"
 
 const ALLOWED_MIME_TYPES = [
@@ -18,7 +19,7 @@ const MAX_DOCUMENTS_PER_CUSTOMER = 20
 export async function POST(req: NextRequest) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || !session.customerId) {
+    if (!session?.userId) {
       return NextResponse.json(
         { error: "Authentication required as customer" },
         { status: 401 }
@@ -27,7 +28,13 @@ export async function POST(req: NextRequest) {
 
     await connectDB()
 
-    const customer = await Customer.findById(session.customerId)
+    let customerId = session.customerId
+    if (!customerId) {
+      const user = await User.findById(session.userId)
+      customerId = user?.customerId?.toString()
+    }
+
+    const customer = customerId ? await Customer.findById(customerId) : null
     if (!customer) {
       return NextResponse.json({ error: "Customer record not found" }, { status: 404 })
     }
@@ -84,23 +91,38 @@ export async function POST(req: NextRequest) {
       }
 
       const buffer = Buffer.from(await file.arrayBuffer())
-      const { fileUrl, storedFileName, fileHash, fileSize } = await saveDocumentFile(
+      const storageKey = generateStorageKey(customer._id.toString(), "documents", file.name)
+      const storedFileName = storageKey.split("/").pop() || file.name
+
+      // 1. Upload private binary to Cloudflare R2
+      const { fileHash, fileSize } = await uploadFileToR2(
         buffer,
-        file.name,
-        customer._id.toString()
+        storageKey,
+        file.type,
+        {
+          customerId: customer._id.toString(),
+          uploadedBy: session.userId,
+          originalName: file.name,
+        }
       )
 
+      // 2. Create MongoDB Document with storageKey and metadata only (Zero binary in DB)
+      const docId = new mongoose.Types.ObjectId()
       const document = await DocumentModel.create({
+        _id: docId,
         customerId: customer._id,
         uploadedBy: session.userId,
         title,
         category: category as any,
         fileName: file.name,
         storedFileName,
-        fileUrl,
+        storageKey,
+        fileUrl: `/api/portal/documents/${docId}/download`,
         fileSize,
         mimeType: file.type,
         fileHash,
+        entityType: "Customer",
+        entityId: customer._id,
         status: "pending_review",
         warningEscalationTier: "none",
         isArchived: false,

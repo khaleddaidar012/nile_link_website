@@ -7,9 +7,12 @@ import { z } from "zod"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { Lock, Eye, EyeOff, CheckCircle2, ArrowRight, Loader2, AlertCircle } from "lucide-react"
+import Image from "next/image"
+import logoImg from "@/public/images/logo.png"
 import { useRouter } from "@/navigation"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
+import { PasswordRequirements } from "@/components/auth/PasswordRequirements"
 
 const resetSchema = z
   .object({
@@ -38,6 +41,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<ResetFormData>({
     resolver: zodResolver(resetSchema),
@@ -101,6 +105,27 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
       className="w-full max-w-md rounded-2xl border border-secondary-200/80 bg-white/95 p-8 shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95"
     >
       <div className="mb-6 text-center">
+        <div className="mb-3 inline-flex items-center gap-2.5">
+          <div className="relative h-[44px] w-[44px] shrink-0">
+            <Image
+              src={logoImg}
+              alt="NileLink Logistics"
+              fill
+              sizes="44px"
+              priority
+              className="object-contain"
+            />
+          </div>
+          <span className="flex flex-col text-left rtl:text-right leading-none">
+            <span className="text-xl font-bold tracking-wide text-secondary-900 dark:text-white">
+              Nile Link
+            </span>
+            <span className="my-0.5 border-t border-primary-500" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-secondary-500 dark:text-secondary-400">
+              Logistics
+            </span>
+          </span>
+        </div>
         <h1 className="text-2xl font-bold tracking-tight text-secondary-900 dark:text-white">
           {t("auth.resetPassword.title") || "Set New Password"}
         </h1>
@@ -164,6 +189,8 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
             <p className="mt-1 text-xs text-red-500">{errors.confirmPassword.message}</p>
           )}
         </div>
+
+        <PasswordRequirements password={watch("newPassword") || ""} />
 
         <Button
           type="submit"

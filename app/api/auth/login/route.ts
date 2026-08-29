@@ -155,6 +155,7 @@ export async function POST(req: NextRequest) {
       accountStatus: customerData?.accountStatus,
       firstName: user.firstName,
       lastName: user.lastName,
+      staffPermissions: user.staffPermissions,
     })
 
     const refreshToken = await createRefreshToken({
@@ -176,6 +177,7 @@ export async function POST(req: NextRequest) {
         role: user.role,
         firstName: user.firstName,
         lastName: user.lastName,
+        staffPermissions: user.staffPermissions,
         customerId: user.customerId ? user.customerId.toString() : null,
         companyName: customerData?.companyName,
         accountStatus: customerData?.accountStatus,

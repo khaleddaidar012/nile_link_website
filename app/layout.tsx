@@ -73,6 +73,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`${inter.variable} ${cairo.variable}`}
+      data-scroll-behavior="smooth"
     >
       <body
         suppressHydrationWarning

@@ -17,11 +17,33 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ authenticated: false }, { status: 401 })
     }
 
+    let customerId = user.customerId
+
+    if (!customerId && (user.role === "customer" || user.role === "customer_admin")) {
+      let existingCustomer = await Customer.findOne({ contactEmail: user.email })
+      if (!existingCustomer) {
+        existingCustomer = await Customer.create({
+          companyName: user.companyName || `${user.firstName} ${user.lastName} Enterprises`,
+          commercialRegisterNumber: user.commercialRegisterNumber || "CR-PENDING",
+          taxCardNumber: user.taxCardNumber || "TAX-PENDING",
+          accountStatus: "warning",
+          statusReason: "Account created — pending document upload",
+          contactPhone: user.phone || "",
+          contactEmail: user.email,
+          country: "Egypt",
+          city: "Alexandria",
+          maxAllowedDocuments: 20,
+        })
+      }
+      customerId = existingCustomer._id
+      await User.findByIdAndUpdate(user._id, { customerId })
+    }
+
     let customer = null
     let documentStats = null
 
-    if (user.customerId) {
-      customer = await Customer.findById(user.customerId).lean()
+    if (customerId) {
+      customer = await Customer.findById(customerId).lean()
 
       const totalDocs = await DocumentModel.countDocuments({
         customerId: user.customerId,
@@ -81,7 +103,9 @@ export async function GET(req: NextRequest) {
         phone: user.phone,
         avatarUrl: user.avatarUrl,
         status: user.status,
-        emailVerified: user.emailVerified,
+        staffPermissions: user.staffPermissions,
+        emailVerified: !!user.emailVerified,
+        whatsappVerified: !!user.whatsappVerified,
       },
       customer: customer
         ? {

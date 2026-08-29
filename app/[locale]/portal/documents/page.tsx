@@ -28,7 +28,7 @@ export default function PortalDocumentsPage() {
     <div className="flex flex-col">
       <PortalHeader
         title={t("documents.table.title") || "Corporate Documents Registry"}
-        subtitle="Upload and manage up to 20 business certificates, licenses & agreements"
+        subtitle={t("documents.subtitle") || "Upload and manage up to 20 business certificates, licenses & agreements"}
       />
 
       <div className="space-y-6 p-6 sm:p-8">
@@ -39,7 +39,10 @@ export default function PortalDocumentsPage() {
               {t("documents.table.title") || "Company Documents"}
             </h2>
             <p className="text-xs text-secondary-500">
-              {documentStats?.totalDocs || 0} of {documentStats?.maxAllowed || 20} documents registered
+              {t("documents.registeredCount", {
+                count: documentStats?.totalDocs || 0,
+                max: documentStats?.maxAllowed || 20,
+              }) || `${documentStats?.totalDocs || 0} of ${documentStats?.maxAllowed || 20} documents registered`}
             </p>
           </div>
           <Button
@@ -47,7 +50,11 @@ export default function PortalDocumentsPage() {
             className="bg-primary-600 font-semibold text-white shadow hover:bg-primary-700"
           >
             <UploadCloud className="mr-1.5 h-4 w-4 rtl:mr-0 rtl:ml-1.5" />
-            <span>{showUploadModal ? "Hide Upload Area" : (t("documents.upload.title") || "Upload New Documents")}</span>
+            <span>
+              {showUploadModal
+                ? (t("documents.hideUpload") || "Hide Upload Area")
+                : (t("documents.showUpload") || t("documents.upload.title") || "Upload New Documents")}
+            </span>
           </Button>
         </div>
 

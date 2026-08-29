@@ -25,6 +25,10 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: t("title"),
     description: t("description"),
+    icons: {
+      icon: "/images/logo.png",
+      apple: "/images/logo.png",
+    },
     alternates: {
       canonical: `https://nilelink-eg.com/${locale}`,
       languages: {

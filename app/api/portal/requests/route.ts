@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { connectDB } from "@/lib/mongodb"
-import { CustomerRequest, Notification } from "@/lib/models"
+import { CustomerRequest, Notification, User } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 const createRequestSchema = z.object({
@@ -20,12 +20,23 @@ const createRequestSchema = z.object({
 export async function GET(req: NextRequest) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || !session.customerId) {
+    if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     await connectDB()
-    const requests = await CustomerRequest.find({ customerId: session.customerId })
+
+    let customerId = session.customerId
+    if (!customerId) {
+      const user = await User.findById(session.userId)
+      customerId = user?.customerId?.toString()
+    }
+
+    if (!customerId) {
+      return NextResponse.json({ requests: [] })
+    }
+
+    const requests = await CustomerRequest.find({ customerId })
       .sort({ createdAt: -1 })
       .lean()
 
@@ -39,8 +50,20 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || !session.customerId) {
+    if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    await connectDB()
+
+    let customerId = session.customerId
+    if (!customerId) {
+      const user = await User.findById(session.userId)
+      customerId = user?.customerId?.toString()
+    }
+
+    if (!customerId) {
+      return NextResponse.json({ error: "Customer profile not found" }, { status: 400 })
     }
 
     const body = await req.json()
@@ -60,7 +83,7 @@ export async function POST(req: NextRequest) {
     const trackingNumber = `NL-REQ-${year}-${randomSeq}`
 
     const newRequest = await CustomerRequest.create({
-      customerId: session.customerId,
+      customerId,
       requestedBy: session.userId,
       trackingNumber,
       serviceType: parsed.data.serviceType,

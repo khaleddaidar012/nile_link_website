@@ -20,15 +20,15 @@ export async function logDocumentActivity(params: LogActivityParams): Promise<vo
     await DocumentActivityLog.create({
       documentId: params.documentId,
       customerId: params.customerId,
-      actorId: params.actorId || null,
+      actorId: params.actorId || undefined,
       actorType: params.actorType,
       actorName: params.actorName || (params.actorType === "system" ? "NileLink Engine" : "User"),
       action: params.action,
-      previousState: params.previousState || null,
-      newState: params.newState || null,
+      previousState: params.previousState || undefined,
+      newState: params.newState || undefined,
       notes: params.notes || "",
-      ipAddress: params.ipAddress || null,
-      userAgent: params.userAgent || null,
+      ipAddress: params.ipAddress || undefined,
+      userAgent: params.userAgent || undefined,
     })
   } catch (err) {
     console.error("Failed to write DocumentActivityLog:", err)
