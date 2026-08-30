@@ -32,9 +32,9 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
   const [langOpen, setLangOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-secondary-200/80 bg-white/90 px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/80">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/90">
       <div>
-        <h1 className="text-base font-bold text-secondary-900 dark:text-white sm:text-lg">
+        <h1 className="text-base font-bold text-slate-900 dark:text-white sm:text-lg">
           {title || (customer ? customer.companyName : "Client Portal")}
         </h1>
         {subtitle && (

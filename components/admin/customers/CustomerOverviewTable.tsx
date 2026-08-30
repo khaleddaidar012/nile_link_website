@@ -48,6 +48,7 @@ export function CustomerOverviewTable() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [reviewDocTarget, setReviewDocTarget] = useState<ReviewDocumentItem | null>(null)
   const [warningModalTarget, setWarningModalTarget] = useState<CustomerAdminItem | null>(null)
+  const [drawerRefreshTrigger, setDrawerRefreshTrigger] = useState(0)
 
   const fetchCustomers = async () => {
     setLoading(true)
@@ -292,6 +293,7 @@ export function CustomerOverviewTable() {
       <CustomerDetailDrawer
         customerId={selectedCustomerId}
         isOpen={isDrawerOpen}
+        refreshTrigger={drawerRefreshTrigger}
         onClose={() => {
           setIsDrawerOpen(false)
           setSelectedCustomerId(null)
@@ -308,6 +310,7 @@ export function CustomerOverviewTable() {
           onSuccess={() => {
             setReviewDocTarget(null)
             fetchCustomers()
+            setDrawerRefreshTrigger((prev) => prev + 1)
           }}
         />
       )}

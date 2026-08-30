@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
 
     // Staff notification
     await Notification.create({
-      recipientCustomerId: session.customerId,
+      recipientCustomerId: session.customerId || undefined,
       targetAudience: "staff",
       title: `New Service Request: ${trackingNumber}`,
       message: `${session.firstName} submitted a ${parsed.data.serviceType.replace("_", " ")} request.`,

@@ -13,23 +13,55 @@ const loginSchema = z.object({
 })
 
 async function autoSeedIfEmpty() {
-  const userCount = await User.countDocuments()
-  if (userCount === 0) {
-    const staffPasswordHash = await hashPassword("StaffAdmin2026!")
-    const clientPasswordHash = await hashPassword("SecurePass123!")
+  // 1. Check/create Manager Super-Admin
+  const managerExists = await User.findOne({ email: "manager@nilelink.com" })
+  if (!managerExists) {
+    const managerPasswordHash = await hashPassword("Manager2026!")
+    await User.create({
+      email: "manager@nilelink.com",
+      passwordHash: managerPasswordHash,
+      role: "super_admin",
+      firstName: "Admin",
+      lastName: "Manager",
+      phone: "+201000000000",
+      status: "active",
+      emailVerified: true,
+      whatsappVerified: true,
+      staffPermissions: {
+        canSendAlerts: true,
+        canReviewDocuments: true,
+        canManageCustomers: true,
+      },
+    })
+  }
 
-    // Staff
-    const staffUser = await User.create({
+  // 2. Check/create Staff
+  const staffExists = await User.findOne({ email: "staff@nilelink.com" })
+  let staffUser = staffExists
+  if (!staffExists) {
+    const staffPasswordHash = await hashPassword("StaffAdmin2026!")
+    staffUser = await User.create({
       email: "staff@nilelink.com",
       passwordHash: staffPasswordHash,
       role: "staff",
       firstName: "Karim",
       lastName: "Nasser",
       phone: "+201000000001",
+      status: "active",
       emailVerified: true,
+      whatsappVerified: true,
+      staffPermissions: {
+        canSendAlerts: true,
+        canReviewDocuments: true,
+        canManageCustomers: false,
+      },
     })
+  }
 
-    // Customer
+  // 3. Customer & Document Seed if customer is missing
+  const custExists = await Customer.findOne({ contactEmail: "mohamed@alexexport.com" })
+  if (!custExists) {
+    const clientPasswordHash = await hashPassword("SecurePass123!")
     const cust1 = await Customer.create({
       companyName: "Alexandria Exporting Co.",
       commercialRegisterNumber: "CR-98421-EG",
@@ -51,7 +83,9 @@ async function autoSeedIfEmpty() {
       firstName: "Mohamed",
       lastName: "Ahmed",
       phone: "+201001234567",
+      status: "active",
       emailVerified: true,
+      whatsappVerified: true,
     })
 
     const now = new Date()
@@ -70,7 +104,7 @@ async function autoSeedIfEmpty() {
       status: "approved",
       startDate: now,
       expiryDate: in1Year,
-      reviewedBy: staffUser._id,
+      reviewedBy: staffUser?._id,
       reviewedAt: now,
     })
   }

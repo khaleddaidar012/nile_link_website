@@ -23,9 +23,9 @@ export async function GET(req: NextRequest) {
       let existingCustomer = await Customer.findOne({ contactEmail: user.email })
       if (!existingCustomer) {
         existingCustomer = await Customer.create({
-          companyName: user.companyName || `${user.firstName} ${user.lastName} Enterprises`,
-          commercialRegisterNumber: user.commercialRegisterNumber || "CR-PENDING",
-          taxCardNumber: user.taxCardNumber || "TAX-PENDING",
+          companyName: (user as any).companyName || `${user.firstName} ${user.lastName} Enterprises`,
+          commercialRegisterNumber: (user as any).commercialRegisterNumber || "CR-PENDING",
+          taxCardNumber: (user as any).taxCardNumber || "TAX-PENDING",
           accountStatus: "warning",
           statusReason: "Account created — pending document upload",
           contactPhone: user.phone || "",
@@ -45,32 +45,47 @@ export async function GET(req: NextRequest) {
     if (customerId) {
       customer = await Customer.findById(customerId).lean()
 
+      const now = new Date()
+      const tenDaysFromNow = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000)
+
       const totalDocs = await DocumentModel.countDocuments({
-        customerId: user.customerId,
+        customerId,
         isArchived: false,
       })
 
       const approvedDocs = await DocumentModel.countDocuments({
-        customerId: user.customerId,
+        customerId,
         status: "approved",
         isArchived: false,
       })
 
-      const expiringDocs = await DocumentModel.countDocuments({
-        customerId: user.customerId,
-        status: "expiring_soon",
+      const pendingDocs = await DocumentModel.countDocuments({
+        customerId,
+        status: "pending_review",
         isArchived: false,
       })
 
       const expiredDocs = await DocumentModel.countDocuments({
-        customerId: user.customerId,
-        status: "expired",
+        customerId,
         isArchived: false,
+        $or: [
+          { status: "expired" },
+          { status: "approved", expiryDate: { $lt: now } },
+        ],
       })
 
-      const pendingDocs = await DocumentModel.countDocuments({
-        customerId: user.customerId,
-        status: "pending_review",
+      const expiringDocs = await DocumentModel.countDocuments({
+        customerId,
+        isArchived: false,
+        $or: [
+          { status: "expiring_soon" },
+          { status: "approved", expiryDate: { $gte: now, $lte: tenDaysFromNow } },
+        ],
+      })
+
+      const rejectedDocs = await DocumentModel.countDocuments({
+        customerId,
+        status: "rejected",
         isArchived: false,
       })
 
@@ -80,6 +95,7 @@ export async function GET(req: NextRequest) {
         expiringDocs,
         expiredDocs,
         pendingDocs,
+        rejectedDocs,
         maxAllowed: customer?.maxAllowedDocuments || 20,
       }
     }

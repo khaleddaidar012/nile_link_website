@@ -46,16 +46,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 })
       }
 
-      if (!isBusinessEmail(emailLower)) {
-        return NextResponse.json(
-          {
-            error:
-              "Please provide an official company / corporate work email. Free email domains (e.g. Gmail, Yahoo, Outlook) are not allowed.",
-          },
-          { status: 400 }
-        )
-      }
-
       // Check if email already belongs to another user
       const existing = await User.findOne({ email: emailLower, _id: { $ne: user._id } })
       if (existing) {

@@ -148,10 +148,10 @@ export function DashboardMetricsCards() {
         <Link
           key={idx}
           href={card.href}
-          className="group relative overflow-hidden rounded-2xl border border-secondary-200/80 bg-white/90 p-5 shadow-sm backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-premium-md dark:border-secondary-800/80 dark:bg-secondary-900/90"
+          className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-secondary-500 uppercase tracking-wider dark:text-secondary-400">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">
               {card.title}
             </span>
             <div
@@ -165,7 +165,7 @@ export function DashboardMetricsCards() {
           </div>
 
           <div className="mt-3 flex items-baseline justify-between">
-            <h2 className="text-xl font-black tracking-tight text-secondary-900 dark:text-white">
+            <h2 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
               {card.value}
             </h2>
             <span
@@ -178,7 +178,7 @@ export function DashboardMetricsCards() {
             </span>
           </div>
 
-          <p className="mt-1 text-xs text-secondary-500 line-clamp-1 dark:text-secondary-400">
+          <p className="mt-1 text-xs text-slate-500 line-clamp-1 dark:text-slate-400">
             {card.subtitle}
           </p>
         </Link>

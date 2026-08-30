@@ -84,6 +84,8 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
   const router = useRouter()
   const [mode, setMode] = useState<"login" | "register">(initialMode)
   const [showPassword, setShowPassword] = useState(false)
+  const [showRegPassword, setShowRegPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const [registerSuccess, setRegisterSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -142,26 +144,26 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          identifier: data.identifier,
+          password: data.password,
+          rememberMe: data.rememberMe,
+        }),
       })
 
       const result = await res.json()
 
       if (!res.ok) {
-        setServerError(result.error || t("auth.login.error") || "Invalid email/username or password")
+        setServerError(result.error || "Login failed. Please check your credentials.")
         return
       }
 
-      if (callbackUrl && !callbackUrl.startsWith("/login")) {
-        router.push(callbackUrl)
-      } else if (result.user.role === "staff" || result.user.role === "super_admin") {
-        router.push("/admin")
-      } else {
-        router.push("/portal")
-      }
+      const role = result.user?.role
+      const targetUrl = callbackUrl || (role === "staff" || role === "super_admin" ? "/admin" : "/portal")
+      router.push(targetUrl)
       router.refresh()
     } catch {
-      setServerError("A network error occurred. Please check your connection.")
+      setServerError("A network error occurred. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -185,16 +187,36 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
         return
       }
 
+      // Transition immediately: remove form and navigate to verification
       setRegisterSuccess(true)
-      setTimeout(() => {
-        router.push("/portal/verification")
-        router.refresh()
-      }, 500)
+      router.push("/portal/verification")
+      router.refresh()
     } catch {
       setServerError("A network error occurred. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (registerSuccess) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2 }}
+        className="w-full max-w-md rounded-2xl border border-secondary-200/80 bg-white/95 p-8 text-center shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95"
+      >
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-600 dark:bg-primary-950/60 dark:text-primary-400">
+          <Loader2 className="h-8 w-8 animate-spin" />
+        </div>
+        <h2 className="text-xl font-bold text-secondary-900 dark:text-white">
+          {t("portal.verification.title") || "Security Verification"}
+        </h2>
+        <p className="mt-2 text-xs text-secondary-500 dark:text-secondary-400">
+          {t("auth.register.redirectingToVerification") || "Redirecting to channel verification..."}
+        </p>
+      </motion.div>
+    )
   }
 
   return (
@@ -204,7 +226,7 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
       transition={{ duration: 0.3 }}
       className={cn(
         "w-full rounded-2xl border border-secondary-200/80 bg-white/95 p-6 sm:p-8 shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95 transition-all duration-300",
-        mode === "register" && !registerSuccess ? "max-w-2xl" : "max-w-md"
+        mode === "register" ? "max-w-2xl" : "max-w-md"
       )}
     >
       {/* Brand Header */}
@@ -596,16 +618,24 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                       <div className="relative">
                         <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                         <input
-                          type="password"
+                          type={showRegPassword ? "text" : "password"}
                           placeholder="••••••••"
                           {...registerRegister("password")}
                           className={cn(
-                            "w-full rounded-xl border bg-secondary-50/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-3.5 pl-9 py-2.5 text-xs font-medium transition-all rtl:pr-9 rtl:pl-3.5",
+                            "w-full rounded-xl border bg-secondary-50/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-10 pl-9 py-2.5 text-xs font-medium transition-all rtl:pr-9 rtl:pl-10",
                             regErrors.password
                               ? "border-red-500 focus:border-red-500 dark:border-red-500"
                               : "border-secondary-200 focus:border-primary-500 dark:border-secondary-700 dark:focus:border-primary-400"
                           )}
                         />
+                        <button
+                          type="button"
+                          onClick={() => setShowRegPassword(!showRegPassword)}
+                          className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200 rtl:right-auto rtl:left-3"
+                          aria-label="Toggle password visibility"
+                        >
+                          {showRegPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
                       </div>
                       {regErrors.password && <p className="mt-1 text-xs text-red-500">{regErrors.password.message}</p>}
                     </div>
@@ -631,11 +661,11 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                       <div className="relative">
                         <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                         <input
-                          type="password"
+                          type={showConfirmPassword ? "text" : "password"}
                           placeholder={t("auth.register.confirmPasswordPlaceholder") || "Re-enter password"}
                           {...registerRegister("confirmPassword")}
                           className={cn(
-                            "w-full rounded-xl border bg-secondary-50/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-3.5 pl-9 py-2.5 text-xs font-medium transition-all rtl:pr-9 rtl:pl-3.5",
+                            "w-full rounded-xl border bg-secondary-50/80 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 pr-16 pl-9 py-2.5 text-xs font-medium transition-all rtl:pr-9 rtl:pl-16",
                             regErrors.confirmPassword
                               ? "border-red-500 focus:border-red-500 dark:border-red-500"
                               : passwordsMatch
@@ -643,9 +673,19 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
                                 : "border-secondary-200 focus:border-primary-500 dark:border-secondary-700 dark:focus:border-primary-400"
                           )}
                         />
-                        {passwordsMatch && (
-                          <CheckCircle2 className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-emerald-500 rtl:right-auto rtl:left-3" />
-                        )}
+                        <div className="absolute top-1/2 right-3 -translate-y-1/2 flex items-center gap-1.5 rtl:right-auto rtl:left-3">
+                          {passwordsMatch && (
+                            <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            className="text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200"
+                            aria-label="Toggle confirm password visibility"
+                          >
+                            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
                       </div>
                       {regErrors.confirmPassword && (
                         <p className="mt-1 text-xs text-red-500">{regErrors.confirmPassword.message}</p>

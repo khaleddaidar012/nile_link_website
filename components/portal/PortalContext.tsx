@@ -52,9 +52,35 @@ interface PortalContextValue {
 
 const PortalContext = createContext<PortalContextValue | undefined>(undefined)
 
-export function PortalProvider({ children }: { children: React.ReactNode }) {
+export function PortalProvider({
+  children,
+  initialSession,
+}: {
+  children: React.ReactNode
+  initialSession?: {
+    userId: string
+    email: string
+    role: "customer" | "customer_admin" | "staff" | "super_admin"
+    firstName: string
+    lastName: string
+    emailVerified?: boolean
+    whatsappVerified?: boolean
+  } | null
+}) {
   const router = useRouter()
-  const [user, setUser] = useState<PortalUser | null>(null)
+  const [user, setUser] = useState<PortalUser | null>(
+    initialSession
+      ? {
+          id: initialSession.userId,
+          email: initialSession.email,
+          role: initialSession.role,
+          firstName: initialSession.firstName,
+          lastName: initialSession.lastName,
+          emailVerified: !!initialSession.emailVerified,
+          whatsappVerified: !!initialSession.whatsappVerified,
+        }
+      : null
+  )
   const [customer, setCustomer] = useState<PortalCustomer | null>(null)
   const [documentStats, setDocumentStats] = useState<DocumentStats | null>(null)
   const [unreadCount, setUnreadCount] = useState<number>(0)
@@ -76,6 +102,13 @@ export function PortalProvider({ children }: { children: React.ReactNode }) {
         setCustomer(data.customer)
         setDocumentStats(data.documentStats)
         setUnreadCount(data.unreadNotificationsCount || 0)
+
+        // Enforce email verification: keep unverified accounts on verification screen
+        if (data.user && !data.user.emailVerified) {
+          if (typeof window !== "undefined" && !window.location.pathname.includes("/portal/verification")) {
+            router.push("/portal/verification")
+          }
+        }
       } else {
         router.push("/login")
       }
@@ -99,6 +132,24 @@ export function PortalProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     refreshData()
+
+    const handleFocus = () => {
+      refreshData()
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refreshData()
+      }
+    }
+
+    window.addEventListener("focus", handleFocus)
+    document.addEventListener("visibilitychange", handleVisibilityChange)
+
+    return () => {
+      window.removeEventListener("focus", handleFocus)
+      document.removeEventListener("visibilitychange", handleVisibilityChange)
+    }
   }, [refreshData])
 
   return (

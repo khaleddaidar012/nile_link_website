@@ -54,6 +54,38 @@ export async function dispatchOtpNotification({
         `This code is valid for 10 minutes. Please do not share this security code with anyone.\n\n` +
         `NileLink Digital Freight & Customs Portal`
 
+      // WhatsApp Cloud API automated dispatch if credentials provided
+      const whatsappToken = process.env.WHATSAPP_API_TOKEN
+      const whatsappPhoneId = process.env.WHATSAPP_PHONE_NUMBER_ID
+      const whatsappApiUrl = process.env.WHATSAPP_API_URL || (whatsappPhoneId ? `https://graph.facebook.com/v19.0/${whatsappPhoneId}/messages` : null)
+
+      if (whatsappToken && whatsappApiUrl) {
+        try {
+          const cleanPhone = to.replace(/[^\d]/g, "")
+          const response = await fetch(whatsappApiUrl, {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${whatsappToken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              messaging_product: "whatsapp",
+              to: cleanPhone,
+              type: "text",
+              text: { body: whatsappMessage },
+            }),
+          })
+          if (!response.ok) {
+            const errBody = await response.text()
+            console.error("[WHATSAPP CLOUD API ERROR]:", errBody)
+          } else {
+            console.log(`[REAL WHATSAPP OTP DISPATCHED SUCCESSFULLY to ${cleanPhone}]`)
+          }
+        } catch (waErr) {
+          console.error("[WHATSAPP HTTP DISPATCH EXCEPTION]:", waErr)
+        }
+      }
+
       // Dev & Staging log
       console.log(`\n==================================================`)
       console.log(`[NILELINK WHATSAPP OTP DISPATCH]`)

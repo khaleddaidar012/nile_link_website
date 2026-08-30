@@ -234,7 +234,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                               className="mt-1 flex items-center gap-1.5 rounded-md bg-rose-50 px-2 py-0.5 text-[11px] font-bold text-rose-700 hover:bg-rose-100 dark:bg-rose-950/60 dark:text-rose-300 transition-colors"
                             >
                               <AlertCircle className="h-3.5 w-3.5 shrink-0 text-rose-600 animate-pulse" />
-                              <span>سبب الرفض: {doc.rejectionReason} (انقر للتفاصيل)</span>
+                              <span>{t("documents.table.rejectionReasonBtn", { reason: doc.rejectionReason }) || `Rejection: ${doc.rejectionReason} (Click for details)`}</span>
                             </button>
                           )}
                         </div>
@@ -264,7 +264,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                           type="button"
                           onClick={() => setPreviewDoc(doc)}
                           className="flex h-8 w-8 items-center justify-center rounded-xl border border-primary-500/30 bg-primary-50 text-primary-600 shadow-sm transition-all hover:bg-primary-600 hover:text-white dark:border-primary-500/20 dark:bg-primary-950/60 dark:text-primary-400"
-                          title="Preview Live Document"
+                          title={t("documents.table.preview") || "Preview Live Document"}
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -275,7 +275,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                           target="_blank"
                           rel="noreferrer"
                           className="flex h-8 w-8 items-center justify-center rounded-xl border border-secondary-200 bg-white text-secondary-600 shadow-sm transition-all hover:bg-secondary-50 hover:text-secondary-900 dark:border-secondary-700 dark:bg-secondary-800 dark:text-secondary-300 dark:hover:bg-secondary-700 dark:hover:text-white"
-                          title="Download Document"
+                          title={t("documents.table.download") || "Download Document"}
                         >
                           <Download className="h-4 w-4" />
                         </a>
@@ -289,7 +289,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                             className="rounded-xl bg-primary-600 px-3 text-[11px] font-semibold text-white shadow-sm hover:bg-primary-700"
                           >
                             <RefreshCw className="mr-1 h-3 w-3 rtl:mr-0 rtl:ml-1" />
-                            <span>Renew</span>
+                            <span>{t("documents.table.renew") || "Renew"}</span>
                           </Button>
                         )}
                       </div>

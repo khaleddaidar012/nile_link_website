@@ -729,7 +729,22 @@
       "colActions": "Aktionen",
       "preview": "Vorschau",
       "download": "Herunterladen",
-      "renew": "Erneuern / Ersetzen"
+      "renew": "Erneuern / Ersetzen",
+      "rejectionReasonBtn": "Ablehnung: {reason} (Klicken für Details)"
+    },
+    "rejectionModal": {
+      "title": "Offizieller Grund für die Dokumentablehnung",
+      "reasonLabel": "Offizieller Ablehnungsgrund:",
+      "defaultReason": "Unleserliche Kopie oder Gültigkeitsdauer abgelaufen",
+      "notesLabel": "Hinweise des Prüfteams:",
+      "notice": "Bitte laden Sie eine gültige und deutliche Kopie des Dokuments hoch, um die Zollprüfung abzuschließen.",
+      "reupload": "Neues Dokument hochladen"
+    },
+    "previewModal": {
+      "openFullScreen": "Vollbildmodus",
+      "download": "Dokument herunterladen",
+      "loading": "Live-Dokumentenvorschau wird geladen...",
+      "fallbackNotice": "Für diesen Dateityp ist keine Vorschau verfügbar."
     },
     "categories": {
       "commercial_register": "Handelsregister",
@@ -746,5 +761,78 @@
       "expired": "Abgelaufen",
       "rejected": "Abgelehnt"
     }
+  },
+  "portal": {
+    "header": {
+      "notifications": "Benachrichtigungen",
+      "markAllRead": "Alle als gelesen markieren",
+      "noNotifications": "Keine ungelesenen Benachrichtigungen",
+      "viewAll": "Alle Benachrichtigungen anzeigen",
+      "newBadge": "neu"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "documents": "Rechtsdokumente",
+      "requests": "Serviceanfragen",
+      "financials": "Finanzen & Rechnungen",
+      "notifications": "Benachrichtigungen",
+      "profile": "Unternehmensprofil",
+      "collapse": "Menü einklappen",
+      "logout": "Abmelden"
+    },
+    "dashboard": {
+      "recentActivity": "Letzte Aktivitäten",
+      "noActivity": "Keine aktuellen Aktivitäten aufgezeichnet.",
+      "quickUpload": "Schneller Dokumenten-Upload",
+      "quickUploadDesc": "Laden Sie Handelsregister, Steuerkarte oder Lizenzen in Sekundenschnelle hoch.",
+      "manageUploadBtn": "Dokumente verwalten & hochladen",
+      "activeDocs": "Quote genehmigter Dokumente",
+      "pendingReview": "Quote in Prüfung befindlicher Dokumente",
+      "expiringDocs": "Quote bald ablaufender Dokumente (≤10T)",
+      "accountStatus": "Kontostatus",
+      "activity": {
+        "accountCreatedTitle": "Unternehmenskonto registriert",
+        "accountCreatedDesc": "Konto erstellt und bereit zur Compliance-Verifizierung",
+        "uploadGuideTitle": "Leitfaden zum Dokumenten-Upload",
+        "uploadGuideDesc": "Bitte laden Sie Handelsregister und Steuerkarte zur Zollfreigabe hoch",
+        "approveTitle": "Dokument offiziell genehmigt",
+        "warningTitle": "Dokumentenablauf steht bevor",
+        "verifyTitle": "Kanäle erfolgreich verifiziert",
+        "uploadTitle": "Neues Dokument hochgeladen"
+      },
+      "kpi": {
+        "channels": "Kommunikationskanäle",
+        "channelsConnected": "WhatsApp & E-Mail verbunden",
+        "channelsPending": "Kanalverifizierung erforderlich",
+        "actionRequired": "Handlung erforderlich",
+        "activeCompliant": "Aktiv & Konform",
+        "warningPending": "Ausstehende Dokumente",
+        "totalDocs": "Hochgeladene Dateien insgesamt",
+        "slotsAvailable": "Plätze verfügbar",
+        "storage": "Speicherplatz",
+        "ofTotalUploaded": "der hochgeladenen Dateien genehmigt",
+        "ofTotalPending": "warten auf Prüfung durch Zollmitarbeiter",
+        "requiresRenewal": "erfordert sofortige Erneuerung",
+        "allGood": "Alle Dokumente auf dem neuesten Stand"
+      }
+    },
+    "verification": {
+      "title": "Sicherheits- & Kanalverifizierung",
+      "verified": "Verifiziert ✓",
+      "unverified": "Verifizierung ausstehend"
+    },
+    "healthBanners": {
+      "unverifiedTitle": "Geschäfts-E-Mail nicht verifiziert",
+      "unverifiedDesc": "Bitte verifizieren Sie Ihre Geschäfts-E-Mail per OTP, um die Kontoeinrichtung abzuschließen und Zollbenachrichtigungen zu erhalten.",
+      "verifyChannelsBtn": "Kanäle jetzt verifizieren"
+    }
+  },
+  "rejectionReasons": {
+    "illegible_copy": "Unleserliche oder minderwertige Kopie",
+    "expired_date": "Dokument abgelaufen oder ungültiges Datum",
+    "missing_stamps": "Fehlende offizielle Stempel oder Unterschriften",
+    "mismatch_details": "Abweichende Unternehmens- oder Registrierungsdaten",
+    "wrong_category": "Dokument in falscher Kategorie hochgeladen",
+    "other": "Anderer Grund (in Notizen angegeben)"
   }
 }

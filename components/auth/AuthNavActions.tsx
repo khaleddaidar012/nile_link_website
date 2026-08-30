@@ -52,13 +52,8 @@ export function AuthNavActions({ scrolled = false, isMobile = false, onMobileCli
     }
   }, [])
 
-  if (loading) {
-    return (
-      <div className={cn("flex items-center", isMobile ? "w-full" : "flex")}>
-        <div className="h-9 w-20 sm:w-24 animate-pulse rounded-xl bg-white/10" />
-      </div>
-    )
-  }
+  // Do not block initial render with an empty skeleton for public visitors.
+  // Render the Login CTA with shimmer immediately, and switch to Portal button if authenticated.
 
   if (session.authenticated && session.user) {
     const isStaff = session.user.role === "staff" || session.user.role === "super_admin"
@@ -100,7 +95,7 @@ export function AuthNavActions({ scrolled = false, isMobile = false, onMobileCli
     )
   }
 
-  const loginLabel = t("nav.portalLogin") || t("nav.clientPortal") || "Client Portal"
+  const loginLabel = t("nav.portalLogin") || "تسجيل الدخول"
 
   if (isMobile) {
     return (
@@ -110,8 +105,8 @@ export function AuthNavActions({ scrolled = false, isMobile = false, onMobileCli
           onClick={onMobileClick}
           className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-primary-500/25"
         >
-          {/* Shimmer Light Streak */}
-          <div className="pointer-events-none absolute inset-0 -top-1 -bottom-1 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shine-sweep" />
+          {/* Professional Diagonal Shimmer Light Streak (Left to Right) */}
+          <span className="pointer-events-none absolute inset-0 -top-2 -bottom-2 w-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shine-sweep transform-gpu" />
           <LogIn className="relative z-10 h-4 w-4" />
           <span className="relative z-10">{loginLabel}</span>
         </Link>
@@ -125,14 +120,14 @@ export function AuthNavActions({ scrolled = false, isMobile = false, onMobileCli
         <Button
           size="sm"
           className={cn(
-            "group relative flex items-center gap-1.5 overflow-hidden rounded-xl text-xs sm:text-sm px-2.5 sm:px-3.5 py-1.5 sm:py-2 font-bold shadow-md transition-all",
+            "group relative flex items-center gap-1.5 overflow-hidden rounded-xl text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 font-bold shadow-md transition-all",
             scrolled
-              ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-500 hover:to-primary-600 hover:shadow-lg hover:shadow-primary-500/20"
-              : "border border-white/30 bg-white/20 text-white backdrop-blur-md hover:bg-white/30 hover:shadow-lg hover:shadow-white/10"
+              ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-500 hover:to-primary-600 hover:shadow-lg hover:shadow-primary-500/25"
+              : "border border-white/30 bg-white/20 text-white backdrop-blur-md hover:bg-white/30 hover:shadow-lg hover:shadow-white/15"
           )}
         >
-          {/* Shimmer Light Streak */}
-          <div className="pointer-events-none absolute inset-0 -top-1 -bottom-1 w-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent animate-shine-sweep" />
+          {/* Professional Diagonal Shimmer Light Streak (Left to Right) */}
+          <span className="pointer-events-none absolute inset-0 -top-2 -bottom-2 w-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shine-sweep transform-gpu" />
           <LogIn className="relative z-10 h-3.5 w-3.5" />
           <span className="relative z-10">{loginLabel}</span>
         </Button>

@@ -729,7 +729,22 @@
       "colActions": "Azioni",
       "preview": "Anteprima",
       "download": "Scarica",
-      "renew": "Rinnova / Sostituisci"
+      "renew": "Rinnova / Sostituisci",
+      "rejectionReasonBtn": "Rifiuto: {reason} (Clicca per dettagli)"
+    },
+    "rejectionModal": {
+      "title": "Motivo ufficiale del rifiuto del documento",
+      "reasonLabel": "Motivo ufficiale del rifiuto:",
+      "defaultReason": "Copia illeggibile o data di validità scaduta",
+      "notesLabel": "Note del team di revisione:",
+      "notice": "Si prega di caricare una copia valida e chiara del documento per completare l'approvazione doganale.",
+      "reupload": "Carica nuovo documento"
+    },
+    "previewModal": {
+      "openFullScreen": "Schermo intero",
+      "download": "Scarica documento",
+      "loading": "Caricamento anteprima live documento...",
+      "fallbackNotice": "Anteprima non disponibile per questo tipo di file."
     },
     "categories": {
       "commercial_register": "Registro delle Imprese",
@@ -746,5 +761,78 @@
       "expired": "Scaduto",
       "rejected": "Respinto"
     }
+  },
+  "portal": {
+    "header": {
+      "notifications": "Notifiche",
+      "markAllRead": "Segna tutte come lette",
+      "noNotifications": "Nessuna notifica non letta",
+      "viewAll": "Visualizza tutte le notifiche",
+      "newBadge": "nuovo"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "documents": "Documenti legali",
+      "requests": "Richieste di servizio",
+      "financials": "Finanze e fatture",
+      "notifications": "Notifiche",
+      "profile": "Profilo aziendale",
+      "collapse": "Riduci menu",
+      "logout": "Disconnetti"
+    },
+    "dashboard": {
+      "recentActivity": "Cronologia attività recenti",
+      "noActivity": "Nessuna attività recente registrata.",
+      "quickUpload": "Caricamento rapido documenti",
+      "quickUploadDesc": "Carica il registro delle imprese, codice fiscale o licenze in pochi secondi.",
+      "manageUploadBtn": "Gestisci e carica documenti",
+      "activeDocs": "Rapporto documenti approvati",
+      "pendingReview": "Rapporto documenti in revisione",
+      "expiringDocs": "Rapporto documenti in scadenza (≤10g)",
+      "accountStatus": "Stato account",
+      "activity": {
+        "accountCreatedTitle": "Account aziendale registrato",
+        "accountCreatedDesc": "Account creato e pronto per la verifica di conformità",
+        "uploadGuideTitle": "Linee guida per il caricamento dei documenti",
+        "uploadGuideDesc": "Carica il registro delle imprese e il codice fiscale per l'approvazione doganale",
+        "approveTitle": "Documento approvato ufficialmente",
+        "warningTitle": "Scadenza documento imminente",
+        "verifyTitle": "Canali verificati con successo",
+        "uploadTitle": "Nuovo documento caricato"
+      },
+      "kpi": {
+        "channels": "Canali di comunicazione",
+        "channelsConnected": "WhatsApp ed e-mail collegati",
+        "channelsPending": "Verifica canali richiesta",
+        "actionRequired": "Azione richiesta",
+        "activeCompliant": "Attivo e conforme",
+        "warningPending": "Documenti in sospeso",
+        "totalDocs": "Totale file caricati",
+        "slotsAvailable": "posti disponibili",
+        "storage": "Archiviazione",
+        "ofTotalUploaded": "dei file caricati approvati",
+        "ofTotalPending": "in attesa di revisione da parte dello staff",
+        "requiresRenewal": "richiede rinnovo immediato",
+        "allGood": "Tutti i documenti sono aggiornati"
+      }
+    },
+    "verification": {
+      "title": "Verifica di sicurezza e canali",
+      "verified": "Verificato ✓",
+      "unverified": "Verifica in sospeso"
+    },
+    "healthBanners": {
+      "unverifiedTitle": "E-mail aziendale non verificata",
+      "unverifiedDesc": "Verifica la tua e-mail aziendale tramite OTP per completare la configurazione dell'account e ricevere avvisi doganali.",
+      "verifyChannelsBtn": "Verifica canali adesso"
+    }
+  },
+  "rejectionReasons": {
+    "illegible_copy": "Copia illeggibile o di bassa qualità",
+    "expired_date": "Documento scaduto o data non valida",
+    "missing_stamps": "Timbri o firme ufficiali mancanti",
+    "mismatch_details": "Dati aziendali o di registrazione non corrispondenti",
+    "wrong_category": "Documento caricato nella categoria errata",
+    "other": "Altro motivo (specificato nelle note)"
   }
 }

@@ -3,9 +3,13 @@ import { Customer, Document as DocumentModel } from "@/lib/models"
 import { logDocumentActivity } from "@/lib/services/activity-log-service"
 
 export async function recalculateCustomerAccountStatus(
-  customerId: string | mongoose.Types.ObjectId,
-  triggerActorId?: string | mongoose.Types.ObjectId
+  customerId?: string | mongoose.Types.ObjectId | null,
+  triggerActorId?: string | mongoose.Types.ObjectId | null
 ): Promise<{ status: "active" | "warning" | "inactive"; reason: string }> {
+  if (!customerId || !mongoose.Types.ObjectId.isValid(customerId.toString())) {
+    return { status: "inactive", reason: "Valid customer ID required" }
+  }
+
   const customer = await Customer.findById(customerId)
   if (!customer) {
     return { status: "inactive", reason: "Customer record not found" }
@@ -74,16 +78,22 @@ export async function recalculateCustomerAccountStatus(
     customer.statusReason = newReason
     await customer.save()
 
-    await logDocumentActivity({
-      documentId: activeDocuments[0]?._id || customer._id,
-      customerId: customer._id,
-      actorId: triggerActorId || null,
-      actorType: triggerActorId ? "staff" : "system",
-      action: "status_transition",
-      previousState: { accountStatus: previousStatus },
-      newState: { accountStatus: newStatus, reason: newReason },
-      notes: `Automated Account Health recalculated: ${previousStatus} -> ${newStatus}`,
-    })
+    try {
+      if (activeDocuments[0]?._id) {
+        await logDocumentActivity({
+          documentId: activeDocuments[0]._id,
+          customerId: customer._id,
+          actorId: triggerActorId || null,
+          actorType: triggerActorId ? "staff" : "system",
+          action: "status_transition",
+          previousState: { accountStatus: previousStatus },
+          newState: { accountStatus: newStatus, reason: newReason },
+          notes: `Automated Account Health recalculated: ${previousStatus} -> ${newStatus}`,
+        })
+      }
+    } catch (logErr) {
+      console.warn("Could not log status transition activity:", logErr)
+    }
   }
 
   return { status: newStatus, reason: newReason }

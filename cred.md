@@ -21,7 +21,23 @@ Use this account to test the Client Portal, corporate document uploads, complian
 
 ---
 
-## 2. Staff Admin Account (Customs & Document Inspector)
+## 2. Manager Super-Admin Account (Staff Governance & Operations Director)
+
+Use this account to create, manage, activate/suspend employee accounts, set granular RBAC permissions, and govern system-wide operations.
+
+| Parameter | Value |
+| :--- | :--- |
+| **Login URL** | `http://localhost:3000/en/login` or `http://localhost:3000/ar/login` |
+| **Email / Identifier** | `manager@nilelink.com` |
+| **Password** | `Manager2026!` |
+| **Role** | `super_admin` |
+| **Permissions** | Full administrative governance (`canManageCustomers`, `canReviewDocuments`, `canSendAlerts`) |
+| **Default Target Route** | `/admin` |
+| **Staff Management View** | `http://localhost:3000/en/admin/staff` |
+
+---
+
+## 3. Staff Admin Account (Customs & Document Inspector)
 
 Use this account to inspect and verify uploaded customer certificates, approve or reject submissions, and manage system operations.
 
@@ -30,13 +46,13 @@ Use this account to inspect and verify uploaded customer certificates, approve o
 | **Login URL** | `http://localhost:3000/en/login` or `http://localhost:3000/ar/login` |
 | **Email / Identifier** | `staff@nilelink.com` |
 | **Password** | `StaffAdmin2026!` |
-| **Role** | `staff` / `super_admin` |
+| **Role** | `staff` |
 | **Default Target Route** | `/admin` |
 | **Review Queue** | `http://localhost:3000/en/admin/documents/review` |
 
 ---
 
-## 3. Registration Guidelines for Testing
+## 4. Registration Guidelines for Testing
 
 When registering a new company account on `http://localhost:3000/en/login?tab=register` or `http://localhost:3000/ar/login?tab=register`:
 

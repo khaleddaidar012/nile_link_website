@@ -16,6 +16,8 @@ import {
   ShieldCheck,
   RotateCcw,
   Sparkles,
+  Eye,
+  EyeOff,
 } from "lucide-react"
 import Image from "next/image"
 import logoImg from "@/public/images/logo.png"
@@ -39,6 +41,8 @@ export function ForgotPasswordWizard() {
   const [previewCode, setPreviewCode] = useState<string | null>(null)
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const [countdown, setCountdown] = useState(60)
   const [isCountingDown, setIsCountingDown] = useState(false)
@@ -510,13 +514,21 @@ export function ForgotPasswordWizard() {
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
-                  type="password"
+                  type={showNewPassword ? "text" : "password"}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full rounded-xl border border-secondary-200 bg-secondary-50/80 pr-4 pl-10 py-2.5 text-xs font-medium text-secondary-900 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-secondary-700 dark:bg-secondary-800/90 dark:text-white rtl:pr-10 rtl:pl-4"
+                  className="w-full rounded-xl border border-secondary-200 bg-secondary-50/80 pr-10 pl-10 py-2.5 text-xs font-medium text-secondary-900 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-secondary-700 dark:bg-secondary-800/90 dark:text-white rtl:pr-10 rtl:pl-10"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200 rtl:right-auto rtl:left-3"
+                  aria-label="Toggle new password visibility"
+                >
+                  {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
               </div>
             </div>
 
@@ -539,21 +551,31 @@ export function ForgotPasswordWizard() {
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   required
                   className={cn(
-                    "w-full rounded-xl border bg-secondary-50/80 pr-4 pl-10 py-2.5 text-xs font-medium text-secondary-900 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/90 dark:text-white rtl:pr-10 rtl:pl-4",
+                    "w-full rounded-xl border bg-secondary-50/80 pr-16 pl-10 py-2.5 text-xs font-medium text-secondary-900 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/90 dark:text-white rtl:pr-10 rtl:pl-16",
                     passwordsMatch
                       ? "border-emerald-500"
                       : "border-secondary-200 dark:border-secondary-700"
                   )}
                 />
-                {passwordsMatch && (
-                  <CheckCircle2 className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-emerald-500 rtl:right-auto rtl:left-3" />
-                )}
+                <div className="absolute top-1/2 right-3 -translate-y-1/2 flex items-center gap-1.5 rtl:right-auto rtl:left-3">
+                  {passwordsMatch && (
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200"
+                    aria-label="Toggle confirm new password visibility"
+                  >
+                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
               </div>
             </div>
 

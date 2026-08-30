@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { LayoutDashboard, FileText, Send, CreditCard, User } from "lucide-react"
+import { LayoutDashboard, FileText, Send, CreditCard, User, ShieldAlert } from "lucide-react"
 import { Link, usePathname } from "@/navigation"
 import { usePortal } from "./PortalContext"
 import { cn } from "@/lib/utils"
@@ -9,7 +9,22 @@ import { cn } from "@/lib/utils"
 export function MobileBottomNav() {
   const t = useTranslations()
   const pathname = usePathname()
-  const { documentStats } = usePortal()
+  const { user, documentStats } = usePortal()
+  const isUnverified = Boolean(user && !user.emailVerified)
+
+  if (isUnverified) {
+    return (
+      <nav className="fixed right-0 bottom-0 left-0 z-40 flex h-16 items-center justify-around border-t border-rose-200 bg-white/95 px-2 backdrop-blur-lg md:hidden dark:border-rose-900/40 dark:bg-[#0d1322]/95">
+        <Link
+          href="/portal/verification"
+          className="flex items-center gap-2 rounded-xl bg-rose-500/10 px-4 py-2 text-xs font-bold text-rose-600 dark:text-rose-400"
+        >
+          <ShieldAlert className="h-4 w-4 animate-pulse" />
+          <span>{t("portal.verification.title") || "تفعيل الحساب والأمان (مطلوب)"}</span>
+        </Link>
+      </nav>
+    )
+  }
 
   const links = [
     { href: "/portal", label: t("portal.sidebar.dashboard") || "Dashboard", icon: LayoutDashboard },

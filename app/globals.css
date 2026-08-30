@@ -160,3 +160,9 @@
   animation: shine-sweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-shine-sweep {
+    animation: none;
+  }
+}
+

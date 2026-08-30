@@ -3,6 +3,7 @@
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ExternalLink, Download, FileText, Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/Button"
 
 interface LiveDocumentViewerModalProps {
@@ -22,6 +23,7 @@ export function LiveDocumentViewerModal({
   title,
   mimeType,
 }: LiveDocumentViewerModalProps) {
+  const t = useTranslations()
   const [loading, setLoading] = React.useState(true)
 
   if (!isOpen) return null
@@ -65,7 +67,7 @@ export function LiveDocumentViewerModal({
                   className="rounded-xl border-secondary-700 bg-secondary-800 text-xs font-semibold hover:bg-secondary-700"
                 >
                   <ExternalLink className="mr-1.5 h-3.5 w-3.5 rtl:mr-0 rtl:ml-1.5" />
-                  <span>Open Full Screen</span>
+                  <span>{t("documents.previewModal.openFullScreen") || "Open Full Screen"}</span>
                 </Button>
               </a>
               <a href={fileUrl} download={fileName}>
@@ -74,7 +76,7 @@ export function LiveDocumentViewerModal({
                   className="rounded-xl bg-primary-600 text-xs font-bold text-white shadow hover:bg-primary-700"
                 >
                   <Download className="mr-1.5 h-3.5 w-3.5 rtl:mr-0 rtl:ml-1.5" />
-                  <span>Download</span>
+                  <span>{t("documents.previewModal.download") || "Download"}</span>
                 </Button>
               </a>
               <button
@@ -92,7 +94,9 @@ export function LiveDocumentViewerModal({
               <div className="absolute inset-0 flex items-center justify-center bg-secondary-950/80">
                 <div className="flex flex-col items-center gap-2">
                   <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
-                  <span className="text-xs font-bold text-secondary-400">Loading live document preview...</span>
+                  <span className="text-xs font-bold text-secondary-400">
+                    {t("documents.previewModal.loading") || "Loading live document preview..."}
+                  </span>
                 </div>
               </div>
             )}

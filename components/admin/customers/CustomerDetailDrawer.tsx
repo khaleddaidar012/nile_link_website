@@ -66,6 +66,7 @@ interface CustomerDetailDrawerProps {
   onClose: () => void
   onStatusChanged?: () => void
   onReviewDocClick?: (doc: CustomerDocumentItem, customerName: string, crNumber: string) => void
+  refreshTrigger?: number
 }
 
 export function CustomerDetailDrawer({
@@ -74,6 +75,7 @@ export function CustomerDetailDrawer({
   onClose,
   onStatusChanged,
   onReviewDocClick,
+  refreshTrigger,
 }: CustomerDetailDrawerProps) {
   const t = useTranslations()
   const [data, setData] = useState<{
@@ -119,7 +121,7 @@ export function CustomerDetailDrawer({
     if (customerId && isOpen) {
       fetchCustomerDetail(customerId)
     }
-  }, [customerId, isOpen, fetchCustomerDetail])
+  }, [customerId, isOpen, refreshTrigger, fetchCustomerDetail])
 
   const handleUpdateStatus = async (statusToSet: "active" | "warning" | "inactive") => {
     if (!customerId) return

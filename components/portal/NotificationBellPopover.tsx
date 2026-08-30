@@ -89,7 +89,7 @@ export function NotificationBellPopover() {
                 </span>
                 {unreadCount > 0 && (
                   <span className="rounded-full bg-primary-100 px-2 py-0.5 text-[10px] font-bold text-primary-700 dark:bg-primary-950/60 dark:text-primary-300">
-                    {unreadCount} new
+                    {unreadCount} {t("portal.header.newBadge") || "new"}
                   </span>
                 )}
               </div>
@@ -106,7 +106,9 @@ export function NotificationBellPopover() {
 
             <div className="my-2 max-h-72 space-y-2 overflow-y-auto">
               {loading ? (
-                <div className="py-6 text-center text-xs text-secondary-400">Loading notifications...</div>
+                <div className="py-6 text-center text-xs text-secondary-400">
+                  {t("common.loading") || "Loading notifications..."}
+                </div>
               ) : notifications.length === 0 ? (
                 <div className="py-6 text-center text-xs text-secondary-400">
                   {t("portal.header.noNotifications") || "No unread notifications"}

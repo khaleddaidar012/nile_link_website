@@ -24,8 +24,9 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-950/90 via-slate-900/85 to-secondary-950/95" />
-        <div className="absolute inset-0 bg-primary-950/20 backdrop-blur-[2px]" />
+        {/* Official Website Hero Background (Crisp port/shipping background without blur) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/90 via-secondary-900/75 to-secondary-900/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/60 via-transparent to-secondary-950/40" />
       </div>
 
       <Container className="relative z-10 flex w-full items-center justify-center">

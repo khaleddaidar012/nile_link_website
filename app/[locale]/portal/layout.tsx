@@ -16,7 +16,7 @@ export default async function PortalLayout({ children }: Props) {
   }
 
   return (
-    <PortalProvider>
+    <PortalProvider initialSession={session}>
       <div className="relative flex min-h-screen bg-slate-50 font-sans text-secondary-900 dark:bg-[#0b0f19] dark:text-white">
         {/* Ambient Dark Mode Radial Lighting & Depth Effects */}
         <div className="pointer-events-none absolute inset-0 hidden overflow-hidden dark:block">

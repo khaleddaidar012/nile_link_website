@@ -729,7 +729,22 @@
       "colActions": "Actions",
       "preview": "Aperçu",
       "download": "Télécharger",
-      "renew": "Renouveler / Remplacer"
+      "renew": "Renouveler / Remplacer",
+      "rejectionReasonBtn": "Rejet: {reason} (Cliquer pour les détails)"
+    },
+    "rejectionModal": {
+      "title": "Motif officiel de rejet du document",
+      "reasonLabel": "Motif officiel de rejet:",
+      "defaultReason": "Copie illisible ou date de validité expirée",
+      "notesLabel": "Remarques de l'équipe de vérification:",
+      "notice": "Veuillez téléverser une copie valide et nette du document pour compléter la conformité douanière.",
+      "reupload": "Téléverser un nouveau document"
+    },
+    "previewModal": {
+      "openFullScreen": "Plein écran",
+      "download": "Télécharger le document",
+      "loading": "Chargement de l'aperçu du document...",
+      "fallbackNotice": "Aperçu non disponible pour ce type de fichier."
     },
     "categories": {
       "commercial_register": "Registre du Commerce",
@@ -746,6 +761,79 @@
       "expired": "Expiré",
       "rejected": "Rejeté"
     }
+  },
+  "portal": {
+    "header": {
+      "notifications": "Notifications",
+      "markAllRead": "Tout marquer comme lu",
+      "noNotifications": "Aucune notification non lue",
+      "viewAll": "Voir toutes les notifications",
+      "newBadge": "nouveau"
+    },
+    "sidebar": {
+      "dashboard": "Tableau de bord",
+      "documents": "Documents légaux",
+      "requests": "Demandes de service",
+      "financials": "Finances et factures",
+      "notifications": "Notifications",
+      "profile": "Profil de l'entreprise",
+      "collapse": "Réduire le menu",
+      "logout": "Déconnexion"
+    },
+    "dashboard": {
+      "recentActivity": "Chronologie des activités récentes",
+      "noActivity": "Aucune activité récente enregistrée.",
+      "quickUpload": "Téléversement rapide de documents",
+      "quickUploadDesc": "Téléversez votre registre du commerce, carte fiscale ou licences en quelques secondes.",
+      "manageUploadBtn": "Gérer et téléverser des documents",
+      "activeDocs": "Ratio de documents approuvés",
+      "pendingReview": "Ratio de documents en cours d'examen",
+      "expiringDocs": "Ratio de documents expirant bientôt (≤10j)",
+      "accountStatus": "Statut du compte",
+      "activity": {
+        "accountCreatedTitle": "Compte d'entreprise enregistré",
+        "accountCreatedDesc": "Compte créé et prêt pour la vérification de conformité",
+        "uploadGuideTitle": "Directives de téléversement de documents",
+        "uploadGuideDesc": "Veuillez téléverser votre registre du commerce et carte fiscale pour approbation douanière",
+        "approveTitle": "Document approuvé officiellement",
+        "warningTitle": "Expiration de document imminente",
+        "verifyTitle": "Canaux vérifiés avec succès",
+        "uploadTitle": "Nouveau document téléversé"
+      },
+      "kpi": {
+        "channels": "Canaux de communication",
+        "channelsConnected": "WhatsApp et e-mail connectés",
+        "channelsPending": "Vérification des canaux requise",
+        "actionRequired": "Action requise",
+        "activeCompliant": "Actif et conforme",
+        "warningPending": "Documents en attente",
+        "totalDocs": "Total des fichiers téléversés",
+        "slotsAvailable": "emplacements disponibles",
+        "storage": "Stockage",
+        "ofTotalUploaded": "des fichiers téléversés approuvés",
+        "ofTotalPending": "en attente de révision par l'équipe",
+        "requiresRenewal": "nécessite un renouvellement immédiat",
+        "allGood": "Tous les documents sont à jour"
+      }
+    },
+    "verification": {
+      "title": "Vérification de sécurité et des canaux",
+      "verified": "Vérifié ✓",
+      "unverified": "Vérification en attente"
+    },
+    "healthBanners": {
+      "unverifiedTitle": "E-mail d'entreprise non vérifié",
+      "unverifiedDesc": "Veuillez vérifier votre e-mail d'entreprise via OTP pour finaliser la configuration de votre compte et recevoir les notifications douanières.",
+      "verifyChannelsBtn": "Vérifier les canaux maintenant"
+    }
+  },
+  "rejectionReasons": {
+    "illegible_copy": "Copie illisible ou de mauvaise qualité",
+    "expired_date": "Document expiré ou date non valide",
+    "missing_stamps": "Sceaux ou signatures officiels manquants",
+    "mismatch_details": "Données d'entreprise ou d'enregistrement non concordantes",
+    "wrong_category": "Document téléchargé dans la mauvaise catégorie",
+    "other": "Autre motif (précisé dans les notes)"
   }
 }
 

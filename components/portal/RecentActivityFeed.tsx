@@ -111,20 +111,28 @@ export function RecentActivityFeed() {
   }
 
   return (
-    <div className="rounded-2xl border border-secondary-200/80 bg-white p-6 shadow-premium-sm dark:border-secondary-800 dark:bg-secondary-900">
+    <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-bold text-secondary-900 dark:text-white">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white">
           {t("portal.dashboard.recentActivity") || "Recent Activity Timeline"}
         </h3>
-        <Clock className="h-4 w-4 text-secondary-400" />
+        <Clock className="h-4 w-4 text-slate-400" />
       </div>
 
       {loading ? (
-        <div className="py-8 text-center text-xs text-secondary-400">
-          {t("common.loading") || "Loading activity..."}
+        <div className="space-y-4 py-2">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-start gap-3 pl-8 rtl:pr-8 rtl:pl-0 animate-pulse">
+              <div className="h-4 w-4 rounded-full bg-slate-200 dark:bg-slate-800" />
+              <div className="flex-1 space-y-1.5">
+                <div className="h-3.5 w-1/3 rounded bg-slate-200 dark:bg-slate-800" />
+                <div className="h-3 w-3/4 rounded bg-slate-100 dark:bg-slate-800/60" />
+              </div>
+            </div>
+          ))}
         </div>
       ) : activities.length === 0 ? (
-        <div className="py-8 text-center text-xs text-secondary-400">
+        <div className="py-8 text-center text-xs text-slate-400">
           {t("portal.dashboard.noActivity") || "No recent activity recorded."}
         </div>
       ) : (

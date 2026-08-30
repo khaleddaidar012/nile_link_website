@@ -860,7 +860,22 @@
       "colActions": "Actions",
       "preview": "Preview",
       "download": "Download",
-      "renew": "Renew / Replace"
+      "renew": "Renew / Replace",
+      "rejectionReasonBtn": "Rejection: {reason} (Click for details)"
+    },
+    "rejectionModal": {
+      "title": "Official Document Rejection Reason",
+      "reasonLabel": "Official Rejection Reason:",
+      "defaultReason": "Unclear copy or expired validity",
+      "notesLabel": "Audit & Review Team Notes:",
+      "notice": "Please re-upload a valid and clear copy of the document to complete customs clearance and account verification.",
+      "reupload": "Re-upload New Document"
+    },
+    "previewModal": {
+      "openFullScreen": "Open Full Screen",
+      "download": "Download Document",
+      "loading": "Loading live document preview...",
+      "fallbackNotice": "Preview not available for this file type."
     },
     "categories": {
       "commercial_register": "Commercial Register",
@@ -885,5 +900,78 @@
     "critical": "Critical ({days} days left)",
     "expired": "Expired ({days} days ago)",
     "expiresToday": "Expires Today"
+  },
+  "portal": {
+    "header": {
+      "notifications": "Notifications",
+      "markAllRead": "Mark all as read",
+      "noNotifications": "No unread notifications",
+      "viewAll": "View all notifications",
+      "newBadge": "new"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "documents": "Legal Documents",
+      "requests": "Service Requests",
+      "financials": "Financials & Invoices",
+      "notifications": "Notifications",
+      "profile": "Company Profile",
+      "collapse": "Collapse Sidebar",
+      "logout": "Sign Out"
+    },
+    "dashboard": {
+      "recentActivity": "Recent Activity Timeline",
+      "noActivity": "No recent activity recorded.",
+      "quickUpload": "Quick Document Upload",
+      "quickUploadDesc": "Upload your Commercial Register, Tax Card, or licenses in seconds.",
+      "manageUploadBtn": "Manage & Upload Documents",
+      "activeDocs": "Approved Documents Ratio",
+      "pendingReview": "In-Review Documents Ratio",
+      "expiringDocs": "Expiring Soon Ratio (≤10d)",
+      "accountStatus": "Account Status",
+      "activity": {
+        "accountCreatedTitle": "Corporate Account Registered",
+        "accountCreatedDesc": "Account created and ready for compliance verification",
+        "uploadGuideTitle": "Document Upload Guidelines",
+        "uploadGuideDesc": "Please upload your Commercial Register and Tax Card for clearance approval",
+        "approveTitle": "Document Approved Officially",
+        "warningTitle": "Document Expiry Approaching",
+        "verifyTitle": "Channels Verified Successfully",
+        "uploadTitle": "New Document Uploaded"
+      },
+      "kpi": {
+        "channels": "Communication Channels",
+        "channelsConnected": "WhatsApp & Email Connected",
+        "channelsPending": "Channels Verification Required",
+        "actionRequired": "Action Needed",
+        "activeCompliant": "Active & Compliant",
+        "warningPending": "Pending Documents",
+        "totalDocs": "Total Uploaded Files",
+        "slotsAvailable": "slots available",
+        "storage": "Storage",
+        "ofTotalUploaded": "of uploaded files approved",
+        "ofTotalPending": "awaiting staff review",
+        "requiresRenewal": "requires immediate renewal",
+        "allGood": "All documents up to date"
+      }
+    },
+    "verification": {
+      "title": "Security & Channel Verification",
+      "verified": "Verified ✓",
+      "unverified": "Pending Verification"
+    },
+    "healthBanners": {
+      "unverifiedTitle": "Corporate Email Not Verified",
+      "unverifiedDesc": "Please verify your corporate email via OTP to complete account setup and receive customs clearance notices.",
+      "verifyChannelsBtn": "Verify Channels Now"
+    }
+  },
+  "rejectionReasons": {
+    "illegible_copy": "Illegible or low quality copy",
+    "expired_date": "Document expired or invalid date",
+    "missing_stamps": "Missing official stamps or signatures",
+    "mismatch_details": "Company or registration details mismatch",
+    "wrong_category": "Document uploaded under wrong category",
+    "other": "Other reason (specified in notes)"
   }
 }

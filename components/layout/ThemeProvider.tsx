@@ -24,7 +24,8 @@ function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "light"
   const stored = localStorage.getItem("theme") as Theme | null
   if (stored === "light" || stored === "dark") return stored
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  // Default baseline is crisp eye-friendly light mode (REQ-08)
+  return "light"
 }
 
 function applyTheme(theme: Theme) {
@@ -45,20 +46,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setResolvedTheme(initial)
     applyTheme(initial)
     setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)")
-    const handler = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("theme")) {
-        const t = e.matches ? "dark" : "light"
-        setThemeState(t)
-        setResolvedTheme(t)
-        applyTheme(t)
-      }
-    }
-    mq.addEventListener("change", handler)
-    return () => mq.removeEventListener("change", handler)
   }, [])
 
   const setTheme = useCallback((newTheme: Theme) => {

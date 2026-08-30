@@ -17,6 +17,8 @@ import {
   ArrowRight,
   Loader2,
   AlertCircle,
+  Eye,
+  EyeOff,
 } from "lucide-react"
 import Image from "next/image"
 import logoImg from "@/public/images/logo.png"
@@ -61,6 +63,8 @@ export function RegisterForm() {
   const [serverError, setServerError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const {
     register,
@@ -110,11 +114,10 @@ export function RegisterForm() {
         return
       }
 
+      // Immediate redirect: remove form and navigate to verification
       setIsSuccess(true)
-      setTimeout(() => {
-        router.push("/portal/verification")
-        router.refresh()
-      }, 500)
+      router.push("/portal/verification")
+      router.refresh()
     } catch {
       setServerError("A network error occurred. Please try again.")
     } finally {
@@ -125,17 +128,18 @@ export function RegisterForm() {
   if (isSuccess) {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-lg rounded-2xl border border-secondary-200 bg-white p-8 text-center shadow-premium-xl dark:border-secondary-800 dark:bg-secondary-900"
+        transition={{ duration: 0.2 }}
+        className="w-full max-w-md rounded-2xl border border-secondary-200/80 bg-white/95 p-8 text-center shadow-premium-xl backdrop-blur-xl dark:border-secondary-800/80 dark:bg-secondary-900/95"
       >
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
-          <CheckCircle2 className="h-8 w-8" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-50 text-primary-600 dark:bg-primary-950/60 dark:text-primary-400">
+          <Loader2 className="h-8 w-8 animate-spin" />
         </div>
-        <h2 className="text-2xl font-bold text-secondary-900 dark:text-white">
-          {t("auth.register.title") || "Registration Successful!"}
+        <h2 className="text-xl font-bold text-secondary-900 dark:text-white">
+          {t("portal.verification.title") || "Security Verification"}
         </h2>
-        <p className="mt-2 text-sm text-secondary-600 dark:text-secondary-400">
+        <p className="mt-2 text-xs text-secondary-500 dark:text-secondary-400">
           {t("auth.register.redirectingToVerification") || "Redirecting to channel verification..."}
         </p>
       </motion.div>
@@ -338,14 +342,22 @@ export function RegisterForm() {
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   {...register("password")}
                   className={cn(
-                    "w-full rounded-xl border bg-secondary-50/50 pr-3.5 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-3.5",
+                    "w-full rounded-xl border bg-secondary-50/50 pr-10 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-10",
                     errors.password ? "border-red-500" : "border-secondary-200 dark:border-secondary-700"
                   )}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200 rtl:right-auto rtl:left-3"
+                  aria-label="Toggle password visibility"
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
               </div>
               {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
             </div>
@@ -371,11 +383,11 @@ export function RegisterForm() {
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder={t("auth.register.confirmPasswordPlaceholder") || "Re-enter password"}
                   {...register("confirmPassword")}
                   className={cn(
-                    "w-full rounded-xl border bg-secondary-50/50 pr-3.5 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-3.5",
+                    "w-full rounded-xl border bg-secondary-50/50 pr-16 pl-10 text-sm transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-secondary-800/50 dark:text-white rtl:pr-10 rtl:pl-16",
                     errors.confirmPassword
                       ? "border-red-500 focus:border-red-500"
                       : passwordsMatch
@@ -383,9 +395,19 @@ export function RegisterForm() {
                         : "border-secondary-200 dark:border-secondary-700"
                   )}
                 />
-                {passwordsMatch && (
-                  <CheckCircle2 className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-emerald-500 rtl:right-auto rtl:left-3" />
-                )}
+                <div className="absolute top-1/2 right-3 -translate-y-1/2 flex items-center gap-1.5 rtl:right-auto rtl:left-3">
+                  {passwordsMatch && (
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="text-secondary-400 hover:text-secondary-600 dark:hover:text-secondary-200"
+                    aria-label="Toggle confirm password visibility"
+                  >
+                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
               </div>
               {errors.confirmPassword && (
                 <p className="mt-1 text-xs text-red-500">{errors.confirmPassword.message}</p>

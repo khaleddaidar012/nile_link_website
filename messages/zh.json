@@ -729,7 +729,22 @@
       "colActions": "操作",
       "preview": "预览",
       "download": "下载",
-      "renew": "更新 / 替换"
+      "renew": "更新 / 替换",
+      "rejectionReasonBtn": "拒绝原因: {reason} (点击查看详情)"
+    },
+    "rejectionModal": {
+      "title": "官方文件拒绝原因",
+      "reasonLabel": "官方拒绝原因:",
+      "defaultReason": "副本不清晰或有效期已过",
+      "notesLabel": "审核团队备注:",
+      "notice": "请重新上传一份有效且清晰的文件副本，以完成海关审核与账户验证。",
+      "reupload": "重新上传新文件"
+    },
+    "previewModal": {
+      "openFullScreen": "全屏打开",
+      "download": "下载文件",
+      "loading": "正在加载实时文件预览...",
+      "fallbackNotice": "此文件类型暂不支持直接预览。"
     },
     "categories": {
       "commercial_register": "商业登记证",
@@ -746,5 +761,78 @@
       "expired": "已过期",
       "rejected": "已拒绝"
     }
+  },
+  "portal": {
+    "header": {
+      "notifications": "通知中心",
+      "markAllRead": "全部标为已读",
+      "noNotifications": "暂无未读通知",
+      "viewAll": "查看全部通知",
+      "newBadge": "新"
+    },
+    "sidebar": {
+      "dashboard": "仪表板",
+      "documents": "法律文件",
+      "requests": "服务请求",
+      "financials": "财务与发票",
+      "notifications": "通知中心",
+      "profile": "企业资料",
+      "collapse": "折叠菜单",
+      "logout": "退出登录"
+    },
+    "dashboard": {
+      "recentActivity": "最近活动时间线",
+      "noActivity": "暂无最近活动记录。",
+      "quickUpload": "快速上传文件",
+      "quickUploadDesc": "几秒钟内上传您的商业登记证、税务卡或许可证。",
+      "manageUploadBtn": "管理并上传文件",
+      "activeDocs": "已批准文件比例",
+      "pendingReview": "审核中文件比例",
+      "expiringDocs": "即将到期文件比例 (≤10天)",
+      "accountStatus": "账户状态",
+      "activity": {
+        "accountCreatedTitle": "企业账户已注册",
+        "accountCreatedDesc": "账户已创建，准备进行合规验证",
+        "uploadGuideTitle": "文件上传指南",
+        "uploadGuideDesc": "请上传商业登记证和税务卡以获得清关批准",
+        "approveTitle": "文件已正式批准",
+        "warningTitle": "文件即将到期提醒",
+        "verifyTitle": "渠道验证成功",
+        "uploadTitle": "已上传新文件"
+      },
+      "kpi": {
+        "channels": "沟通渠道",
+        "channelsConnected": "WhatsApp 与邮箱已连接",
+        "channelsPending": "需要渠道验证",
+        "actionRequired": "需要操作",
+        "activeCompliant": "有效且合规",
+        "warningPending": "待办文件",
+        "totalDocs": "已上传文件总数",
+        "slotsAvailable": "个可用配额",
+        "storage": "存储配额",
+        "ofTotalUploaded": "的已上传文件已获批准",
+        "ofTotalPending": "等待工作人员审核",
+        "requiresRenewal": "需要立即续期",
+        "allGood": "所有文件均为最新状态"
+      }
+    },
+    "verification": {
+      "title": "安全与渠道验证",
+      "verified": "已验证 ✓",
+      "unverified": "待验证"
+    },
+    "healthBanners": {
+      "unverifiedTitle": "企业邮箱未验证",
+      "unverifiedDesc": "请通过验证码（OTP）验证您的企业邮箱以完成账户设置并接收清关通知。",
+      "verifyChannelsBtn": "立即验证渠道"
+    }
+  },
+  "rejectionReasons": {
+    "illegible_copy": "副本模糊或质量过低",
+    "expired_date": "文件已过期或日期无效",
+    "missing_stamps": "缺少官方印章或签名",
+    "mismatch_details": "公司或登记信息不一致",
+    "wrong_category": "上传的文件类别不正确",
+    "other": "其他原因（在备注中说明）"
   }
 }
