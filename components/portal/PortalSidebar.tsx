@@ -81,7 +81,7 @@ export function PortalSidebar() {
       return (
         <span className="flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
           <ShieldCheck className="h-3 w-3" />
-          <span>{t("documents.statuses.approved") || "Active"}</span>
+          <span>{t("portal.accountStatus.active") || "Active"}</span>
         </span>
       )
     }
@@ -89,14 +89,14 @@ export function PortalSidebar() {
       return (
         <span className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 animate-pulse">
           <AlertTriangle className="h-3 w-3" />
-          <span>{t("documents.statuses.expiring_soon") || "Action"}</span>
+          <span>{t("portal.accountStatus.warning") || "Action Needed"}</span>
         </span>
       )
     }
     return (
       <span className="flex items-center gap-1 rounded-full border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400">
         <XCircle className="h-3 w-3" />
-        <span>{t("documents.statuses.expired") || "Restricted"}</span>
+        <span>{t("portal.accountStatus.inactive") || "Restricted"}</span>
       </span>
     )
   }
@@ -156,11 +156,13 @@ export function PortalSidebar() {
       {/* Company Status Pill */}
       {!collapsed && customer && (
         <div className="mx-3 mt-4 rounded-xl border border-slate-200/90 bg-slate-50/90 p-3.5 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/70">
-          <div className="flex items-center justify-between gap-2">
-            <span className="truncate text-xs font-bold text-slate-900 dark:text-white">
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 text-start leading-tight dir-auto">
               {customer.companyName}
             </span>
-            {getStatusBadge()}
+            <div className="flex items-start">
+              {getStatusBadge()}
+            </div>
           </div>
           {documentStats && (
             <div className="mt-2 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">

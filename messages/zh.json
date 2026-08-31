@@ -14,7 +14,8 @@
     "edit": "编辑",
     "delete": "删除",
     "close": "关闭",
-    "confirm": "确认"
+    "confirm": "确认",
+    "required": "Required"
   },
   "metadata": {
     "title": "NileLink | 全球物流解决方案",
@@ -176,7 +177,7 @@
     "title": "全球运输覆盖",
     "description": "凭借遍布全球的合作伙伴网络，我们随时准备以最具竞争力的价格将您的货物运送到任何地方。"
   },
-"faq": {
+  "faq": {
     "subtitle": "常见问题",
     "title": "常见问题解答",
     "items": [
@@ -465,122 +466,75 @@
     }
   },
   "portal": {
-    "verification": {
-      "pageTitle": "渠道与账户验证",
-      "pageSubtitle": "验证您的企业工作邮箱和 WhatsApp 号码，以接收清关和运输通知。",
-      "skipBtn": "稍后验证",
-      "verified": "已验证",
-      "unverified": "待验证",
-      "otpLabel": "输入6位数字验证码",
-      "sendOtp": "发送验证码",
-      "confirmOtp": "验证邮箱",
-      "confirmWa": "验证 WhatsApp",
-      "allVerifiedTitle": "所有渠道均已验证！",
-      "allVerifiedDesc": "您现在可以无限制访问所有门户服务。",
-      "pendingTitle": "账户已可使用",
-      "editBtn": "更改",
-      "editEmailPrompt": "更改企业邮箱并自动重新发送验证码：",
-      "editPhonePrompt": "更改 WhatsApp 号码并自动重新发送验证码：",
-      "saveAndResend": "保存并发送验证码",
-      "goToPortal": "前往客户门户",
-      "continueToPortal": "继续进入门户",
-      "emailChannel": {
-        "title": "企业工作邮箱",
-        "success": "企业邮箱验证成功",
-        "activeDesc": "所有发票、报告和合规证书都将发送至此邮箱。"
-      },
-      "whatsappChannel": {
-        "title": "已验证的 WhatsApp 手机号",
-        "success": "WhatsApp 号码验证成功",
-        "activeDesc": "您将通过 WhatsApp 接收实时追踪信息与海关紧急通知。"
-      },
-      "skipModal": {
-        "title": "确认跳过验证",
-        "message": "为了享受完整的门户服务并避免账户受限，请验证您的 WhatsApp 和企业邮箱。",
-        "subtext": "您可以随时从仪表板完成验证。",
-        "verifyNowBtn": "立即验证",
-        "skipBtn": "稍后验证"
-      }
+    "header": {
+      "notifications": "通知中心",
+      "markAllRead": "全部标为已读",
+      "noNotifications": "暂无未读通知",
+      "viewAll": "查看全部通知",
+      "newBadge": "新"
     },
     "sidebar": {
-      "dashboard": "控制台仪表板",
-      "documents": "企业合规文件",
-      "requests": "业务服务申请",
-      "financials": "账单与发票",
+      "dashboard": "仪表板",
+      "documents": "法律文件",
+      "requests": "服务请求",
+      "financials": "财务与发票",
       "notifications": "通知中心",
-      "profile": "企业档案与设置",
-      "logout": "退出登录",
-      "collapse": "折叠侧边栏"
-    },
-    "activity": {
-      "uploadTitle": "文件已上传",
-      "uploadDesc": "新文件已提交进行法律合规审核",
-      "approveTitle": "文件已通过审核",
-      "approveDesc": "文件已成功通过 NileLink 团队审核",
-      "warningTitle": "文件即将到期",
-      "warningDesc": "文件即将在近期到期，请及时更新",
-      "verifyTitle": "渠道验证",
-      "verifyDesc": "验证码已发送至您的通信渠道",
-      "accountCreatedTitle": "企业账户注册完成",
-      "accountCreatedDesc": "账户已成功创建，等待完成企业合规认证",
-      "uploadGuideTitle": "文件上传指引",
-      "uploadGuideDesc": "请上传营业执照及税务登记证"
+      "profile": "企业资料",
+      "collapse": "折叠菜单",
+      "logout": "退出登录"
     },
     "dashboard": {
-      "welcomeBack": "欢迎回来",
-      "overviewSubtitle": "管理您的企业文件、货运业务及合规状态。",
-      "accountStatus": "账户状态",
-      "activeDocs": "已审核批准文件",
-      "expiringDocs": "即将过期文件 (≤10天)",
-      "pendingReview": "审核中的文件",
-      "quickUpload": "快速文件上传",
-      "quickUploadDesc": "拖放您更新的法律文件至此处",
+      "recentActivity": "最近活动时间线",
+      "noActivity": "暂无最近活动记录。",
+      "quickUpload": "快速上传文件",
+      "quickUploadDesc": "几秒钟内上传您的商业登记证、税务卡或许可证。",
       "manageUploadBtn": "管理并上传文件",
-      "recentActivity": "最新操作动态",
-      "noActivity": "暂无最新操作记录。",
+      "activeDocs": "已批准文件比例",
+      "pendingReview": "审核中文件比例",
+      "expiringDocs": "即将到期文件比例 (≤10天)",
+      "accountStatus": "账户状态",
       "activity": {
-        "uploadTitle": "已成功上传文件",
-        "uploadDesc": "已提交新的企业文件等待合规审核",
-        "approveTitle": "文件已审核批准",
-        "approveDesc": "NileLink团队已成功审核并批准您的文件",
-        "warningTitle": "文件即将到期",
-        "warningDesc": "文件即将到达法定有效截止日期",
-        "verifyTitle": "联系渠道验证",
-        "verifyDesc": "已通过通知渠道发送验证码",
-        "accountCreatedTitle": "企业账户注册成功",
-        "accountCreatedDesc": "账户已创建并可进行合规验证",
-        "uploadGuideTitle": "文件上传操作指南",
-        "uploadGuideDesc": "请上传营业执照、税务登记证及进出口许可证"
+        "accountCreatedTitle": "企业账户已注册",
+        "accountCreatedDesc": "账户已创建，准备进行合规验证",
+        "uploadGuideTitle": "文件上传指南",
+        "uploadGuideDesc": "请上传商业登记证和税务卡以获得清关批准",
+        "approveTitle": "文件已正式批准",
+        "warningTitle": "文件即将到期提醒",
+        "verifyTitle": "渠道验证成功",
+        "uploadTitle": "已上传新文件"
       },
       "kpi": {
-        "channels": "通知联系渠道",
-        "channelsConnected": "WhatsApp 与邮箱均已连接验证",
-        "channelsPending": "需要完成渠道验证",
-        "activeCompliant": "正常且合规",
-        "warningPending": "等待验证",
-        "actionRequired": "需要处理",
+        "channels": "沟通渠道",
+        "channelsConnected": "WhatsApp 与邮箱已连接",
+        "channelsPending": "需要渠道验证",
+        "actionRequired": "需要操作",
+        "activeCompliant": "有效且合规",
+        "warningPending": "待办文件",
         "totalDocs": "已上传文件总数",
+        "slotsAvailable": "个可用配额",
         "storage": "存储配额",
-        "slotsAvailable": "个可用上传槽位",
-        "ofTotalUploaded": "的已上传文件获得批准",
-        "ofTotalPending": "正在等待工作人员审核",
+        "ofTotalUploaded": "的已上传文件已获批准",
+        "ofTotalPending": "等待工作人员审核",
         "requiresRenewal": "需要立即续期",
-        "allGood": "所有文件均在有效期内"
+        "allGood": "所有文件均为最新状态"
       }
     },
+    "verification": {
+      "title": "安全与渠道验证",
+      "verified": "已验证 ✓",
+      "unverified": "待验证"
+    },
     "healthBanners": {
-      "unverifiedTitle": "企业账户未验证",
-      "unverifiedDesc": "主要通知联系渠道尚未完成验证。请尽快完成验证以避免业务限制并正常接收清关通知。",
-      "verifyChannelsBtn": "立即验证联系渠道",
-      "quickActionTitle": "账户尚未完成验证 — 请完成企业认证",
-      "quickActionDesc": "请上传企业官方文件（营业执照、税务登记证、进出口许可证）以获得官方清关资质审批。",
-      "uploadDocsBtn": "上传认证文件",
-      "allValid": "所有企业文件均已验证且在有效期内。",
-      "allValidSub": "您的企业账户完全符合埃及海事海关及货运合规要求。",
-      "warning": "提醒：您有部分文件即将到期，请及时更新续期以防业务延误。",
-      "critical": "严重提醒：法定必要文件已过期，部分海运服务可能受限。",
-      "uploadBtn": "上传续期文件",
-      "renewBtn": "更新已过期文件"
+      "unverifiedTitle": "企业邮箱未验证",
+      "unverifiedDesc": "请通过验证码（OTP）验证您的企业邮箱以完成账户设置并接收清关通知。",
+      "verifyChannelsBtn": "立即验证渠道",
+      "critical": "Alert: Document Rejected or Expired",
+      "renewBtn": "Update Document"
+    },
+    "accountStatus": {
+      "active": "Active Account",
+      "warning": "Action Needed",
+      "inactive": "Restricted"
     }
   },
   "admin": {
@@ -760,71 +714,6 @@
       "expiring_soon": "即将到期",
       "expired": "已过期",
       "rejected": "已拒绝"
-    }
-  },
-  "portal": {
-    "header": {
-      "notifications": "通知中心",
-      "markAllRead": "全部标为已读",
-      "noNotifications": "暂无未读通知",
-      "viewAll": "查看全部通知",
-      "newBadge": "新"
-    },
-    "sidebar": {
-      "dashboard": "仪表板",
-      "documents": "法律文件",
-      "requests": "服务请求",
-      "financials": "财务与发票",
-      "notifications": "通知中心",
-      "profile": "企业资料",
-      "collapse": "折叠菜单",
-      "logout": "退出登录"
-    },
-    "dashboard": {
-      "recentActivity": "最近活动时间线",
-      "noActivity": "暂无最近活动记录。",
-      "quickUpload": "快速上传文件",
-      "quickUploadDesc": "几秒钟内上传您的商业登记证、税务卡或许可证。",
-      "manageUploadBtn": "管理并上传文件",
-      "activeDocs": "已批准文件比例",
-      "pendingReview": "审核中文件比例",
-      "expiringDocs": "即将到期文件比例 (≤10天)",
-      "accountStatus": "账户状态",
-      "activity": {
-        "accountCreatedTitle": "企业账户已注册",
-        "accountCreatedDesc": "账户已创建，准备进行合规验证",
-        "uploadGuideTitle": "文件上传指南",
-        "uploadGuideDesc": "请上传商业登记证和税务卡以获得清关批准",
-        "approveTitle": "文件已正式批准",
-        "warningTitle": "文件即将到期提醒",
-        "verifyTitle": "渠道验证成功",
-        "uploadTitle": "已上传新文件"
-      },
-      "kpi": {
-        "channels": "沟通渠道",
-        "channelsConnected": "WhatsApp 与邮箱已连接",
-        "channelsPending": "需要渠道验证",
-        "actionRequired": "需要操作",
-        "activeCompliant": "有效且合规",
-        "warningPending": "待办文件",
-        "totalDocs": "已上传文件总数",
-        "slotsAvailable": "个可用配额",
-        "storage": "存储配额",
-        "ofTotalUploaded": "的已上传文件已获批准",
-        "ofTotalPending": "等待工作人员审核",
-        "requiresRenewal": "需要立即续期",
-        "allGood": "所有文件均为最新状态"
-      }
-    },
-    "verification": {
-      "title": "安全与渠道验证",
-      "verified": "已验证 ✓",
-      "unverified": "待验证"
-    },
-    "healthBanners": {
-      "unverifiedTitle": "企业邮箱未验证",
-      "unverifiedDesc": "请通过验证码（OTP）验证您的企业邮箱以完成账户设置并接收清关通知。",
-      "verifyChannelsBtn": "立即验证渠道"
     }
   },
   "rejectionReasons": {

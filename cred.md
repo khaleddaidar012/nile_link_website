@@ -12,7 +12,7 @@ Use this account to test the Client Portal, corporate document uploads, complian
 | :--- | :--- |
 | **Login URL** | `http://localhost:3000/en/login` or `http://localhost:3000/ar/login` |
 | **Work Email / Identifier** | `mohamed@alexexport.com` |
-| **Password** | `SecurePass123!` |
+| **Password** | `حساب مقيدحساب مقيد` |
 | **Role** | `customer_admin` |
 | **Company Name** | Alexandria Export & Maritime S.A.E. |
 | **Commercial Register (CR)** | CR-89412-ALEX |

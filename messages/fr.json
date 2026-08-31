@@ -14,7 +14,8 @@
     "edit": "Modifier",
     "delete": "Supprimer",
     "close": "Fermer",
-    "confirm": "Confirmer"
+    "confirm": "Confirmer",
+    "required": "Required"
   },
   "metadata": {
     "title": "NileLink | Solutions Logistiques Globales",
@@ -176,7 +177,7 @@
     "title": "Couverture d'Expédition Mondiale",
     "description": "Avec un réseau mondial de partenaires, nous sommes prêts à expédier vos marchandises n'importe où au meilleur prix compétitif."
   },
-"faq": {
+  "faq": {
     "subtitle": "FAQ",
     "title": "Questions Fréquentes",
     "items": [
@@ -465,122 +466,75 @@
     }
   },
   "portal": {
-    "verification": {
-      "pageTitle": "Vérification des canaux et du compte",
-      "pageSubtitle": "Vérifiez votre e-mail d'entreprise et votre numéro WhatsApp pour recevoir les dédouanements et les avis d'expédition.",
-      "skipBtn": "Passer maintenant",
-      "verified": "Vérifié",
-      "unverified": "En attente de vérification",
-      "otpLabel": "Entrez le code de vérification à 6 chiffres",
-      "sendOtp": "Envoyer le code",
-      "confirmOtp": "Vérifier l'e-mail",
-      "confirmWa": "Vérifier WhatsApp",
-      "allVerifiedTitle": "Tous les canaux sont vérifiés !",
-      "allVerifiedDesc": "Vous avez désormais un accès complet et sans restriction aux services du portail.",
-      "pendingTitle": "Compte prêt à l'emploi",
-      "editBtn": "Modifier",
-      "editEmailPrompt": "Modifier l'e-mail d'entreprise et renvoyer automatiquement le code :",
-      "editPhonePrompt": "Modifier le numéro WhatsApp et renvoyer automatiquement le code :",
-      "saveAndResend": "Enregistrer et renvoyer le code",
-      "goToPortal": "Accéder au portail client",
-      "continueToPortal": "Continuer vers le portail",
-      "emailChannel": {
-        "title": "E-mail professionnel de l'entreprise",
-        "success": "E-mail professionnel vérifié avec succès",
-        "activeDesc": "Toutes les factures, rapports et certificats de conformité seront envoyés à cet e-mail."
-      },
-      "whatsappChannel": {
-        "title": "Mobile WhatsApp vérifié",
-        "success": "Numéro WhatsApp vérifié avec succès",
-        "activeDesc": "Vous recevrez des mises à jour de suivi en temps réel et des alertes douanières par WhatsApp."
-      },
-      "skipModal": {
-        "title": "Confirmer le report de la vérification",
-        "message": "Pour profiter de tous les services du portail et éviter toute restriction, veuillez vérifier votre WhatsApp et votre e-mail professionnel.",
-        "subtext": "Vous pouvez effectuer la vérification à tout moment depuis votre tableau de bord.",
-        "verifyNowBtn": "Vérifier maintenant",
-        "skipBtn": "Passer maintenant"
-      }
+    "header": {
+      "notifications": "Notifications",
+      "markAllRead": "Tout marquer comme lu",
+      "noNotifications": "Aucune notification non lue",
+      "viewAll": "Voir toutes les notifications",
+      "newBadge": "nouveau"
     },
     "sidebar": {
       "dashboard": "Tableau de bord",
-      "documents": "Documents & Légal",
+      "documents": "Documents légaux",
       "requests": "Demandes de service",
-      "financials": "Finances & Factures",
+      "financials": "Finances et factures",
       "notifications": "Notifications",
       "profile": "Profil de l'entreprise",
-      "logout": "Déconnexion",
-      "collapse": "Réduire la barre latérale"
-    },
-    "activity": {
-      "uploadTitle": "Document Téléchargé",
-      "uploadDesc": "Nouveau document soumis pour vérification légale",
-      "approveTitle": "Document Approuvé",
-      "approveDesc": "Document vérifié avec succès par l'équipe NileLink",
-      "warningTitle": "Document Expirant Bientôt",
-      "warningDesc": "Le document approche de sa date d'expiration",
-      "verifyTitle": "Vérification des Canaux",
-      "verifyDesc": "Code de vérification envoyé via le canal de communication",
-      "accountCreatedTitle": "Compte d'Entreprise Enregistré",
-      "accountCreatedDesc": "Compte créé et prêt pour la vérification de conformité",
-      "uploadGuideTitle": "Directives de Téléchargement",
-      "uploadGuideDesc": "Veuillez télécharger votre registre du commerce et votre carte fiscale"
+      "collapse": "Réduire le menu",
+      "logout": "Déconnexion"
     },
     "dashboard": {
-      "welcomeBack": "Bienvenue",
-      "overviewSubtitle": "Gérez vos documents d'entreprise, expéditions et statut de conformité.",
-      "accountStatus": "Statut du compte",
-      "activeDocs": "Documents Approuvés",
-      "expiringDocs": "Expirant Bientôt (≤10j)",
-      "pendingReview": "En Attente d'Examen",
-      "quickUpload": "Téléchargement Rapide",
-      "quickUploadDesc": "Glissez-déposez vos fichiers légaux mis à jour ici",
-      "manageUploadBtn": "Gérer et Télécharger des Documents",
-      "recentActivity": "Journal d'Activité Récent",
+      "recentActivity": "Chronologie des activités récentes",
       "noActivity": "Aucune activité récente enregistrée.",
+      "quickUpload": "Téléversement rapide de documents",
+      "quickUploadDesc": "Téléversez votre registre du commerce, carte fiscale ou licences en quelques secondes.",
+      "manageUploadBtn": "Gérer et téléverser des documents",
+      "activeDocs": "Ratio de documents approuvés",
+      "pendingReview": "Ratio de documents en cours d'examen",
+      "expiringDocs": "Ratio de documents expirant bientôt (≤10j)",
+      "accountStatus": "Statut du compte",
       "activity": {
-        "uploadTitle": "Document Téléchargé",
-        "uploadDesc": "Nouveau document téléchargé pour vérification légale",
-        "approveTitle": "Document Approuvé",
-        "approveDesc": "Document examiné et validé par l'équipe NileLink",
-        "warningTitle": "Document Expirant Bientôt",
-        "warningDesc": "Document proche de la date d'expiration légale",
-        "verifyTitle": "Vérification des Canaux",
-        "verifyDesc": "Code de confirmation envoyé par canal de communication",
-        "accountCreatedTitle": "Compte d'Entreprise Enregistré",
+        "accountCreatedTitle": "Compte d'entreprise enregistré",
         "accountCreatedDesc": "Compte créé et prêt pour la vérification de conformité",
-        "uploadGuideTitle": "Instructions de Téléchargement",
-        "uploadGuideDesc": "Veuillez soumettre le registre de commerce et la carte fiscale"
+        "uploadGuideTitle": "Directives de téléversement de documents",
+        "uploadGuideDesc": "Veuillez téléverser votre registre du commerce et carte fiscale pour approbation douanière",
+        "approveTitle": "Document approuvé officiellement",
+        "warningTitle": "Expiration de document imminente",
+        "verifyTitle": "Canaux vérifiés avec succès",
+        "uploadTitle": "Nouveau document téléversé"
       },
       "kpi": {
         "channels": "Canaux de communication",
-        "channelsConnected": "WhatsApp & E-mail Connectés",
+        "channelsConnected": "WhatsApp et e-mail connectés",
         "channelsPending": "Vérification des canaux requise",
-        "activeCompliant": "Actif & Conforme",
-        "warningPending": "En attente de vérification",
         "actionRequired": "Action requise",
-        "totalDocs": "Total des Fichiers Téléchargés",
-        "storage": "Stockage",
+        "activeCompliant": "Actif et conforme",
+        "warningPending": "Documents en attente",
+        "totalDocs": "Total des fichiers téléversés",
         "slotsAvailable": "emplacements disponibles",
-        "ofTotalUploaded": "des fichiers téléchargés approuvés",
-        "ofTotalPending": "en attente de révision",
-        "requiresRenewal": "nécessite un renouvellement",
+        "storage": "Stockage",
+        "ofTotalUploaded": "des fichiers téléversés approuvés",
+        "ofTotalPending": "en attente de révision par l'équipe",
+        "requiresRenewal": "nécessite un renouvellement immédiat",
         "allGood": "Tous les documents sont à jour"
       }
     },
+    "verification": {
+      "title": "Vérification de sécurité et des canaux",
+      "verified": "Vérifié ✓",
+      "unverified": "Vérification en attente"
+    },
     "healthBanners": {
-      "unverifiedTitle": "Compte Non Vérifié",
-      "unverifiedDesc": "Les principaux canaux de communication ne sont pas encore vérifiés. Veuillez compléter la vérification pour éviter les restrictions.",
-      "verifyChannelsBtn": "Vérifier les Canaux Maintenant",
-      "quickActionTitle": "Compte Non Encore Vérifié — Veuillez Vérifier Votre Compte",
-      "quickActionDesc": "Veuillez soumettre vos documents légaux (Registre de commerce, Carte fiscale, Licence) pour approbation officielle.",
-      "uploadDocsBtn": "Télécharger des Documents",
-      "allValid": "Tous les documents de l'entreprise sont vérifiés et à jour.",
-      "allValidSub": "Votre compte est en parfaite conformité avec la réglementation douanière et maritime.",
-      "warning": "Avertissement : Certains documents expirent bientôt. Veuillez les renouveler.",
-      "critical": "Alerte Critique : Des documents obligatoires ont expiré. Les services peuvent être restreints.",
-      "uploadBtn": "Télécharger les Fichiers de Renouvellement",
-      "renewBtn": "Renouveler le Document Expiré"
+      "unverifiedTitle": "E-mail d'entreprise non vérifié",
+      "unverifiedDesc": "Veuillez vérifier votre e-mail d'entreprise via OTP pour finaliser la configuration de votre compte et recevoir les notifications douanières.",
+      "verifyChannelsBtn": "Vérifier les canaux maintenant",
+      "critical": "Alert: Document Rejected or Expired",
+      "renewBtn": "Update Document"
+    },
+    "accountStatus": {
+      "active": "Active Account",
+      "warning": "Action Needed",
+      "inactive": "Restricted"
     }
   },
   "admin": {
@@ -762,71 +716,6 @@
       "rejected": "Rejeté"
     }
   },
-  "portal": {
-    "header": {
-      "notifications": "Notifications",
-      "markAllRead": "Tout marquer comme lu",
-      "noNotifications": "Aucune notification non lue",
-      "viewAll": "Voir toutes les notifications",
-      "newBadge": "nouveau"
-    },
-    "sidebar": {
-      "dashboard": "Tableau de bord",
-      "documents": "Documents légaux",
-      "requests": "Demandes de service",
-      "financials": "Finances et factures",
-      "notifications": "Notifications",
-      "profile": "Profil de l'entreprise",
-      "collapse": "Réduire le menu",
-      "logout": "Déconnexion"
-    },
-    "dashboard": {
-      "recentActivity": "Chronologie des activités récentes",
-      "noActivity": "Aucune activité récente enregistrée.",
-      "quickUpload": "Téléversement rapide de documents",
-      "quickUploadDesc": "Téléversez votre registre du commerce, carte fiscale ou licences en quelques secondes.",
-      "manageUploadBtn": "Gérer et téléverser des documents",
-      "activeDocs": "Ratio de documents approuvés",
-      "pendingReview": "Ratio de documents en cours d'examen",
-      "expiringDocs": "Ratio de documents expirant bientôt (≤10j)",
-      "accountStatus": "Statut du compte",
-      "activity": {
-        "accountCreatedTitle": "Compte d'entreprise enregistré",
-        "accountCreatedDesc": "Compte créé et prêt pour la vérification de conformité",
-        "uploadGuideTitle": "Directives de téléversement de documents",
-        "uploadGuideDesc": "Veuillez téléverser votre registre du commerce et carte fiscale pour approbation douanière",
-        "approveTitle": "Document approuvé officiellement",
-        "warningTitle": "Expiration de document imminente",
-        "verifyTitle": "Canaux vérifiés avec succès",
-        "uploadTitle": "Nouveau document téléversé"
-      },
-      "kpi": {
-        "channels": "Canaux de communication",
-        "channelsConnected": "WhatsApp et e-mail connectés",
-        "channelsPending": "Vérification des canaux requise",
-        "actionRequired": "Action requise",
-        "activeCompliant": "Actif et conforme",
-        "warningPending": "Documents en attente",
-        "totalDocs": "Total des fichiers téléversés",
-        "slotsAvailable": "emplacements disponibles",
-        "storage": "Stockage",
-        "ofTotalUploaded": "des fichiers téléversés approuvés",
-        "ofTotalPending": "en attente de révision par l'équipe",
-        "requiresRenewal": "nécessite un renouvellement immédiat",
-        "allGood": "Tous les documents sont à jour"
-      }
-    },
-    "verification": {
-      "title": "Vérification de sécurité et des canaux",
-      "verified": "Vérifié ✓",
-      "unverified": "Vérification en attente"
-    },
-    "healthBanners": {
-      "unverifiedTitle": "E-mail d'entreprise non vérifié",
-      "unverifiedDesc": "Veuillez vérifier votre e-mail d'entreprise via OTP pour finaliser la configuration de votre compte et recevoir les notifications douanières.",
-      "verifyChannelsBtn": "Vérifier les canaux maintenant"
-    }
-  },
   "rejectionReasons": {
     "illegible_copy": "Copie illisible ou de mauvaise qualité",
     "expired_date": "Document expiré ou date non valide",
@@ -836,5 +725,3 @@
     "other": "Autre motif (précisé dans les notes)"
   }
 }
-
-

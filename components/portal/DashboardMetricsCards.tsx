@@ -21,9 +21,38 @@ import { cn } from "@/lib/utils"
 
 export function DashboardMetricsCards() {
   const t = useTranslations()
-  const { user, customer, documentStats } = usePortal()
+  const { user, customer, documentStats, loading } = usePortal()
 
-  const isChannelsVerified = !!user?.emailVerified && !!user?.whatsappVerified
+  if (loading || !user || !customer) {
+    return (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-32 w-full animate-pulse rounded-2xl bg-slate-200/60 dark:bg-slate-800/60"></div>
+        ))}
+      </div>
+    )
+  }
+
+  const emailVer = !!user?.emailVerified
+  const whatsappVer = !!user?.whatsappVerified
+  const isChannelsVerified = emailVer && whatsappVer
+
+  let channelsValue = ""
+  let channelsSubtitle = ""
+
+  if (emailVer && whatsappVer) {
+    channelsValue = t("portal.verification.verified") || "موثق بالكامل"
+    channelsSubtitle = "تم توثيق الإيميل والواتساب"
+  } else if (emailVer && !whatsappVer) {
+    channelsValue = "توثيق جزئي"
+    channelsSubtitle = "تم توثيق الإيميل (بانتظار الواتساب)"
+  } else if (!emailVer && whatsappVer) {
+    channelsValue = "توثيق جزئي"
+    channelsSubtitle = "تم توثيق الواتساب (بانتظار الإيميل)"
+  } else {
+    channelsValue = t("portal.verification.unverified") || "غير موثق"
+    channelsSubtitle = "لم يتم توثيق أي قناة اتصال"
+  }
 
   const totalUploaded = documentStats?.totalDocs ?? 0
   const maxAllowed = documentStats?.maxAllowed ?? 20
@@ -40,12 +69,8 @@ export function DashboardMetricsCards() {
     // 1. Communication Channels Status
     {
       title: t("portal.dashboard.kpi.channels") || "Communication Channels",
-      value: isChannelsVerified
-        ? (t("portal.verification.verified") || "Verified")
-        : (t("portal.verification.unverified") || "Pending Verification"),
-      subtitle: isChannelsVerified
-        ? (t("portal.dashboard.kpi.channelsConnected") || "WhatsApp & Email Connected")
-        : (t("portal.dashboard.kpi.channelsPending") || "Channels Verification Required"),
+      value: channelsValue,
+      subtitle: channelsSubtitle,
       badge: isChannelsVerified
         ? (t("portal.verification.verified") || "Verified")
         : (t("portal.dashboard.kpi.actionRequired") || "Action Needed"),
@@ -69,7 +94,9 @@ export function DashboardMetricsCards() {
             ? (t("portal.dashboard.kpi.warningPending") || "Pending Documents")
             : (t("portal.dashboard.kpi.actionRequired") || "Action Required"),
       subtitle: customer?.statusReason || "Enterprise Legal Compliance",
-      badge: customer?.accountStatus === "active" ? "Compliant" : "Review",
+      badge: customer?.accountStatus === "active" 
+        ? (t("portal.accountStatus.active") || "معتمد") 
+        : (t("portal.accountStatus.review") || "مراجعة"),
       icon: customer?.accountStatus === "active" ? CheckCircle2 : AlertCircle,
       href: "/portal/profile",
       color:

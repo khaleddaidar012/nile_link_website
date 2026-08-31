@@ -9,7 +9,7 @@ export default function PortalDashboardPage() {
     <div className="flex flex-col">
       <PortalHeader title="Client Dashboard" subtitle="Corporate legal files, shipping operations & compliance status" />
 
-      <div className="space-y-6 p-6 sm:p-8">
+      <div className="space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-8">
         {/* Urgent Account Health Alert Banner */}
         <AccountHealthAlertBanner />
 
@@ -17,7 +17,7 @@ export default function PortalDashboardPage() {
         <DashboardMetricsCards />
 
         {/* Main Grid: Quick Dropzone & Activity Timeline */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
           <div className="lg:col-span-1">
             <QuickUploadWidget />
           </div>

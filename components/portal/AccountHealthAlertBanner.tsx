@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useTranslations } from "next-intl"
 import {
   ShieldCheck,
@@ -12,6 +13,7 @@ import {
   Mail,
   ShieldAlert,
   FileCheck,
+  X,
 } from "lucide-react"
 import { Link } from "@/navigation"
 import { Button } from "@/components/ui/Button"
@@ -20,9 +22,14 @@ import { cn } from "@/lib/utils"
 
 export function AccountHealthAlertBanner() {
   const t = useTranslations()
-  const { user, customer, documentStats } = usePortal()
+  const { user, customer, documentStats, loading } = usePortal()
+  const [isDismissed, setIsDismissed] = useState(false)
 
-  if (!customer) return null
+  if (loading || !customer || !user) {
+    return (
+      <div className="h-28 w-full animate-pulse rounded-2xl bg-slate-200/60 dark:bg-slate-800/60"></div>
+    )
+  }
 
   const isChannelsUnverified = !user?.emailVerified
   const hasNoDocsUploaded = !documentStats || documentStats.totalDocs === 0
@@ -185,8 +192,17 @@ export function AccountHealthAlertBanner() {
   }
 
   // 5. CRITICAL RESTRICTED STATE (Expired Documents)
+  if (isDismissed) return null;
+
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-rose-500/40 bg-gradient-to-r from-rose-500/15 via-rose-500/5 to-transparent p-5 text-rose-950 shadow-sm sm:flex-row sm:items-center sm:justify-between dark:text-rose-200">
+    <div className="relative flex flex-col gap-3 rounded-2xl border border-rose-500/40 bg-gradient-to-r from-rose-500/15 via-rose-500/5 to-transparent p-5 pr-8 text-rose-950 shadow-sm sm:flex-row sm:items-center sm:justify-between dark:text-rose-200">
+      <button 
+        onClick={() => setIsDismissed(true)}
+        className="absolute top-3 right-3 rtl:right-auto rtl:left-3 flex h-7 w-7 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 hover:text-rose-700 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+        title="Dismiss"
+      >
+        <X className="h-4 w-4" />
+      </button>
       <div className="flex items-center gap-3.5">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-rose-500/20 text-rose-600 dark:text-rose-400 shadow-sm">
           <XCircle className="h-6 w-6" />
@@ -201,7 +217,7 @@ export function AccountHealthAlertBanner() {
           </p>
         </div>
       </div>
-      <Link href="/portal/documents">
+      <Link href="/portal/documents" className="rtl:ml-10 ltr:mr-10 mt-2 sm:mt-0">
         <Button size="sm" className="shrink-0 rounded-xl bg-rose-600 font-semibold text-white shadow hover:bg-rose-700">
           <RefreshCw className="mr-1.5 h-4 w-4 rtl:mr-0 rtl:ml-1.5" />
           <span>{t("portal.healthBanners.renewBtn") || "تجديد المستند المنتهي"}</span>

@@ -14,7 +14,8 @@
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "close": "Schließen",
-    "confirm": "Bestätigen"
+    "confirm": "Bestätigen",
+    "required": "Required"
   },
   "metadata": {
     "title": "NileLink | Globale Logistiklösungen",
@@ -176,7 +177,7 @@
     "title": "Weltweite Versandabdeckung",
     "description": "Mit einem weltweiten Netzwerk von Partnern sind wir bereit, Ihre Waren überallhin zum besten wettbewerbsfähigen Preis zu versenden."
   },
-"faq": {
+  "faq": {
     "subtitle": "FAQ",
     "title": "Häufig gestellte Fragen",
     "items": [
@@ -465,122 +466,75 @@
     }
   },
   "portal": {
-    "verification": {
-      "pageTitle": "Kanal- und Kontoverifizierung",
-      "pageSubtitle": "Verifizieren Sie Ihre geschäftliche E-Mail-Adresse und WhatsApp-Nummer für Zollabfertigungen und Sendungsbenachrichtigungen.",
-      "skipBtn": "Jetzt überspringen",
-      "verified": "Verifiziert",
-      "unverified": "Ausstehende Verifizierung",
-      "otpLabel": "6-stelligen Verifizierungscode eingeben",
-      "sendOtp": "Code senden",
-      "confirmOtp": "E-Mail bestätigen",
-      "confirmWa": "WhatsApp bestätigen",
-      "allVerifiedTitle": "Alle Kanäle verifiziert!",
-      "allVerifiedDesc": "Sie haben nun uneingeschränkten Zugriff auf alle Portaldienste.",
-      "pendingTitle": "Konto einsatzbereit",
-      "editBtn": "Ändern",
-      "editEmailPrompt": "Geschäfts-E-Mail ändern und Code automatisch erneut senden:",
-      "editPhonePrompt": "WhatsApp-Nummer ändern und Code automatisch erneut senden:",
-      "saveAndResend": "Speichern & Code senden",
-      "goToPortal": "Zum Kundenportal",
-      "continueToPortal": "Weiter zum Portal",
-      "emailChannel": {
-        "title": "Geschäftliche E-Mail",
-        "success": "Geschäfts-E-Mail erfolgreich verifiziert",
-        "activeDesc": "Alle Rechnungen, Berichte und Zertifikate werden an diese E-Mail gesendet."
-      },
-      "whatsappChannel": {
-        "title": "Verifizierte WhatsApp-Nummer",
-        "success": "WhatsApp-Nummer erfolgreich verifiziert",
-        "activeDesc": "Sie erhalten Echtzeit-Sendungsverfolgungen und dringende Benachrichtigungen über WhatsApp."
-      },
-      "skipModal": {
-        "title": "Überspringen der Verifizierung bestätigen",
-        "message": "Um alle Portaldienste zu nutzen und Kontoeinschränkungen zu vermeiden, verifizieren Sie bitte Ihre WhatsApp-Nummer und Geschäfts-E-Mail.",
-        "subtext": "Sie können die Verifizierung jederzeit über Ihr Dashboard nachholen.",
-        "verifyNowBtn": "Jetzt verifizieren",
-        "skipBtn": "Jetzt überspringen"
-      }
+    "header": {
+      "notifications": "Benachrichtigungen",
+      "markAllRead": "Alle als gelesen markieren",
+      "noNotifications": "Keine ungelesenen Benachrichtigungen",
+      "viewAll": "Alle Benachrichtigungen anzeigen",
+      "newBadge": "neu"
     },
     "sidebar": {
       "dashboard": "Dashboard",
-      "documents": "Dokumente & Rechtliches",
+      "documents": "Rechtsdokumente",
       "requests": "Serviceanfragen",
       "financials": "Finanzen & Rechnungen",
       "notifications": "Benachrichtigungen",
       "profile": "Unternehmensprofil",
-      "logout": "Abmelden",
-      "collapse": "Seitenleiste einklappen"
-    },
-    "activity": {
-      "uploadTitle": "Dokument Hochgeladen",
-      "uploadDesc": "Neues Dokument zur rechtlichen Überprüfung eingereicht",
-      "approveTitle": "Dokument Genehmigt",
-      "approveDesc": "Dokument erfolgreich vom NileLink-Team verifiziert",
-      "warningTitle": "Dokument Läuft Bald Ab",
-      "warningDesc": "Dokument nähert sich dem Ablaufdatum",
-      "verifyTitle": "Kanalverifizierung",
-      "verifyDesc": "Bestätigungscode über Kommunikationskanal gesendet",
-      "accountCreatedTitle": "Unternehmenskonto Registriert",
-      "accountCreatedDesc": "Konto erstellt und bereit für Compliance-Prüfung",
-      "uploadGuideTitle": "Richtlinien zum Hochladen",
-      "uploadGuideDesc": "Bitte laden Sie Ihren Handelsregisterauszug und Ihre Steuerkarte hoch"
+      "collapse": "Menü einklappen",
+      "logout": "Abmelden"
     },
     "dashboard": {
-      "welcomeBack": "Willkommen zurück",
-      "overviewSubtitle": "Verwalten Sie Ihre Unternehmensdokumente, Sendungen und den Compliance-Status.",
-      "accountStatus": "Kontostatus",
-      "activeDocs": "Genehmigte Dokumente",
-      "expiringDocs": "Bald ablaufend (≤10T)",
-      "pendingReview": "In Überprüfung",
-      "quickUpload": "Schneller Dokumenten-Upload",
-      "quickUploadDesc": "Ziehen Sie Ihre aktualisierten Dateien hierher",
-      "manageUploadBtn": "Dokumente Verwalten & Hochladen",
-      "recentActivity": "Aktuelle Aktivitäten",
+      "recentActivity": "Letzte Aktivitäten",
       "noActivity": "Keine aktuellen Aktivitäten aufgezeichnet.",
+      "quickUpload": "Schneller Dokumenten-Upload",
+      "quickUploadDesc": "Laden Sie Handelsregister, Steuerkarte oder Lizenzen in Sekundenschnelle hoch.",
+      "manageUploadBtn": "Dokumente verwalten & hochladen",
+      "activeDocs": "Quote genehmigter Dokumente",
+      "pendingReview": "Quote in Prüfung befindlicher Dokumente",
+      "expiringDocs": "Quote bald ablaufender Dokumente (≤10T)",
+      "accountStatus": "Kontostatus",
       "activity": {
-        "uploadTitle": "Dokument Hochgeladen",
-        "uploadDesc": "Neues Dokument zur rechtlichen Überprüfung eingereicht",
-        "approveTitle": "Dokument Genehmigt",
-        "approveDesc": "Dokument erfolgreich vom NileLink-Team verifiziert",
-        "warningTitle": "Dokument Läuft Bald Ab",
-        "warningDesc": "Dokument nähert sich dem Ablaufdatum",
-        "verifyTitle": "Kanalverifizierung",
-        "verifyDesc": "Bestätigungscode über Kommunikationskanal gesendet",
-        "accountCreatedTitle": "Unternehmenskonto Registriert",
-        "accountCreatedDesc": "Konto erstellt und bereit für Compliance-Prüfung",
-        "uploadGuideTitle": "Upload-Richtlinien für Dokumente",
-        "uploadGuideDesc": "Bitte Handelsregister und Steuerkarte hochladen"
+        "accountCreatedTitle": "Unternehmenskonto registriert",
+        "accountCreatedDesc": "Konto erstellt und bereit zur Compliance-Verifizierung",
+        "uploadGuideTitle": "Leitfaden zum Dokumenten-Upload",
+        "uploadGuideDesc": "Bitte laden Sie Handelsregister und Steuerkarte zur Zollfreigabe hoch",
+        "approveTitle": "Dokument offiziell genehmigt",
+        "warningTitle": "Dokumentenablauf steht bevor",
+        "verifyTitle": "Kanäle erfolgreich verifiziert",
+        "uploadTitle": "Neues Dokument hochgeladen"
       },
       "kpi": {
         "channels": "Kommunikationskanäle",
-        "channelsConnected": "WhatsApp & E-Mail Verbunden",
-        "channelsPending": "Kanalverifizierung Erforderlich",
+        "channelsConnected": "WhatsApp & E-Mail verbunden",
+        "channelsPending": "Kanalverifizierung erforderlich",
+        "actionRequired": "Handlung erforderlich",
         "activeCompliant": "Aktiv & Konform",
-        "warningPending": "Verifizierung Ausstehend",
-        "actionRequired": "Handlung Erforderlich",
-        "totalDocs": "Hochgeladene Dateien Insgesamt",
-        "storage": "Speicher",
-        "slotsAvailable": "Upload-Plätze verfügbar",
-        "ofTotalUploaded": "der hochgeladenen Dokumente genehmigt",
-        "ofTotalPending": "warten auf Prüfung",
-        "requiresRenewal": "erfordert Erneuerung",
-        "allGood": "Alle Dokumente aktuell"
+        "warningPending": "Ausstehende Dokumente",
+        "totalDocs": "Hochgeladene Dateien insgesamt",
+        "slotsAvailable": "Plätze verfügbar",
+        "storage": "Speicherplatz",
+        "ofTotalUploaded": "der hochgeladenen Dateien genehmigt",
+        "ofTotalPending": "warten auf Prüfung durch Zollmitarbeiter",
+        "requiresRenewal": "erfordert sofortige Erneuerung",
+        "allGood": "Alle Dokumente auf dem neuesten Stand"
       }
     },
+    "verification": {
+      "title": "Sicherheits- & Kanalverifizierung",
+      "verified": "Verifiziert ✓",
+      "unverified": "Verifizierung ausstehend"
+    },
     "healthBanners": {
-      "unverifiedTitle": "Konto Nicht Verifiziert",
-      "unverifiedDesc": "Die primären Kommunikationskanäle sind noch nicht verifiziert. Bitte verifizieren Sie diese, um Einschränkungen zu vermeiden.",
-      "verifyChannelsBtn": "Kanäle Jetzt Verifizieren",
-      "quickActionTitle": "Konto Noch Nicht Verifiziert — Bitte Verifizieren Sie Ihr Konto",
-      "quickActionDesc": "Bitte laden Sie Ihre offiziellen Unternehmensdokumente (Handelsregister, Steuerkarte, Lizenz) zur Genehmigung hoch.",
-      "uploadDocsBtn": "Dokumente Hochladen",
-      "allValid": "Alle Unternehmensdokumente sind verifiziert und aktuell.",
-      "allValidSub": "Ihr Konto entspricht vollständig den maritimen Zoll- und Frachtvorschriften.",
-      "warning": "Warnung: Einige Dokumente laufen bald ab. Bitte rechtzeitig erneuern.",
-      "critical": "Kritische Warnung: Obligatorische Dokumente sind abgelaufen. Dienste können eingeschränkt sein.",
-      "uploadBtn": "Erneuerungsdateien Hochladen",
-      "renewBtn": "Abgelaufenes Dokument Erneuern"
+      "unverifiedTitle": "Geschäfts-E-Mail nicht verifiziert",
+      "unverifiedDesc": "Bitte verifizieren Sie Ihre Geschäfts-E-Mail per OTP, um die Kontoeinrichtung abzuschließen und Zollbenachrichtigungen zu erhalten.",
+      "verifyChannelsBtn": "Kanäle jetzt verifizieren",
+      "critical": "Alert: Document Rejected or Expired",
+      "renewBtn": "Update Document"
+    },
+    "accountStatus": {
+      "active": "Active Account",
+      "warning": "Action Needed",
+      "inactive": "Restricted"
     }
   },
   "admin": {
@@ -760,71 +714,6 @@
       "expiring_soon": "Läuft bald ab",
       "expired": "Abgelaufen",
       "rejected": "Abgelehnt"
-    }
-  },
-  "portal": {
-    "header": {
-      "notifications": "Benachrichtigungen",
-      "markAllRead": "Alle als gelesen markieren",
-      "noNotifications": "Keine ungelesenen Benachrichtigungen",
-      "viewAll": "Alle Benachrichtigungen anzeigen",
-      "newBadge": "neu"
-    },
-    "sidebar": {
-      "dashboard": "Dashboard",
-      "documents": "Rechtsdokumente",
-      "requests": "Serviceanfragen",
-      "financials": "Finanzen & Rechnungen",
-      "notifications": "Benachrichtigungen",
-      "profile": "Unternehmensprofil",
-      "collapse": "Menü einklappen",
-      "logout": "Abmelden"
-    },
-    "dashboard": {
-      "recentActivity": "Letzte Aktivitäten",
-      "noActivity": "Keine aktuellen Aktivitäten aufgezeichnet.",
-      "quickUpload": "Schneller Dokumenten-Upload",
-      "quickUploadDesc": "Laden Sie Handelsregister, Steuerkarte oder Lizenzen in Sekundenschnelle hoch.",
-      "manageUploadBtn": "Dokumente verwalten & hochladen",
-      "activeDocs": "Quote genehmigter Dokumente",
-      "pendingReview": "Quote in Prüfung befindlicher Dokumente",
-      "expiringDocs": "Quote bald ablaufender Dokumente (≤10T)",
-      "accountStatus": "Kontostatus",
-      "activity": {
-        "accountCreatedTitle": "Unternehmenskonto registriert",
-        "accountCreatedDesc": "Konto erstellt und bereit zur Compliance-Verifizierung",
-        "uploadGuideTitle": "Leitfaden zum Dokumenten-Upload",
-        "uploadGuideDesc": "Bitte laden Sie Handelsregister und Steuerkarte zur Zollfreigabe hoch",
-        "approveTitle": "Dokument offiziell genehmigt",
-        "warningTitle": "Dokumentenablauf steht bevor",
-        "verifyTitle": "Kanäle erfolgreich verifiziert",
-        "uploadTitle": "Neues Dokument hochgeladen"
-      },
-      "kpi": {
-        "channels": "Kommunikationskanäle",
-        "channelsConnected": "WhatsApp & E-Mail verbunden",
-        "channelsPending": "Kanalverifizierung erforderlich",
-        "actionRequired": "Handlung erforderlich",
-        "activeCompliant": "Aktiv & Konform",
-        "warningPending": "Ausstehende Dokumente",
-        "totalDocs": "Hochgeladene Dateien insgesamt",
-        "slotsAvailable": "Plätze verfügbar",
-        "storage": "Speicherplatz",
-        "ofTotalUploaded": "der hochgeladenen Dateien genehmigt",
-        "ofTotalPending": "warten auf Prüfung durch Zollmitarbeiter",
-        "requiresRenewal": "erfordert sofortige Erneuerung",
-        "allGood": "Alle Dokumente auf dem neuesten Stand"
-      }
-    },
-    "verification": {
-      "title": "Sicherheits- & Kanalverifizierung",
-      "verified": "Verifiziert ✓",
-      "unverified": "Verifizierung ausstehend"
-    },
-    "healthBanners": {
-      "unverifiedTitle": "Geschäfts-E-Mail nicht verifiziert",
-      "unverifiedDesc": "Bitte verifizieren Sie Ihre Geschäfts-E-Mail per OTP, um die Kontoeinrichtung abzuschließen und Zollbenachrichtigungen zu erhalten.",
-      "verifyChannelsBtn": "Kanäle jetzt verifizieren"
     }
   },
   "rejectionReasons": {

@@ -14,7 +14,8 @@
     "edit": "Modifica",
     "delete": "Elimina",
     "close": "Chiudi",
-    "confirm": "Conferma"
+    "confirm": "Conferma",
+    "required": "Required"
   },
   "metadata": {
     "title": "NileLink | Soluzioni Logistiche Globali",
@@ -176,7 +177,7 @@
     "title": "Copertura di Spedizione Mondiale",
     "description": "Con una rete mondiale di partner in tutto il mondo, siamo pronti a spedire le tue merci ovunque al miglior prezzo competitivo."
   },
-"faq": {
+  "faq": {
     "subtitle": "FAQ",
     "title": "Domande Frequenti",
     "items": [
@@ -465,122 +466,75 @@
     }
   },
   "portal": {
-    "verification": {
-      "pageTitle": "Verifica del canale e dell'account",
-      "pageSubtitle": "Verifica l'e-mail aziendale e il numero WhatsApp per ricevere sdoganamenti e notifiche di spedizione.",
-      "skipBtn": "Salta ora",
-      "verified": "Verificato",
-      "unverified": "In attesa di verifica",
-      "otpLabel": "Inserisci il codice di verifica a 6 cifre",
-      "sendOtp": "Invia codice",
-      "confirmOtp": "Verifica e-mail",
-      "confirmWa": "Verifica WhatsApp",
-      "allVerifiedTitle": "Tutti i canali sono verificati!",
-      "allVerifiedDesc": "Ora hai accesso completo a tutti i servizi del portale.",
-      "pendingTitle": "Account pronto all'uso",
-      "editBtn": "Modifica",
-      "editEmailPrompt": "Modifica l'e-mail aziendale e invia automaticamente il nuovo codice:",
-      "editPhonePrompt": "Modifica il numero WhatsApp e invia automaticamente il nuovo codice:",
-      "saveAndResend": "Salva e invia codice",
-      "goToPortal": "Vai al Portale Clienti",
-      "continueToPortal": "Continua al Portale",
-      "emailChannel": {
-        "title": "E-mail aziendale di lavoro",
-        "success": "E-mail aziendale verificata con successo",
-        "activeDesc": "Tutte le fatture, i report e i certificati saranno inviati a questa e-mail."
-      },
-      "whatsappChannel": {
-        "title": "WhatsApp aziendale verificato",
-        "success": "Numero WhatsApp verificato con successo",
-        "activeDesc": "Riceverai aggiornamenti sul tracciamento e avvisi doganali tramite WhatsApp."
-      },
-      "skipModal": {
-        "title": "Conferma rinvio verifica",
-        "message": "Per utilizzare tutti i servizi ed evitare limitazioni, verifica il tuo WhatsApp e l'e-mail aziendale.",
-        "subtext": "Puoi completare la verifica in qualsiasi momento dalla tua dashboard.",
-        "verifyNowBtn": "Verifica ora",
-        "skipBtn": "Salta ora"
-      }
+    "header": {
+      "notifications": "Notifiche",
+      "markAllRead": "Segna tutte come lette",
+      "noNotifications": "Nessuna notifica non letta",
+      "viewAll": "Visualizza tutte le notifiche",
+      "newBadge": "nuovo"
     },
     "sidebar": {
       "dashboard": "Dashboard",
-      "documents": "Documenti & Legale",
+      "documents": "Documenti legali",
       "requests": "Richieste di servizio",
-      "financials": "Finanze & Fatture",
+      "financials": "Finanze e fatture",
       "notifications": "Notifiche",
       "profile": "Profilo aziendale",
-      "logout": "Esci",
-      "collapse": "Comprimi barra laterale"
-    },
-    "activity": {
-      "uploadTitle": "Documento Caricato",
-      "uploadDesc": "Nuovo documento inviato per la verifica legale",
-      "approveTitle": "Documento Approvato",
-      "approveDesc": "Documento verificato con successo dal team NileLink",
-      "warningTitle": "Documento in Scadenza",
-      "warningDesc": "Il documento si avvicina alla data di scadenza",
-      "verifyTitle": "Verifica Canale",
-      "verifyDesc": "Codice di verifica inviato tramite canale di comunicazione",
-      "accountCreatedTitle": "Account Aziendale Registrato",
-      "accountCreatedDesc": "Account creato e pronto per la verifica di conformità",
-      "uploadGuideTitle": "Guida al Caricamento",
-      "uploadGuideDesc": "Carica la visura camerale e il codice fiscale aziendale"
+      "collapse": "Riduci menu",
+      "logout": "Disconnetti"
     },
     "dashboard": {
-      "welcomeBack": "Bentornato",
-      "overviewSubtitle": "Gestisci i tuoi documenti aziendali, le spedizioni e lo stato di conformità.",
-      "accountStatus": "Stato account",
-      "activeDocs": "Documenti approvati",
-      "expiringDocs": "In scadenza (≤10g)",
-      "pendingReview": "In attesa di revisione",
-      "quickUpload": "Caricamento rapido documenti",
-      "quickUploadDesc": "Trascina qui i tuoi documenti legali aggiornati",
-      "manageUploadBtn": "Gestisci e Carica Documenti",
       "recentActivity": "Cronologia attività recenti",
       "noActivity": "Nessuna attività recente registrata.",
+      "quickUpload": "Caricamento rapido documenti",
+      "quickUploadDesc": "Carica il registro delle imprese, codice fiscale o licenze in pochi secondi.",
+      "manageUploadBtn": "Gestisci e carica documenti",
+      "activeDocs": "Rapporto documenti approvati",
+      "pendingReview": "Rapporto documenti in revisione",
+      "expiringDocs": "Rapporto documenti in scadenza (≤10g)",
+      "accountStatus": "Stato account",
       "activity": {
-        "uploadTitle": "Documento Caricato",
-        "uploadDesc": "Nuovo documento inviato per la verifica legale",
-        "approveTitle": "Documento Approvato",
-        "approveDesc": "Documento verificato e convalidato dal team NileLink",
-        "warningTitle": "Documento in Scadenza",
-        "warningDesc": "Documento vicino alla data di scadenza legale",
-        "verifyTitle": "Verifica Canali",
-        "verifyDesc": "Codice di conferma inviato tramite il canale di comunicazione",
-        "accountCreatedTitle": "Account Aziendale Registrato",
+        "accountCreatedTitle": "Account aziendale registrato",
         "accountCreatedDesc": "Account creato e pronto per la verifica di conformità",
-        "uploadGuideTitle": "Linee Guida per il Caricamento",
-        "uploadGuideDesc": "Si prega di caricare visura camerale e certificato fiscale"
+        "uploadGuideTitle": "Linee guida per il caricamento dei documenti",
+        "uploadGuideDesc": "Carica il registro delle imprese e il codice fiscale per l'approvazione doganale",
+        "approveTitle": "Documento approvato ufficialmente",
+        "warningTitle": "Scadenza documento imminente",
+        "verifyTitle": "Canali verificati con successo",
+        "uploadTitle": "Nuovo documento caricato"
       },
       "kpi": {
         "channels": "Canali di comunicazione",
-        "channelsConnected": "WhatsApp ed E-mail Connessi",
+        "channelsConnected": "WhatsApp ed e-mail collegati",
         "channelsPending": "Verifica canali richiesta",
-        "activeCompliant": "Attivo & Conforme",
-        "warningPending": "In attesa di verifica",
         "actionRequired": "Azione richiesta",
+        "activeCompliant": "Attivo e conforme",
+        "warningPending": "Documenti in sospeso",
         "totalDocs": "Totale file caricati",
+        "slotsAvailable": "posti disponibili",
         "storage": "Archiviazione",
-        "slotsAvailable": "spazi disponibili",
-        "ofTotalUploaded": "dei documenti caricati approvati",
-        "ofTotalPending": "in attesa di revisione",
+        "ofTotalUploaded": "dei file caricati approvati",
+        "ofTotalPending": "in attesa di revisione da parte dello staff",
         "requiresRenewal": "richiede rinnovo immediato",
-        "allGood": "Tutti i documenti aggiornati"
+        "allGood": "Tutti i documenti sono aggiornati"
       }
     },
+    "verification": {
+      "title": "Verifica di sicurezza e canali",
+      "verified": "Verificato ✓",
+      "unverified": "Verifica in sospeso"
+    },
     "healthBanners": {
-      "unverifiedTitle": "Account Non Verificato",
-      "unverifiedDesc": "I canali di comunicazione principali non sono ancora verificati. Completa la verifica per evitare limitazioni.",
-      "verifyChannelsBtn": "Verifica Canali Ora",
-      "quickActionTitle": "Account Non Ancora Verificato — Si Prega di Verificare l'Account",
-      "quickActionDesc": "Si prega di caricare i documenti legali ufficiali (Visura camerale, Codice fiscale, Licenza) per l'approvazione.",
-      "uploadDocsBtn": "Carica Documenti",
-      "allValid": "Tutti i documenti aziendali sono verificati e aggiornati.",
-      "allValidSub": "Il tuo account è pienamente conforme alle normative marittime e doganali.",
-      "warning": "Avviso: Alcuni documenti sono in scadenza. Si prega di rinnovarli tempestivamente.",
-      "critical": "Avviso Critico: Documenti obbligatori scaduti. I servizi potrebbero essere limitati.",
-      "uploadBtn": "Carica File di Rinnovo",
-      "renewBtn": "Rinnova Documento Scaduto"
+      "unverifiedTitle": "E-mail aziendale non verificata",
+      "unverifiedDesc": "Verifica la tua e-mail aziendale tramite OTP per completare la configurazione dell'account e ricevere avvisi doganali.",
+      "verifyChannelsBtn": "Verifica canali adesso",
+      "critical": "Alert: Document Rejected or Expired",
+      "renewBtn": "Update Document"
+    },
+    "accountStatus": {
+      "active": "Active Account",
+      "warning": "Action Needed",
+      "inactive": "Restricted"
     }
   },
   "admin": {
@@ -760,71 +714,6 @@
       "expiring_soon": "In scadenza",
       "expired": "Scaduto",
       "rejected": "Respinto"
-    }
-  },
-  "portal": {
-    "header": {
-      "notifications": "Notifiche",
-      "markAllRead": "Segna tutte come lette",
-      "noNotifications": "Nessuna notifica non letta",
-      "viewAll": "Visualizza tutte le notifiche",
-      "newBadge": "nuovo"
-    },
-    "sidebar": {
-      "dashboard": "Dashboard",
-      "documents": "Documenti legali",
-      "requests": "Richieste di servizio",
-      "financials": "Finanze e fatture",
-      "notifications": "Notifiche",
-      "profile": "Profilo aziendale",
-      "collapse": "Riduci menu",
-      "logout": "Disconnetti"
-    },
-    "dashboard": {
-      "recentActivity": "Cronologia attività recenti",
-      "noActivity": "Nessuna attività recente registrata.",
-      "quickUpload": "Caricamento rapido documenti",
-      "quickUploadDesc": "Carica il registro delle imprese, codice fiscale o licenze in pochi secondi.",
-      "manageUploadBtn": "Gestisci e carica documenti",
-      "activeDocs": "Rapporto documenti approvati",
-      "pendingReview": "Rapporto documenti in revisione",
-      "expiringDocs": "Rapporto documenti in scadenza (≤10g)",
-      "accountStatus": "Stato account",
-      "activity": {
-        "accountCreatedTitle": "Account aziendale registrato",
-        "accountCreatedDesc": "Account creato e pronto per la verifica di conformità",
-        "uploadGuideTitle": "Linee guida per il caricamento dei documenti",
-        "uploadGuideDesc": "Carica il registro delle imprese e il codice fiscale per l'approvazione doganale",
-        "approveTitle": "Documento approvato ufficialmente",
-        "warningTitle": "Scadenza documento imminente",
-        "verifyTitle": "Canali verificati con successo",
-        "uploadTitle": "Nuovo documento caricato"
-      },
-      "kpi": {
-        "channels": "Canali di comunicazione",
-        "channelsConnected": "WhatsApp ed e-mail collegati",
-        "channelsPending": "Verifica canali richiesta",
-        "actionRequired": "Azione richiesta",
-        "activeCompliant": "Attivo e conforme",
-        "warningPending": "Documenti in sospeso",
-        "totalDocs": "Totale file caricati",
-        "slotsAvailable": "posti disponibili",
-        "storage": "Archiviazione",
-        "ofTotalUploaded": "dei file caricati approvati",
-        "ofTotalPending": "in attesa di revisione da parte dello staff",
-        "requiresRenewal": "richiede rinnovo immediato",
-        "allGood": "Tutti i documenti sono aggiornati"
-      }
-    },
-    "verification": {
-      "title": "Verifica di sicurezza e canali",
-      "verified": "Verificato ✓",
-      "unverified": "Verifica in sospeso"
-    },
-    "healthBanners": {
-      "unverifiedTitle": "E-mail aziendale non verificata",
-      "unverifiedDesc": "Verifica la tua e-mail aziendale tramite OTP per completare la configurazione dell'account e ricevere avvisi doganali.",
-      "verifyChannelsBtn": "Verifica canali adesso"
     }
   },
   "rejectionReasons": {

@@ -14,7 +14,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "close": "Close",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "required": "Required"
   },
   "metadata": {
     "title": "NileLink | Global Logistics Solutions",
@@ -122,21 +123,21 @@
       "subtitle": "Choose the Right Option",
       "seaFreight": {
         "method": "Sea Freight",
-        "transit": "7\u201330 days",
+        "transit": "7–30 days",
         "cost": "$$",
         "capacity": "Unlimited",
         "bestFor": "Large shipments, non-urgent"
       },
       "airFreight": {
         "method": "Air Freight",
-        "transit": "1\u20135 days",
+        "transit": "1–5 days",
         "cost": "$$$",
         "capacity": "Limited",
         "bestFor": "Time-sensitive, high-value"
       },
       "roadFreight": {
         "method": "Road Freight",
-        "transit": "1\u20137 days",
+        "transit": "1–7 days",
         "cost": "$",
         "capacity": "Medium",
         "bestFor": "Regional, door-to-door"
@@ -176,7 +177,7 @@
     "title": "Worldwide Shipping Coverage",
     "description": "With a worldwide network of partners around the globe, we are ready to ship your goods anywhere with the best competitive price."
   },
-"faq": {
+  "faq": {
     "subtitle": "FAQ",
     "title": "Frequently Asked Questions",
     "items": [
@@ -494,176 +495,147 @@
     }
   },
   "portal": {
-    "verification": {
-      "pageTitle": "Channel & Account Verification",
-      "pageSubtitle": "Verify your corporate email and WhatsApp number to receive customs clearances and shipment notices.",
-      "skipBtn": "Skip Now",
-      "verified": "Verified",
-      "unverified": "Pending Verification",
-      "otpLabel": "Enter the 6-digit verification code",
-      "sendOtp": "Send Code",
-      "confirmOtp": "Verify Email",
-      "confirmWa": "Verify WhatsApp",
-      "allVerifiedTitle": "All Channels Verified!",
-      "allVerifiedDesc": "You now have full unrestricted access to shipping and customs portal services.",
-      "pendingTitle": "Account Ready for Use",
-      "editBtn": "Change",
-      "editEmailPrompt": "Change Business Email and auto-resend verification code:",
-      "editPhonePrompt": "Change WhatsApp Number and auto-resend verification code:",
-      "saveAndResend": "Save & Send Code",
-      "goToPortal": "Go to Client Portal",
-      "continueToPortal": "Continue to Portal",
-      "emailChannel": {
-        "title": "Business Work Email",
-        "success": "Work Email Verified Successfully",
-        "activeDesc": "All invoices, reports, and compliance certificates will be sent to this email."
-      },
-      "whatsappChannel": {
-        "title": "Verified WhatsApp Mobile",
-        "success": "WhatsApp Mobile Verified Successfully",
-        "activeDesc": "You will receive real-time container tracking, customs updates, and urgent alerts via WhatsApp."
-      },
-      "skipModal": {
-        "title": "Confirm Skipping Verification",
-        "message": "To enjoy the full range of portal services and avoid account restrictions, please verify your WhatsApp and Business Email.",
-        "subtext": "You can complete channel verification anytime from your dashboard, but certain customs operations and quote requests may require a verified account.",
-        "verifyNowBtn": "Verify Now",
-        "skipBtn": "Skip Now"
-      }
-    },
-    "activity": {
-      "uploadTitle": "Document Uploaded",
-      "uploadDesc": "New document uploaded for legal verification",
-      "approveTitle": "Document Approved",
-      "approveDesc": "Document successfully reviewed and approved by staff",
-      "warningTitle": "Document Expiring Soon",
-      "warningDesc": "Document approaching expiration date",
-      "verifyTitle": "Channel Verification",
-      "verifyDesc": "Verification code dispatched via communication channel",
-      "accountCreatedTitle": "Corporate Account Registered",
-      "accountCreatedDesc": "Account created and ready for compliance verification",
-      "uploadGuideTitle": "Document Upload Guidelines",
-      "uploadGuideDesc": "Please upload your Commercial Register and Tax Card for clearance approval"
+    "header": {
+      "notifications": "Notifications",
+      "markAllRead": "Mark all as read",
+      "noNotifications": "No unread notifications",
+      "viewAll": "View all notifications",
+      "newBadge": "new"
     },
     "sidebar": {
       "dashboard": "Dashboard",
-      "documents": "Documents & Legal",
+      "documents": "Legal Documents",
       "requests": "Service Requests",
       "financials": "Financials & Invoices",
       "notifications": "Notifications",
       "profile": "Company Profile",
-      "logout": "Sign Out",
-      "collapse": "Collapse Sidebar"
-    },
-    "header": {
-      "search": "Search documents, shipments...",
-      "notifications": "Notifications",
-      "viewAll": "View all notifications",
-      "markAllRead": "Mark all as read",
-      "noNotifications": "No unread notifications",
-      "clientPortal": "Client Portal",
-      "adminPortal": "Admin Portal"
+      "collapse": "Collapse Sidebar",
+      "logout": "Sign Out"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back",
-      "overviewSubtitle": "Manage your corporate documents, shipments, and compliance status.",
-      "accountStatus": "Account Status",
-      "activeDocs": "Active / Approved Docs",
-      "expiringDocs": "Expiring Soon (≤10d)",
-      "pendingReview": "Pending Staff Review",
-      "quickUpload": "Quick Document Upload",
-      "quickUploadDesc": "Drag & drop your updated legal files here",
-      "manageUploadBtn": "Manage & Upload Documents",
       "recentActivity": "Recent Activity Timeline",
       "noActivity": "No recent activity recorded.",
+      "quickUpload": "Quick Document Upload",
+      "quickUploadDesc": "Upload your Commercial Register, Tax Card, or licenses in seconds.",
+      "manageUploadBtn": "Manage & Upload Documents",
+      "activeDocs": "Approved Documents Ratio",
+      "pendingReview": "In-Review Documents Ratio",
+      "expiringDocs": "Expiring Soon Ratio (≤10d)",
+      "accountStatus": "Account Status",
       "activity": {
-        "uploadTitle": "Document Uploaded",
-        "uploadDesc": "New document uploaded for legal verification",
-        "approveTitle": "Document Approved",
-        "approveDesc": "Document successfully reviewed and approved by staff",
-        "warningTitle": "Document Expiring Soon",
-        "warningDesc": "Document approaching expiration date",
-        "verifyTitle": "Channel Verification",
-        "verifyDesc": "Verification code dispatched via communication channel",
         "accountCreatedTitle": "Corporate Account Registered",
         "accountCreatedDesc": "Account created and ready for compliance verification",
         "uploadGuideTitle": "Document Upload Guidelines",
-        "uploadGuideDesc": "Please upload your Commercial Register and Tax Card for clearance approval"
+        "uploadGuideDesc": "Please upload your Commercial Register and Tax Card for clearance approval",
+        "approveTitle": "Document Approved Officially",
+        "warningTitle": "Document Expiry Approaching",
+        "verifyTitle": "Channels Verified Successfully",
+        "uploadTitle": "New Document Uploaded"
       },
       "kpi": {
         "channels": "Communication Channels",
         "channelsConnected": "WhatsApp & Email Connected",
         "channelsPending": "Channels Verification Required",
+        "actionRequired": "Action Needed",
         "activeCompliant": "Active & Compliant",
-        "warningPending": "Pending Verification",
-        "actionRequired": "Action Required",
+        "warningPending": "Pending Documents",
         "totalDocs": "Total Uploaded Files",
-        "storage": "Storage",
         "slotsAvailable": "slots available",
+        "storage": "Storage",
         "ofTotalUploaded": "of uploaded files approved",
         "ofTotalPending": "awaiting staff review",
         "requiresRenewal": "requires immediate renewal",
         "allGood": "All documents up to date"
       }
     },
+    "verification": {
+      "title": "Security & Channel Verification",
+      "verified": "Verified ✓",
+      "unverified": "Pending Verification"
+    },
     "healthBanners": {
-      "unverifiedTitle": "Account Not Verified",
-      "unverifiedDesc": "Primary communication channels (Work Email or WhatsApp) are unverified. Please complete verification to prevent clearance holds.",
+      "unverifiedTitle": "Corporate Email Not Verified",
+      "unverifiedDesc": "Please verify your corporate email via OTP to complete account setup and receive customs clearance notices.",
       "verifyChannelsBtn": "Verify Channels Now",
-      "newAccountUploadTitle": "Account Verification Documents Required",
-      "newAccountUploadDesc": "Please upload official company legal documents (Commercial Register, Tax Card, Import/Export License) for compliance approval.",
-      "quickActionTitle": "Account Verification Documents Required",
-      "quickActionDesc": "Please upload mandatory corporate legal files (Commercial Register, Tax Card, Import/Export License) for official compliance approval.",
-      "uploadDocsBtn": "Upload Documents Now",
-      "allValid": "All company documents are verified and up to date.",
-      "allValidSub": "Your account is in full compliance with maritime customs and cargo regulations.",
-      "warning": "Warning: You have documents expiring soon. Please renew to avoid service disruption.",
-      "critical": "Critical: Mandatory documents have expired. Service actions may be restricted.",
-      "uploadBtn": "Upload Renewal Files",
-      "renewBtn": "Renew Expired Document"
+      "critical": "Alert: Document Rejected or Expired",
+      "renewBtn": "Update Document"
+    },
+    "accountStatus": {
+      "active": "Compliant",
+      "warning": "Action Needed",
+      "inactive": "Restricted",
+      "review": "Review"
     }
   },
   "documents": {
-    "title": "Corporate Documents Registry",
     "subtitle": "Upload and manage up to 20 business certificates, licenses & agreements",
     "registeredCount": "{count} of {max} documents registered",
+    "quotaHeader": "{count} / {max} Documents Registered",
+    "slotsRemaining": "{slots} slots remaining",
     "hideUpload": "Hide Upload Area",
-    "showUpload": "Upload New Documents",
+    "showUpload": "Upload Official Documents",
+    "dropzoneHint": "Supports PDF, PNG, JPG, WEBP up to 10MB each. You can upload up to {slots} more files in this batch.",
+    "stagedCount": "Staged Files for Upload ({count})",
+    "searchPlaceholder": "Search documents by name or file...",
+    "allCategories": "All Categories",
+    "allStatuses": "All Statuses",
+    "loading": "Loading documents registry...",
+    "noDocsFound": "No documents registered yet",
+    "noDocsSub": "Official company certificates and licenses will appear here.",
+    "batchUploading": "Uploading document batch...",
+    "uploadedBadge": "Uploaded",
+    "validLeft": "Valid ({days}d left)",
     "upload": {
-      "title": "Upload Corporate Documents (Up to 20 Files)",
-      "dragDrop": "Drag and drop your files here or click to browse",
-      "formats": "Supported formats: PDF, JPEG, PNG, WEBP (Max 10MB per file)",
-      "selectCategory": "Select Category",
-      "enterTitle": "Document Title",
-      "submitBtn": "Upload Files"
+      "title": "Upload Corporate Documents",
+      "subtitle": "Support up to 20 documents per company account. Max 10MB per file (PDF, PNG, JPG).",
+      "dropzone": "Drag & drop legal files here, or click to browse",
+      "selectedFiles": "Staged Files for Upload",
+      "quotaUsed": "Document Quota Used",
+      "quotaLimit": "20 documents limit reached",
+      "uploadAll": "Start Uploading Files",
+      "uploading": "Uploading {current} of {total} files...",
+      "success": "All documents uploaded successfully! Status set to Pending Review.",
+      "retry": "Retry Failed File",
+      "cancel": "Cancel Upload"
     },
     "table": {
-      "title": "Company Documents",
-      "category": "Category",
-      "fileName": "File Name",
-      "status": "Status",
-      "expiryDate": "Expiry Date",
-      "actions": "Actions",
-      "uploadNew": "Upload New Document",
-      "noDocsFound": "No Documents Found",
-      "noDocsSub": "Upload your corporate certificates or licenses to begin legal verification."
+      "title": "Company Documents Registry",
+      "colName": "Document Name",
+      "colCategory": "Category",
+      "colStartDate": "Start Date",
+      "colExpiryDate": "Expiry Date",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "preview": "Preview",
+      "download": "Download",
+      "renew": "Renew / Replace",
+      "rejectionReasonBtn": "Rejection: {reason} (Click for details)"
+    },
+    "rejectionModal": {
+      "title": "Official Document Rejection Reason",
+      "reasonLabel": "Official Rejection Reason:",
+      "defaultReason": "Unclear copy or expired validity",
+      "notesLabel": "Audit & Review Team Notes:",
+      "notice": "Please re-upload a valid and clear copy of the document to complete customs clearance and account verification.",
+      "reupload": "Re-upload New Document"
+    },
+    "previewModal": {
+      "openFullScreen": "Open Full Screen",
+      "download": "Download Document",
+      "loading": "Loading live document preview...",
+      "fallbackNotice": "Preview not available for this file type."
     },
     "categories": {
-      "all": "All Categories",
       "commercial_register": "Commercial Register",
       "tax_card": "Tax Card",
-      "vat_certificate": "VAT Certificate",
-      "import_license": "Import License",
-      "export_license": "Export License",
-      "customs_power_of_attorney": "Customs Power of Attorney",
-      "operating_license": "Operating License",
-      "iso_certificate": "ISO Certificate",
+      "license": "Import / Export License",
+      "customs_certificate": "Customs Certificate",
+      "contract": "Contracts & Agreements",
       "other": "Other Document"
     },
     "statuses": {
-      "all": "All Statuses",
-      "approved": "Approved",
       "pending_review": "Pending Review",
+      "approved": "Approved / Active",
       "expiring_soon": "Expiring Soon",
       "expired": "Expired",
       "rejected": "Rejected"
@@ -677,7 +649,8 @@
       "documents": "All Documents",
       "notifications": "Notification Center",
       "staff": "Staff & Roles",
-      "logs": "Audit Activity Logs"
+      "logs": "Audit Activity Logs",
+      "settings": "System Settings"
     },
     "dashboard": {
       "title": "Operations & Expiry Analytics",
@@ -688,7 +661,8 @@
       "expiringSoon": "Expiring in ≤10 Days",
       "expiredTotal": "Expired Documents",
       "tickerWarning": "Urgent Expiry Alert: {count} documents across {clients} clients will expire within the next 10 days.",
-      "reviewCta": "Review Documents Now"
+      "reviewCta": "Review Documents Now",
+      "subtitle": "Live document verification queue, upcoming expirations & customer compliance"
     },
     "customerTable": {
       "title": "Customer Accounts Overview",
@@ -819,80 +793,6 @@
       "reviewBtnAction": "Review & Edit"
     }
   },
-  "documents": {
-    "subtitle": "Upload and manage up to 20 business certificates, licenses & agreements",
-    "registeredCount": "{count} of {max} documents registered",
-    "quotaHeader": "{count} / {max} Documents Registered",
-    "slotsRemaining": "{slots} slots remaining",
-    "hideUpload": "Hide Upload Area",
-    "showUpload": "Upload Official Documents",
-    "dropzoneHint": "Supports PDF, PNG, JPG, WEBP up to 10MB each. You can upload up to {slots} more files in this batch.",
-    "stagedCount": "Staged Files for Upload ({count})",
-    "searchPlaceholder": "Search documents by name or file...",
-    "allCategories": "All Categories",
-    "allStatuses": "All Statuses",
-    "loading": "Loading documents registry...",
-    "noDocsFound": "No documents registered yet",
-    "noDocsSub": "Official company certificates and licenses will appear here.",
-    "batchUploading": "Uploading document batch...",
-    "uploadedBadge": "Uploaded",
-    "validLeft": "Valid ({days}d left)",
-    "upload": {
-      "title": "Upload Corporate Documents",
-      "subtitle": "Support up to 20 documents per company account. Max 10MB per file (PDF, PNG, JPG).",
-      "dropzone": "Drag & drop legal files here, or click to browse",
-      "selectedFiles": "Staged Files for Upload",
-      "quotaUsed": "Document Quota Used",
-      "quotaLimit": "20 documents limit reached",
-      "uploadAll": "Start Uploading Files",
-      "uploading": "Uploading {current} of {total} files...",
-      "success": "All documents uploaded successfully! Status set to Pending Review.",
-      "retry": "Retry Failed File",
-      "cancel": "Cancel Upload"
-    },
-    "table": {
-      "title": "Company Documents Registry",
-      "colName": "Document Name",
-      "colCategory": "Category",
-      "colStartDate": "Start Date",
-      "colExpiryDate": "Expiry Date",
-      "colStatus": "Status",
-      "colActions": "Actions",
-      "preview": "Preview",
-      "download": "Download",
-      "renew": "Renew / Replace",
-      "rejectionReasonBtn": "Rejection: {reason} (Click for details)"
-    },
-    "rejectionModal": {
-      "title": "Official Document Rejection Reason",
-      "reasonLabel": "Official Rejection Reason:",
-      "defaultReason": "Unclear copy or expired validity",
-      "notesLabel": "Audit & Review Team Notes:",
-      "notice": "Please re-upload a valid and clear copy of the document to complete customs clearance and account verification.",
-      "reupload": "Re-upload New Document"
-    },
-    "previewModal": {
-      "openFullScreen": "Open Full Screen",
-      "download": "Download Document",
-      "loading": "Loading live document preview...",
-      "fallbackNotice": "Preview not available for this file type."
-    },
-    "categories": {
-      "commercial_register": "Commercial Register",
-      "tax_card": "Tax Card",
-      "license": "Import / Export License",
-      "customs_certificate": "Customs Certificate",
-      "contract": "Contracts & Agreements",
-      "other": "Other Document"
-    },
-    "statuses": {
-      "pending_review": "Pending Review",
-      "approved": "Approved / Active",
-      "expiring_soon": "Expiring Soon",
-      "expired": "Expired",
-      "rejected": "Rejected"
-    }
-  },
   "expiry": {
     "normal": "Valid",
     "warning": "Warning ({days} days left)",
@@ -900,71 +800,6 @@
     "critical": "Critical ({days} days left)",
     "expired": "Expired ({days} days ago)",
     "expiresToday": "Expires Today"
-  },
-  "portal": {
-    "header": {
-      "notifications": "Notifications",
-      "markAllRead": "Mark all as read",
-      "noNotifications": "No unread notifications",
-      "viewAll": "View all notifications",
-      "newBadge": "new"
-    },
-    "sidebar": {
-      "dashboard": "Dashboard",
-      "documents": "Legal Documents",
-      "requests": "Service Requests",
-      "financials": "Financials & Invoices",
-      "notifications": "Notifications",
-      "profile": "Company Profile",
-      "collapse": "Collapse Sidebar",
-      "logout": "Sign Out"
-    },
-    "dashboard": {
-      "recentActivity": "Recent Activity Timeline",
-      "noActivity": "No recent activity recorded.",
-      "quickUpload": "Quick Document Upload",
-      "quickUploadDesc": "Upload your Commercial Register, Tax Card, or licenses in seconds.",
-      "manageUploadBtn": "Manage & Upload Documents",
-      "activeDocs": "Approved Documents Ratio",
-      "pendingReview": "In-Review Documents Ratio",
-      "expiringDocs": "Expiring Soon Ratio (≤10d)",
-      "accountStatus": "Account Status",
-      "activity": {
-        "accountCreatedTitle": "Corporate Account Registered",
-        "accountCreatedDesc": "Account created and ready for compliance verification",
-        "uploadGuideTitle": "Document Upload Guidelines",
-        "uploadGuideDesc": "Please upload your Commercial Register and Tax Card for clearance approval",
-        "approveTitle": "Document Approved Officially",
-        "warningTitle": "Document Expiry Approaching",
-        "verifyTitle": "Channels Verified Successfully",
-        "uploadTitle": "New Document Uploaded"
-      },
-      "kpi": {
-        "channels": "Communication Channels",
-        "channelsConnected": "WhatsApp & Email Connected",
-        "channelsPending": "Channels Verification Required",
-        "actionRequired": "Action Needed",
-        "activeCompliant": "Active & Compliant",
-        "warningPending": "Pending Documents",
-        "totalDocs": "Total Uploaded Files",
-        "slotsAvailable": "slots available",
-        "storage": "Storage",
-        "ofTotalUploaded": "of uploaded files approved",
-        "ofTotalPending": "awaiting staff review",
-        "requiresRenewal": "requires immediate renewal",
-        "allGood": "All documents up to date"
-      }
-    },
-    "verification": {
-      "title": "Security & Channel Verification",
-      "verified": "Verified ✓",
-      "unverified": "Pending Verification"
-    },
-    "healthBanners": {
-      "unverifiedTitle": "Corporate Email Not Verified",
-      "unverifiedDesc": "Please verify your corporate email via OTP to complete account setup and receive customs clearance notices.",
-      "verifyChannelsBtn": "Verify Channels Now"
-    }
   },
   "rejectionReasons": {
     "illegible_copy": "Illegible or low quality copy",

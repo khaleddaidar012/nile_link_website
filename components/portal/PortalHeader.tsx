@@ -32,17 +32,17 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
   const [langOpen, setLangOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/90">
-      <div>
-        <h1 className="text-base font-bold text-slate-900 dark:text-white sm:text-lg">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 sm:px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/90 gap-2">
+      <div className="flex-1 min-w-0">
+        <h1 className="text-sm font-bold text-slate-900 dark:text-white sm:text-lg truncate">
           {title || (customer ? customer.companyName : "Client Portal")}
         </h1>
         {subtitle && (
-          <p className="text-xs text-secondary-500 dark:text-secondary-400 line-clamp-1">{subtitle}</p>
+          <p className="hidden sm:block text-xs text-secondary-500 dark:text-secondary-400 line-clamp-1">{subtitle}</p>
         )}
       </div>
 
-      <div className="flex items-center gap-2.5 sm:gap-3">
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
         {/* Language Switcher Dropdown */}
         <div className="relative">
           <button
@@ -95,14 +95,14 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
             </div>
             <div className="hidden text-left text-xs sm:block rtl:text-right">
               <div className="flex items-center gap-1.5">
-                <p className="font-bold text-secondary-900 dark:text-white leading-tight">
+                <p className="truncate max-w-[120px] font-bold text-secondary-900 dark:text-white leading-tight">
                   {user.firstName} {user.lastName}
                 </p>
                 {(!user.emailVerified || !user.whatsappVerified) && (
                   <Link
                     href="/portal/verification"
                     title="Account Pending Verification"
-                    className="rounded bg-amber-100 px-1.5 py-0.2 text-[9px] font-bold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 hover:bg-amber-200"
+                    className="shrink-0 rounded bg-amber-100 px-1.5 py-0.5 text-[9px] font-bold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 hover:bg-amber-200"
                   >
                     {t("portal.verification.unverified") || "غير موثق"}
                   </Link>

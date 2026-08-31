@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useTranslations, useLocale } from "next-intl"
 import { Clock, FileText, CheckCircle2, AlertTriangle, Send, CreditCard, ShieldCheck } from "lucide-react"
+import { usePortal } from "./PortalContext"
 
 interface ActivityItem {
   id: string
@@ -16,6 +17,7 @@ interface ActivityItem {
 export function RecentActivityFeed() {
   const t = useTranslations()
   const locale = useLocale()
+  const { refreshTrigger } = usePortal()
   const [activities, setActivities] = useState<ActivityItem[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -83,7 +85,7 @@ export function RecentActivityFeed() {
       })
       .catch(() => setActivities([]))
       .finally(() => setLoading(false))
-  }, [t, locale])
+  }, [t, locale, refreshTrigger])
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -139,7 +141,7 @@ export function RecentActivityFeed() {
         <div className="relative space-y-4 before:absolute before:top-2 before:bottom-2 before:left-3.5 before:w-0.5 before:bg-secondary-200 dark:before:bg-secondary-800 rtl:before:right-3.5 rtl:before:left-auto">
           {activities.map((act) => (
             <div key={act.id} className="relative flex items-start gap-3 pl-8 rtl:pr-8 rtl:pl-0">
-              <div className="absolute top-0.5 left-1.5 flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full bg-white ring-4 ring-white dark:bg-secondary-900 dark:ring-secondary-900 rtl:right-1.5 rtl:left-auto rtl:translate-x-1/2">
+              <div className="absolute top-0.5 left-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-white ring-4 ring-white dark:bg-secondary-900 dark:ring-secondary-900 rtl:right-1.5 rtl:left-auto">
                 {getIcon(act.type)}
               </div>
               <div className="flex-1">

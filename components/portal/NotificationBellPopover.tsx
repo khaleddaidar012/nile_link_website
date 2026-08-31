@@ -36,8 +36,15 @@ export function NotificationBellPopover() {
           }
         })
         .finally(() => setLoading(false))
+
+      // Auto-mark as read when opened
+      if (unreadCount > 0) {
+        fetch("/api/portal/notifications/mark-read", { method: "POST" }).then(() => {
+          refreshData()
+        })
+      }
     }
-  }, [isOpen])
+  }, [isOpen, unreadCount, refreshData])
 
   const markAllRead = async () => {
     await fetch("/api/portal/notifications/mark-read", { method: "POST" })

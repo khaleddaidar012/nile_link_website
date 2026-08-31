@@ -476,13 +476,31 @@ export function VerificationFlow() {
             <p className="mt-1.5 text-xs text-emerald-800/90 dark:text-emerald-300 max-w-md">
               حسابك الآن مفعل بالكامل. جاري توجيهك إلى لوحة تحكم المنصة...
             </p>
-            <Button
-              onClick={() => router.push("/portal")}
-              className="mt-5 rounded-xl bg-emerald-600 px-6 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-700"
-            >
-              <span>الانتقال فوراً إلى البوابة</span>
-              <ArrowRight className="mr-2 h-4 w-4 rtl:mr-0 rtl:ml-2 rtl:rotate-180" />
-            </Button>
+            <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 justify-center w-full">
+              <Button
+                onClick={() => router.push("/portal")}
+                className="rounded-xl bg-emerald-600 px-6 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-700 w-full sm:w-auto"
+              >
+                <span>الانتقال فوراً إلى البوابة</span>
+                <ArrowRight className="mr-2 h-4 w-4 rtl:mr-0 rtl:ml-2 rtl:rotate-180" />
+              </Button>
+              {!userStatus.whatsappVerified && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    handleSendOtp("whatsapp")
+                    setTimeout(() => {
+                      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
+                    }, 300)
+                  }}
+                  disabled={isSendingWhatsappOtp || whatsappCooldown > 0}
+                  className="rounded-xl border-emerald-500/30 bg-white px-6 py-2 text-xs font-bold text-emerald-700 shadow-sm hover:bg-emerald-50 dark:bg-slate-900 dark:text-emerald-400 dark:border-emerald-900 w-full sm:w-auto"
+                >
+                  <Phone className="mr-2 h-4 w-4 text-emerald-500 rtl:mr-0 rtl:ml-2" />
+                  <span>{isSendingWhatsappOtp ? "جاري الإرسال..." : "الخطوة القادمة توثيق الواتس"}</span>
+                </Button>
+              )}
+            </div>
           </div>
         ) : (
           /* OTP Input Form */
@@ -514,15 +532,7 @@ export function VerificationFlow() {
               )}
             </AnimatePresence>
 
-            {/* Dev Helper Preview Code */}
-            {emailPreviewCode && (
-              <div className="rounded-2xl border border-dashed border-primary-500/40 bg-primary-500/10 p-3 text-center text-xs text-primary-900 dark:text-primary-300">
-                <span>رمز التفعيل لتسهيل الاختبار السريع: </span>
-                <strong className="font-mono text-base font-black tracking-widest text-primary-600 dark:text-primary-400">
-                  {emailPreviewCode}
-                </strong>
-              </div>
-            )}
+            {/* Dev Helper Preview Code (Hidden per user request) */}
 
             {/* Segmented 6-Digit OTP Boxes */}
             <div>
@@ -619,14 +629,14 @@ export function VerificationFlow() {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                  رقم WhatsApp لتنبيهات الشحن العاجلة
+                  توثيق رقم WhatsApp
                 </h3>
-                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                  اختياري
+                <span className="rounded-full bg-rose-100 px-2 py-0.5 text-[10px] font-bold text-rose-700 dark:bg-rose-950/60 dark:text-rose-300">
+                  إجراء هام
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-mono dir-ltr mt-0.5">
-                {userStatus.phone || "+20 100 000 0000"}
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm leading-relaxed">
+                يرجى توثيق رقمك <span className="font-mono dir-ltr text-slate-700 dark:text-slate-300">{userStatus.phone || "+20 100 000 0000"}</span> لضمان استلام إشعارات التخليص الجمركي وتحديثات الشحن الفورية.
               </p>
             </div>
           </div>
@@ -637,11 +647,81 @@ export function VerificationFlow() {
               <span>مفعل</span>
             </span>
           ) : (
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-              غير ملزم
-            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={isSendingWhatsappOtp || whatsappCooldown > 0}
+              onClick={() => handleSendOtp("whatsapp")}
+              className="h-8 rounded-lg border-slate-200 text-[11px] font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            >
+              {isSendingWhatsappOtp ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : whatsappCooldown > 0 ? (
+                <span>إعادة إرسال ({whatsappCooldown}ث)</span>
+              ) : (
+                <span>توثيق الواتساب</span>
+              )}
+            </Button>
           )}
         </div>
+
+        {/* WhatsApp OTP Input Flow */}
+        <AnimatePresence>
+          {!userStatus.whatsappVerified && (whatsappSuccess || whatsappError || isSendingWhatsappOtp) && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="mt-6 border-t border-slate-200/50 pt-6 dark:border-slate-800/50"
+            >
+              {whatsappError && (
+                <div className="mb-4 flex items-center gap-2 rounded-2xl bg-rose-50 p-3 text-xs font-bold text-rose-700 border border-rose-200 dark:bg-rose-950/50 dark:border-rose-900 dark:text-rose-300">
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  <span>{whatsappError}</span>
+                </div>
+              )}
+
+              {whatsappSuccess && (
+                <div className="mb-4 flex items-center gap-2 rounded-2xl bg-emerald-50 p-3 text-xs font-bold text-emerald-800 border border-emerald-200 dark:bg-emerald-950/50 dark:border-emerald-900 dark:text-emerald-300">
+                  <CheckCircle className="h-4 w-4 shrink-0 text-emerald-600" />
+                  <span>{whatsappSuccess}</span>
+                </div>
+              )}
+
+              {/* Dev Helper Preview Code (Hidden per user request) */}
+
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex justify-between gap-1 sm:gap-2 dir-ltr" dir="ltr">
+                  {whatsappOtp.map((digit, idx) => (
+                    <input
+                      key={`wa-digit-${idx}`}
+                      ref={(el) => {
+                        whatsappInputRefs.current[idx] = el
+                      }}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit}
+                      onChange={(e) => handleOtpChange("whatsapp", idx, e.target.value)}
+                      onKeyDown={(e) => handleOtpKeyDown("whatsapp", idx, e)}
+                      onPaste={(e) => handleOtpPaste("whatsapp", e)}
+                      className="h-10 w-9 sm:h-12 sm:w-11 rounded-xl border border-slate-300 bg-white text-center text-lg font-black text-slate-900 shadow-sm transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                    />
+                  ))}
+                </div>
+
+                <Button
+                  type="button"
+                  disabled={isVerifyingWhatsapp || whatsappOtp.join("").length !== 6}
+                  onClick={() => handleVerifyOtp("whatsapp")}
+                  className="w-full sm:w-auto flex-1 rounded-xl bg-emerald-600 py-2.5 text-xs font-bold text-white hover:bg-emerald-700 disabled:opacity-50"
+                >
+                  {isVerifyingWhatsapp ? <Loader2 className="h-4 w-4 animate-spin" /> : "تأكيد الرمز"}
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   )
