@@ -1,21 +1,20 @@
 import mongoose, { Schema, Document as MongooseDoc, Model } from "mongoose"
 
 export type RequestServiceType =
-  | "freight_booking"
+  | "sea_freight"
+  | "air_freight"
+  | "land_freight"
   | "customs_clearance"
   | "warehousing"
-  | "transportation"
+  | "inland_transportation"
   | "general_inquiry"
+
+export type OperationType = "import" | "export" | "transit" | "none"
 
 export type RequestPriority = "low" | "medium" | "high" | "urgent"
 
-export type RequestStatus =
-  | "submitted"
-  | "under_review"
-  | "in_progress"
-  | "waiting_customer"
-  | "completed"
-  | "cancelled"
+// Statuses are dynamic per service but we allow any string for flexibility in the schema
+export type RequestStatus = string
 
 export interface IRequestTimeline {
   status: string
@@ -36,7 +35,12 @@ export interface ICustomerRequest extends MongooseDoc {
   customerId: mongoose.Types.ObjectId
   requestedBy: mongoose.Types.ObjectId
   trackingNumber: string
-  serviceType: RequestServiceType
+  // Legacy fields (optional for backward compatibility)
+  serviceType?: RequestServiceType
+  operationType?: OperationType
+  details?: any // Dynamic payload based on serviceType
+  // New field for multi-service requests
+  services: mongoose.Types.ObjectId[] // Array of RequestService IDs
   subject: string
   description: string
   priority: RequestPriority
@@ -91,14 +95,25 @@ const CustomerRequestSchema = new Schema<ICustomerRequest>(
     serviceType: {
       type: String,
       enum: [
-        "freight_booking",
+        "sea_freight",
+        "air_freight",
+        "land_freight",
         "customs_clearance",
         "warehousing",
-        "transportation",
+        "inland_transportation",
         "general_inquiry",
       ],
-      default: "general_inquiry",
+      default: null, // Legacy optional
       index: true,
+    },
+    operationType: {
+      type: String,
+      enum: ["import", "export", "transit", "none"],
+      default: "none",
+    },
+    services: {
+      type: [{ type: Schema.Types.ObjectId, ref: "RequestService" }],
+      default: [],
     },
     subject: {
       type: String,
@@ -116,16 +131,12 @@ const CustomerRequestSchema = new Schema<ICustomerRequest>(
     },
     status: {
       type: String,
-      enum: [
-        "submitted",
-        "under_review",
-        "in_progress",
-        "waiting_customer",
-        "completed",
-        "cancelled",
-      ],
       default: "submitted",
       index: true,
+    },
+    details: {
+      type: Schema.Types.Mixed,
+      default: {},
     },
     assignedStaffId: {
       type: Schema.Types.ObjectId,
@@ -148,7 +159,8 @@ const CustomerRequestSchema = new Schema<ICustomerRequest>(
 
 CustomerRequestSchema.index({ customerId: 1, status: 1 })
 
-export const CustomerRequest: Model<ICustomerRequest> =
-  mongoose.models.CustomerRequest ||
-  mongoose.model<ICustomerRequest>("CustomerRequest", CustomerRequestSchema)
+if (mongoose.models.CustomerRequest) {
+  delete mongoose.models.CustomerRequest;
+}
+export const CustomerRequest: Model<ICustomerRequest> = mongoose.model<ICustomerRequest>("CustomerRequest", CustomerRequestSchema)
 export default CustomerRequest

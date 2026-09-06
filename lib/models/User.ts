@@ -17,6 +17,7 @@ export interface IUser extends Document {
   customerId?: mongoose.Types.ObjectId
   firstName: string
   lastName: string
+  jobTitle?: string
   phone?: string
   avatarUrl?: string
   status: UserStatus
@@ -81,6 +82,10 @@ const UserSchema = new Schema<IUser>(
     lastName: {
       type: String,
       required: true,
+      trim: true,
+    },
+    jobTitle: {
+      type: String,
       trim: true,
     },
     phone: {

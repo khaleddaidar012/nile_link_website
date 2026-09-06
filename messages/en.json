@@ -15,7 +15,8 @@
     "delete": "Delete",
     "close": "Close",
     "confirm": "Confirm",
-    "required": "Required"
+    "required": "Required",
+    "details": "Details"
   },
   "metadata": {
     "title": "NileLink | Global Logistics Solutions",
@@ -495,6 +496,15 @@
     }
   },
   "portal": {
+    "verification": {
+      "title": "Security & Channel Verification",
+      "verified": "Verified ✓",
+      "unverified": "Unverified",
+      "partial": "Partial",
+      "emailOnlySubtitle": "Email verified",
+      "whatsappOnlySubtitle": "Whatsapp verified",
+      "unverifiedSubtitle": "No channel verified"
+    },
     "header": {
       "notifications": "Notifications",
       "markAllRead": "Mark all as read",
@@ -518,9 +528,9 @@
       "quickUpload": "Quick Document Upload",
       "quickUploadDesc": "Upload your Commercial Register, Tax Card, or licenses in seconds.",
       "manageUploadBtn": "Manage & Upload Documents",
-      "activeDocs": "Approved Documents Ratio",
+      "activeDocs": "Active Docs",
       "pendingReview": "In-Review Documents Ratio",
-      "expiringDocs": "Expiring Soon Ratio (≤10d)",
+      "expiringDocs": "Expiring Docs",
       "accountStatus": "Account Status",
       "activity": {
         "accountCreatedTitle": "Corporate Account Registered",
@@ -537,34 +547,280 @@
         "channelsConnected": "WhatsApp & Email Connected",
         "channelsPending": "Channels Verification Required",
         "actionRequired": "Action Needed",
-        "activeCompliant": "Active & Compliant",
-        "warningPending": "Pending Documents",
-        "totalDocs": "Total Uploaded Files",
-        "slotsAvailable": "slots available",
+        "activeCompliant": "Active",
+        "warningPending": "Warning",
+        "totalDocs": "Total Docs",
+        "slotsAvailable": "Slots Available",
         "storage": "Storage",
-        "ofTotalUploaded": "of uploaded files approved",
+        "ofTotalUploaded": "Of Total Uploaded",
         "ofTotalPending": "awaiting staff review",
-        "requiresRenewal": "requires immediate renewal",
-        "allGood": "All documents up to date"
-      }
-    },
-    "verification": {
-      "title": "Security & Channel Verification",
-      "verified": "Verified ✓",
-      "unverified": "Pending Verification"
+        "requiresRenewal": "Requires Renewal",
+        "allGood": "All Good",
+        "awaitingStaff": "Awaiting Staff"
+      },
+      "pendingDocs": "Pending Docs",
+      "channels": "Channels"
     },
     "healthBanners": {
       "unverifiedTitle": "Corporate Email Not Verified",
       "unverifiedDesc": "Please verify your corporate email via OTP to complete account setup and receive customs clearance notices.",
       "verifyChannelsBtn": "Verify Channels Now",
       "critical": "Alert: Document Rejected or Expired",
-      "renewBtn": "Update Document"
+      "renewBtn": "Update Document",
+      "allValid": "All Documents Valid",
+      "allValidSub": "Your corporate compliance documents are up to date and verified."
     },
     "accountStatus": {
-      "active": "Compliant",
+      "active": "Active",
       "warning": "Action Needed",
       "inactive": "Restricted",
       "review": "Review"
+    },
+    "notifications": {
+      "document_uploaded": {
+        "title": "Document Uploaded",
+        "message": "A new document has been uploaded."
+      },
+      "document_approved": {
+        "title": "Document Approved",
+        "message": "Your document has been approved."
+      },
+      "document_rejected": {
+        "title": "Document Rejected",
+        "message": "Your document was rejected."
+      },
+      "document_expired": {
+        "title": "Document Expired",
+        "message": "Your document has expired."
+      },
+      "document_expiring_10d": {
+        "title": "Expiring Soon",
+        "message": "A document is expiring in 10 days."
+      },
+      "manual_staff_warning": {
+        "title": "Staff Alert",
+        "message": "A new alert from the administration."
+      },
+      "account_status_change": {
+        "title": "Status Update",
+        "message": "Your account status was updated."
+      },
+      "request_update": {
+        "title": "Request Update",
+        "message": "An update regarding your request."
+      },
+      "document_expiring_7d": {
+        "title": "Expiring Soon",
+        "message": "A document is expiring in 7 days."
+      },
+      "document_expiring_3d": {
+        "title": "Expiring Soon",
+        "message": "A document is expiring in 3 days."
+      },
+      "document_expiring_1d": {
+        "title": "Expiring Soon",
+        "message": "A document is expiring in 1 day."
+      }
+    },
+    "requests": {
+      "subtitle": "Track live shipments, customs clearances, and operations inquiries in real time",
+      "activeRequests": "Active Service Requests",
+      "activeRequestsSub": "Track your ongoing operations and shipments",
+      "new": {
+        "title": "Select a Service",
+        "subtitle": "Choose the type of logistics operation you need.",
+        "selected_count": "service(s) selected",
+        "continue": "Continue to Details",
+        "startRequest": "Start Request",
+        "sea_freight": "Sea Freight",
+        "sea_freight_desc": "FCL and LCL shipping solutions across the globe.",
+        "air_freight": "Air Freight",
+        "air_freight_desc": "Fast and reliable air cargo transportation.",
+        "land_freight": "Land Freight",
+        "land_freight_desc": "Seamless overland transportation.",
+        "customs": "Customs Clearance",
+        "customs_clearance": "Customs Clearance",
+        "customs_desc": "Expert handling of customs procedures & ACID.",
+        "warehousing": "Warehousing & Storage",
+        "warehousing_desc": "Secure and efficient storage solutions.",
+        "inland": "Inland Transportation",
+        "inland_transportation": "Inland Transportation",
+        "inland_desc": "Local and regional cargo transport.",
+        "general": "General Logistics Inquiry",
+        "general_inquiry": "General Logistics Inquiry",
+        "general_desc": "Ask us anything about shipping or complex operations.",
+        "sea_freight_form": {
+          "title": "New Sea Freight Booking",
+          "subtitle": "Fill in the shipment details below.",
+          "step1": "Routing",
+          "step2": "Cargo",
+          "step3": "Review",
+          "operation_type": "Operation Type",
+          "import": "Import",
+          "export": "Export",
+          "transit": "Transit",
+          "pol": "Port of Loading (POL)",
+          "pol_placeholder": "e.g. Alexandria Port",
+          "pod": "Port of Discharge (POD)",
+          "pod_placeholder": "e.g. Hamburg Port",
+          "expected_date": "Expected Departure Date",
+          "shipment_type": "Shipment Type",
+          "fcl": "Full Container Load (FCL)",
+          "lcl": "Less than Container (LCL)",
+          "container_size": "Container Size/Type",
+          "container_count": "Number of Containers",
+          "commodity": "Commodity Description",
+          "commodity_placeholder": "e.g. Fresh Citrus",
+          "weight": "Estimated Gross Weight (kg)",
+          "weight_placeholder": "e.g. 24000",
+          "review_title": "Review your Booking",
+          "review_operation": "Operation",
+          "review_route": "Route",
+          "review_cargo": "Cargo Type",
+          "priority": "Priority",
+          "cancel": "Cancel",
+          "back": "Back",
+          "next": "Next Step",
+          "submit": "Submit Booking",
+          "processing": "Processing..."
+        },
+        "air_freight_form": {
+          "title": "New Air Freight Booking",
+          "origin_airport": "Origin Airport",
+          "origin_placeholder": "e.g. Cairo International",
+          "destination_airport": "Destination Airport",
+          "destination_placeholder": "e.g. Dubai International",
+          "volume": "Total Volume (CBM)",
+          "volume_placeholder": "e.g. 2.5"
+        },
+        "customs_form": {
+          "title": "New Customs Clearance",
+          "step1": "Basic Info",
+          "step2": "ACID & Cargo",
+          "port": "Customs Port",
+          "port_placeholder": "e.g. Alexandria Port, Cairo Airport",
+          "cargo_type": "Cargo Type",
+          "acid_title": "ACID Number (Nafeza)",
+          "has_acid": "Do you have an ACID number?",
+          "yes": "Yes",
+          "no": "No, need assistance",
+          "acid_number": "ACID Number",
+          "needs_acid": "Requested Assistance"
+        },
+        "land_form": {
+          "title": "New Land Freight Booking",
+          "origin": "Origin City/Country",
+          "origin_placeholder": "e.g. Cairo, Egypt",
+          "destination": "Destination City/Country",
+          "destination_placeholder": "e.g. Riyadh, KSA",
+          "truck_type": "Truck Type Required"
+        },
+        "warehousing_form": {
+          "title": "New Warehousing Request",
+          "step1": "Requirements",
+          "location": "Preferred Location",
+          "location_placeholder": "e.g. Alexandria, Cairo",
+          "storage_type": "Storage Type",
+          "duration": "Estimated Storage Duration",
+          "volume": "Estimated Area/Volume (sqm or cbm)"
+        },
+        "inland_form": {
+          "title": "New Inland Transport Request",
+          "step1": "Locations",
+          "pickup": "Pickup Location",
+          "pickup_placeholder": "e.g. Alexandria Port, Gate 4",
+          "delivery": "Delivery Location",
+          "delivery_placeholder": "e.g. 6th of October City, Industrial Zone"
+        }
+      },
+      "newRequest": "New Service Request",
+      "colTracking": "Tracking Number",
+      "colService": "Service Type",
+      "colSubject": "Subject",
+      "colPriority": "Priority",
+      "colStatus": "Status",
+      "colTimeline": "Timeline",
+      "loading": "Loading requests...",
+      "empty": "No service requests yet",
+      "emptySub": "Create a shipping booking, customs clearance inquiry, or warehousing request to begin tracking.",
+      "viewMilestones": "View Milestones",
+      "modalMilestonesTitle": "Tracking Milestones",
+      "modalClose": "Close",
+      "modalNewTitle": "Submit New Service Inquiry",
+      "modalLabelCategory": "Service Category *",
+      "modalLabelSubject": "Inquiry Subject *",
+      "modalLabelDetails": "Cargo Details & Specifications *",
+      "modalPlaceholderSubject": "e.g. 2x40ft FCL Container Import Clearance from Alexandria",
+      "modalPlaceholderDetails": "Provide container counts, commodity description, port of loading/discharge, temperature requirements...",
+      "modalCancel": "Cancel",
+      "modalSubmit": "Submit Request",
+      "modalSubmitting": "Submitting...",
+      "serviceType_sea_freight": "Sea Freight",
+      "serviceType_air_freight": "Air Freight",
+      "serviceType_land_freight": "Land Freight",
+      "serviceType_customs_clearance": "Customs Clearance",
+      "serviceType_warehousing": "Warehousing & Storage",
+      "serviceType_inland_transportation": "Inland Transportation",
+      "serviceType_general_inquiry": "General Logistics Inquiry",
+      "serviceType_freight_booking": "Freight Booking (Legacy)",
+      "priority_urgent": "Urgent",
+      "priority_high": "High",
+      "priority_medium": "Medium",
+      "priority_low": "Low",
+      "status_pending": "Pending",
+      "status_in_progress": "In Progress",
+      "status_completed": "Completed",
+      "status_cancelled": "Cancelled",
+      "status_submitted": "Submitted",
+      "milestone_submitted_title": "Request Submitted by Client",
+      "milestone_submitted_comment": "Initial order inquiry received.",
+      "status_under_review": "Under Review",
+      "status_waiting_customer": "Waiting for Customer",
+      "details": {
+        "title": "Request Details",
+        "subtitle": "Provide the necessary details for your selected services.",
+        "general_info": "General Information",
+        "subject": "Subject *",
+        "subject_placeholder": "Brief title for your request",
+        "description": "Description *",
+        "description_placeholder": "Detailed description of your overall requirements...",
+        "operation_type": "Operation Type",
+        "priority": "Priority",
+        "origin": "Origin / Pickup",
+        "origin_placeholder": "E.g., Shanghai Port, CN",
+        "destination": "Destination / Delivery",
+        "destination_placeholder": "E.g., Alexandria, EG",
+        "weight": "Weight (kg)",
+        "volume": "Volume (CBM)",
+        "notes": "Additional Notes",
+        "notes_placeholder": "Specific requirements for this service...",
+        "back": "Back",
+        "submit": "Submit Request",
+        "submitting": "Submitting...",
+        "success": "Request submitted successfully!",
+        "error": "Failed to submit request",
+        "network_error": "Network error",
+        "request_tracking": "Request: {trackingNumber}",
+        "requested_services": "Requested Services",
+        "status": "Status:",
+        "upload_required": "Upload Required Documents",
+        "upload_desc": "Please upload the necessary documents for your selected services (e.g., Commercial Invoice, Packing List, Bill of Lading, ACID).",
+        "upload_desc": "Please upload the necessary documents for your selected services (e.g., Commercial Invoice, Packing List, Bill of Lading, ACID).",
+        "uploaded_docs": "Uploaded Documents for this Request",
+        "loading_details": "Loading request details...",
+        "not_found": "Request not found.",
+        "finish_return": "Finish & Return to Requests",
+        "options": {
+          "none": "N/A",
+          "import": "Import",
+          "export": "Export",
+          "transit": "Transit",
+          "low": "Low",
+          "medium": "Medium",
+          "high": "High",
+          "urgent": "Urgent"
+        }
+      }
     }
   },
   "documents": {
@@ -650,7 +906,8 @@
       "notifications": "Notification Center",
       "staff": "Staff & Roles",
       "logs": "Audit Activity Logs",
-      "settings": "System Settings"
+      "settings": "System Settings",
+      "requests": "Service Requests"
     },
     "dashboard": {
       "title": "Operations & Expiry Analytics",
@@ -676,7 +933,7 @@
       "sendWarning": "Send Expiry Warning"
     },
     "customers": {
-      "pageTitle": "Customer Accounts & Compliance Directory",
+      "pageTitle": "Customers",
       "pageSubtitle": "Inspect client compliance health, audit legal documents, and govern account operational access",
       "searchPlaceholder": "Search by company name, CR number, or email...",
       "filterAll": "All Account Statuses",
@@ -696,7 +953,9 @@
       "statusControlSub": "Change customer legal standing to restrict port operations or reactivate services",
       "reasonLabel": "Reason / Customer Notification Note",
       "contactDetails": "Company Location & Contacts",
-      "portalUsers": "Authorized Portal Users"
+      "portalUsers": "Authorized Portal Users",
+      "detailTitle": "Customer Compliance Details",
+      "teamMembers": "Team Members"
     },
     "notifications": {
       "title": "Notification Center & Document Expiry Radar",
@@ -755,7 +1014,11 @@
       "noStaffFound": "No employee records found",
       "noStaffSub": "Click 'Add Employee' above to create new staff accounts.",
       "createButton": "Create Employee",
-      "manage": "Permissions"
+      "manage": "Permissions",
+      "roleLabel": "System Role",
+      "roleStaff": "Employee / Staff",
+      "roleAdmin": "Administrator",
+      "jobTitle": "Job Title (Optional)"
     },
     "settings": {
       "title": "System Settings & Operational Configurations",
@@ -770,17 +1033,17 @@
       "colStatus": "Status"
     },
     "review": {
-      "modalTitle": "Review & Live Edit Document",
-      "filePreview": "File Preview & Audit",
+      "modalTitle": "Document Review & Verification",
+      "filePreview": "File Preview",
       "openFull": "Open High-Resolution File",
-      "docTitle": "Official Document Title (Visible to Client)",
-      "docCategory": "Document Category & Type",
-      "decision": "Verification Decision",
-      "approveBtn": "Approve Document",
-      "rejectBtn": "Reject Document",
-      "startDate": "Issue / Validity Start Date",
-      "expiryDate": "Expiration Date (Escalation Baseline)",
-      "rejectionReason": "Select Rejection Reason",
+      "docTitle": "Document Title",
+      "docCategory": "Document Category",
+      "decision": "Compliance Decision",
+      "approveBtn": "Approve (Valid)",
+      "rejectBtn": "Reject (Invalid)",
+      "startDate": "Issue Date",
+      "expiryDate": "Expiry Date",
+      "rejectionReason": "Reason for Rejection",
       "notes": "Reviewer Notes & Feedback (Optional)",
       "saveBtn": "Save & Apply Live Updates",
       "pageSubtitle": "Inspect uploaded customer certificates, edit metadata live, and approve or reject submissions",
@@ -790,7 +1053,93 @@
       "colUploadDate": "Upload Date",
       "queueClear": "Review Queue is Clear! 🎉",
       "queueClearSub": "All uploaded customer documents have been reviewed.",
-      "reviewBtnAction": "Review & Edit"
+      "reviewBtnAction": "Review & Edit",
+      "approveSaveBtn": "Confirm & Approve",
+      "rejectSaveBtn": "Confirm & Reject",
+      "adjustDates": "Validity & Expiry Schedule"
+    },
+    "requests": {
+      "subtitle": "Review and update service requests",
+      "masterQueueTitle": "Master Requests Queue",
+      "masterQueueSubtitle": "Review client requests, update status, and add new timeline milestones",
+      "updateBtn": "Update",
+      "viewDetails": "View Details",
+      "refresh": "Refresh Data",
+      "colCompany": "Client / Company",
+      "colTracking": "Tracking & Subject",
+      "colService": "Service Type",
+      "colPriority": "Priority",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "loading": "Loading requests...",
+      "empty": "No requests found",
+      "updateBtn": "Update",
+      "updateTitle": "Update Service Request",
+      "reqId": "Request ID",
+      "newStatus": "New Status",
+      "status_pending": "Pending",
+      "status_in_progress": "In Progress",
+      "status_completed": "Completed",
+      "status_cancelled": "Cancelled",
+      "timelineComment": "Timeline Comment (Visible to Client)",
+      "commentPlaceholder": "Explain this status update...",
+      "commentHelp": "This message will be instantly added to the clients tracking milestones.",
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "saveChanges": "Update Status",
+      "updateSuccess": "Request updated successfully",
+      "updateError": "Failed to update request",
+      "status_under_review": "Under Review",
+      "status_waiting_customer": "Waiting for Customer"
+    },
+    "requestDetail": {
+      "backToQueue": "Back to Master Queue",
+      "updateStatusBtn": "Update Status",
+      "operationalDetails": "Operational Details",
+      "serviceType": "Service Type",
+      "operation": "Operation",
+      "operation_export": "Export",
+      "operation_import": "Import",
+      "operation_transit": "Transit",
+      "operation_none": "-",
+      "expectedDate": "Expected Date",
+      "description": "Description",
+      "provideQuote": "Provide Schedule & Quote",
+      "updateQuote": "Update Provided Schedule & Quote",
+      "departureDate": "Departure Date",
+      "arrivalDate": "Arrival Date",
+      "transitTime": "Transit Time (Days)",
+      "transitPlaceholder": "e.g. 14 Days",
+      "price": "Price",
+      "currency": "Currency",
+      "additionalNotes": "Additional Notes (Visible to Client)",
+      "notesPlaceholder": "Add any conditions or remarks...",
+      "submitQuote": "Submit Quote & Schedule",
+      "sending": "Sending...",
+      "clientInfo": "Client Information",
+      "companyName": "Company Name",
+      "email": "Email",
+      "phone": "Phone",
+      "activityTimeline": "Activity Timeline",
+      "requestNotFound": "Request Not Found",
+      "returnToRequests": "Return to Requests",
+      "successToast": "Schedule/Quote provided successfully!",
+      "errorToast": "An error occurred while submitting the quote.",
+      "loading": "Loading request details...",
+      "fields": {
+        "containerType": "Container Type",
+        "containerCount": "Container Count",
+        "containerSize": "Container Size",
+        "pol": "Port of Loading (POL)",
+        "pod": "Port of Discharge (POD)",
+        "commodity": "Commodity",
+        "weight": "Weight",
+        "packageType": "Package Type",
+        "packageCount": "Package Count",
+        "origin": "Origin",
+        "destination": "Destination",
+        "dimensions": "Dimensions"
+      }
     }
   },
   "expiry": {
@@ -808,5 +1157,42 @@
     "mismatch_details": "Company or registration details mismatch",
     "wrong_category": "Document uploaded under wrong category",
     "other": "Other reason (specified in notes)"
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "Analytics & Overview",
+      "reviewQueue": "Document Review Queue",
+      "customers": "Customer Accounts",
+      "requests": "Service Requests",
+      "notifications": "Notification Center",
+      "staff": "Staff & Permissions",
+      "settings": "System Settings"
+    },
+    "requests": {
+      "detail": {
+        "title": "Request: {trackingNumber}",
+        "loading": "Loading details...",
+        "notFound": "Request Not Found",
+        "returnToQueue": "Return to Queue",
+        "backToQueue": "Back to Queue",
+        "generalInfo": "General Information",
+        "description": "Description:",
+        "servicesTitle": "Requested Services & Pricing Engine",
+        "origin": "Origin",
+        "destination": "Destination",
+        "weight": "Weight",
+        "volume": "Volume",
+        "suggestedPrice": "Suggested Base Price",
+        "matchedRule": "Matched Rule:",
+        "manualPricing": "Manual Pricing Required",
+        "clientInfo": "Client Information",
+        "companyName": "Company Name",
+        "email": "Email",
+        "readyToQuote": "Ready to Quote?",
+        "readyToQuoteDesc": "You can review these suggested prices and generate an official quote in the next step.",
+        "generateQuote": "Generate Quote",
+        "serviceLabel": "Service"
+      }
+    }
   }
 }

@@ -8,9 +8,11 @@ import { hashPassword } from "@/lib/auth/password"
 const createStaffSchema = z.object({
   firstName: z.string().min(2, "First name is required").trim(),
   lastName: z.string().min(2, "Last name is required").trim(),
+  jobTitle: z.string().optional().or(z.literal("")),
   email: z.string().email("Valid email required").toLowerCase().trim(),
-  phone: z.string().min(6, "Valid phone required").trim(),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  phone: z.string().optional().or(z.literal("")),
+  password: z.string().min(8, "Password must be at least 8 characters").optional().or(z.literal("")),
+  role: z.enum(["staff", "super_admin"]).default("staff"),
   staffPermissions: z.object({
     canSendAlerts: z.boolean().default(true),
     canReviewDocuments: z.boolean().default(true),
@@ -38,6 +40,7 @@ export async function GET(req: NextRequest) {
       id: s._id.toString(),
       firstName: s.firstName,
       lastName: s.lastName,
+      jobTitle: s.jobTitle || "",
       email: s.email,
       phone: s.phone || "",
       role: s.role,
@@ -81,32 +84,48 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { firstName, lastName, email, phone, password, staffPermissions } = parsed.data
+    const { firstName, lastName, jobTitle, email, phone, password, role, staffPermissions } = parsed.data
 
     await connectDB()
 
     const existingUser = await User.findOne({ email })
+    let newStaff;
+
     if (existingUser) {
-      return NextResponse.json(
-        { error: "A user with this email address already exists." },
-        { status: 409 }
-      )
+      // Upgrade existing customer to staff/admin
+      existingUser.role = role
+      existingUser.staffPermissions = staffPermissions
+      existingUser.status = "active" // Ensure they are active
+      // Update basic info if provided (optional)
+      existingUser.firstName = firstName
+      existingUser.lastName = lastName
+      existingUser.jobTitle = jobTitle
+      existingUser.phone = phone
+      if (password) {
+        existingUser.passwordHash = await hashPassword(password)
+      }
+      await existingUser.save()
+      newStaff = existingUser
+    } else {
+      // Create entirely new user
+      if (!password) {
+        return NextResponse.json({ error: "Password is required for new accounts" }, { status: 400 })
+      }
+      const passwordHash = await hashPassword(password)
+      newStaff = await User.create({
+        firstName,
+        lastName,
+        jobTitle,
+        email,
+        phone,
+        passwordHash,
+        role,
+        status: "active",
+        emailVerified: true,
+        whatsappVerified: true,
+        staffPermissions,
+      })
     }
-
-    const passwordHash = await hashPassword(password)
-
-    const newStaff = await User.create({
-      firstName,
-      lastName,
-      email,
-      phone,
-      passwordHash,
-      role: "staff",
-      status: "active",
-      emailVerified: true,
-      whatsappVerified: true,
-      staffPermissions,
-    })
 
     return NextResponse.json({
       success: true,
@@ -115,6 +134,7 @@ export async function POST(req: NextRequest) {
         id: newStaff._id.toString(),
         firstName: newStaff.firstName,
         lastName: newStaff.lastName,
+        jobTitle: newStaff.jobTitle || "",
         email: newStaff.email,
         phone: newStaff.phone,
         role: newStaff.role,

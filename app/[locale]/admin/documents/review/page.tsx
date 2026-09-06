@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { AdminHeader } from "@/components/admin/AdminHeader"
 import {
   FileCheck,
@@ -18,6 +18,7 @@ import { DocumentReviewModal, ReviewDocumentItem } from "@/components/admin/revi
 
 export default function AdminReviewQueuePage() {
   const t = useTranslations()
+  const locale = useLocale()
   const [documents, setDocuments] = useState<ReviewDocumentItem[]>([])
   const [loading, setLoading] = useState(true)
   const [activeModalDoc, setActiveModalDoc] = useState<ReviewDocumentItem | null>(null)
@@ -28,7 +29,11 @@ export default function AdminReviewQueuePage() {
       const res = await fetch("/api/admin/documents/review")
       const data = await res.json()
       if (data.documents) {
-        setDocuments(data.documents)
+        // Sort documents by newest first
+        const sortedDocs = data.documents.sort((a: ReviewDocumentItem, b: ReviewDocumentItem) => {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        })
+        setDocuments(sortedDocs)
       }
     } catch {
       // Fetch error
@@ -126,8 +131,8 @@ export default function AdminReviewQueuePage() {
                       <td className="px-4 py-4 text-secondary-600 dark:text-secondary-400">
                         {doc.uploadedByName} ({doc.uploadedByEmail})
                       </td>
-                      <td className="px-4 py-4 text-secondary-500 text-[11px]">
-                        {new Date(doc.createdAt).toLocaleDateString("en-GB", {
+                      <td suppressHydrationWarning className="px-4 py-4 text-secondary-500 text-[11px]">
+                        {new Date(doc.createdAt).toLocaleDateString(locale, {
                           day: "2-digit",
                           month: "short",
                           hour: "2-digit",

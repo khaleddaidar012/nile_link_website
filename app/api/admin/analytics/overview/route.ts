@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import { Customer, Document as DocumentModel, Notification } from "@/lib/models"
+import { Customer, Document as DocumentModel, Notification, CustomerRequest } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function GET(req: NextRequest) {
@@ -34,6 +34,11 @@ export async function GET(req: NextRequest) {
 
     const totalNotificationsSent = await Notification.countDocuments({
       channel: { $in: ["email", "whatsapp", "multi"] },
+    })
+
+    const totalServiceRequests = await CustomerRequest.countDocuments()
+    const pendingServiceRequests = await CustomerRequest.countDocuments({
+      status: { $in: ["submitted", "under_review", "in_progress"] },
     })
 
     // Expiry horizon breakdown for charts
@@ -81,6 +86,8 @@ export async function GET(req: NextRequest) {
         expiringSoonDocs,
         expiredDocs,
         totalNotificationsSent,
+        totalServiceRequests,
+        pendingServiceRequests,
       },
       expiryHorizonChartData,
       urgentCount: criticalCount + urgentCount + warningCount,

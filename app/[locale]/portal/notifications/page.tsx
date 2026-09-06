@@ -19,7 +19,16 @@ export default function PortalNotificationsPage() {
     try {
       const res = await fetch("/api/portal/notifications?limit=50")
       const data = await res.json()
-      if (data.notifications) setNotifications(data.notifications)
+      if (data.notifications) {
+        setNotifications(data.notifications)
+        const hasUnread = data.notifications.some((n: any) => !n.isRead)
+        if (hasUnread) {
+          // Automatically mark all as read when opening the page
+          await fetch("/api/portal/notifications/mark-read", { method: "POST" })
+          setNotifications(prev => prev.map(n => ({ ...n, isRead: true })))
+          refreshData()
+        }
+      }
     } finally {
       setLoading(false)
     }
@@ -88,7 +97,9 @@ export default function PortalNotificationsPage() {
                   <div className="mt-0.5">{getSeverityIcon(n.severity)}</div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-secondary-900 dark:text-white">{n.title}</h4>
+                      <h4 className="text-xs font-bold text-secondary-900 dark:text-white">
+                        {n.type ? t(`portal.notifications.${n.type}.title`) || n.title : n.title}
+                      </h4>
                       <span className="text-[10px] text-secondary-400">
                         {new Date(n.createdAt).toLocaleDateString("en-GB", {
                           day: "2-digit",
@@ -98,7 +109,9 @@ export default function PortalNotificationsPage() {
                         })}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs text-secondary-600 dark:text-secondary-400">{n.message}</p>
+                    <p className="mt-1 text-xs text-secondary-600 dark:text-secondary-400">
+                      {n.type ? t(`portal.notifications.${n.type}.message`) || n.message : n.message}
+                    </p>
                     {n.actionUrl && (
                       <Link
                         href={n.actionUrl}

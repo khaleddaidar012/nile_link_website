@@ -1,6 +1,7 @@
 import { PortalHeader } from "@/components/portal/PortalHeader"
 import { AccountHealthAlertBanner } from "@/components/portal/AccountHealthAlertBanner"
 import { DashboardMetricsCards } from "@/components/portal/DashboardMetricsCards"
+import { DashboardServiceCards } from "@/components/portal/DashboardServiceCards"
 import { QuickUploadWidget } from "@/components/portal/QuickUploadWidget"
 import { RecentActivityFeed } from "@/components/portal/RecentActivityFeed"
 
@@ -12,6 +13,9 @@ export default function PortalDashboardPage() {
       <div className="space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-8">
         {/* Urgent Account Health Alert Banner */}
         <AccountHealthAlertBanner />
+
+        {/* Quick Action Service Cards */}
+        <DashboardServiceCards />
 
         {/* 4 KPI Metrics Cards */}
         <DashboardMetricsCards />

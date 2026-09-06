@@ -19,6 +19,7 @@ export interface StaffItem {
   id: string
   firstName: string
   lastName: string
+  jobTitle?: string
   email: string
   phone: string
   role: string

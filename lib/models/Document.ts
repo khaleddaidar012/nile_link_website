@@ -7,13 +7,7 @@ export type DocumentStatus =
   | "expired"
   | "rejected"
 
-export type DocumentCategory =
-  | "commercial_register"
-  | "tax_card"
-  | "license"
-  | "customs_certificate"
-  | "contract"
-  | "other"
+export type DocumentCategory = string
 
 export type WarningTier = "none" | "warning" | "urgent" | "critical" | "expired"
 
@@ -65,14 +59,6 @@ const DocumentSchema = new Schema<IDocument>(
     },
     category: {
       type: String,
-      enum: [
-        "commercial_register",
-        "tax_card",
-        "license",
-        "customs_certificate",
-        "contract",
-        "other",
-      ],
       default: "other",
       index: true,
     },

@@ -45,6 +45,7 @@ interface PortalContextValue {
   customer: PortalCustomer | null
   documentStats: DocumentStats | null
   unreadCount: number
+  setUnreadCount: (count: number) => void
   loading: boolean
   refreshData: () => Promise<void>
   logout: () => Promise<void>
@@ -159,6 +160,7 @@ export function PortalProvider({
         customer,
         documentStats,
         unreadCount,
+        setUnreadCount,
         loading,
         refreshData,
         logout,

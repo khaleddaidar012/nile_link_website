@@ -104,7 +104,7 @@ export function LiveDocumentViewerModal({
             {isImage ? (
               // Image Viewer
               <img
-                src={fileUrl}
+                src={`${fileUrl}?view=inline`}
                 alt={fileName}
                 onLoad={() => setLoading(false)}
                 onError={() => setLoading(false)}
@@ -113,7 +113,7 @@ export function LiveDocumentViewerModal({
             ) : isPdf ? (
               // PDF Viewer iFrame
               <iframe
-                src={`${fileUrl}#toolbar=1&navpanes=0`}
+                src={`${fileUrl}?view=inline#toolbar=1&navpanes=0`}
                 title={fileName}
                 onLoad={() => setLoading(false)}
                 className="h-full w-full rounded-xl border border-secondary-800 bg-white"
@@ -121,7 +121,7 @@ export function LiveDocumentViewerModal({
             ) : (
               // Fallback preview
               <iframe
-                src={fileUrl}
+                src={`${fileUrl}?view=inline`}
                 title={fileName}
                 onLoad={() => setLoading(false)}
                 className="h-full w-full rounded-xl border border-secondary-800 bg-white"

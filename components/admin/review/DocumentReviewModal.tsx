@@ -247,7 +247,7 @@ export function DocumentReviewModal({ document, onClose, onSuccess }: DocumentRe
 
                 {isPdf ? (
                   <iframe
-                    src={`${document.fileUrl}#toolbar=1&navpanes=0`}
+                    src={`${document.fileUrl}?view=inline#toolbar=1&navpanes=0`}
                     title={document.fileName}
                     onLoad={() => setPreviewLoading(false)}
                     className="h-full w-full rounded-2xl border-0 bg-white dark:bg-secondary-900"
@@ -255,7 +255,7 @@ export function DocumentReviewModal({ document, onClose, onSuccess }: DocumentRe
                 ) : isImage ? (
                   <div className="flex h-full w-full items-center justify-center p-3">
                     <img
-                      src={document.fileUrl}
+                      src={`${document.fileUrl}?view=inline`}
                       alt={document.fileName}
                       onLoad={() => setPreviewLoading(false)}
                       onError={() => setPreviewLoading(false)}
@@ -264,7 +264,7 @@ export function DocumentReviewModal({ document, onClose, onSuccess }: DocumentRe
                   </div>
                 ) : (
                   <iframe
-                    src={document.fileUrl}
+                    src={`${document.fileUrl}?view=inline`}
                     title={document.fileName}
                     onLoad={() => setPreviewLoading(false)}
                     className="h-full w-full rounded-2xl border-0 bg-white dark:bg-secondary-900"

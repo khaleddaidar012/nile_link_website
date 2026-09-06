@@ -100,7 +100,7 @@ export function Navbar() {
 
       <nav className="border-b border-transparent">
         <Container className="flex h-16 items-center justify-between md:h-20">
-          <Link href="/" className="flex items-center gap-1 sm:gap-1.5 transition-transform hover:scale-[1.02]">
+          <Link href="/" className="flex items-center gap-1 sm:gap-1.5 transition-transform hover:scale-[1.02]" dir="ltr">
             <div className="relative h-[52px] w-[52px] sm:h-[56px] sm:w-[56px] shrink-0 translate-y-[5px]">
               <Image
                 src={logoImg}
@@ -122,17 +122,19 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "my-0.5 border-t transition-colors",
+                  "my-0.5 border-t w-full transition-colors",
                   scrolled ? "border-primary-500" : "border-white/60"
                 )}
               />
               <span
                 className={cn(
-                  "text-[9px] font-semibold uppercase tracking-[0.35em] transition-colors sm:text-[10px]",
+                  "flex w-full justify-between text-[9px] font-semibold uppercase transition-colors sm:text-[10px]",
                   scrolled ? "text-secondary-600 dark:text-white" : "text-white"
                 )}
               >
-                Logistics
+                {"LOGISTICS".split("").map((l, i) => (
+                  <span key={i}>{l}</span>
+                ))}
               </span>
             </span>
           </Link>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -15,6 +15,7 @@ import {
   Mail,
   Phone,
   User,
+  Plus,
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 
@@ -24,6 +25,16 @@ interface CreateStaffModalProps {
   onSuccess: () => void
 }
 
+interface RoleConfig {
+  id: string
+  title: string
+  permissions: {
+    canSendAlerts: boolean
+    canReviewDocuments: boolean
+    canManageCustomers: boolean
+  }
+}
+
 export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModalProps) {
   const t = useTranslations()
   const [firstName, setFirstName] = useState("")
@@ -31,13 +42,78 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("+20")
   const [password, setPassword] = useState("")
-  const [canSendAlerts, setCanSendAlerts] = useState(true)
-  const [canReviewDocuments, setCanReviewDocuments] = useState(true)
-  const [canManageCustomers, setCanManageCustomers] = useState(false)
+  
+  // Roles State
+  const [roles, setRoles] = useState<RoleConfig[]>([])
+  const [selectedRoleId, setSelectedRoleId] = useState<string>("super_admin")
+  const [loadingRoles, setLoadingRoles] = useState(false)
+  
+  // New Role Form State
+  const [isCreatingRole, setIsCreatingRole] = useState(false)
+  const [newRoleTitle, setNewRoleTitle] = useState("")
+  const [newCanSendAlerts, setNewCanSendAlerts] = useState(false)
+  const [newCanReviewDocs, setNewCanReviewDocs] = useState(false)
+  const [newCanManageCust, setNewCanManageCust] = useState(false)
+  const [creatingRoleLoading, setCreatingRoleLoading] = useState(false)
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  if (!isOpen) return null
+  useEffect(() => {
+    if (isOpen) {
+      fetchRoles()
+    }
+  }, [isOpen])
+
+  const fetchRoles = async () => {
+    setLoadingRoles(true)
+    try {
+      const res = await fetch("/api/admin/roles")
+      if (res.ok) {
+        const data = await res.json()
+        setRoles(data.roles || [])
+      }
+    } catch (err) {
+      console.error("Failed to fetch roles", err)
+    } finally {
+      setLoadingRoles(false)
+    }
+  }
+
+  const handleCreateRole = async () => {
+    if (!newRoleTitle.trim()) return
+    setCreatingRoleLoading(true)
+    try {
+      const res = await fetch("/api/admin/roles", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: newRoleTitle,
+          permissions: {
+            canSendAlerts: newCanSendAlerts,
+            canReviewDocuments: newCanReviewDocs,
+            canManageCustomers: newCanManageCust,
+          }
+        }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setRoles([...roles, data.role])
+        setSelectedRoleId(data.role.id)
+        setIsCreatingRole(false)
+        setNewRoleTitle("")
+        setNewCanSendAlerts(false)
+        setNewCanReviewDocs(false)
+        setNewCanManageCust(false)
+      } else {
+        setError(data.error || "Failed to create role")
+      }
+    } catch (err) {
+      setError("Network error creating role")
+    } finally {
+      setCreatingRoleLoading(false)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,20 +121,37 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
     setLoading(true)
 
     try {
+      let roleType = "staff"
+      let staffPermissions = {
+        canSendAlerts: false,
+        canReviewDocuments: false,
+        canManageCustomers: false
+      }
+      let jobTitleStr = ""
+
+      if (selectedRoleId === "super_admin") {
+        roleType = "super_admin"
+        staffPermissions = { canSendAlerts: true, canReviewDocuments: true, canManageCustomers: true }
+      } else {
+        const selectedRoleObj = roles.find(r => r.id === selectedRoleId)
+        if (selectedRoleObj) {
+          jobTitleStr = selectedRoleObj.title
+          staffPermissions = selectedRoleObj.permissions
+        }
+      }
+
       const res = await fetch("/api/admin/staff", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName,
           lastName,
+          jobTitle: jobTitleStr,
           email,
           phone,
           password,
-          staffPermissions: {
-            canSendAlerts,
-            canReviewDocuments,
-            canManageCustomers,
-          },
+          role: roleType,
+          staffPermissions,
         }),
       })
 
@@ -76,6 +169,15 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
     } finally {
       setLoading(false)
     }
+  }
+
+  if (!isOpen) return null
+
+  // Get current permissions based on selection
+  let currentPermissions = { canSendAlerts: true, canReviewDocuments: true, canManageCustomers: true }
+  if (selectedRoleId !== "super_admin") {
+    const r = roles.find(x => x.id === selectedRoleId)
+    if (r) currentPermissions = r.permissions
   }
 
   return (
@@ -178,7 +280,6 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
                   <Phone className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                   <input
                     type="text"
-                    required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+201000000000"
@@ -195,7 +296,6 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
                   <Lock className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-secondary-400 rtl:right-3 rtl:left-auto" />
                   <input
                     type="password"
-                    required
                     minLength={8}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -206,72 +306,83 @@ export function CreateStaffModal({ isOpen, onClose, onSuccess }: CreateStaffModa
               </div>
             </div>
 
-            {/* Granular Permissions Box */}
+            {/* ROLES SELECTOR */}
+            <div>
+              <label className="mb-1 flex items-center justify-between text-xs font-semibold text-secondary-700 dark:text-secondary-300">
+                <span>{t("admin.staff.jobTitle") || "Job Title & Permissions"}</span>
+                <button 
+                  type="button" 
+                  onClick={() => setIsCreatingRole(!isCreatingRole)}
+                  className="flex items-center gap-1 text-[11px] font-bold text-primary-600 hover:text-primary-700 dark:text-primary-400"
+                >
+                  <Plus className="h-3 w-3" />
+                  {t("common.add") || "Add New Role"}
+                </button>
+              </label>
+
+              {isCreatingRole && (
+                <div className="mb-3 mt-2 rounded-xl border border-primary-100 bg-primary-50/50 p-3 dark:border-primary-900/50 dark:bg-primary-950/30">
+                  <input
+                    type="text"
+                    value={newRoleTitle}
+                    onChange={(e) => setNewRoleTitle(e.target.value)}
+                    placeholder={t("admin.staff.newRoleTitle") || "e.g. Finance Auditor"}
+                    className="w-full rounded-lg border border-secondary-200 bg-white px-3 py-1.5 text-xs text-secondary-900 focus:border-primary-500 focus:outline-none dark:border-secondary-700 dark:bg-secondary-800 dark:text-white"
+                  />
+                  <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
+                    <label className="flex items-center gap-1">
+                      <input type="checkbox" checked={newCanSendAlerts} onChange={e => setNewCanSendAlerts(e.target.checked)} className="rounded text-primary-600" />
+                      {t("admin.staff.permAlerts") || "Send Alerts"}
+                    </label>
+                    <label className="flex items-center gap-1">
+                      <input type="checkbox" checked={newCanReviewDocs} onChange={e => setNewCanReviewDocs(e.target.checked)} className="rounded text-primary-600" />
+                      {t("admin.staff.permReview") || "Review Docs"}
+                    </label>
+                    <label className="flex items-center gap-1">
+                      <input type="checkbox" checked={newCanManageCust} onChange={e => setNewCanManageCust(e.target.checked)} className="rounded text-primary-600" />
+                      {t("admin.staff.permCustomers") || "Manage Customers"}
+                    </label>
+                  </div>
+                  <Button type="button" onClick={handleCreateRole} disabled={creatingRoleLoading} className="mt-2 h-7 w-full text-[11px]">
+                    {creatingRoleLoading ? <Loader2 className="h-3 w-3 animate-spin" /> : (t("common.save") || "Save Role")}
+                  </Button>
+                </div>
+              )}
+
+              <div className="relative">
+                <Shield className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-secondary-400 rtl:left-auto rtl:right-3" />
+                <select
+                  value={selectedRoleId}
+                  onChange={(e) => setSelectedRoleId(e.target.value)}
+                  disabled={loadingRoles}
+                  className="w-full rounded-xl border border-secondary-200 bg-white p-2.5 pl-9 text-xs text-secondary-900 focus:border-primary-500 focus:outline-none dark:border-secondary-700 dark:bg-secondary-800 dark:text-white rtl:pl-2.5 rtl:pr-9"
+                >
+                  <option value="super_admin">{t("admin.staff.roleAdmin") || "Administrator (Full Access)"}</option>
+                  {roles.map(r => (
+                    <option key={r.id} value={r.id}>{r.title}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Readonly Permissions Display */}
             <div className="rounded-xl border border-secondary-200/80 bg-secondary-50/70 p-3.5 dark:border-secondary-800 dark:bg-secondary-800/40">
               <span className="text-xs font-bold text-secondary-900 dark:text-white">
                 {t("admin.staff.permissionsHeading") || "Assigned Operational Permissions"}
               </span>
-              <p className="text-[11px] text-secondary-500">
-                {t("admin.staff.permissionsSub") || "Select the exact privileges this employee can execute"}
-              </p>
-
-              <div className="mt-3 space-y-2.5">
-                {/* Send Alerts */}
-                <label className="flex cursor-pointer items-start gap-2.5 rounded-lg p-2 transition-colors hover:bg-white dark:hover:bg-secondary-800">
-                  <input
-                    type="checkbox"
-                    checked={canSendAlerts}
-                    onChange={(e) => setCanSendAlerts(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded text-primary-600 focus:ring-primary-500"
-                  />
-                  <div className="text-xs">
-                    <div className="flex items-center gap-1.5 font-bold text-secondary-900 dark:text-white">
-                      <Bell className="h-3.5 w-3.5 text-primary-500" />
-                      <span>{t("admin.staff.permAlerts") || "Send Alerts & Broadcasts"}</span>
-                    </div>
-                    <p className="text-[11px] text-secondary-500">
-                      {t("admin.staff.permAlertsDesc") || "Can trigger manual client notifications and expiry warnings"}
-                    </p>
-                  </div>
-                </label>
-
-                {/* Review Documents */}
-                <label className="flex cursor-pointer items-start gap-2.5 rounded-lg p-2 transition-colors hover:bg-white dark:hover:bg-secondary-800">
-                  <input
-                    type="checkbox"
-                    checked={canReviewDocuments}
-                    onChange={(e) => setCanReviewDocuments(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded text-primary-600 focus:ring-primary-500"
-                  />
-                  <div className="text-xs">
-                    <div className="flex items-center gap-1.5 font-bold text-secondary-900 dark:text-white">
-                      <FileCheck className="h-3.5 w-3.5 text-teal-500" />
-                      <span>{t("admin.staff.permReview") || "Approve & Reject Documents"}</span>
-                    </div>
-                    <p className="text-[11px] text-secondary-500">
-                      {t("admin.staff.permReviewDesc") || "Can verify compliance files, set validity dates, and reject illegible files"}
-                    </p>
-                  </div>
-                </label>
-
-                {/* Manage Customers */}
-                <label className="flex cursor-pointer items-start gap-2.5 rounded-lg p-2 transition-colors hover:bg-white dark:hover:bg-secondary-800">
-                  <input
-                    type="checkbox"
-                    checked={canManageCustomers}
-                    onChange={(e) => setCanManageCustomers(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded text-primary-600 focus:ring-primary-500"
-                  />
-                  <div className="text-xs">
-                    <div className="flex items-center gap-1.5 font-bold text-secondary-900 dark:text-white">
-                      <Users className="h-3.5 w-3.5 text-indigo-500" />
-                      <span>{t("admin.staff.permCustomers") || "Activate & Deactivate Customer Accounts"}</span>
-                    </div>
-                    <p className="text-[11px] text-secondary-500">
-                      {t("admin.staff.permCustomersDesc") || "Can change customer account status (Active, Warning, Restricted)"}
-                    </p>
-                  </div>
-                </label>
+              <div className="mt-2 space-y-1.5 text-[11px] text-secondary-600 dark:text-secondary-400">
+                <div className="flex items-center justify-between">
+                  <span>{t("admin.staff.permAlerts") || "Send Alerts & Broadcasts"}</span>
+                  {currentPermissions.canSendAlerts ? <span className="text-emerald-500">✔</span> : <span className="text-secondary-300">✖</span>}
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>{t("admin.staff.permReview") || "Approve & Reject Documents"}</span>
+                  {currentPermissions.canReviewDocuments ? <span className="text-emerald-500">✔</span> : <span className="text-secondary-300">✖</span>}
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>{t("admin.staff.permCustomers") || "Manage Customer Accounts"}</span>
+                  {currentPermissions.canManageCustomers ? <span className="text-emerald-500">✔</span> : <span className="text-secondary-300">✖</span>}
+                </div>
               </div>
             </div>
 

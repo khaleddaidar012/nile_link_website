@@ -75,6 +75,7 @@ export default function RootLayout({
       className={`${inter.variable} ${cairo.variable}`}
       data-scroll-behavior="smooth"
     >
+      <head suppressHydrationWarning />
       <body
         suppressHydrationWarning
         className="min-h-screen font-sans antialiased"

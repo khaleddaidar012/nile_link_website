@@ -26,8 +26,10 @@ export interface INotification extends MongooseDoc {
   severity: NotificationSeverity
   relatedDocumentId?: mongoose.Types.ObjectId
   relatedRequestId?: mongoose.Types.ObjectId
+  relatedServiceId?: mongoose.Types.ObjectId
   actionUrl?: string
   isRead: boolean
+  readBy?: mongoose.Types.ObjectId[]
   readAt?: Date
   emailStatus: "not_applicable" | "pending" | "sent" | "failed"
   emailDeliveredAt?: Date
@@ -107,6 +109,12 @@ const NotificationSchema = new Schema<INotification>(
       ref: "CustomerRequest",
       default: null,
     },
+    relatedServiceId: {
+      type: Schema.Types.ObjectId,
+      ref: "RequestService",
+      default: null,
+      index: true,
+    },
     actionUrl: {
       type: String,
       default: null,
@@ -116,6 +124,10 @@ const NotificationSchema = new Schema<INotification>(
       default: false,
       index: true,
     },
+    readBy: [{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }],
     readAt: {
       type: Date,
       default: null,

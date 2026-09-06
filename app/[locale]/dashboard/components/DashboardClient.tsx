@@ -177,11 +177,11 @@ export function DashboardClient() {
 
         <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <MetricCard title="Total Visitors" value={overview.totalVisitors} description="All time" icon={Users} />
-          <MetricCard title="Visitors Today" value={overview.visitorsToday} description={new Date().toLocaleDateString()} icon={Eye} trend={visitorComparison.todayVsYesterday.changePercent} trendLabel="vs yesterday" />
+          <MetricCard title="Visitors Today" value={overview.visitorsToday} description="Today" icon={Eye} trend={visitorComparison.todayVsYesterday.changePercent} trendLabel="vs yesterday" />
           <MetricCard title="This Week" value={overview.visitorsThisWeek} description="Last 7 days" icon={CalendarDays} trend={visitorComparison.thisWeekVsLastWeek.changePercent} trendLabel="vs last week" />
           <MetricCard title="This Month" value={overview.visitorsThisMonth} description="Last 30 days" icon={BarChart3} trend={visitorComparison.thisMonthVsLastMonth.changePercent} trendLabel="vs last month" />
           <MetricCard title="Quote Requests" value={overview.totalQuoteRequests} description="All time" icon={FileText} />
-          <MetricCard title="Requests Today" value={overview.quoteRequestsToday} description={new Date().toLocaleDateString()} icon={FileText} />
+          <MetricCard title="Requests Today" value={overview.quoteRequestsToday} description="Today" icon={FileText} />
           <MetricCard title="Avg. Session Duration" value={formatDuration(overview.averageSessionDuration)} description="Per visit" icon={Clock} />
           <MetricCard title="Bounce Rate" value={`${overview.bounceRate}%`} description="Exits without interaction" icon={Activity} />
         </div>

@@ -16,6 +16,7 @@ import {
   Truck,
   FileSpreadsheet,
   Sparkles,
+  Layers,
 } from "lucide-react"
 import Image from "next/image"
 import logoImg from "@/public/images/logo.png"
@@ -44,6 +45,11 @@ export function AdminSidebar() {
       href: "/admin/customers",
       label: t("admin.sidebar.customers") || "Customer Accounts",
       icon: Users,
+    },
+    {
+      href: "/admin/requests",
+      label: t("admin.sidebar.requests") || "Service Requests",
+      icon: Layers,
     },
     {
       href: "/admin/notifications",
@@ -104,20 +110,25 @@ export function AdminSidebar() {
   return (
     <aside className="sticky top-0 hidden h-screen w-64 flex-col border-r border-secondary-200 bg-white text-secondary-900 transition-colors dark:border-slate-800 dark:bg-slate-950 dark:text-white md:flex">
       {/* Brand Header */}
-      <div className="flex h-16 items-center gap-2.5 border-b border-secondary-100 px-6 dark:border-slate-800">
-        <div className="relative h-[32px] w-[32px] shrink-0">
+      <div className="flex h-16 items-center gap-2.5 border-b border-secondary-100 px-6 dark:border-slate-800" dir="ltr">
+        <div className="relative h-[36px] w-[36px] shrink-0">
           <Image
             src={logoImg}
             alt="NileLink"
             fill
-            sizes="32px"
+            sizes="36px"
             className="object-contain"
           />
         </div>
         <div className="flex flex-col justify-center leading-none">
-          <span className="text-sm font-bold tracking-wide text-secondary-900 dark:text-white">NileLink</span>
-          <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
-            Staff Operations
+          <span className="text-base font-black tracking-widest text-secondary-900 dark:text-white uppercase">
+            NileLink
+          </span>
+          <span className="my-[3px] border-t-2 border-primary-500 w-full rounded-full" />
+          <span className="flex w-full justify-between text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+            {"LOGISTICS".split("").map((l, i) => (
+              <span key={i}>{l}</span>
+            ))}
           </span>
         </div>
       </div>

@@ -103,7 +103,13 @@ export async function GET(req: NextRequest) {
     const unreadNotificationsCount = await Notification.countDocuments({
       $or: [
         { recipientUserId: user._id, isRead: false },
-        { targetAudience: user.role === "staff" || user.role === "super_admin" ? "staff" : "customer", isRead: false },
+        { recipientCustomerId: customerId, isRead: false },
+        { 
+          targetAudience: user.role === "staff" || user.role === "super_admin" ? "staff" : "customer", 
+          recipientUserId: null, 
+          recipientCustomerId: null, 
+          readBy: { $ne: user._id } 
+        },
       ],
     })
 

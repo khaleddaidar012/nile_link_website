@@ -1,17 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { connectDB } from "@/lib/mongodb"
-import { CustomerRequest, Notification, User } from "@/lib/models"
+import { CustomerRequest, Notification, User, RequestService } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 const createRequestSchema = z.object({
-  serviceType: z.enum([
-    "freight_booking",
-    "customs_clearance",
-    "warehousing",
-    "transportation",
-    "general_inquiry",
-  ]),
+  services: z
+    .array(
+      z.object({
+        serviceKey: z.string(),
+        details: z.any().optional(),
+      })
+    )
+    .min(1, "At least one service is required"),
+  operationType: z.enum(["import", "export", "transit", "none"]).default("none"),
   subject: z.string().min(3, "Subject is required"),
   description: z.string().min(5, "Description is required"),
   priority: z.enum(["low", "medium", "high", "urgent"]).default("medium"),
@@ -37,6 +39,7 @@ export async function GET(req: NextRequest) {
     }
 
     const requests = await CustomerRequest.find({ customerId })
+      .populate("services")
       .sort({ createdAt: -1 })
       .lean()
 
@@ -76,8 +79,6 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    await connectDB()
-
     const year = new Date().getFullYear()
     const randomSeq = Math.floor(1000 + Math.random() * 9000)
     const trackingNumber = `NL-REQ-${year}-${randomSeq}`
@@ -86,11 +87,12 @@ export async function POST(req: NextRequest) {
       customerId,
       requestedBy: session.userId,
       trackingNumber,
-      serviceType: parsed.data.serviceType,
+      operationType: parsed.data.operationType,
       subject: parsed.data.subject,
       description: parsed.data.description,
       priority: parsed.data.priority,
       status: "submitted",
+      services: [], // Populated below
       timeline: [
         {
           status: "submitted",
@@ -101,12 +103,37 @@ export async function POST(req: NextRequest) {
       ],
     })
 
+    const requestServiceIds = []
+    const serviceNames = []
+
+    for (const srv of parsed.data.services) {
+      const newService = await RequestService.create({
+        requestId: newRequest._id,
+        serviceKey: srv.serviceKey,
+        status: "pending",
+        details: srv.details || {},
+        timeline: [
+          {
+            status: "pending",
+            title: "Service Added",
+            comment: "Service selected during request creation.",
+            createdAt: new Date(),
+          },
+        ],
+      })
+      requestServiceIds.push(newService._id)
+      serviceNames.push(srv.serviceKey.replace("_", " "))
+    }
+
+    newRequest.services = requestServiceIds
+    await newRequest.save()
+
     // Staff notification
     await Notification.create({
       recipientCustomerId: session.customerId || undefined,
       targetAudience: "staff",
       title: `New Service Request: ${trackingNumber}`,
-      message: `${session.firstName} submitted a ${parsed.data.serviceType.replace("_", " ")} request.`,
+      message: `${session.firstName} requested: ${serviceNames.join(", ")}.`,
       channel: "in_app",
       type: "request_update",
       severity: "normal",
@@ -123,6 +150,9 @@ export async function POST(req: NextRequest) {
     )
   } catch (error: unknown) {
     console.error("Create request error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error", details: (error as any).message || String(error) },
+      { status: 500 }
+    )
   }
 }

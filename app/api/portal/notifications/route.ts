@@ -20,16 +20,27 @@ export async function GET(req: NextRequest) {
       $or: [
         { recipientUserId: session.userId },
         { recipientCustomerId: session.customerId },
-        { targetAudience: "customer" },
+        { targetAudience: "customer", recipientUserId: null, recipientCustomerId: null },
       ],
     }
 
     const total = await Notification.countDocuments(query)
-    const notifications = await Notification.find(query)
+    const rawNotifications = await Notification.find(query)
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
       .lean()
+
+    // Process broadcast notifications read state
+    const notifications = rawNotifications.map((n: any) => {
+      let read = n.isRead
+      if (n.targetAudience && n.targetAudience !== "customer" && n.readBy) {
+         read = n.isRead || n.readBy.some((id: any) => id.toString() === session.userId)
+      } else if (n.targetAudience === "customer" && n.readBy) {
+         read = n.isRead || n.readBy.some((id: any) => id.toString() === session.userId)
+      }
+      return { ...n, isRead: read }
+    })
 
     return NextResponse.json({
       notifications,

@@ -3,6 +3,7 @@ import { getServerSession } from "@/lib/auth/token-service"
 import { PortalProvider } from "@/components/portal/PortalContext"
 import { PortalSidebar } from "@/components/portal/PortalSidebar"
 import { MobileBottomNav } from "@/components/portal/MobileBottomNav"
+import { PortalGlobalLoader } from "@/components/portal/PortalGlobalLoader"
 
 type Props = {
   children: React.ReactNode
@@ -17,6 +18,7 @@ export default async function PortalLayout({ children }: Props) {
 
   return (
     <PortalProvider initialSession={session}>
+      <PortalGlobalLoader />
       <div className="relative flex min-h-screen bg-slate-50 font-sans text-secondary-900 dark:bg-[#0b0f19] dark:text-white">
         {/* Ambient Dark Mode Radial Lighting & Depth Effects */}
         <div className="pointer-events-none absolute inset-0 hidden overflow-hidden dark:block">

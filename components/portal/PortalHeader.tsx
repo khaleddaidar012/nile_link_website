@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import { Moon, Sun, User, LogOut, Globe, ChevronDown } from "lucide-react"
 import { Link, usePathname } from "@/navigation"
+import { CheckCircle2, AlertTriangle, XCircle } from "lucide-react"
 import { usePortal } from "./PortalContext"
 import { NotificationBellPopover } from "./NotificationBellPopover"
 
@@ -16,11 +17,6 @@ interface PortalHeaderProps {
 const languages = [
   { code: "ar", label: "العربية" },
   { code: "en", label: "English" },
-  { code: "fr", label: "Français" },
-  { code: "de", label: "Deutsch" },
-  { code: "it", label: "Italiano" },
-  { code: "zh", label: "中文" },
-  { code: "bg", label: "Български" },
 ]
 
 export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
@@ -33,13 +29,29 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 sm:px-6 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0d1322]/90 gap-2">
-      <div className="flex-1 min-w-0">
-        <h1 className="text-sm font-bold text-slate-900 dark:text-white sm:text-lg truncate">
-          {title || (customer ? customer.companyName : "Client Portal")}
-        </h1>
-        {subtitle && (
-          <p className="hidden sm:block text-xs text-secondary-500 dark:text-secondary-400 line-clamp-1">{subtitle}</p>
-        )}
+      <div className="flex-1 min-w-0 flex items-center gap-3">
+        <div>
+          <h1 className="text-sm font-bold text-slate-900 dark:text-white sm:text-lg truncate flex items-center gap-2">
+            {title || (customer ? customer.companyName : "Client Portal")}
+            {customer && (
+              <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                customer.accountStatus === "active" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400" :
+                customer.accountStatus === "warning" ? "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400" :
+                "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-400"
+              }`}>
+                {customer.accountStatus === "active" && <CheckCircle2 className="h-3 w-3" />}
+                {customer.accountStatus === "warning" && <AlertTriangle className="h-3 w-3" />}
+                {customer.accountStatus === "inactive" && <XCircle className="h-3 w-3" />}
+                {customer.accountStatus === "active" ? (locale === "ar" ? "شركة موثقة" : "Verified Company") :
+                 customer.accountStatus === "warning" ? (locale === "ar" ? "قيد المراجعة" : "Pending Review") :
+                 (locale === "ar" ? "غير موثق" : "Unverified")}
+              </span>
+            )}
+          </h1>
+          {subtitle && (
+            <p className="hidden sm:block text-xs text-secondary-500 dark:text-secondary-400 line-clamp-1">{subtitle}</p>
+          )}
+        </div>
       </div>
 
       <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
@@ -102,9 +114,9 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
                   <Link
                     href="/portal/verification"
                     title="Account Pending Verification"
-                    className="shrink-0 rounded bg-amber-100 px-1.5 py-0.5 text-[9px] font-bold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 hover:bg-amber-200"
+                    className="shrink-0 rounded bg-secondary-100 px-1.5 py-0.5 text-[9px] font-bold text-secondary-600 dark:bg-secondary-800 dark:text-secondary-400 hover:bg-secondary-200"
                   >
-                    {t("portal.verification.unverified") || "غير موثق"}
+                    {locale === "ar" ? "تأكيد الحساب" : "Verify Account"}
                   </Link>
                 )}
               </div>

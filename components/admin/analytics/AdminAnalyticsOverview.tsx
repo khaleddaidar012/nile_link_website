@@ -40,6 +40,8 @@ export function AdminAnalyticsOverview() {
       expiringSoonDocs: number
       expiredDocs: number
       totalNotificationsSent: number
+      totalServiceRequests: number
+      pendingServiceRequests: number
     }
     expiryHorizonChartData: Array<{ name: string; count: number; color: string }>
     urgentCount: number
@@ -66,6 +68,8 @@ export function AdminAnalyticsOverview() {
     expiringSoonDocs: 0,
     expiredDocs: 0,
     totalNotificationsSent: 0,
+    totalServiceRequests: 0,
+    pendingServiceRequests: 0,
   }
 
   return (
@@ -147,26 +151,28 @@ export function AdminAnalyticsOverview() {
           </div>
         </div>
 
-        {/* Expiring Danger Zone */}
-        <div className="relative overflow-hidden rounded-2xl border border-secondary-200/80 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-secondary-800 dark:bg-secondary-900">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-secondary-500">
-              {isAr ? "مستندات تنتهي قريباً (≤30 يوم)" : "Expiring Horizon (≤30d)"}
-            </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400">
-              <Clock className="h-4 w-4" />
+        {/* Service Requests */}
+        <Link href="/admin/requests" className="group">
+          <div className="relative overflow-hidden rounded-2xl border border-secondary-200/80 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-secondary-800 dark:bg-secondary-900 group-hover:border-primary-500/50">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-secondary-500">
+                {isAr ? "طلبات خدمات العملاء" : "Service Requests"}
+              </span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 group-hover:bg-primary-50 group-hover:text-primary-600 dark:group-hover:bg-primary-950/60 dark:group-hover:text-primary-400">
+                <Layers className="h-4 w-4" />
+              </div>
+            </div>
+            <p className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-400">
+              {loading ? "..." : m.totalServiceRequests}
+            </p>
+            <div className="mt-2 flex items-center gap-1.5 text-[11px] text-primary-600 dark:text-primary-400 font-semibold">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>
+                {m.pendingServiceRequests} {isAr ? "طلب بانتظار الإجراء" : "requests pending action"}
+              </span>
             </div>
           </div>
-          <p className="mt-2 text-2xl font-black text-amber-600 dark:text-amber-400">
-            {loading ? "..." : m.expiringSoonDocs}
-          </p>
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-rose-600 dark:text-rose-400 font-semibold">
-            <AlertTriangle className="h-3.5 w-3.5" />
-            <span>
-              {m.expiredDocs} {isAr ? "منتهي الصلاحية" : "expired documents"}
-            </span>
-          </div>
-        </div>
+        </Link>
 
         {/* Notifications Sent */}
         <div className="relative overflow-hidden rounded-2xl border border-secondary-200/80 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-secondary-800 dark:bg-secondary-900">

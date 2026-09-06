@@ -13,10 +13,11 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
+  ShieldAlert,
   AlertTriangle,
   XCircle,
   Lock,
-  ShieldAlert,
+  FileCheck,
 } from "lucide-react"
 import Image from "next/image"
 import logoImg from "@/public/images/logo.png"
@@ -52,6 +53,12 @@ export function PortalSidebar() {
       href: "/portal/requests",
       label: t("portal.sidebar.requests") || "Service Requests",
       icon: Send,
+      badge: null,
+    },
+    {
+      href: "/portal/quotes",
+      label: t("portal.sidebar.quotes") || "Quotes",
+      icon: FileCheck,
       badge: null,
     },
     {
@@ -111,20 +118,25 @@ export function PortalSidebar() {
       {/* Brand Header */}
       <div className="flex h-16 items-center justify-between border-b border-slate-100 px-4 dark:border-slate-800">
         {!collapsed && (
-          <Link href="/portal" className="flex items-center gap-2.5">
-            <div className="relative h-[32px] w-[32px] shrink-0">
+          <Link href="/portal" className="flex items-center gap-2.5" dir="ltr">
+            <div className="relative h-[36px] w-[36px] shrink-0">
               <Image
                 src={logoImg}
                 alt="NileLink"
                 fill
-                sizes="32px"
+                sizes="36px"
                 className="object-contain"
               />
             </div>
             <div className="flex flex-col justify-center leading-none">
-              <span className="text-sm font-bold tracking-wide text-secondary-900 dark:text-white">NileLink</span>
-              <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
-                {t("nav.clientPortal") || "Client Portal"}
+              <span className="text-base font-black tracking-widest text-secondary-900 dark:text-white uppercase">
+                NileLink
+              </span>
+              <span className="my-[3px] border-t-2 border-primary-500 w-full rounded-full" />
+              <span className="flex w-full justify-between text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+                {"LOGISTICS".split("").map((l, i) => (
+                  <span key={i}>{l}</span>
+                ))}
               </span>
             </div>
           </Link>

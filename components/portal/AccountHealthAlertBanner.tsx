@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import {
   ShieldCheck,
   AlertTriangle,
@@ -22,6 +22,8 @@ import { cn } from "@/lib/utils"
 
 export function AccountHealthAlertBanner() {
   const t = useTranslations()
+  const locale = useLocale()
+  const isEn = locale === "en"
   const { user, customer, documentStats, loading } = usePortal()
   const [isDismissed, setIsDismissed] = useState(false)
 
@@ -33,6 +35,22 @@ export function AccountHealthAlertBanner() {
 
   const isChannelsUnverified = !user?.emailVerified
   const hasNoDocsUploaded = !documentStats || documentStats.totalDocs === 0
+
+  let translatedReason = customer?.statusReason || ""
+  if (translatedReason) {
+    const rejectedMatch = translatedReason.match(/Mandatory document \((.*?)\) was rejected/i)
+    if (rejectedMatch) {
+      translatedReason = isEn ? `Document rejected: ${rejectedMatch[1]}` : `تم رفض المستند: ${rejectedMatch[1]}`
+    }
+    const expiredMatch = translatedReason.match(/Mandatory document \((.*?)\) has expired/i)
+    if (expiredMatch) {
+      translatedReason = isEn ? `Document expired: ${expiredMatch[1]}` : `انتهت صلاحية المستند: ${expiredMatch[1]}`
+    }
+    const expiringSoonMatch = translatedReason.match(/(.*?) will expire in (\d+) days/i)
+    if (expiringSoonMatch) {
+      translatedReason = isEn ? `Document ${expiringSoonMatch[1]} will expire in ${expiringSoonMatch[2]} days.` : `المستند ${expiringSoonMatch[1]} سينتهي خلال ${expiringSoonMatch[2]} أيام.`
+    }
+  }
 
   // 1. UNVERIFIED ACCOUNT STATE (Mandatory Business Email Verification)
   if (isChannelsUnverified) {
@@ -173,10 +191,10 @@ export function AccountHealthAlertBanner() {
           </div>
           <div>
             <h2 className="text-sm font-bold text-amber-950 dark:text-amber-200">
-              {t("portal.healthBanners.warning") || "تنبيه: لديك مستندات قريبة من الانتهاء — يرجى التجديد قريباً"}
+              {t("portal.healthBanners.warning") || "تنبيه: مستندات قريبة من الانتهاء — يرجى التجديد قريباً"}
             </h2>
             <p className="mt-0.5 text-xs text-amber-800/90 dark:text-amber-300/90 max-w-xl">
-              {customer.statusReason ||
+              {translatedReason ||
                 "لديك مستندات قانونية تنتهي خلال 10 أيام. يرجى رفع الملفات المجددة لتجنب توقف المعاملات الجمركية."}
             </p>
           </div>
@@ -209,10 +227,10 @@ export function AccountHealthAlertBanner() {
         </div>
         <div>
           <h2 className="text-sm font-bold text-rose-950 dark:text-rose-200">
-            {t("portal.healthBanners.critical") || "تنبيه حرج: مستندات رسمية منتهية الصلاحية"}
+            {t("portal.healthBanners.critical") || "تنبيه: تم رفض مستند أو انتهت صلاحيته"}
           </h2>
           <p className="mt-0.5 text-xs text-rose-800/90 dark:text-rose-300/90 max-w-xl">
-            {customer.statusReason ||
+            {translatedReason ||
               "انتهت صلاحية واحد أو أكثر من مستندات الشركة. يرجى رفع المستندات السارية فوراً لرفع التقييد."}
           </p>
         </div>

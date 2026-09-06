@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import {
   ShieldCheck,
   ShieldAlert,
@@ -21,6 +21,8 @@ import { cn } from "@/lib/utils"
 
 export function DashboardMetricsCards() {
   const t = useTranslations()
+  const locale = useLocale()
+  const isEn = locale === "en"
   const { user, customer, documentStats, loading } = usePortal()
 
   if (loading || !user || !customer) {
@@ -41,17 +43,25 @@ export function DashboardMetricsCards() {
   let channelsSubtitle = ""
 
   if (emailVer && whatsappVer) {
-    channelsValue = t("portal.verification.verified") || "موثق بالكامل"
-    channelsSubtitle = "تم توثيق الإيميل والواتساب"
+    channelsValue = t("portal.verification.verified");
+    if (channelsValue === "portal.verification.verified") channelsValue = isEn ? "Fully Verified" : "موثق بالكامل";
+    channelsSubtitle = t("portal.verification.verifiedSubtitle");
+    if (channelsSubtitle === "portal.verification.verifiedSubtitle") channelsSubtitle = isEn ? "Email and WhatsApp verified" : "تم توثيق الإيميل والواتساب";
   } else if (emailVer && !whatsappVer) {
-    channelsValue = "توثيق جزئي"
-    channelsSubtitle = "تم توثيق الإيميل (بانتظار الواتساب)"
+    channelsValue = t("portal.verification.partial");
+    if (channelsValue === "portal.verification.partial") channelsValue = isEn ? "Partial Verification" : "توثيق جزئي";
+    channelsSubtitle = t("portal.verification.emailOnlySubtitle");
+    if (channelsSubtitle === "portal.verification.emailOnlySubtitle") channelsSubtitle = isEn ? "Email verified (waiting for WhatsApp)" : "تم توثيق الإيميل (بانتظار الواتساب)";
   } else if (!emailVer && whatsappVer) {
-    channelsValue = "توثيق جزئي"
-    channelsSubtitle = "تم توثيق الواتساب (بانتظار الإيميل)"
+    channelsValue = t("portal.verification.partial");
+    if (channelsValue === "portal.verification.partial") channelsValue = isEn ? "Partial Verification" : "توثيق جزئي";
+    channelsSubtitle = t("portal.verification.whatsappOnlySubtitle");
+    if (channelsSubtitle === "portal.verification.whatsappOnlySubtitle") channelsSubtitle = isEn ? "WhatsApp verified (waiting for Email)" : "تم توثيق الواتساب (بانتظار الإيميل)";
   } else {
-    channelsValue = t("portal.verification.unverified") || "غير موثق"
-    channelsSubtitle = "لم يتم توثيق أي قناة اتصال"
+    channelsValue = t("portal.verification.unverified");
+    if (channelsValue === "portal.verification.unverified") channelsValue = isEn ? "Unverified" : "غير موثق";
+    channelsSubtitle = t("portal.verification.unverifiedSubtitle");
+    if (channelsSubtitle === "portal.verification.unverifiedSubtitle") channelsSubtitle = isEn ? "No communication channel verified" : "لم يتم توثيق أي قناة اتصال";
   }
 
   const totalUploaded = documentStats?.totalDocs ?? 0
@@ -60,20 +70,35 @@ export function DashboardMetricsCards() {
   const pendingCount = documentStats?.pendingDocs ?? 0
   const expiringCount = documentStats?.expiringDocs ?? 0
 
-  // Calculate ratios against total uploaded files (needs.md Requirement 10)
   const approvedPercentage = totalUploaded > 0 ? Math.round((approvedCount / totalUploaded) * 100) : 0
   const pendingPercentage = totalUploaded > 0 ? Math.round((pendingCount / totalUploaded) * 100) : 0
   const expiringPercentage = totalUploaded > 0 ? Math.round((expiringCount / totalUploaded) * 100) : 0
 
+  let translatedReason = customer?.statusReason || ""
+  if (translatedReason) {
+    const rejectedMatch = translatedReason.match(/Mandatory document \((.*?)\) was rejected/i)
+    if (rejectedMatch) {
+      translatedReason = isEn ? `Document rejected: ${rejectedMatch[1]}` : `تم رفض المستند: ${rejectedMatch[1]}`
+    }
+    const expiredMatch = translatedReason.match(/Mandatory document \((.*?)\) has expired/i)
+    if (expiredMatch) {
+      translatedReason = isEn ? `Document expired: ${expiredMatch[1]}` : `انتهت صلاحية المستند: ${expiredMatch[1]}`
+    }
+    const expiringSoonMatch = translatedReason.match(/(.*?) will expire in (\d+) days/i)
+    if (expiringSoonMatch) {
+      translatedReason = isEn ? `Document ${expiringSoonMatch[1]} will expire in ${expiringSoonMatch[2]} days.` : `المستند ${expiringSoonMatch[1]} سينتهي خلال ${expiringSoonMatch[2]} أيام.`
+    }
+  }
+
   const cards = [
-    // 1. Communication Channels Status
+    // 1. Communication Channels Verification
     {
-      title: t("portal.dashboard.kpi.channels") || "Communication Channels",
+      title: t("portal.dashboard.channels") || (isEn ? "Communication Channels" : "قنوات الاتصال والتوثيق"),
       value: channelsValue,
       subtitle: channelsSubtitle,
       badge: isChannelsVerified
-        ? (t("portal.verification.verified") || "Verified")
-        : (t("portal.dashboard.kpi.actionRequired") || "Action Needed"),
+        ? (t("portal.verification.verified") || (isEn ? "Verified" : "موثق"))
+        : (t("portal.dashboard.kpi.actionRequired") || (isEn ? "Action Needed" : "مطلوب إجراء")),
       icon: isChannelsVerified ? ShieldCheck : ShieldAlert,
       href: "/portal/verification",
       color: isChannelsVerified
@@ -86,14 +111,14 @@ export function DashboardMetricsCards() {
 
     // 2. Account Health & Activation
     {
-      title: t("portal.dashboard.accountStatus") || "Account Status",
+      title: t("portal.dashboard.accountStatus") || (isEn ? "Account Status" : "حالة الحساب"),
       value:
         customer?.accountStatus === "active"
-          ? (t("portal.dashboard.kpi.activeCompliant") || "Active & Compliant")
+          ? (t("portal.dashboard.kpi.activeCompliant") || (isEn ? "Active & Compliant" : "نشط ومعتمد"))
           : customer?.accountStatus === "warning"
-            ? (t("portal.dashboard.kpi.warningPending") || "Pending Documents")
-            : (t("portal.dashboard.kpi.actionRequired") || "Action Required"),
-      subtitle: customer?.statusReason || "Enterprise Legal Compliance",
+            ? (t("portal.dashboard.kpi.warningPending") || (isEn ? "Pending Documents" : "مستندات معلقة"))
+            : (t("portal.dashboard.kpi.actionRequired") || (isEn ? "Action Required" : "مطلوب إجراء")),
+      subtitle: translatedReason || (isEn ? "Enterprise Legal Compliance" : "الامتثال القانوني للشركات"),
       badge: customer?.accountStatus === "active" 
         ? (t("portal.accountStatus.active") || "معتمد") 
         : (t("portal.accountStatus.review") || "مراجعة"),
@@ -113,10 +138,10 @@ export function DashboardMetricsCards() {
 
     // 3. Total Uploaded Documents (needs.md Requirement 10: Just integer count e.g. 10 or 5)
     {
-      title: t("portal.dashboard.kpi.totalDocs") || "Total Uploaded Files",
+      title: t("portal.dashboard.kpi.totalDocs") || (isEn ? "Total Uploaded Files" : "إجمالي المستندات المرفوعة"),
       value: documentStats ? `${totalUploaded}` : "0",
-      subtitle: `${maxAllowed - totalUploaded} ${t("portal.dashboard.kpi.slotsAvailable") || "slots available"} (${maxAllowed} max)`,
-      badge: t("portal.dashboard.kpi.storage") || "Storage",
+      subtitle: `${maxAllowed - totalUploaded} ${t("portal.dashboard.kpi.slotsAvailable") || (isEn ? "slots available" : "أماكن متاحة")} (${maxAllowed} ${isEn ? "max" : "كحد أقصى"})`,
+      badge: t("portal.dashboard.kpi.storage") || (isEn ? "Storage" : "التخزين"),
       icon: FolderLock,
       href: "/portal/documents",
       color: "text-cyan-500 bg-cyan-500/10 border-cyan-500/20",
@@ -125,9 +150,9 @@ export function DashboardMetricsCards() {
 
     // 4. Active & Approved Documents Ratio (needs.md Requirement 10: approved / total uploaded)
     {
-      title: t("portal.dashboard.activeDocs") || "Approved Documents Ratio",
+      title: t("portal.dashboard.activeDocs") || (isEn ? "Approved Documents Ratio" : "نسبة المستندات المعتمدة"),
       value: `${approvedCount} / ${totalUploaded}`,
-      subtitle: `${approvedPercentage}% ${t("portal.dashboard.kpi.ofTotalUploaded") || "of uploaded files approved"}`,
+      subtitle: `${approvedPercentage}% ${t("portal.dashboard.kpi.ofTotalUploaded") || (isEn ? "of uploaded files approved" : "من المستندات المرفوعة معتمدة")}`,
       badge: `${approvedPercentage}%`,
       icon: FileCheck2,
       href: "/portal/documents?status=approved",
@@ -137,9 +162,9 @@ export function DashboardMetricsCards() {
 
     // 5. Documents Pending Staff Review Ratio (needs.md Requirement 10: in-review / total uploaded)
     {
-      title: t("portal.dashboard.pendingReview") || "In-Review Documents Ratio",
+      title: t("portal.dashboard.pendingDocs") || (isEn ? "In-Review Documents Ratio" : "نسبة المستندات قيد المراجعة"),
       value: `${pendingCount} / ${totalUploaded}`,
-      subtitle: `${pendingPercentage}% ${t("portal.dashboard.kpi.ofTotalPending") || "awaiting staff review"}`,
+      subtitle: `${pendingPercentage}% ${t("portal.dashboard.kpi.awaitingStaff") || (isEn ? "awaiting staff review" : "بانتظار مراجعة الموظفين")}`,
       badge: `${pendingPercentage}%`,
       icon: Send,
       href: "/portal/documents?status=pending_review",
@@ -149,12 +174,12 @@ export function DashboardMetricsCards() {
 
     // 6. Documents Expiring Soon Ratio (needs.md Requirement 10: expiring / total uploaded)
     {
-      title: t("portal.dashboard.expiringDocs") || "Expiring Soon Ratio (≤10d)",
+      title: t("portal.dashboard.expiringDocs") || (isEn ? "Expiring Soon Ratio (≤10d)" : "نسبة المستندات المنتهية قريباً"),
       value: `${expiringCount} / ${totalUploaded}`,
       subtitle:
         expiringCount > 0
-          ? `${expiringPercentage}% ${t("portal.dashboard.kpi.requiresRenewal") || "requires immediate renewal"}`
-          : (t("portal.dashboard.kpi.allGood") || "All documents up to date"),
+          ? `${expiringPercentage}% ${t("portal.dashboard.kpi.requiresRenewal") || (isEn ? "requires immediate renewal" : "تتطلب التجديد الفوري")}`
+          : (t("portal.dashboard.kpi.allGood") || (isEn ? "All documents up to date" : "جميع المستندات سارية")),
       badge: expiringCount > 0 ? `${expiringPercentage}%` : "0%",
       icon: Clock,
       href: "/portal/documents?status=expiring_soon",
@@ -178,7 +203,7 @@ export function DashboardMetricsCards() {
           className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider dark:text-slate-400">
               {card.title}
             </span>
             <div
@@ -192,7 +217,7 @@ export function DashboardMetricsCards() {
           </div>
 
           <div className="mt-3 flex items-baseline justify-between">
-            <h2 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+            <h2 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
               {card.value}
             </h2>
             <span

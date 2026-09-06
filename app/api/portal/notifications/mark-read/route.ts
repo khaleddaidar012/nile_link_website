@@ -17,10 +17,11 @@ export async function POST(req: NextRequest) {
 
     if (notificationId) {
       await Notification.findByIdAndUpdate(notificationId, {
-        isRead: true,
-        readAt: new Date(),
+        $set: { isRead: true, readAt: new Date() },
+        $addToSet: { readBy: session.userId }
       })
     } else {
+      // 1. Direct notifications
       await Notification.updateMany(
         {
           $or: [
@@ -32,6 +33,20 @@ export async function POST(req: NextRequest) {
         {
           isRead: true,
           readAt: new Date(),
+        }
+      )
+      
+      // 2. Broadcast notifications
+      const audience = session.role === "customer" || session.role === "customer_admin" ? "customer" : "staff"
+      await Notification.updateMany(
+        {
+          targetAudience: audience,
+          recipientUserId: null,
+          recipientCustomerId: null,
+          readBy: { $ne: session.userId }
+        },
+        {
+          $addToSet: { readBy: session.userId }
         }
       )
     }

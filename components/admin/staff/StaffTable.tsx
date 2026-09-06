@@ -146,7 +146,12 @@ export function StaffTable() {
                           <p className="font-bold text-secondary-900 dark:text-white">
                             {staff.firstName} {staff.lastName}
                           </p>
-                          <div className="flex items-center gap-2 text-[11px] text-secondary-500">
+                          {staff.jobTitle && (
+                            <p className="text-xs font-semibold text-primary-600 dark:text-primary-400">
+                              {staff.jobTitle}
+                            </p>
+                          )}
+                          <div className="mt-1 flex items-center gap-2 text-[11px] text-secondary-500">
                             <span className="flex items-center gap-1">
                               <Mail className="h-3 w-3" />
                               {staff.email}

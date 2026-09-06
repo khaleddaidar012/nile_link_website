@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { Bell, Check, Clock, AlertTriangle, AlertCircle, Info } from "lucide-react"
@@ -16,14 +16,32 @@ interface NotificationItem {
   isRead: boolean
   createdAt: string
   actionUrl?: string
+  type?: string
 }
 
 export function NotificationBellPopover() {
   const t = useTranslations()
-  const { unreadCount, refreshData } = usePortal()
+  const { unreadCount, setUnreadCount, refreshData } = usePortal()
   const [isOpen, setIsOpen] = useState(false)
   const [notifications, setNotifications] = useState<NotificationItem[]>([])
   const [loading, setLoading] = useState(false)
+  const popoverRef = useRef<HTMLDivElement>(null)
+
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isOpen])
 
   useEffect(() => {
     if (isOpen) {
@@ -36,19 +54,15 @@ export function NotificationBellPopover() {
           }
         })
         .finally(() => setLoading(false))
-
-      // Auto-mark as read when opened
-      if (unreadCount > 0) {
-        fetch("/api/portal/notifications/mark-read", { method: "POST" }).then(() => {
-          refreshData()
-        })
-      }
     }
-  }, [isOpen, unreadCount, refreshData])
+  }, [isOpen])
 
   const markAllRead = async () => {
-    await fetch("/api/portal/notifications/mark-read", { method: "POST" })
+    // Optimistic UI update for instant feedback
+    setUnreadCount(0)
     setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })))
+    
+    await fetch("/api/portal/notifications/mark-read", { method: "POST" })
     refreshData()
   }
 
@@ -66,7 +80,7 @@ export function NotificationBellPopover() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative" ref={popoverRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative rounded-xl border border-secondary-200/80 bg-white p-2.5 text-secondary-600 transition-colors hover:bg-secondary-50 hover:text-secondary-900 dark:border-secondary-700 dark:bg-secondary-800 dark:text-secondary-300 dark:hover:bg-secondary-700 dark:hover:text-white"
@@ -133,9 +147,11 @@ export function NotificationBellPopover() {
                   >
                     <div className="mt-0.5 shrink-0">{getSeverityIcon(item.severity)}</div>
                     <div className="flex-1">
-                      <p className="font-semibold text-secondary-900 dark:text-white">{item.title}</p>
+                      <p className="font-semibold text-secondary-900 dark:text-white">
+                        {item.type ? t(`portal.notifications.${item.type}.title`) || item.title : item.title}
+                      </p>
                       <p className="mt-0.5 text-secondary-600 line-clamp-2 dark:text-secondary-400">
-                        {item.message}
+                        {item.type ? t(`portal.notifications.${item.type}.message`) || item.message : item.message}
                       </p>
                     </div>
                   </Link>

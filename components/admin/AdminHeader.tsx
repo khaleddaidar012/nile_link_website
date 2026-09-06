@@ -14,11 +14,6 @@ interface AdminHeaderProps {
 const languages = [
   { code: "ar", label: "العربية (Arabic)" },
   { code: "en", label: "English (UK)" },
-  { code: "fr", label: "Français (French)" },
-  { code: "de", label: "Deutsch (German)" },
-  { code: "it", label: "Italiano (Italian)" },
-  { code: "zh", label: "中文 (Chinese)" },
-  { code: "bg", label: "Български (Bulgarian)" },
 ]
 
 export function AdminHeader({ title, subtitle }: AdminHeaderProps) {

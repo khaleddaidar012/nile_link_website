@@ -15,7 +15,8 @@
     "delete": "حذف",
     "close": "إغلاق",
     "confirm": "تأكيد",
-    "required": "مطلوب"
+    "required": "مطلوب",
+    "details": "التفاصيل"
   },
   "metadata": {
     "title": "NileLink | حلول لوجستية عالمية",
@@ -494,6 +495,15 @@
     }
   },
   "portal": {
+    "verification": {
+      "title": "توثيق الأمان وقنوات الاتصال",
+      "verified": "موثق ✓",
+      "unverified": "غير موثق",
+      "partial": "توثيق جزئي",
+      "emailOnlySubtitle": "تم توثيق الإيميل (بانتظار الواتساب)",
+      "whatsappOnlySubtitle": "تم توثيق الواتساب (بانتظار الإيميل)",
+      "unverifiedSubtitle": "لم يتم توثيق أي قناة اتصال"
+    },
     "header": {
       "notifications": "الإشعارات",
       "markAllRead": "تحديد الكل كمقروء",
@@ -505,6 +515,7 @@
       "dashboard": "لوحة التحكم",
       "documents": "المستندات القانونية",
       "requests": "طلبات الخدمة",
+      "quotes": "عروض الأسعار",
       "financials": "الفواتير والمعاملات",
       "notifications": "الإشعارات",
       "profile": "ملف الشركة",
@@ -519,7 +530,7 @@
       "manageUploadBtn": "إدارة ورفع المستندات",
       "activeDocs": "نسبة المستندات المعتمدة",
       "pendingReview": "نسبة المستندات قيد المراجعة",
-      "expiringDocs": "نسبة المستندات قاربت على الانتهاء (≤10 أيام)",
+      "expiringDocs": "نسبة المستندات المنتهية قريباً",
       "accountStatus": "حالة الحساب",
       "activity": {
         "accountCreatedTitle": "تم تسجيل حساب الشركة بنجاح",
@@ -536,34 +547,280 @@
         "channelsConnected": "الواتساب والبريد الإلكتروني موثقان",
         "channelsPending": "مطلوب توثيق قنوات الاتصال",
         "actionRequired": "مطلوب إجراء",
-        "activeCompliant": "نشط ومطابق للمعايير",
+        "activeCompliant": "نشط ومعتمد",
         "warningPending": "مستندات معلقة",
-        "totalDocs": "إجمالي الملفات المرفوعة",
-        "slotsAvailable": "أماكن شاغرة",
-        "storage": "مساحة الحفظ",
-        "ofTotalUploaded": "من إجمالي الملفات المرفوعة معتمدة",
+        "totalDocs": "إجمالي المستندات المرفوعة",
+        "slotsAvailable": "أماكن متاحة",
+        "storage": "التخزين",
+        "ofTotalUploaded": "من المستندات المرفوعة معتمدة",
         "ofTotalPending": "في انتظار مراجعة موظفي الجمارك",
         "requiresRenewal": "تتطلب التجديد الفوري",
-        "allGood": "جميع المستندات سارية ومحدثة"
-      }
-    },
-    "verification": {
-      "title": "توثيق الأمان وقنوات الاتصال",
-      "verified": "موثق ✓",
-      "unverified": "غير موثق"
+        "allGood": "جميع المستندات سارية",
+        "awaitingStaff": "بانتظار مراجعة الموظفين"
+      },
+      "pendingDocs": "نسبة المستندات قيد المراجعة",
+      "channels": "قنوات الاتصال والتوثيق"
     },
     "healthBanners": {
       "unverifiedTitle": "لم يتم توثيق بريد العمل",
       "unverifiedDesc": "يرجى توثيق بريد العمل الإلكتروني عبر رمز التفعيل (OTP) لاستكمال إعداد الحساب واستلام إشعارات الشحن والجمارك.",
       "verifyChannelsBtn": "توثيق القنوات الآن",
       "critical": "تنبيه: تم رفض مستند أو انتهت صلاحيته",
-      "renewBtn": "تحديث المستند"
+      "renewBtn": "تحديث المستند",
+      "allValid": "جميع المستندات صالحة",
+      "allValidSub": "مستندات الامتثال الخاصة بشركتك محدثة ومعتمدة."
     },
     "accountStatus": {
       "active": "معتمد",
       "warning": "مطلوب إجراء",
       "inactive": "حساب مقيد",
       "review": "مراجعة"
+    },
+    "notifications": {
+      "document_uploaded": {
+        "title": "تم رفع المستند",
+        "message": "تم رفع مستند جديد للمراجعة."
+      },
+      "document_approved": {
+        "title": "تمت الموافقة",
+        "message": "تمت الموافقة على المستند بنجاح."
+      },
+      "document_rejected": {
+        "title": "تم الرفض",
+        "message": "تم رفض المستند الخاص بك."
+      },
+      "document_expired": {
+        "title": "مستند منتهي",
+        "message": "لقد انتهت صلاحية أحد المستندات."
+      },
+      "document_expiring_10d": {
+        "title": "ينتهي قريباً",
+        "message": "مستند يقترب من تاريخ الانتهاء."
+      },
+      "manual_staff_warning": {
+        "title": "تنبيه إداري",
+        "message": "لديك تنبيه جديد من الإدارة."
+      },
+      "account_status_change": {
+        "title": "تحديث الحساب",
+        "message": "تم تحديث حالة حسابك."
+      },
+      "request_update": {
+        "title": "تحديث الطلب",
+        "message": "يوجد تحديث بخصوص طلبك."
+      },
+      "document_expiring_7d": {
+        "title": "ينتهي قريباً",
+        "message": "مستند يقترب من تاريخ الانتهاء (7 أيام)."
+      },
+      "document_expiring_3d": {
+        "title": "ينتهي قريباً",
+        "message": "مستند يقترب من تاريخ الانتهاء (3 أيام)."
+      },
+      "document_expiring_1d": {
+        "title": "ينتهي قريباً",
+        "message": "مستند يقترب من تاريخ الانتهاء (يوم واحد)."
+      }
+    },
+    "requests": {
+      "subtitle": "تتبع الشحنات والتخليص الجمركي واستفسارات العمليات مباشرة في الوقت الفعلي",
+      "activeRequests": "طلبات الخدمة النشطة",
+      "activeRequestsSub": "تتبع عملياتك وشحناتك الحالية",
+      "new": {
+        "title": "اختر الخدمة",
+        "subtitle": "اختر نوع العملية اللوجستية التي تحتاجها.",
+        "selected_count": "خدمات تم اختيارها",
+        "continue": "المتابعة للتفاصيل",
+        "startRequest": "ابدأ الطلب",
+        "sea_freight": "شحن بحري",
+        "sea_freight_desc": "حلول الشحن البحري الكلي والجزئي حول العالم.",
+        "air_freight": "شحن جوي",
+        "air_freight_desc": "نقل جوي سريع وموثوق للبضائع.",
+        "land_freight": "شحن بري",
+        "land_freight_desc": "نقل بري سلس عبر الحدود.",
+        "customs": "تخليص جمركي",
+        "customs_clearance": "تخليص جمركي",
+        "customs_desc": "إدارة الإجراءات الجمركية بكفاءة.",
+        "warehousing": "تخزين ومستودعات",
+        "warehousing_desc": "حلول تخزين آمنة وفعالة.",
+        "inland": "نقل بري داخلي",
+        "inland_transportation": "نقل بري داخلي",
+        "inland_desc": "نقل البضائع محلياً وإقليمياً.",
+        "general": "استفسار لوجستي عام",
+        "general_inquiry": "استفسار لوجستي عام",
+        "general_desc": "اسألنا عن أي شيء يخص الشحن أو العمليات المعقدة.",
+        "sea_freight_form": {
+          "title": "حجز شحن بحري جديد",
+          "subtitle": "يرجى ملء تفاصيل الشحنة أدناه.",
+          "step1": "مسار الرحلة",
+          "step2": "البضائع",
+          "step3": "مراجعة",
+          "operation_type": "نوع العملية",
+          "import": "استيراد",
+          "export": "تصدير",
+          "transit": "ترانزيت",
+          "pol": "ميناء التحميل (POL)",
+          "pol_placeholder": "مثل: ميناء الإسكندرية",
+          "pod": "ميناء الوصول (POD)",
+          "pod_placeholder": "مثل: ميناء هامبورغ",
+          "expected_date": "تاريخ المغادرة المتوقع",
+          "shipment_type": "نوع الشحنة",
+          "fcl": "حاوية كاملة (FCL)",
+          "lcl": "جزء من حاوية (LCL)",
+          "container_size": "حجم/نوع الحاوية",
+          "container_count": "عدد الحاويات",
+          "commodity": "وصف البضاعة",
+          "commodity_placeholder": "مثل: موالح طازجة",
+          "weight": "الوزن الإجمالي التقديري (كجم)",
+          "weight_placeholder": "مثل: 24000",
+          "review_title": "مراجعة تفاصيل الحجز",
+          "review_operation": "العملية",
+          "review_route": "المسار",
+          "review_cargo": "نوع البضائع",
+          "priority": "الأهمية",
+          "cancel": "إلغاء",
+          "back": "رجوع",
+          "next": "الخطوة التالية",
+          "submit": "تأكيد الحجز",
+          "processing": "جاري المعالجة..."
+        },
+        "air_freight_form": {
+          "title": "حجز شحن جوي جديد",
+          "origin_airport": "مطار الإقلاع",
+          "origin_placeholder": "مثل: مطار القاهرة الدولي",
+          "destination_airport": "مطار الوصول",
+          "destination_placeholder": "مثل: مطار دبي الدولي",
+          "volume": "الحجم الإجمالي (CBM)",
+          "volume_placeholder": "مثل: 2.5"
+        },
+        "customs_form": {
+          "title": "طلب تخليص جمركي جديد",
+          "step1": "بيانات أساسية",
+          "step2": "نظام ACID والبضائع",
+          "port": "المنفذ الجمركي",
+          "port_placeholder": "مثل: ميناء الإسكندرية، مطار القاهرة",
+          "cargo_type": "نوع البضاعة",
+          "acid_title": "رقم التسجيل المسبق للشحنات (ACID)",
+          "has_acid": "هل لديك رقم ACID؟",
+          "yes": "نعم لدي رقم",
+          "no": "لا، أحتاج مساعدة في استخراجه",
+          "acid_number": "رقم ACID",
+          "needs_acid": "مطلوب مساعدة في الاستخراج"
+        },
+        "land_form": {
+          "title": "حجز شحن بري جديد",
+          "origin": "مدينة/دولة الانطلاق",
+          "origin_placeholder": "مثل: القاهرة، مصر",
+          "destination": "مدينة/دولة الوصول",
+          "destination_placeholder": "مثل: الرياض، السعودية",
+          "truck_type": "نوع الشاحنة المطلوبة"
+        },
+        "warehousing_form": {
+          "title": "طلب تخزين جديد",
+          "step1": "الاحتياجات",
+          "location": "الموقع المفضل",
+          "location_placeholder": "مثل: الإسكندرية، القاهرة",
+          "storage_type": "نوع التخزين",
+          "duration": "مدة التخزين المقدرة",
+          "volume": "المساحة/الحجم المقدر (متر مربع أو مكعب)"
+        },
+        "inland_form": {
+          "title": "طلب نقل داخلي جديد",
+          "step1": "المواقع",
+          "pickup": "موقع الاستلام",
+          "pickup_placeholder": "مثل: ميناء الإسكندرية، البوابة 4",
+          "delivery": "موقع التسليم",
+          "delivery_placeholder": "مثل: مدينة 6 أكتوبر، المنطقة الصناعية"
+        }
+      },
+      "newRequest": "طلب جديد",
+      "colTracking": "رقم التتبع",
+      "colService": "نوع الخدمة",
+      "colSubject": "الموضوع",
+      "colPriority": "الأهمية",
+      "colStatus": "الحالة",
+      "colTimeline": "الجدول الزمني",
+      "loading": "جاري تحميل الطلبات...",
+      "empty": "لا توجد طلبات خدمة بعد",
+      "emptySub": "قم بإنشاء حجز شحن، استعلام تخليص جمركي، أو طلب تخزين لبدء التتبع.",
+      "viewMilestones": "عرض المحطات",
+      "modalMilestonesTitle": "محطات التتبع",
+      "modalClose": "إغلاق",
+      "modalNewTitle": "تقديم طلب خدمة جديد",
+      "modalLabelCategory": "فئة الخدمة *",
+      "modalLabelSubject": "موضوع الاستفسار *",
+      "modalLabelDetails": "تفاصيل ومواصفات البضائع *",
+      "modalPlaceholderSubject": "مثال: تخليص استيراد حاويتين 40 قدم من الإسكندرية",
+      "modalPlaceholderDetails": "قدم أعداد الحاويات، وصف البضاعة، ميناء الشحن/التفريغ، متطلبات درجات الحرارة...",
+      "modalCancel": "إلغاء",
+      "modalSubmit": "تقديم الطلب",
+      "modalSubmitting": "جاري التقديم...",
+      "serviceType_sea_freight": "شحن بحري",
+      "serviceType_air_freight": "شحن جوي",
+      "serviceType_land_freight": "شحن بري",
+      "serviceType_customs_clearance": "التخليص الجمركي",
+      "serviceType_warehousing": "التخزين والمستودعات",
+      "serviceType_inland_transportation": "النقل الداخلي",
+      "serviceType_general_inquiry": "استفسار لوجستي عام",
+      "serviceType_freight_booking": "حجز شحن (قديم)",
+      "priority_urgent": "عاجل جداً",
+      "priority_high": "عالي",
+      "priority_medium": "متوسط",
+      "priority_low": "منخفض",
+      "status_pending": "قيد الانتظار",
+      "status_in_progress": "قيد التنفيذ",
+      "status_completed": "مكتمل",
+      "status_cancelled": "ملغى",
+      "status_submitted": "تم التقديم",
+      "milestone_submitted_title": "تم تقديم الطلب من قبل العميل",
+      "milestone_submitted_comment": "تم استلام استفسار الطلب الأولي.",
+      "status_under_review": "قيد المراجعة",
+      "status_waiting_customer": "بانتظار العميل",
+      "details": {
+        "title": "تفاصيل الطلب",
+        "subtitle": "يرجى تقديم التفاصيل اللازمة للخدمات التي اخترتها.",
+        "general_info": "معلومات عامة",
+        "subject": "الموضوع *",
+        "subject_placeholder": "عنوان مختصر لطلبك",
+        "description": "الوصف *",
+        "description_placeholder": "وصف مفصل لمتطلباتك...",
+        "operation_type": "نوع العملية",
+        "priority": "الأهمية",
+        "origin": "نقطة الانطلاق / الاستلام",
+        "origin_placeholder": "مثل: ميناء شنغهاي",
+        "destination": "وجهة الوصول / التسليم",
+        "destination_placeholder": "مثل: الإسكندرية",
+        "weight": "الوزن (كجم)",
+        "volume": "الحجم (CBM)",
+        "notes": "ملاحظات إضافية",
+        "notes_placeholder": "متطلبات خاصة لهذه الخدمة...",
+        "back": "رجوع",
+        "submit": "تقديم الطلب",
+        "submitting": "جاري التقديم...",
+        "success": "تم تقديم الطلب بنجاح!",
+        "error": "فشل في تقديم الطلب",
+        "network_error": "خطأ في الشبكة",
+        "request_tracking": "الطلب: {trackingNumber}",
+        "requested_services": "الخدمات المطلوبة",
+        "status": "الحالة:",
+        "upload_required": "رفع المستندات المطلوبة",
+        "upload_desc": "يرجى رفع المستندات اللازمة للخدمات التي اخترتها (مثل: الفاتورة التجارية، بيان العبوة، بوليصة الشحن، رقم ACID).",
+        "upload_desc": "يرجى رفع المستندات اللازمة للخدمات التي اخترتها (مثل: الفاتورة التجارية، بيان العبوة، بوليصة الشحن، رقم ACID).",
+        "uploaded_docs": "المستندات المرفوعة لهذا الطلب",
+        "loading_details": "جاري تحميل تفاصيل الطلب...",
+        "not_found": "لم يتم العثور على الطلب.",
+        "finish_return": "إنهاء والعودة للطلبات",
+        "options": {
+          "none": "غير محدد",
+          "import": "استيراد",
+          "export": "تصدير",
+          "transit": "ترانزيت",
+          "low": "منخفضة",
+          "medium": "متوسطة",
+          "high": "عالية",
+          "urgent": "عاجلة جداً"
+        }
+      }
     }
   },
   "documents": {
@@ -640,6 +897,47 @@
       "rejected": "مرفوض"
     }
   },
+  "portal_quotes": {
+    "list": {
+      "title": "عروض الأسعار",
+      "subtitle": "اطلع على عروض الأسعار المقدمة من نايل لينك وأجب عليها.",
+      "fetchError": "تعذّر تحميل عروض الأسعار",
+      "empty": "لا توجد عروض أسعار بعد",
+      "emptyDesc": "ستظهر عروض الأسعار هنا بعد مراجعة فريقنا لطلبات الخدمة الخاصة بك.",
+      "goToRequests": "عرض طلباتي",
+      "actionRequired": "يتطلب موافقتك",
+      "validUntil": "صالح حتى"
+    },
+    "status": {
+      "sent": "بانتظار ردك",
+      "accepted": "مقبول",
+      "rejected": "مرفوض",
+      "expired": "منتهي الصلاحية"
+    },
+    "detail": {
+      "quoteLabel": "عرض سعر",
+      "subtitle": "راجع تفاصيل التسعير للخدمات المطلوبة.",
+      "backToQuotes": "رجوع لعروض الأسعار",
+      "notFound": "تعذّر تحميل عرض السعر",
+      "fetchError": "خطأ في الشبكة",
+      "actionError": "فشل تنفيذ الإجراء",
+      "totalAmount": "إجمالي العرض",
+      "validUntil": "صالح حتى",
+      "breakdown": "تفصيل الخدمات",
+      "surcharge": "رسوم إضافية",
+      "discount": "خصم",
+      "notes": "ملاحظات من نايل لينك",
+      "accept": "قبول العرض",
+      "reject": "رفض العرض",
+      "confirmAccept": "هل أنت متأكد من قبول هذا العرض;",
+      "confirmReject": "هل أنت متأكد من رفض هذا العرض;",
+      "acceptedSuccess": "تم قبول العرض! سيتواصل فريقنا معك قريبا.",
+      "rejectedSuccess": "تم رفض العرض.",
+      "actionBanner": "هذا العرض ينتظر ردك. يرجى مراجعة التسعير وقبوله أو رفضه.",
+      "acceptedNote": "لقد قبلت هذا العرض. سيتواصل فريق العمليات معك في أقرب وقت.",
+      "rejectedNote": "لقد رفضت هذا العرض. يمكنك تقديم طلب جديد أو التواصل معنا للحصول على عرض معدّل."
+    }
+  },
   "admin": {
     "sidebar": {
       "dashboard": "الإحصائيات والعمليات",
@@ -649,7 +947,8 @@
       "notifications": "مركز التنبيهات",
       "staff": "فريق العمل والصلاحيات",
       "logs": "سجل التدقيق والعمليات",
-      "settings": "إعدادات النظام"
+      "settings": "إعدادات النظام",
+      "requests": "طلبات الخدمات"
     },
     "dashboard": {
       "title": "تحليلات العمليات والصلاحيات",
@@ -675,7 +974,7 @@
       "sendWarning": "إرسال تحذير انتهاء"
     },
     "customers": {
-      "pageTitle": "دليل وسجل حسابات الشركات والامتثال",
+      "pageTitle": "العملاء",
       "pageSubtitle": "مراجعة الحالة القانونية للشركات، وتدقيق المستندات الجمركية، والتحكم في تفعيل الحسابات",
       "searchPlaceholder": "بحث باسم الشركة، رقم السجل التجاري، أو البريد...",
       "filterAll": "كافة حالات الحسابات",
@@ -686,16 +985,18 @@
       "statusWarning": "تحذير (إجراء مطلوب)",
       "statusInactive": "مقيد الخدمة",
       "noCustomers": "لا توجد شركات مسجلة",
-      "tabDocs": "سجل المستندات والشهادات",
-      "tabGovernance": "إدارة وصلاحيات الحساب",
-      "tabProfile": "بيانات ومسؤولي الشركة",
-      "noDocs": "لم يتم رفع أي مستندات حتى الآن",
-      "reviewAction": "مراجعة المستند",
-      "statusControlTitle": "التحكم في حالة الحساب والوصول للخدمات",
-      "statusControlSub": "تغيير الحالة القانونية لتقييد عمليات التخليص أو إعادة تفعيل الخدمات بالكامل",
-      "reasonLabel": "سبب تغيير الحالة / ملاحظة تظهر للعميل",
-      "contactDetails": "العنوان وبيانات الاتصال المعتمدة",
-      "portalUsers": "المستخدمون المصرح لهم بالدخول"
+      "tabDocs": "سجل المستندات",
+      "tabGovernance": "إدارة الحساب",
+      "tabProfile": "جهات الاتصال",
+      "noDocs": "لم يتم رفع أي مستندات بعد",
+      "reviewAction": "مراجعة",
+      "statusControlTitle": "حالة الحساب وصلاحيات العمليات",
+      "statusControlSub": "قم بتغيير الحالة القانونية للعميل لتقييد عمليات الشحن أو إعادة تفعيلها",
+      "reasonLabel": "السبب / ملاحظة إشعار العميل",
+      "contactDetails": "موقع الشركة وجهات الاتصال",
+      "portalUsers": "المستخدمون المصرح لهم بالدخول",
+      "detailTitle": "تفاصيل التزام العميل",
+      "teamMembers": "أعضاء فريق العمل"
     },
     "notifications": {
       "title": "مركز الإشعارات ورادار انتهاء صلاحية المستندات",
@@ -754,7 +1055,11 @@
       "noStaffFound": "لا يوجد موظفون مسجلون",
       "noStaffSub": "اضغط على 'إضافة موظف جديد' لإنشاء أول حساب موظف.",
       "createButton": "إنشاء حساب الموظف",
-      "manage": "الصلاحيات"
+      "manage": "الصلاحيات",
+      "roleLabel": "صلاحية النظام",
+      "roleStaff": "موظف عمليات",
+      "roleAdmin": "مدير عام",
+      "jobTitle": "المسمى الوظيفي (اختياري)"
     },
     "settings": {
       "title": "إعدادات النظام والتهيئة التشغيلية",
@@ -769,18 +1074,18 @@
       "colStatus": "الحالة"
     },
     "review": {
-      "modalTitle": "مراجعة وتعديل بيانات المستند مباشرة",
-      "filePreview": "معاينة وتدقيق الملف",
+      "modalTitle": "مراجعة وتوثيق المستند",
+      "filePreview": "معاينة الملف",
       "openFull": "فتح الملف بدقة كاملة",
-      "docTitle": "الاسم الرسمي للمستند (يظهر للعميل)",
-      "docCategory": "تصنيف ونوع المستند",
-      "decision": "قرار المراجعة والاعتماد",
-      "approveBtn": "اعتماد وتوثيق المستند",
-      "rejectBtn": "رفض المستند",
-      "startDate": "تاريخ الإصدار / بدء السريان",
-      "expiryDate": "تاريخ انتهاء الصلاحية (أساس التنبيهات)",
+      "docTitle": "عنوان المستند",
+      "docCategory": "نوع المستند",
+      "decision": "قرار المراجعة",
+      "approveBtn": "اعتماد (صالح)",
+      "rejectBtn": "رفض (غير صالح)",
+      "startDate": "تاريخ الإصدار",
+      "expiryDate": "تاريخ الانتهاء",
       "rejectionReason": "سبب الرفض",
-      "notes": "ملاحظات وتوجيهات للمراجع والعميل (اختياري)",
+      "notes": "ملاحظات المراجع والإفادة (اختياري)",
       "saveBtn": "حفظ وتطبيق التحديثات فوراً",
       "pageSubtitle": "تدقيق شهادات وتراخيص الشركات المرفوعة، تعديل البيانات حياً، واعتماد أو رفض المعاملات",
       "queueHeading": "قائمة المستندات المعلقة قيد التدقيق والمراجعة",
@@ -789,7 +1094,92 @@
       "colUploadDate": "تاريخ الرفع",
       "queueClear": "قائمة المراجعة فارغة تماماً! 🎉",
       "queueClearSub": "تمت مراجعة واعتماد كافة المستندات المرفوعة من العملاء بنجاح.",
-      "reviewBtnAction": "مراجعة وتعديل"
+      "reviewBtnAction": "مراجعة وتعديل",
+      "approveSaveBtn": "تأكيد واعتماد المستند",
+      "rejectSaveBtn": "تأكيد ورفض المستند",
+      "adjustDates": "فترة الصلاحية والانتهاء"
+    },
+    "requests": {
+      "subtitle": "إدارة ومعالجة طلبات الخدمات الواردة من العملاء والشركات",
+      "title": "قائمة الطلبات الرئيسية",
+      "desc": "مراجعة طلبات العملاء، تحديث حالتها، وإضافة محطات جديدة للجدول الزمني للعميل",
+      "refresh": "تحديث البيانات",
+      "colCompany": "العميل / الشركة",
+      "colTracking": "رقم التتبع والموضوع",
+      "colService": "نوع الخدمة",
+      "colPriority": "الأهمية",
+      "colStatus": "الحالة",
+      "colActions": "إجراءات",
+      "loading": "جاري تحميل الطلبات...",
+      "empty": "لا توجد طلبات",
+      "updateBtn": "تحديث",
+      "viewDetails": "عرض التفاصيل",
+      "updateTitle": "تحديث حالة طلب الخدمة",
+      "reqId": "رقم الطلب",
+      "newStatus": "الحالة الجديدة",
+      "status_pending": "قيد الانتظار",
+      "status_in_progress": "قيد التنفيذ",
+      "status_completed": "مكتمل",
+      "status_cancelled": "ملغى",
+      "timelineComment": "رسالة العميل للجدول الزمني (تظهر للعميل فوراً)",
+      "commentPlaceholder": "اشرح تحديث الحالة هنا ليراه العميل...",
+      "commentHelp": "هذه الرسالة ستتم إضافتها فوراً في محطات التتبع الخاصة بالعميل.",
+      "cancel": "إلغاء",
+      "saving": "جاري الحفظ...",
+      "saveChanges": "حفظ التحديث",
+      "updateSuccess": "تم تحديث حالة الطلب بنجاح",
+      "updateError": "فشل في تحديث حالة الطلب",
+      "status_under_review": "قيد المراجعة",
+      "status_waiting_customer": "بانتظار العميل"
+    },
+    "requestDetail": {
+      "backToQueue": "العودة إلى قائمة الطلبات",
+      "updateStatusBtn": "تحديث الحالة",
+      "operationalDetails": "التفاصيل التشغيلية",
+      "serviceType": "نوع الخدمة",
+      "operation": "العملية",
+      "operation_export": "تصدير",
+      "operation_import": "استيراد",
+      "operation_transit": "ترانزيت",
+      "operation_none": "-",
+      "expectedDate": "التاريخ المتوقع",
+      "description": "الوصف",
+      "provideQuote": "تقديم جدول وعرض سعر",
+      "updateQuote": "تحديث الجدول وعرض السعر",
+      "departureDate": "تاريخ المغادرة",
+      "arrivalDate": "تاريخ الوصول",
+      "transitTime": "مدة الرحلة (بالأيام)",
+      "transitPlaceholder": "مثال: 14 يوم",
+      "price": "السعر",
+      "currency": "العملة",
+      "additionalNotes": "ملاحظات إضافية (تظهر للعميل)",
+      "notesPlaceholder": "أضف أي شروط أو ملاحظات...",
+      "submitQuote": "إرسال عرض السعر",
+      "sending": "جاري الإرسال...",
+      "clientInfo": "معلومات العميل",
+      "companyName": "اسم الشركة",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "activityTimeline": "الجدول الزمني للأنشطة",
+      "requestNotFound": "لم يتم العثور على الطلب",
+      "returnToRequests": "العودة إلى الطلبات",
+      "successToast": "تم تقديم الجدول وعرض السعر بنجاح!",
+      "errorToast": "حدث خطأ أثناء تقديم عرض السعر.",
+      "loading": "جاري تحميل تفاصيل الطلب...",
+      "fields": {
+        "containerType": "نوع الحاوية",
+        "containerCount": "عدد الحاويات",
+        "containerSize": "حجم الحاوية",
+        "pol": "ميناء التحميل (POL)",
+        "pod": "ميناء الوصول (POD)",
+        "commodity": "البضاعة",
+        "weight": "الوزن",
+        "packageType": "نوع التغليف",
+        "packageCount": "عدد الطرود",
+        "origin": "المنشأ",
+        "destination": "الوجهة",
+        "dimensions": "الأبعاد"
+      }
     }
   },
   "expiry": {
@@ -807,5 +1197,42 @@
     "mismatch_details": "بيانات الشركة أو السجل غير متطابقة",
     "wrong_category": "تم رفع المستند في تصنيف غير صحيح",
     "other": "سبب آخر (موضح في الملاحظات)"
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "الإحصائيات والعمليات",
+      "reviewQueue": "مراجعة المستندات",
+      "customers": "حسابات الشركات",
+      "requests": "طلبات الخدمات",
+      "notifications": "مركز التنبيهات",
+      "staff": "فريق العمل والصلاحيات",
+      "settings": "إعدادات النظام"
+    },
+    "requests": {
+      "detail": {
+        "title": "الطلب: {trackingNumber}",
+        "loading": "جاري التحميل...",
+        "notFound": "لم يتم العثور على الطلب",
+        "returnToQueue": "العودة إلى القائمة",
+        "backToQueue": "رجوع للقائمة",
+        "generalInfo": "معلومات عامة",
+        "description": "الوصف:",
+        "servicesTitle": "الخدمات المطلوبة ومحرك التسعير",
+        "origin": "نقطة الانطلاق",
+        "destination": "وجهة الوصول",
+        "weight": "الوزن",
+        "volume": "الحجم",
+        "suggestedPrice": "السعر المقترح",
+        "matchedRule": "قاعدة التسعير:",
+        "manualPricing": "يتطلب تسعيراً يدوياً",
+        "clientInfo": "معلومات العميل",
+        "companyName": "اسم الشركة",
+        "email": "البريد الإلكتروني",
+        "readyToQuote": "جاهز لإرسال عرض السعر؟",
+        "readyToQuoteDesc": "يمكنك مراجعة الأسعار المقترحة وإنشاء عرض سعر رسمي في الخطوة التالية.",
+        "generateQuote": "إنشاء عرض سعر",
+        "serviceLabel": "خدمة"
+      }
+    }
   }
 }

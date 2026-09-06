@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import { User, Customer, Document as DocumentModel, Notification, CustomerRequest, Invoice } from "@/lib/models"
+import { User, Customer, Document as DocumentModel, Notification, CustomerRequest, Invoice, ServiceConfig } from "@/lib/models"
 import { hashPassword } from "@/lib/auth/password"
 
 export async function GET(req: NextRequest) {
@@ -230,6 +230,147 @@ export async function GET(req: NextRequest) {
       warningEscalationTier: "none",
     })
 
+    // Seed Service Configs
+    await ServiceConfig.deleteMany({})
+    await ServiceConfig.create([
+      {
+        serviceKey: "sea_freight",
+        nameEn: "Sea Freight",
+        nameAr: "الشحن البحري",
+        descriptionEn: "Reliable sea freight solutions across the globe.",
+        descriptionAr: "حلول شحن بحري موثوقة حول العالم.",
+        icon: "Ship",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "documents_pending", labelEn: "Documents Pending", labelAr: "بانتظار المستندات", isEndState: false, isCustomerVisible: true },
+          { key: "quotation", labelEn: "Quotation", labelAr: "عرض سعر", isEndState: false, isCustomerVisible: true },
+          { key: "booking_confirmed", labelEn: "Booking Confirmed", labelAr: "تم تأكيد الحجز", isEndState: false, isCustomerVisible: true },
+          { key: "in_transit", labelEn: "In Transit", labelAr: "في الطريق", isEndState: false, isCustomerVisible: true },
+          { key: "arrived", labelEn: "Arrived", labelAr: "وصلت", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+          { key: "cancelled", labelEn: "Cancelled", labelAr: "ملغى", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [
+          { documentType: "commercial_invoice", labelEn: "Commercial Invoice", labelAr: "فاتورة تجارية", isRequired: true },
+          { documentType: "packing_list", labelEn: "Packing List", labelAr: "بيان تعبئة", isRequired: true },
+          { documentType: "bill_of_lading", labelEn: "Bill of Lading", labelAr: "بوليصة الشحن", isRequired: true },
+        ],
+      },
+      {
+        serviceKey: "air_freight",
+        nameEn: "Air Freight",
+        nameAr: "الشحن الجوي",
+        descriptionEn: "Fast and reliable air cargo shipping.",
+        descriptionAr: "شحن جوي سريع وموثوق.",
+        icon: "Plane",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "flight_confirmed", labelEn: "Flight Confirmed", labelAr: "تم تأكيد الرحلة", isEndState: false, isCustomerVisible: true },
+          { key: "in_transit", labelEn: "In Transit", labelAr: "في الطريق", isEndState: false, isCustomerVisible: true },
+          { key: "arrived", labelEn: "Arrived", labelAr: "وصلت", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [
+          { documentType: "commercial_invoice", labelEn: "Commercial Invoice", labelAr: "فاتورة تجارية", isRequired: true },
+          { documentType: "air_waybill", labelEn: "Air Waybill (AWB)", labelAr: "بوليصة الشحن الجوي", isRequired: true },
+        ],
+      },
+      {
+        serviceKey: "land_freight",
+        nameEn: "Land Freight",
+        nameAr: "الشحن البري",
+        descriptionEn: "Seamless overland transportation.",
+        descriptionAr: "نقل بري سلس.",
+        icon: "Truck",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "truck_assigned", labelEn: "Truck Assigned", labelAr: "تم تعيين شاحنة", isEndState: false, isCustomerVisible: true },
+          { key: "in_transit", labelEn: "In Transit", labelAr: "في الطريق", isEndState: false, isCustomerVisible: true },
+          { key: "delivered", labelEn: "Delivered", labelAr: "تم التوصيل", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [
+          { documentType: "delivery_order", labelEn: "Delivery Order", labelAr: "أمر تسليم", isRequired: true },
+        ],
+      },
+      {
+        serviceKey: "customs_clearance",
+        nameEn: "Customs Clearance",
+        nameAr: "التخليص الجمركي",
+        descriptionEn: "Expert handling of customs procedures.",
+        descriptionAr: "تعامل خبير مع الإجراءات الجمركية.",
+        icon: "ShieldCheck",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "customs_declaration", labelEn: "Customs Declaration", labelAr: "البيان الجمركي", isEndState: false, isCustomerVisible: true },
+          { key: "customs_release", labelEn: "Customs Release", labelAr: "الإفراج الجمركي", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [
+          { documentType: "commercial_invoice", labelEn: "Commercial Invoice", labelAr: "فاتورة تجارية", isRequired: true },
+          { documentType: "packing_list", labelEn: "Packing List", labelAr: "بيان تعبئة", isRequired: true },
+        ],
+      },
+      {
+        serviceKey: "warehousing",
+        nameEn: "Warehousing & Storage",
+        nameAr: "التخزين والمستودعات",
+        descriptionEn: "Secure and efficient storage solutions.",
+        descriptionAr: "حلول تخزين آمنة وفعالة.",
+        icon: "Factory",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "goods_received", labelEn: "Goods Received", labelAr: "تم استلام البضائع", isEndState: false, isCustomerVisible: true },
+          { key: "stored", labelEn: "Stored", labelAr: "تم التخزين", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [
+          { documentType: "warehouse_receipt", labelEn: "Warehouse Receipt", labelAr: "إيصال استلام", isRequired: false },
+        ],
+      },
+      {
+        serviceKey: "inland_transportation",
+        nameEn: "Inland Transportation",
+        nameAr: "النقل الداخلي",
+        descriptionEn: "Local and regional cargo transport.",
+        descriptionAr: "نقل البضائع محلياً وإقليمياً.",
+        icon: "Truck",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "assigned", labelEn: "Assigned", labelAr: "تم التعيين", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [],
+      },
+      {
+        serviceKey: "general_inquiry",
+        nameEn: "General Logistics Inquiry",
+        nameAr: "استفسار لوجستي عام",
+        descriptionEn: "Ask us anything about shipping.",
+        descriptionAr: "اسألنا عن أي شيء يخص الشحن.",
+        icon: "MessageSquare",
+        isActive: true,
+        statuses: [
+          { key: "submitted", labelEn: "Submitted", labelAr: "تم التقديم", isEndState: false, isCustomerVisible: true },
+          { key: "under_review", labelEn: "Under Review", labelAr: "قيد المراجعة", isEndState: false, isCustomerVisible: true },
+          { key: "completed", labelEn: "Completed", labelAr: "مكتمل", isEndState: true, isCustomerVisible: true },
+        ],
+        documentRequirements: [],
+      },
+    ])
+
     // Invoices for testing
     await Invoice.create([
       {
@@ -258,7 +399,8 @@ export async function GET(req: NextRequest) {
       customerId: cust1._id,
       requestedBy: user1._id,
       trackingNumber: "NL-REQ-2026-8841",
-      serviceType: "freight_booking",
+      serviceType: "sea_freight",
+      operationType: "export",
       subject: "4x40ft FCL Alexandria to Hamburg",
       description: "Refrigerated citrus cargo, booking confirmation required.",
       priority: "high",

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
+import { useRouter } from "next/navigation"
 import {
   Search,
   Building2,
@@ -17,8 +18,6 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
-import { CustomerDetailDrawer, CustomerDocumentItem } from "./CustomerDetailDrawer"
-import { DocumentReviewModal, ReviewDocumentItem } from "@/components/admin/review/DocumentReviewModal"
 import { ManualWarningModal } from "@/components/admin/documents/ManualWarningModal"
 
 export interface CustomerAdminItem {
@@ -40,15 +39,13 @@ export interface CustomerAdminItem {
 
 export function CustomerOverviewTable() {
   const t = useTranslations()
+  const locale = useLocale()
+  const router = useRouter()
   const [customers, setCustomers] = useState<CustomerAdminItem[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
-  const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null)
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const [reviewDocTarget, setReviewDocTarget] = useState<ReviewDocumentItem | null>(null)
   const [warningModalTarget, setWarningModalTarget] = useState<CustomerAdminItem | null>(null)
-  const [drawerRefreshTrigger, setDrawerRefreshTrigger] = useState(0)
 
   const fetchCustomers = async () => {
     setLoading(true)
@@ -74,29 +71,7 @@ export function CustomerOverviewTable() {
   }, [search, statusFilter])
 
   const handleRowClick = (customer: CustomerAdminItem) => {
-    setSelectedCustomerId(customer.id)
-    setIsDrawerOpen(true)
-  }
-
-  const handleReviewFromDrawer = (
-    doc: CustomerDocumentItem,
-    companyName: string,
-    crNumber: string
-  ) => {
-    setReviewDocTarget({
-      id: doc.id,
-      title: doc.title,
-      category: doc.category,
-      fileName: doc.fileName,
-      fileUrl: doc.fileUrl,
-      fileSize: doc.fileSize,
-      mimeType: doc.mimeType,
-      companyName,
-      commercialRegisterNumber: crNumber,
-      uploadedByName: "Customer User",
-      uploadedByEmail: "client@nilelink.com",
-      createdAt: doc.createdAt,
-    })
+    router.push(`/${locale}/admin/customers/${customer.id}`)
   }
 
   const renderStatusBadge = (status: string, reason?: string) => {
@@ -288,32 +263,6 @@ export function CustomerOverviewTable() {
           </table>
         </div>
       </div>
-
-      {/* Customer 360 Inspection Drawer */}
-      <CustomerDetailDrawer
-        customerId={selectedCustomerId}
-        isOpen={isDrawerOpen}
-        refreshTrigger={drawerRefreshTrigger}
-        onClose={() => {
-          setIsDrawerOpen(false)
-          setSelectedCustomerId(null)
-        }}
-        onStatusChanged={fetchCustomers}
-        onReviewDocClick={handleReviewFromDrawer}
-      />
-
-      {/* Review Modal if triggered from drawer */}
-      {reviewDocTarget && (
-        <DocumentReviewModal
-          document={reviewDocTarget}
-          onClose={() => setReviewDocTarget(null)}
-          onSuccess={() => {
-            setReviewDocTarget(null)
-            fetchCustomers()
-            setDrawerRefreshTrigger((prev) => prev + 1)
-          }}
-        />
-      )}
 
       {/* Manual Warning Modal */}
       {warningModalTarget && (

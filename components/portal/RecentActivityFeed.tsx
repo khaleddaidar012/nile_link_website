@@ -17,7 +17,7 @@ interface ActivityItem {
 export function RecentActivityFeed() {
   const t = useTranslations()
   const locale = useLocale()
-  const { refreshTrigger } = usePortal()
+  const {} = usePortal()
   const [activities, setActivities] = useState<ActivityItem[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -85,7 +85,7 @@ export function RecentActivityFeed() {
       })
       .catch(() => setActivities([]))
       .finally(() => setLoading(false))
-  }, [t, locale, refreshTrigger])
+  }, [t, locale])
 
   const getIcon = (type: string) => {
     switch (type) {
