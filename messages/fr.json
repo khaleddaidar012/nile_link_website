@@ -18,7 +18,7 @@
     "required": "Required"
   },
   "metadata": {
-    "title": "NileLink | Solutions Logistiques Globales",
+    "title": "Solutions Logistiques Globales",
     "description": "NileLink est une société de transit leader en Égypte, offrant des services de fret maritime, aérien, routier, de dédouanement et d'entreposage dans le monde entier."
   },
   "navbar": {
@@ -481,7 +481,8 @@
       "notifications": "Notifications",
       "profile": "Profil de l'entreprise",
       "collapse": "Réduire le menu",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "quotes": "Quotes"
     },
     "dashboard": {
       "recentActivity": "Chronologie des activités récentes",

@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PricingRule } from "@/lib/models/PricingRule"
-import { connectDB } from "@/lib/db"
+import { connectDB } from "@/lib/mongodb"
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     await connectDB()
     const body = await req.json()
-    const updatedRule = await PricingRule.findByIdAndUpdate(params.id, body, { new: true, runValidators: true })
+    const updatedRule = await PricingRule.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!updatedRule) {
       return NextResponse.json({ success: false, error: "Pricing rule not found" }, { status: 404 })
     }
@@ -17,10 +18,11 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     await connectDB()
-    const deletedRule = await PricingRule.findByIdAndDelete(params.id)
+    const deletedRule = await PricingRule.findByIdAndDelete(id)
     if (!deletedRule) {
       return NextResponse.json({ success: false, error: "Pricing rule not found" }, { status: 404 })
     }

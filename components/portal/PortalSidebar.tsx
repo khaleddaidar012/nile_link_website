@@ -119,12 +119,12 @@ export function PortalSidebar() {
       <div className="flex h-16 items-center justify-between border-b border-slate-100 px-4 dark:border-slate-800">
         {!collapsed && (
           <Link href="/portal" className="flex items-center gap-2.5" dir="ltr">
-            <div className="relative h-[36px] w-[36px] shrink-0">
+            <div className="relative h-[55px] w-[55px] shrink-0 translate-y-[2px]">
               <Image
                 src={logoImg}
                 alt="NileLink"
                 fill
-                sizes="36px"
+                sizes="55px"
                 className="object-contain"
               />
             </div>
@@ -142,12 +142,12 @@ export function PortalSidebar() {
           </Link>
         )}
         {collapsed && (
-          <div className="relative mx-auto h-[32px] w-[32px]">
+          <div className="relative mx-auto h-[51px] w-[51px] translate-y-[2px]">
             <Image
               src={logoImg}
               alt="NileLink"
               fill
-              sizes="32px"
+              sizes="51px"
               className="object-contain"
             />
           </div>

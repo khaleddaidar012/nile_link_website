@@ -145,9 +145,6 @@ export default function RequestDetailsAndDocumentsPage() {
               currentCount={0}
               maxAllowed={10}
               onUploadComplete={handleUploadDone}
-              // Ideally we pass an entityId here so documents are linked to this request
-              entityType="request"
-              entityId={request._id}
             />
           </div>
 

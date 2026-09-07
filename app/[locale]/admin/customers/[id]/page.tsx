@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, use } from "react"
 import { useLocale, useTranslations } from "next-intl"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/navigation"
 import {
   ArrowLeft,
   ArrowRight,

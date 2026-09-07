@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import { useRouter } from "@/navigation"
 import { useTranslations } from "next-intl"
 import { PortalHeader } from "@/components/portal/PortalHeader"
 import { CheckCircle2, XCircle, ArrowLeft, Loader2, DollarSign, CalendarClock, FileCheck, AlertTriangle } from "lucide-react"

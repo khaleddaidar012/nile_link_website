@@ -37,7 +37,9 @@ export function AccountHealthAlertBanner() {
   const hasNoDocsUploaded = !documentStats || documentStats.totalDocs === 0
 
   let translatedReason = customer?.statusReason || ""
-  if (translatedReason) {
+  if (translatedReason === "All company documents are verified and up to date.") {
+    translatedReason = isEn ? translatedReason : "جميع مستندات الشركة موثقة ومحدثة بالكامل."
+  } else if (translatedReason) {
     const rejectedMatch = translatedReason.match(/Mandatory document \((.*?)\) was rejected/i)
     if (rejectedMatch) {
       translatedReason = isEn ? `Document rejected: ${rejectedMatch[1]}` : `تم رفض المستند: ${rejectedMatch[1]}`

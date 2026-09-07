@@ -5,9 +5,10 @@ import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getSessionFromRequest(req)
     if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -15,7 +16,7 @@ export async function GET(
 
     await connectDB()
 
-    const quoteId = params.id
+    const quoteId = id
     const quote = await Quote.findById(quoteId).lean()
 
     if (!quote) {

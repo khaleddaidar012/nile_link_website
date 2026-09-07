@@ -121,7 +121,7 @@ export function PortalHeader({ title, subtitle }: PortalHeaderProps) {
                 )}
               </div>
               <p className="text-[10px] text-secondary-500 capitalize dark:text-secondary-400">
-                {user.role.replace("_", " ")}
+                {t(`portal.roles.${user.role}`) || user.role.replace("_", " ")}
               </p>
             </div>
             <button

@@ -5,9 +5,10 @@ import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getSessionFromRequest(req)
     if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -15,7 +16,7 @@ export async function POST(
 
     await connectDB()
 
-    const quoteId = params.id
+    const quoteId = id
     const quote = await Quote.findById(quoteId)
 
     if (!quote) {
@@ -38,7 +39,7 @@ export async function POST(
         status: "active",
         title: "Quote Accepted",
         comment: `Customer accepted quote ${quote.quoteNumber}. Operations will now commence.`,
-        updatedBy: session.userId,
+        updatedBy: session.userId as any,
         createdAt: new Date(),
       })
       await request.save()
@@ -66,8 +67,8 @@ export async function POST(
       title: `Quote Accepted: ${quote.quoteNumber}`,
       message: `The customer accepted the quote for request ${request?.trackingNumber}.`,
       channel: "in_app",
-      type: "billing",
-      severity: "success",
+      type: "request_update",
+      severity: "normal",
       relatedRequestId: quote.requestId,
     })
 

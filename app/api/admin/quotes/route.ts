@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
         currency: currency || "USD",
         auditTrail: [
           {
-            updatedBy: session.userId,
+            updatedBy: session.userId as any,
             previousPrice: 0,
             newPrice: item.finalPrice,
             reason: "Initial Quote Generation",
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
         status: "quote_provided",
         title: "Quote Provided",
         comment: `Quote ${quoteNumber} has been sent to the customer for review.`,
-        updatedBy: session.userId,
+        updatedBy: session.userId as any,
         createdAt: new Date(),
       })
       await request.save()
@@ -83,11 +83,11 @@ export async function POST(req: NextRequest) {
     // Send Notification to Customer
     await Notification.create({
       recipientCustomerId: customerId,
-      targetAudience: "client",
+      targetAudience: "customer",
       title: `New Quote Available: ${quoteNumber}`,
       message: `A quote of ${totalAmount} ${currency || "USD"} has been provided for your request.`,
       channel: "in_app",
-      type: "billing",
+      type: "request_update",
       severity: "normal",
       relatedRequestId: requestId,
     })

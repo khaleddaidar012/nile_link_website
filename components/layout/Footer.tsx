@@ -181,8 +181,8 @@ export function Footer() {
 
           <div className="mt-12 border-t border-secondary-800 pt-8">
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <p className="text-sm text-secondary-500" suppressHydrationWarning>
-                &copy; {new Date().getFullYear()} NileLink. {t("footer.copyright")}
+              <p className="text-sm text-secondary-500">
+                &copy; 2026 NileLink. {t("footer.copyright")}
               </p>
               <div className="flex gap-6 text-sm text-secondary-500">
                 <Link href="/" className="transition-colors hover:text-primary-400">

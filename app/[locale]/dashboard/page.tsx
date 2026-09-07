@@ -1,5 +1,5 @@
 import { verifySession } from "@/lib/auth/session"
-import { redirect } from "@/navigation"
+import { redirect } from "next/navigation"
 import { DashboardClient } from "./components/DashboardClient"
 
 export const dynamic = "force-dynamic"
@@ -18,7 +18,7 @@ export default async function DashboardPage({ params }: Props) {
   const authenticated = await verifySession()
 
   if (!authenticated) {
-    redirect({ href: "/analytics-login", locale })
+    redirect(`/${locale}/analytics-login`)
   }
 
   return <DashboardClient />

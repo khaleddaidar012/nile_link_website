@@ -1,3 +1,5 @@
+"use client"
+
 import { useTranslations } from "next-intl"
 import { Ship, Plane, Truck, ShieldCheck, Warehouse, Map } from "lucide-react"
 import { Link } from "@/navigation"

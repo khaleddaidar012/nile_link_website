@@ -19,7 +19,7 @@
     "details": "Details"
   },
   "metadata": {
-    "title": "NileLink | Global Logistics Solutions",
+    "title": "Global Logistics Solutions",
     "description": "NileLink is a leading freight forwarding company in Egypt, offering sea freight, air freight, road freight, customs clearance, and warehousing services worldwide."
   },
   "navbar": {
@@ -516,11 +516,12 @@
       "dashboard": "Dashboard",
       "documents": "Legal Documents",
       "requests": "Service Requests",
-      "financials": "Financials & Invoices",
+      "financials": "Financials",
       "notifications": "Notifications",
       "profile": "Company Profile",
       "collapse": "Collapse Sidebar",
-      "logout": "Sign Out"
+      "logout": "Sign Out",
+      "quotes": "Quotes"
     },
     "dashboard": {
       "recentActivity": "Recent Activity Timeline",
@@ -559,7 +560,8 @@
         "awaitingStaff": "Awaiting Staff"
       },
       "pendingDocs": "Pending Docs",
-      "channels": "Channels"
+      "channels": "Channels",
+      "subtitle": "Corporate legal files, shipping operations & compliance status"
     },
     "healthBanners": {
       "unverifiedTitle": "Corporate Email Not Verified",
@@ -805,7 +807,6 @@
         "status": "Status:",
         "upload_required": "Upload Required Documents",
         "upload_desc": "Please upload the necessary documents for your selected services (e.g., Commercial Invoice, Packing List, Bill of Lading, ACID).",
-        "upload_desc": "Please upload the necessary documents for your selected services (e.g., Commercial Invoice, Packing List, Bill of Lading, ACID).",
         "uploaded_docs": "Uploaded Documents for this Request",
         "loading_details": "Loading request details...",
         "not_found": "Request not found.",
@@ -821,6 +822,111 @@
           "urgent": "Urgent"
         }
       }
+    },
+    "quotes": {
+      "subtitle": "Review and manage shipping quotes sent to your company.",
+      "searchPlaceholder": "Search quote # or request...",
+      "loading": "Loading quotes...",
+      "metrics": {
+        "total": "Total Quotes",
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "totalValue": "Total Value"
+      },
+      "filters": {
+        "all": "All Statuses"
+      },
+      "status": {
+        "draft": "Draft",
+        "sent": "Sent",
+        "viewed": "Viewed",
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "expired": "Expired"
+      },
+      "table": {
+        "quoteNumber": "Quote #",
+        "requestNumber": "Request #",
+        "totalAmount": "Amount",
+        "date": "Created Date",
+        "validUntil": "Valid Until",
+        "status": "Status",
+        "actions": "Actions",
+        "view": "View"
+      },
+      "empty": {
+        "title": "No Quotes Found",
+        "description": "You do not have any shipping quotes matching your criteria at the moment."
+      },
+      "details": {
+        "title": "Quote Details",
+        "created": "Created Date",
+        "validUntil": "Valid Until",
+        "shipmentInfo": "Shipment Overview",
+        "origin": "Origin",
+        "destination": "Destination",
+        "pricing": "Pricing Breakdown",
+        "grandTotal": "Grand Total"
+      },
+      "actions": {
+        "accept": "Accept Quote",
+        "reject": "Reject"
+      }
+    },
+    "financials": {
+      "subtitle": "Track your invoices, view payment history, and monitor your outstanding balance.",
+      "searchPlaceholder": "Search invoice #...",
+      "loading": "Loading invoices...",
+      "loadingDetails": "Loading invoice details...",
+      "noPayments": "No payments have been recorded for this invoice yet.",
+      "paymentHistory": "Payment History",
+      "metrics": {
+        "totalValue": "Total Invoices Value",
+        "invoices": "invoices",
+        "totalPaid": "Total Paid",
+        "received": "Payments received",
+        "totalRemaining": "Total Remaining",
+        "outstanding": "Outstanding balance",
+        "paid": "Paid",
+        "remaining": "Remaining"
+      },
+      "filters": {
+        "all": "All Statuses"
+      },
+      "status": {
+        "draft": "Draft",
+        "sent": "Sent",
+        "partially_paid": "Partially Paid",
+        "paid": "Paid",
+        "overdue": "Overdue",
+        "cancelled": "Cancelled"
+      },
+      "table": {
+        "invoiceNumber": "Invoice #",
+        "date": "Issue Date",
+        "dueDate": "Due Date",
+        "total": "Total",
+        "payment": "Payment",
+        "status": "Status",
+        "actions": "Actions",
+        "view": "View"
+      },
+      "empty": {
+        "title": "No Invoices Found",
+        "description": "You do not have any invoices matching your criteria."
+      },
+      "actions": {
+        "copyLink": "Copy Link",
+        "print": "Print",
+        "downloadPdf": "Download PDF"
+      }
+    },
+    "roles": {
+      "customer_admin": "Customer Admin",
+      "customer": "Customer",
+      "staff": "Staff",
+      "super_admin": "Super Admin"
     }
   },
   "documents": {
@@ -898,277 +1004,48 @@
     }
   },
   "admin": {
-    "sidebar": {
-      "dashboard": "Analytics & Overview",
-      "reviewQueue": "Document Review Queue",
-      "customers": "Customer Accounts",
-      "documents": "All Documents",
-      "notifications": "Notification Center",
-      "staff": "Staff & Roles",
-      "logs": "Audit Activity Logs",
-      "settings": "System Settings",
-      "requests": "Service Requests"
-    },
     "dashboard": {
       "title": "Operations & Expiry Analytics",
-      "totalClients": "Total Clients",
-      "activeClients": "Active Clients",
-      "inactiveClients": "Inactive / Warning",
-      "pendingReview": "Pending Review Queue",
-      "expiringSoon": "Expiring in ≤10 Days",
-      "expiredTotal": "Expired Documents",
-      "tickerWarning": "Urgent Expiry Alert: {count} documents across {clients} clients will expire within the next 10 days.",
-      "reviewCta": "Review Documents Now",
-      "subtitle": "Live document verification queue, upcoming expirations & customer compliance"
+      "subtitle": "Live document verification queue, upcoming expirations & customer stats"
     },
     "customerTable": {
-      "title": "Customer Accounts Overview",
-      "client": "Client / Company",
-      "totalDocs": "Documents",
-      "expiring": "Expiring (≤10d)",
-      "expired": "Expired",
-      "status": "Account Status",
-      "actions": "Actions",
-      "inspect": "Inspect Documents",
-      "sendWarning": "Send Expiry Warning"
+      "title": "Customer Accounts",
+      "client": "Client"
     },
     "customers": {
-      "pageTitle": "Customers",
-      "pageSubtitle": "Inspect client compliance health, audit legal documents, and govern account operational access",
-      "searchPlaceholder": "Search by company name, CR number, or email...",
-      "filterAll": "All Account Statuses",
-      "filterActive": "Active & Compliant",
-      "filterWarning": "Warning / Action Required",
-      "filterInactive": "Inactive / Restricted",
-      "statusActive": "Active (Compliant)",
-      "statusWarning": "Warning (Action Needed)",
-      "statusInactive": "Restricted",
-      "noCustomers": "No customers found",
-      "tabDocs": "Documents Registry",
-      "tabGovernance": "Account Governance",
-      "tabProfile": "Company Contacts",
-      "noDocs": "No documents uploaded yet",
+      "pageTitle": "Customer Management",
+      "pageSubtitle": "View and manage company accounts",
+      "detailTitle": "Company Profile",
+      "contactDetails": "Contact Details",
+      "noDocs": "No documents yet",
+      "reasonLabel": "Suspension Reason",
       "reviewAction": "Review",
-      "statusControlTitle": "Account Status & Operational Access",
-      "statusControlSub": "Change customer legal standing to restrict port operations or reactivate services",
-      "reasonLabel": "Reason / Customer Notification Note",
-      "contactDetails": "Company Location & Contacts",
-      "portalUsers": "Authorized Portal Users",
-      "detailTitle": "Customer Compliance Details",
+      "statusControlSub": "Change account status",
+      "statusControlTitle": "Account Control",
+      "tabDocs": "Documents",
+      "tabGovernance": "Governance",
+      "tabProfile": "Profile",
       "teamMembers": "Team Members"
     },
     "notifications": {
-      "title": "Notification Center & Document Expiry Radar",
-      "subtitle": "Multi-tier 30d, 20d, 10d, and 5d automated escalation tracking and operational broadcasts",
-      "tabRadar": "Expiry Escalation Radar (30/20/10/5 Days)",
-      "allTiers": "All Escalation Tiers (≤30 Days)",
-      "tier5": "≤ 5 Days (Final Freeze Warning)",
-      "tier10": "≤ 10 Days (Critical Escalation)",
-      "tier20": "≤ 20 Days (Urgent Reminder)",
-      "tier30": "≤ 30 Days (Advisory Notice)",
-      "tierExpired": "Expired Documents",
-      "runCron": "Execute Automated 30/20/10/5-Day Radar Check",
-      "colCompany": "Client Company",
-      "colDoc": "Document Name",
-      "colExpiry": "Expiry Date",
-      "colEscalation": "Escalation Tier",
-      "colLastAlert": "Last Alert Sent",
-      "notSentYet": "Automated schedule active",
-      "noExpiring": "All compliance files are currently valid and healthy.",
-      "noExpiringSub": "No documents requiring 30, 20, 10, or 5-day warning escalation.",
-      "alertButton": "Send Alert"
-    },
-    "staff": {
-      "title": "Staff Management & Granular RBAC",
-      "subtitle": "Create employee accounts and assign operational privileges",
-      "addEmployee": "Add Employee",
-      "searchPlaceholder": "Search staff by name, email, or phone...",
-      "createTitle": "Add New Employee",
-      "createSubtitle": "Create a staff account and configure operational permissions",
-      "editTitle": "Edit Employee Permissions",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Corporate Email",
-      "phone": "WhatsApp / Mobile",
-      "password": "Initial Password",
-      "accountStatus": "Employee Account Status",
-      "permissionsHeading": "Assigned Operational Permissions",
-      "permissionsSub": "Select the exact privileges this employee can execute",
-      "permAlerts": "Send Alerts & Broadcasts",
-      "permAlertsDesc": "Can trigger manual client notifications and expiry warnings",
-      "permAlertsShort": "Alerts",
-      "permReview": "Approve & Reject Documents",
-      "permReviewDesc": "Can verify compliance files, set validity dates, and reject files",
-      "permReviewShort": "Docs Review",
-      "permCustomers": "Activate & Deactivate Customer Accounts",
-      "permCustomersDesc": "Can change customer account status (Active, Warning, Restricted)",
-      "permCustomersShort": "Customer Mgmt",
-      "colEmployee": "Employee",
-      "colRole": "Role",
-      "colStatus": "Status",
-      "colPermissions": "Permissions",
-      "manager": "System Manager",
-      "staff": "Operations Staff",
-      "allPermissions": "All Privileges (Manager)",
-      "noPermissions": "No permissions assigned",
-      "noStaffFound": "No employee records found",
-      "noStaffSub": "Click 'Add Employee' above to create new staff accounts.",
-      "createButton": "Create Employee",
-      "manage": "Permissions",
-      "roleLabel": "System Role",
-      "roleStaff": "Employee / Staff",
-      "roleAdmin": "Administrator",
-      "jobTitle": "Job Title (Optional)"
-    },
-    "settings": {
-      "title": "System Settings & Operational Configurations",
-      "subtitle": "Manage allowed corporate document types, default validities, and platform parameters",
-      "catTitle": "Corporate Document Types & Categories",
-      "catSubtitle": "Configure acceptable business certificates, default validities, and client upload dropzone types",
-      "addCat": "Add Document Type",
-      "colType": "Document Type",
-      "colKey": "System Key",
-      "colValidity": "Default Validity",
-      "colMandatory": "Mandatory",
-      "colStatus": "Status"
-    },
-    "review": {
-      "modalTitle": "Document Review & Verification",
-      "filePreview": "File Preview",
-      "openFull": "Open High-Resolution File",
-      "docTitle": "Document Title",
-      "docCategory": "Document Category",
-      "decision": "Compliance Decision",
-      "approveBtn": "Approve (Valid)",
-      "rejectBtn": "Reject (Invalid)",
-      "startDate": "Issue Date",
-      "expiryDate": "Expiry Date",
-      "rejectionReason": "Reason for Rejection",
-      "notes": "Reviewer Notes & Feedback (Optional)",
-      "saveBtn": "Save & Apply Live Updates",
-      "pageSubtitle": "Inspect uploaded customer certificates, edit metadata live, and approve or reject submissions",
-      "queueHeading": "Pending Document Review Queue",
-      "colDocTitle": "Document Title",
-      "colUploadedBy": "Uploaded By",
-      "colUploadDate": "Upload Date",
-      "queueClear": "Review Queue is Clear! 🎉",
-      "queueClearSub": "All uploaded customer documents have been reviewed.",
-      "reviewBtnAction": "Review & Edit",
-      "approveSaveBtn": "Confirm & Approve",
-      "rejectSaveBtn": "Confirm & Reject",
-      "adjustDates": "Validity & Expiry Schedule"
+      "title": "Notification Center",
+      "subtitle": "Manage and send notifications to customers",
+      "tabRadar": "Document Radar"
     },
     "requests": {
-      "subtitle": "Review and update service requests",
-      "masterQueueTitle": "Master Requests Queue",
-      "masterQueueSubtitle": "Review client requests, update status, and add new timeline milestones",
-      "updateBtn": "Update",
-      "viewDetails": "View Details",
-      "refresh": "Refresh Data",
-      "colCompany": "Client / Company",
-      "colTracking": "Tracking & Subject",
-      "colService": "Service Type",
-      "colPriority": "Priority",
-      "colStatus": "Status",
-      "colActions": "Actions",
+      "title": "Service Requests",
+      "subtitle": "Review and manage customer service requests",
+      "desc": "Review client requests, update statuses, and generate quotes",
       "loading": "Loading requests...",
-      "empty": "No requests found",
-      "updateBtn": "Update",
-      "updateTitle": "Update Service Request",
-      "reqId": "Request ID",
-      "newStatus": "New Status",
-      "status_pending": "Pending",
-      "status_in_progress": "In Progress",
-      "status_completed": "Completed",
-      "status_cancelled": "Cancelled",
-      "timelineComment": "Timeline Comment (Visible to Client)",
-      "commentPlaceholder": "Explain this status update...",
-      "commentHelp": "This message will be instantly added to the clients tracking milestones.",
-      "cancel": "Cancel",
-      "saving": "Saving...",
-      "saveChanges": "Update Status",
-      "updateSuccess": "Request updated successfully",
-      "updateError": "Failed to update request",
-      "status_under_review": "Under Review",
-      "status_waiting_customer": "Waiting for Customer"
-    },
-    "requestDetail": {
-      "backToQueue": "Back to Master Queue",
-      "updateStatusBtn": "Update Status",
-      "operationalDetails": "Operational Details",
-      "serviceType": "Service Type",
-      "operation": "Operation",
-      "operation_export": "Export",
-      "operation_import": "Import",
-      "operation_transit": "Transit",
-      "operation_none": "-",
-      "expectedDate": "Expected Date",
-      "description": "Description",
-      "provideQuote": "Provide Schedule & Quote",
-      "updateQuote": "Update Provided Schedule & Quote",
-      "departureDate": "Departure Date",
-      "arrivalDate": "Arrival Date",
-      "transitTime": "Transit Time (Days)",
-      "transitPlaceholder": "e.g. 14 Days",
-      "price": "Price",
-      "currency": "Currency",
-      "additionalNotes": "Additional Notes (Visible to Client)",
-      "notesPlaceholder": "Add any conditions or remarks...",
-      "submitQuote": "Submit Quote & Schedule",
-      "sending": "Sending...",
-      "clientInfo": "Client Information",
-      "companyName": "Company Name",
-      "email": "Email",
-      "phone": "Phone",
-      "activityTimeline": "Activity Timeline",
-      "requestNotFound": "Request Not Found",
-      "returnToRequests": "Return to Requests",
-      "successToast": "Schedule/Quote provided successfully!",
-      "errorToast": "An error occurred while submitting the quote.",
-      "loading": "Loading request details...",
-      "fields": {
-        "containerType": "Container Type",
-        "containerCount": "Container Count",
-        "containerSize": "Container Size",
-        "pol": "Port of Loading (POL)",
-        "pod": "Port of Discharge (POD)",
-        "commodity": "Commodity",
-        "weight": "Weight",
-        "packageType": "Package Type",
-        "packageCount": "Package Count",
-        "origin": "Origin",
-        "destination": "Destination",
-        "dimensions": "Dimensions"
-      }
-    }
-  },
-  "expiry": {
-    "normal": "Valid",
-    "warning": "Warning ({days} days left)",
-    "urgent": "Urgent ({days} days left)",
-    "critical": "Critical ({days} days left)",
-    "expired": "Expired ({days} days ago)",
-    "expiresToday": "Expires Today"
-  },
-  "rejectionReasons": {
-    "illegible_copy": "Illegible or low quality copy",
-    "expired_date": "Document expired or invalid date",
-    "missing_stamps": "Missing official stamps or signatures",
-    "mismatch_details": "Company or registration details mismatch",
-    "wrong_category": "Document uploaded under wrong category",
-    "other": "Other reason (specified in notes)"
-  },
-  "admin": {
-    "sidebar": {
-      "dashboard": "Analytics & Overview",
-      "reviewQueue": "Document Review Queue",
-      "customers": "Customer Accounts",
-      "requests": "Service Requests",
-      "notifications": "Notification Center",
-      "staff": "Staff & Permissions",
-      "settings": "System Settings"
-    },
-    "requests": {
+      "empty": "No requests at the moment",
+      "refresh": "Refresh",
+      "viewDetails": "View Details",
+      "colTracking": "Tracking #",
+      "colCompany": "Company",
+      "colService": "Service",
+      "colStatus": "Status",
+      "colPriority": "Priority",
+      "colActions": "Actions",
       "detail": {
         "title": "Request: {trackingNumber}",
         "loading": "Loading details...",
@@ -1193,6 +1070,50 @@
         "generateQuote": "Generate Quote",
         "serviceLabel": "Service"
       }
+    },
+    "review": {
+      "pageSubtitle": "Review, approve or reject documents submitted by customers",
+      "colDocTitle": "Document",
+      "colUploadDate": "Upload Date",
+      "colUploadedBy": "Uploaded By",
+      "queueClear": "Review Queue is Clear",
+      "queueClearSub": "All documents have been reviewed",
+      "queueHeading": "Review Queue",
+      "reviewBtnAction": "Review"
+    },
+    "settings": {
+      "title": "System Settings",
+      "subtitle": "Manage service categories and pricing rules",
+      "colType": "Type"
+    },
+    "staff": {
+      "title": "Staff & Permissions",
+      "subtitle": "Manage team members and their access levels"
+    },
+    "sidebar": {
+      "dashboard": "Analytics & Overview",
+      "reviewQueue": "Document Review Queue",
+      "customers": "Customer Accounts",
+      "requests": "Service Requests",
+      "notifications": "Notification Center",
+      "staff": "Staff & Permissions",
+      "settings": "System Settings"
     }
+  },
+  "expiry": {
+    "normal": "Valid",
+    "warning": "Warning ({days} days left)",
+    "urgent": "Urgent ({days} days left)",
+    "critical": "Critical ({days} days left)",
+    "expired": "Expired ({days} days ago)",
+    "expiresToday": "Expires Today"
+  },
+  "rejectionReasons": {
+    "illegible_copy": "Illegible or low quality copy",
+    "expired_date": "Document expired or invalid date",
+    "missing_stamps": "Missing official stamps or signatures",
+    "mismatch_details": "Company or registration details mismatch",
+    "wrong_category": "Document uploaded under wrong category",
+    "other": "Other reason (specified in notes)"
   }
 }

@@ -45,13 +45,13 @@ export default function PortalRequestsPage() {
             <h2 className="text-base font-bold text-secondary-900 dark:text-white">{t("portal.requests.activeRequests")}</h2>
             <p className="text-xs text-secondary-500">{t("portal.requests.activeRequestsSub")}</p>
           </div>
-          <a
+          <Link
             href="/portal/requests/new"
             className="flex items-center rounded-xl bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-primary-700 transition-colors"
           >
             <Plus className="mr-1.5 h-4 w-4 rtl:mr-0 rtl:ml-1.5" />
             <span>{t("portal.requests.newRequest")}</span>
-          </a>
+          </Link>
         </div>
 
         {/* Requests Master Table */}

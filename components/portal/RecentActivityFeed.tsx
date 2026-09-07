@@ -112,6 +112,16 @@ export function RecentActivityFeed() {
     return act.title
   }
 
+  const getLocalizedDescription = (act: ActivityItem) => {
+    let desc = act.description
+    const uploadMatch = desc.match(/(.*?) uploaded (\d+) new document\(s\) for verification\./i)
+    if (uploadMatch && locale === "ar") {
+      return `قامت شركة ${uploadMatch[1]} برفع ${uploadMatch[2]} مستند(ات) للمراجعة والتوثيق.`
+    }
+    return desc
+  }
+
+
   return (
     <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div className="mb-4 flex items-center justify-between">
@@ -149,7 +159,7 @@ export function RecentActivityFeed() {
                   {getLocalizedTitle(act)}
                 </p>
                 <p className="mt-0.5 text-[11px] text-secondary-500 line-clamp-2">
-                  {act.description}
+                  {getLocalizedDescription(act)}
                 </p>
                 <span className="mt-1 block text-[10px] text-secondary-400">
                   {act.timeAgo}

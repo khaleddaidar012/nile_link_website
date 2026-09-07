@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const session = await getSessionFromRequest(req)
-    if (!session || (session.role !== "admin" && session.role !== "staff" && session.role !== "super_admin")) {
+    if (!session || (session.role !== "staff" && session.role !== "super_admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -21,9 +21,17 @@ export async function GET(
       return NextResponse.json({ error: "Invalid Request ID" }, { status: 400 })
     }
 
+    // Import RequestService to ensure it's registered with Mongoose
+    const { RequestService } = await import("@/lib/models")
+    void RequestService // ensure model is registered
+
     await connectDB()
 
-    const request = await CustomerRequest.findById(id).populate("customerId", "companyName contactEmail contactPhone")
+    const request = await CustomerRequest
+      .findById(id)
+      .populate("customerId", "companyName contactEmail contactPhone")
+      .populate("services")
+      .populate("requestedBy", "name email")
     if (!request) {
       return NextResponse.json({ error: "Request not found" }, { status: 404 })
     }

@@ -6,9 +6,10 @@ import { PricingEngine } from "@/lib/services/PricingEngine"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getSessionFromRequest(req)
     if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -16,11 +17,11 @@ export async function GET(
 
     await connectDB()
     const user = await User.findById(session.userId)
-    if (user?.role !== "admin" && user?.role !== "employee") {
+    if (user?.role !== "super_admin" && user?.role !== "staff") {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const request = await CustomerRequest.findById(params.id)
+    const request = await CustomerRequest.findById(id)
     if (!request) {
       return NextResponse.json({ error: "Request not found" }, { status: 404 })
     }

@@ -109,7 +109,7 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
       recentInvoices: invoices.map((inv) => ({
         id: inv._id.toString(),
         invoiceNumber: inv.invoiceNumber,
-        amount: inv.amount,
+        amount: inv.totalAmount,
         currency: inv.currency,
         status: inv.status,
         dueDate: inv.dueDate,

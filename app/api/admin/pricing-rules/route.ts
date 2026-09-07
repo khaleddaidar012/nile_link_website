@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PricingRule } from "@/lib/models/PricingRule"
-import { connectDB } from "@/lib/db"
+import { connectDB } from "@/lib/mongodb"
 
 export async function GET(req: NextRequest) {
   try {

@@ -5,9 +5,10 @@ import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getSessionFromRequest(req)
     if (!session?.userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -15,7 +16,7 @@ export async function PUT(
 
     await connectDB()
 
-    const serviceId = params.id
+    const serviceId = id
     const body = await req.json()
     const { status, title, comment } = body
 
@@ -37,7 +38,7 @@ export async function PUT(
       status,
       title,
       comment: comment || "",
-      updatedBy: session.userId,
+      updatedBy: session.userId as any,
       createdAt: new Date(),
     })
 

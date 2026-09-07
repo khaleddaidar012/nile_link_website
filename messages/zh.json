@@ -18,7 +18,7 @@
     "required": "Required"
   },
   "metadata": {
-    "title": "NileLink | 全球物流解决方案",
+    "title": "全球物流解决方案",
     "description": "NileLink 是埃及领先的货运代理公司，提供全球海运、空运、陆运、报关和仓储服务。"
   },
   "navbar": {
@@ -481,7 +481,8 @@
       "notifications": "通知中心",
       "profile": "企业资料",
       "collapse": "折叠菜单",
-      "logout": "退出登录"
+      "logout": "退出登录",
+      "quotes": "Quotes"
     },
     "dashboard": {
       "recentActivity": "最近活动时间线",

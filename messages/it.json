@@ -18,7 +18,7 @@
     "required": "Required"
   },
   "metadata": {
-    "title": "NileLink | Soluzioni Logistiche Globali",
+    "title": "Soluzioni Logistiche Globali",
     "description": "NileLink è un'azienda di spedizioni leader in Egitto, che offre servizi di trasporto marittimo, aereo, terrestre, sdoganamento e magazzinaggio in tutto il mondo."
   },
   "navbar": {
@@ -481,7 +481,8 @@
       "notifications": "Notifiche",
       "profile": "Profilo aziendale",
       "collapse": "Riduci menu",
-      "logout": "Disconnetti"
+      "logout": "Disconnetti",
+      "quotes": "Quotes"
     },
     "dashboard": {
       "recentActivity": "Cronologia attività recenti",

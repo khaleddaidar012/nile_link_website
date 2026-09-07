@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useTranslations, useLocale } from "next-intl"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/navigation"
 import {
   Search,
   Building2,

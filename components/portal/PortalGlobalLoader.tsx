@@ -43,13 +43,13 @@ export function PortalGlobalLoader() {
               initial={{ scale: 0.9, opacity: 0, y: 10 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative h-28 w-28 drop-shadow-2xl translate-y-[15px]"
+              className="relative h-28 w-[137px] drop-shadow-2xl translate-y-[50px] -translate-x-[10px]"
             >
               <Image
                 src={logoImg}
                 alt="NileLink Loading"
                 fill
-                sizes="112px"
+                sizes="137px"
                 className="object-contain animate-bounce"
                 style={{ animationDuration: '2s' }}
                 priority
