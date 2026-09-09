@@ -119,6 +119,47 @@ export async function POST(req: NextRequest, { params }: Props) {
 
     await document.save()
 
+    // 1. If linked to CustomerRequest, transition request state
+    if (document.entityType === "CustomerRequest" && document.entityId) {
+      const { CustomerRequest, Notification: ReqNotif } = await import("@/lib/models")
+      const reqDoc = await CustomerRequest.findById(document.entityId)
+      if (reqDoc) {
+        if (status === "approved") {
+          reqDoc.status = "quote_pending"
+          reqDoc.timeline.push({
+            status: "quote_pending",
+            title: "Document Approved",
+            comment: "Required document verified. Proceeding to quotation.",
+            createdAt: new Date(),
+          })
+        } else if (status === "rejected") {
+          reqDoc.status = "document_required"
+          reqDoc.timeline.push({
+            status: "document_required",
+            title: "Document Rejected",
+            comment: `The uploaded document was rejected. Reason: ${sanitizedRejectionReason}. Please re-upload.`,
+            createdAt: new Date(),
+          })
+        }
+        await reqDoc.save()
+
+        // Notify customer about request transition
+        await ReqNotif.create({
+          recipientCustomerId: document.customerId,
+          targetAudience: "customer",
+          title: "Request Update",
+          message: status === "approved" 
+            ? `Documents for request ${reqDoc.trackingNumber} approved. Preparing quote.`
+            : `Documents for request ${reqDoc.trackingNumber} rejected. Action required.`,
+          channel: "in_app",
+          type: "request_update",
+          severity: status === "approved" ? "normal" : "warning",
+          relatedRequestId: reqDoc._id,
+          actionUrl: `/portal/requests/${reqDoc._id}`,
+        })
+      }
+    }
+
     // 1. Audit log (resilient try/catch)
     try {
       if (document.customerId) {

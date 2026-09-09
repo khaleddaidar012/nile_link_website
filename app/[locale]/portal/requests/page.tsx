@@ -63,7 +63,6 @@ export default function PortalRequestsPage() {
                   <th className="px-5 py-3.5">{t("portal.requests.colTracking")}</th>
                   <th className="px-4 py-3.5">{t("portal.requests.colService")}</th>
                   <th className="px-4 py-3.5">{t("portal.requests.colSubject")}</th>
-                  <th className="px-4 py-3.5">{t("portal.requests.colPriority")}</th>
                   <th className="px-4 py-3.5">{t("portal.requests.colStatus")}</th>
                   <th className="px-5 py-3.5 text-right rtl:text-left">{t("portal.requests.colTimeline")}</th>
                 </tr>
@@ -71,7 +70,7 @@ export default function PortalRequestsPage() {
               <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800">
                 {loading ? (
                   <tr>
-                    <td colSpan={6} className="py-12 text-center text-secondary-400">
+                    <td colSpan={5} className="py-12 text-center text-secondary-400">
                       <div className="flex items-center justify-center gap-2">
                         <RefreshCw className="h-4 w-4 animate-spin text-primary-500" />
                         <span>{t("portal.requests.loading")}</span>
@@ -80,7 +79,7 @@ export default function PortalRequestsPage() {
                   </tr>
                 ) : requests.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-14 text-center">
+                    <td colSpan={5} className="py-14 text-center">
                       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary-100 text-secondary-400 dark:bg-secondary-800 dark:text-secondary-500">
                         <Send className="h-7 w-7" />
                       </div>
@@ -103,16 +102,6 @@ export default function PortalRequestsPage() {
                       </td>
                       <td className="px-4 py-4 font-bold text-secondary-900 dark:text-white">
                         {req.subject}
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className={cn(
-                          "rounded-lg px-2.5 py-0.5 text-[10px] font-bold uppercase",
-                          req.priority === "urgent" ? "bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300" :
-                          req.priority === "high" ? "bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300" :
-                          "bg-secondary-100 text-secondary-700 dark:bg-secondary-800 dark:text-secondary-300"
-                        )}>
-                          {t(`portal.requests.priority_${req.priority}`) || req.priority}
-                        </span>
                       </td>
                       <td className="px-4 py-4">
                         <span className="inline-flex items-center gap-1 rounded-full border border-primary-500/20 bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-700 dark:bg-primary-950/60 dark:text-primary-300">

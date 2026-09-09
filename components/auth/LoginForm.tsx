@@ -231,7 +231,7 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
     >
       {/* Brand Header */}
       <div className="mb-6 text-center">
-        <div className="mb-3 inline-flex items-center gap-3">
+        <div className="mb-3 inline-flex items-center gap-3" dir="ltr">
           <div className="relative h-[58px] w-[58px] shrink-0">
             <Image
               src={logoImg}
@@ -242,7 +242,7 @@ export function LoginForm({ callbackUrl, initialMode = "login" }: LoginFormProps
               className="object-contain"
             />
           </div>
-          <span className="flex flex-col text-left rtl:text-right leading-none">
+          <span className="flex flex-col text-left leading-none">
             <span className="text-xl font-bold tracking-wide text-secondary-900 dark:text-white">
               Nile Link
             </span>

@@ -13,8 +13,16 @@ export type OperationType = "import" | "export" | "transit" | "none"
 
 export type RequestPriority = "low" | "medium" | "high" | "urgent"
 
-// Statuses are dynamic per service but we allow any string for flexibility in the schema
-export type RequestStatus = string
+export type RequestStatus = 
+  | "submitted"
+  | "document_required"
+  | "document_under_review"
+  | "quote_pending"
+  | "quote_provided"
+  | "quote_accepted"
+  | "processing"
+  | "completed"
+  | "cancelled"
 
 export interface IRequestTimeline {
   status: string
@@ -46,6 +54,8 @@ export interface ICustomerRequest extends MongooseDoc {
   priority: RequestPriority
   status: RequestStatus
   assignedStaffId?: mongoose.Types.ObjectId
+  complianceType?: "ACID" | "UCR" | null
+  complianceNumber?: string
   timeline: IRequestTimeline[]
   attachments: IRequestAttachment[]
   createdAt: Date
@@ -131,6 +141,17 @@ const CustomerRequestSchema = new Schema<ICustomerRequest>(
     },
     status: {
       type: String,
+      enum: [
+        "submitted",
+        "document_required",
+        "document_under_review",
+        "quote_pending",
+        "quote_provided",
+        "quote_accepted",
+        "processing",
+        "completed",
+        "cancelled"
+      ],
       default: "submitted",
       index: true,
     },
@@ -142,6 +163,15 @@ const CustomerRequestSchema = new Schema<ICustomerRequest>(
       type: Schema.Types.ObjectId,
       ref: "User",
       default: null,
+    },
+    complianceType: {
+      type: String,
+      enum: ["ACID", "UCR", null],
+      default: null,
+    },
+    complianceNumber: {
+      type: String,
+      default: "",
     },
     timeline: {
       type: [RequestTimelineSchema],

@@ -48,6 +48,24 @@ export async function POST(req: NextRequest) {
     const files = formData.getAll("files") as File[]
     const categories = formData.getAll("categories") as string[]
     const titles = formData.getAll("titles") as string[]
+    const entityId = formData.get("entityId") as string | null
+
+    let entityType = "Customer"
+    let validatedEntityId: mongoose.Types.ObjectId = customer._id
+
+    if (entityId) {
+      if (!mongoose.Types.ObjectId.isValid(entityId)) {
+        return NextResponse.json({ error: "Invalid entity ID" }, { status: 400 })
+      }
+      
+      const { CustomerRequest } = await import("@/lib/models")
+      const request = await CustomerRequest.findOne({ _id: entityId, customerId: customer._id })
+      if (!request) {
+        return NextResponse.json({ error: "Unauthorized or invalid entity" }, { status: 403 })
+      }
+      entityType = "CustomerRequest"
+      validatedEntityId = new mongoose.Types.ObjectId(entityId)
+    }
 
     if (!files || files.length === 0) {
       return NextResponse.json({ error: "No files provided for upload" }, { status: 400 })
@@ -121,12 +139,40 @@ export async function POST(req: NextRequest) {
         fileSize,
         mimeType: file.type,
         fileHash,
-        entityType: "Customer",
-        entityId: customer._id,
+        entityType,
+        entityId: validatedEntityId,
         status: "pending_review",
         warningEscalationTier: "none",
         isArchived: false,
       })
+
+      // If tied to a CustomerRequest, update request state to 'document_under_review' if it was 'document_required'
+      if (entityType === "CustomerRequest") {
+        const { CustomerRequest, Notification } = await import("@/lib/models")
+        const req = await CustomerRequest.findById(validatedEntityId)
+        if (req && req.status === "document_required") {
+          req.status = "document_under_review"
+          req.timeline.push({
+            status: "document_under_review",
+            title: "Document Submitted",
+            comment: "Customer uploaded the required document. Pending staff review.",
+            createdAt: new Date(),
+          })
+          await req.save()
+          
+          // Notify staff specifically about this request's document
+          await Notification.create({
+            recipientCustomerId: customer._id,
+            targetAudience: "staff",
+            title: "Request Document Uploaded",
+            message: `${customer.companyName} uploaded document(s) for Request ${req.trackingNumber}.`,
+            channel: "in_app",
+            type: "document_uploaded",
+            severity: "normal",
+            actionUrl: `/admin/requests/${req._id}`,
+          })
+        }
+      }
 
       await logDocumentActivity({
         documentId: document._id,

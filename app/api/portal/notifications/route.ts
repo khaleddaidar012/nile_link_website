@@ -39,7 +39,16 @@ export async function GET(req: NextRequest) {
       } else if (n.targetAudience === "customer" && n.readBy) {
          read = n.isRead || n.readBy.some((id: any) => id.toString() === session.userId)
       }
-      return { ...n, isRead: read }
+      let actionUrl = n.actionUrl
+      if (!actionUrl) {
+        if (n.relatedRequestId) {
+          actionUrl = `/portal/requests/${n.relatedRequestId}`
+        } else if (n.relatedDocumentId) {
+          actionUrl = `/portal/documents`
+        }
+      }
+
+      return { ...n, isRead: read, actionUrl }
     })
 
     return NextResponse.json({

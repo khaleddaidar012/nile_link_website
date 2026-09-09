@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import { CustomerRequest, Customer } from "@/lib/models"
+import { CustomerRequest } from "@/lib/models"
 import { getSessionFromRequest } from "@/lib/auth/token-service"
 
 export async function GET(req: NextRequest) {
@@ -9,6 +9,10 @@ export async function GET(req: NextRequest) {
     if (!session || (session.role !== "staff" && session.role !== "super_admin")) {
       return NextResponse.json({ error: "Forbidden: Staff access required" }, { status: 403 })
     }
+
+    // Ensure RequestService model is registered before populate
+    const { RequestService } = await import("@/lib/models")
+    void RequestService
 
     await connectDB()
 
@@ -21,9 +25,10 @@ export async function GET(req: NextRequest) {
       query.status = status
     }
 
-    // Populate customerId to get companyName for the admin view
+    // Populate customerId + services for the admin table
     const requests = await CustomerRequest.find(query)
       .populate({ path: "customerId", select: "companyName contactEmail" })
+      .populate({ path: "services", select: "serviceKey status" })
       .sort({ createdAt: -1 })
       .limit(limit)
       .lean()

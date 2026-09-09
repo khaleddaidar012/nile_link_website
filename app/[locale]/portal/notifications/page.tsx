@@ -85,10 +85,17 @@ export default function PortalNotificationsPage() {
                 <p className="mt-2 text-sm font-semibold text-secondary-700 dark:text-secondary-300">No notifications</p>
               </div>
             ) : (
-              notifications.map((n) => (
-                <div
+              notifications.map((n) => {
+                const isClickable = !!n.actionUrl
+                const Wrapper = isClickable ? Link : "div" as any
+                
+                return (
+                <Wrapper
                   key={n._id}
+                  {...(isClickable ? { href: n.actionUrl } : {})}
                   className={`flex items-start gap-3.5 rounded-xl border p-4 transition-colors ${
+                    isClickable ? "hover:border-primary-300 cursor-pointer dark:hover:border-primary-700" : ""
+                  } ${
                     !n.isRead
                       ? "border-primary-200 bg-primary-50/40 dark:border-primary-900/40 dark:bg-primary-950/20"
                       : "border-secondary-200/60 bg-white dark:border-secondary-800 dark:bg-secondary-900"
@@ -112,17 +119,9 @@ export default function PortalNotificationsPage() {
                     <p className="mt-1 text-xs text-secondary-600 dark:text-secondary-400">
                       {n.type ? t(`portal.notifications.${n.type}.message`) || n.message : n.message}
                     </p>
-                    {n.actionUrl && (
-                      <Link
-                        href={n.actionUrl}
-                        className="mt-2 inline-block text-xs font-semibold text-primary-600 hover:underline dark:text-primary-400"
-                      >
-                        View Related Item →
-                      </Link>
-                    )}
                   </div>
-                </div>
-              ))
+                </Wrapper>
+              )})
             )}
           </div>
         </div>

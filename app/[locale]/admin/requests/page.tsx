@@ -7,6 +7,7 @@ import { Search, Clock, RefreshCw, Layers, Edit } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
 import { Link } from "@/navigation"
+import { RequestQRCode } from "@/components/admin/requests/RequestQRCode"
 
 export default function AdminRequestsPage() {
   const t = useTranslations()
@@ -64,7 +65,6 @@ export default function AdminRequestsPage() {
                   <th className="px-5 py-3.5">{t("admin.requests.colCompany") || "Client / Company"}</th>
                   <th className="px-4 py-3.5">{t("admin.requests.colTracking") || "Tracking & Subject"}</th>
                   <th className="px-4 py-3.5">{t("admin.requests.colService") || "Service Type"}</th>
-                  <th className="px-4 py-3.5">{t("admin.requests.colPriority") || "Priority"}</th>
                   <th className="px-4 py-3.5">{t("admin.requests.colStatus") || "Status"}</th>
                   <th className="px-5 py-3.5 text-right rtl:text-left">{t("admin.requests.colActions") || "Actions"}</th>
                 </tr>
@@ -72,7 +72,7 @@ export default function AdminRequestsPage() {
               <tbody className="divide-y divide-secondary-100 dark:divide-secondary-800">
                 {loading ? (
                   <tr>
-                    <td colSpan={6} className="py-12 text-center text-secondary-400">
+                    <td colSpan={5} className="py-12 text-center text-secondary-400">
                       <div className="flex items-center justify-center gap-2">
                         <RefreshCw className="h-4 w-4 animate-spin text-primary-500" />
                         <span>{t("admin.requests.loading") || "Loading requests..."}</span>
@@ -81,7 +81,7 @@ export default function AdminRequestsPage() {
                   </tr>
                 ) : requests.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-14 text-center">
+                    <td colSpan={5} className="py-14 text-center">
                       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary-100 text-secondary-400 dark:bg-secondary-800 dark:text-secondary-500">
                         <Layers className="h-7 w-7" />
                       </div>
@@ -99,25 +99,62 @@ export default function AdminRequestsPage() {
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <span className="block font-mono font-bold text-primary-600 dark:text-primary-400 text-xs mb-0.5">
-                          {req.trackingNumber}
-                        </span>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="block font-mono font-bold text-primary-600 dark:text-primary-400 text-xs">
+                            {req.trackingNumber}
+                          </span>
+                          <RequestQRCode requestId={req._id} trackingNumber={req.trackingNumber} />
+                        </div>
                         <span className="block font-medium text-secondary-700 dark:text-secondary-300">
                           {req.subject}
                         </span>
                       </td>
-                      <td className="px-4 py-4 capitalize font-medium text-secondary-700 dark:text-secondary-300">
-                        {t(`portal.requests.serviceType_${req.serviceType}`) || req.serviceType.replace("_", " ")}
-                      </td>
                       <td className="px-4 py-4">
-                        <span className={cn(
-                          "rounded-lg px-2.5 py-0.5 text-[10px] font-bold uppercase",
-                          req.priority === "urgent" ? "bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300" :
-                          req.priority === "high" ? "bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300" :
-                          "bg-secondary-100 text-secondary-700 dark:bg-secondary-800 dark:text-secondary-300"
-                        )}>
-                          {t(`portal.requests.priority_${req.priority}`) || req.priority}
-                        </span>
+                        {(() => {
+                          const SERVICE_LABELS: Record<string, string> = {
+                            sea_freight: "شحن بحري",
+                            ocean_freight: "شحن بحري",
+                            air_freight: "شحن جوي",
+                            land_freight: "شحن بري",
+                            land_transport: "نقل بري",
+                            customs_clearance: "تخليص جمركي",
+                            warehousing: "تخزين",
+                            inland_transportation: "نقل داخلي",
+                            general_inquiry: "استفسار عام",
+                            storage: "تخزين",
+                            freight_booking: "حجز شحن",
+                          }
+
+                          // ① الطلبات الجديدة: services array مأهول
+                          const populatedServices = req.services?.filter((s: any) => typeof s === "object" && s.serviceKey)
+                          if (populatedServices?.length > 0) {
+                            return (
+                              <div className="flex flex-wrap gap-1">
+                                {populatedServices.map((s: any, i: number) => (
+                                  <span key={i} className="inline-block rounded-md bg-primary-50 px-2 py-0.5 text-[10px] font-bold text-primary-700 dark:bg-primary-950/50 dark:text-primary-300">
+                                    {SERVICE_LABELS[s.serviceKey] || s.serviceKey.replace(/_/g, " ")}
+                                  </span>
+                                ))}
+                              </div>
+                            )
+                          }
+
+                          // ② الطلبات القديمة: serviceType مباشر
+                          if (req.serviceType) {
+                            return (
+                              <span className="inline-block rounded-md bg-secondary-100 px-2 py-0.5 text-[10px] font-bold text-secondary-700 dark:bg-secondary-800 dark:text-secondary-300">
+                                {SERVICE_LABELS[req.serviceType] || req.serviceType.replace(/_/g, " ")}
+                              </span>
+                            )
+                          }
+
+                          // ③ مافيش بيانات خدمة — اعرض "متعدد" أو علامة
+                          return (
+                            <span className="inline-block rounded-md bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
+                              متعدد الخدمات
+                            </span>
+                          )
+                        })()}
                       </td>
                       <td className="px-4 py-4">
                         <span className="inline-flex items-center gap-1 rounded-full border border-primary-500/20 bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-700 dark:bg-primary-950/60 dark:text-primary-300">

@@ -8,15 +8,23 @@ export interface IQuoteItemAudit {
   date: Date
 }
 
+export interface IQuoteItemBreakdown {
+  description: string
+  basePrice: number
+  additionalCharges: number
+}
+
 export interface IQuoteItem extends MongooseDoc {
   quoteId: mongoose.Types.ObjectId
-  requestServiceId: mongoose.Types.ObjectId
+  requestServiceId?: mongoose.Types.ObjectId
   serviceKey: string
   basePrice: number
   additionalCharges: number
   discount: number
   finalPrice: number
   currency: string
+  breakdown: IQuoteItemBreakdown[]
+  note?: string
   auditTrail: IQuoteItemAudit[]
   createdAt: Date
   updatedAt: Date
@@ -33,6 +41,15 @@ const QuoteItemAuditSchema = new Schema<IQuoteItemAudit>(
   { _id: false }
 )
 
+const QuoteItemBreakdownSchema = new Schema<IQuoteItemBreakdown>(
+  {
+    description: { type: String, required: true },
+    basePrice: { type: Number, required: true },
+    additionalCharges: { type: Number, default: 0 },
+  },
+  { _id: false }
+)
+
 const QuoteItemSchema = new Schema<IQuoteItem>(
   {
     quoteId: {
@@ -44,7 +61,7 @@ const QuoteItemSchema = new Schema<IQuoteItem>(
     requestServiceId: {
       type: Schema.Types.ObjectId,
       ref: "RequestService",
-      required: true,
+      required: false,
       index: true,
     },
     serviceKey: {
@@ -70,6 +87,14 @@ const QuoteItemSchema = new Schema<IQuoteItem>(
     currency: {
       type: String,
       default: "EGP",
+    },
+    breakdown: {
+      type: [QuoteItemBreakdownSchema],
+      default: [],
+    },
+    note: {
+      type: String,
+      default: "",
     },
     auditTrail: {
       type: [QuoteItemAuditSchema],

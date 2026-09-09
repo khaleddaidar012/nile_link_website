@@ -23,8 +23,20 @@ export async function GET(req: NextRequest) {
       .populate("recipientCustomerId", "companyName commercialRegisterNumber")
       .lean()
 
+    const mappedNotifications = notifications.map((n: any) => {
+      let actionUrl = n.actionUrl
+      if (!actionUrl) {
+        if (n.relatedRequestId) {
+          actionUrl = `/admin/requests/${n.relatedRequestId}`
+        } else if (n.relatedDocumentId) {
+          actionUrl = `/admin/documents/review`
+        }
+      }
+      return { ...n, actionUrl }
+    })
+
     return NextResponse.json({
-      notifications,
+      notifications: mappedNotifications,
       total: notifications.length,
     })
   } catch (error: unknown) {

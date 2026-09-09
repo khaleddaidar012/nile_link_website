@@ -47,13 +47,15 @@ export async function POST(req: NextRequest) {
     for (const item of items) {
       await QuoteItem.create({
         quoteId: newQuote._id,
-        requestServiceId: item.requestServiceId,
+        requestServiceId: item.requestServiceId || undefined,
         serviceKey: item.serviceKey,
         basePrice: item.basePrice,
         additionalCharges: item.additionalCharges || 0,
         discount: item.discount || 0,
         finalPrice: item.finalPrice,
         currency: currency || "USD",
+        breakdown: item.breakdown || [],
+        note: item.note || "",
         auditTrail: [
           {
             updatedBy: session.userId as any,
@@ -93,8 +95,12 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, quote: newQuote }, { status: 201 })
-  } catch (error) {
+  } catch (error: any) {
     console.error("Quote generation error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json({ 
+      error: "Internal server error", 
+      details: error?.message || String(error),
+      stack: error?.stack 
+    }, { status: 500 })
   }
 }

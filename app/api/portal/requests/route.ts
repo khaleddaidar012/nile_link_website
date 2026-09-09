@@ -83,6 +83,10 @@ export async function POST(req: NextRequest) {
     const randomSeq = Math.floor(1000 + Math.random() * 9000)
     const trackingNumber = `NL-REQ-${year}-${randomSeq}`
 
+    const initialStatus = ["import", "export", "transit"].includes(parsed.data.operationType) 
+      ? "document_required" 
+      : "submitted"
+
     const newRequest = await CustomerRequest.create({
       customerId,
       requestedBy: session.userId,
@@ -91,7 +95,7 @@ export async function POST(req: NextRequest) {
       subject: parsed.data.subject,
       description: parsed.data.description,
       priority: parsed.data.priority,
-      status: "submitted",
+      status: initialStatus,
       services: [], // Populated below
       timeline: [
         {
@@ -100,6 +104,12 @@ export async function POST(req: NextRequest) {
           comment: "Initial order inquiry received.",
           createdAt: new Date(),
         },
+        ...(initialStatus === "document_required" ? [{
+          status: "document_required",
+          title: "Document Required",
+          comment: "Please upload the required documents (UCR/ACID) to proceed.",
+          createdAt: new Date(),
+        }] : [])
       ],
     })
 

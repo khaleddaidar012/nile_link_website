@@ -411,6 +411,7 @@
       "email": "البريد الإلكتروني للعمل",
       "businessEmailError": "يرجى استخدام البريد الإلكتروني الرسمي لشركتك (مثل name@company.com). لا يُقبل البريد المجاني مثل Gmail أو Yahoo.",
       "phone": "رقم الهاتف المحمول (واتساب)",
+      "password": "كلمة المرور (8 أحرف كحد أدنى)",
       "terms": "أوافق على شروط الخدمة وسياسات الامتثال الجمركي المصري",
       "submit": "إتمام تسجيل الشركة",
       "hasAccount": "لديك حساب بالفعل؟",
@@ -624,9 +625,40 @@
       }
     },
     "requests": {
-      "subtitle": "تتبع الشحنات والتخليص الجمركي واستفسارات العمليات مباشرة في الوقت الفعلي",
+      "subtitle": "تتبع مسار شحناتك وعمليات التخليص الجمركي في وقت فعلي",
       "activeRequests": "طلبات الخدمة النشطة",
-      "activeRequestsSub": "تتبع عملياتك وشحناتك الحالية",
+      "activeRequestsSub": "تتبع حالة عملياتك وشحناتك الحالية",
+      "status_pending": "قيد الانتظار",
+      "status_in_progress": "قيد التنفيذ",
+      "status_completed": "مكتمل",
+      "status_cancelled": "ملغى",
+      "status_submitted": "قيد المراجعة",
+      "status_document_required": "إجراء مطلوب",
+      "status_document_under_review": "المستند قيد المراجعة",
+      "status_quote_pending": "جاري تجهيز عرض السعر",
+      "status_quote_provided": "عرض السعر جاهز",
+      "status_quote_accepted": "تم قبول العرض",
+      "status_processing": "قيد التنفيذ",
+      "milestone_submitted_title": "تم تقديم الطلب من قبل العميل",
+      "milestone_submitted_comment": "تم استلام استفسار الطلب الأولي.",
+      "milestone_document_required_title": "مطلوب مستندات لاستخراج الـ {type}",
+      "milestone_document_required_comment": "يرجى رفع المستندات المطلوبة (مثل الفاتورة التجارية) لاستخراج رقم الـ {type}.",
+      "milestone_document_under_review_title": "المستندات قيد المراجعة",
+      "milestone_document_under_review_comment": "جاري مراجعة المستندات المرفوعة من قبل فريقنا.",
+      "milestone_quote_pending_title": "في انتظار التسعير",
+      "milestone_quote_pending_comment": "جاري تجهيز عرض السعر الخاص بك.",
+      "milestone_quote_provided_title": "تم إصدار عرض السعر",
+      "milestone_quote_provided_comment": "تم تقديم عرض السعر رسمياً. يرجى المراجعة والقبول من بطاقة التسعير.",
+      "milestone_quote_accepted_title": "تم قبول عرض السعر",
+      "milestone_quote_accepted_comment": "شكراً لموافقتك على عرض السعر. جاري البدء في الإجراءات.",
+      "milestone_quote_rejected_title": "تم رفض عرض السعر",
+      "milestone_quote_rejected_comment": "تم رفض العرض، وسنتواصل معك قريباً.",
+      "milestone_processing_title": "جاري التنفيذ",
+      "milestone_processing_comment": "طلبك الآن قيد المعالجة والتنفيذ الفعلي.",
+      "milestone_completed_title": "الطلب مكتمل",
+      "milestone_completed_comment": "تم الانتهاء من تنفيذ جميع الخدمات بنجاح.",
+      "milestone_cancelled_title": "الطلب ملغي",
+      "milestone_cancelled_comment": "تم إلغاء الطلب بناءً على رغبتك أو لأسباب أخرى.",
       "new": {
         "title": "اختر الخدمة",
         "subtitle": "اختر نوع العملية اللوجستية التي تحتاجها.",
@@ -768,15 +800,6 @@
       "priority_high": "عالي",
       "priority_medium": "متوسط",
       "priority_low": "منخفض",
-      "status_pending": "قيد الانتظار",
-      "status_in_progress": "قيد التنفيذ",
-      "status_completed": "مكتمل",
-      "status_cancelled": "ملغى",
-      "status_submitted": "تم التقديم",
-      "milestone_submitted_title": "تم تقديم الطلب من قبل العميل",
-      "milestone_submitted_comment": "تم استلام استفسار الطلب الأولي.",
-      "status_under_review": "قيد المراجعة",
-      "status_waiting_customer": "بانتظار العميل",
       "details": {
         "title": "تفاصيل الطلب",
         "subtitle": "يرجى تقديم التفاصيل اللازمة للخدمات التي اخترتها.",
@@ -819,8 +842,20 @@
           "medium": "متوسطة",
           "high": "عالية",
           "urgent": "عاجلة جداً"
-        }
-      }
+        },
+        "action_required": "إجراء مطلوب: رفع المستندات",
+        "upload_docs_desc": "للحصول على رقم الـ {type} الخاص بطلبك، يرجى رفع الفاتورة التجارية (Commercial Invoice) والملفات الإضافية المطلوبة أدناه.",
+        "official_quotation": "عرض السعر الرسمي",
+        "total_final_price": "إجمالي السعر النهائي",
+        "accept_quotation": "قبول عرض السعر",
+        "reject_quotation": "رفض عرض السعر",
+        "clearance_requirements": "متطلبات التخليص الجمركي ({type})",
+        "clearance_desc": "لإتمام الطلب وبدء التنفيذ، يرجى تقديم طلب استخراج رقم الـ {type}.",
+        "clearance_btn": "طلب الحصول على {type} لإتمام الطلب",
+        "compliance_issued": "رقم الـ {type} :"
+      },
+      "milestone_documents_under_review_title": "المستندات الخاصة بالـ {type} قيد المراجعة",
+      "milestone_documents_under_review_comment": "جاري مراجعة المستندات المرفوعة من قبل فريقنا لإصدار رقم الـ {type}."
     },
     "quotes": {
       "subtitle": "قم بمراجعة وإدارة عروض أسعار الشحن المرسلة لشركتك.",
@@ -957,7 +992,9 @@
       "uploading": "جاري رفع {current} من {total} ملف...",
       "success": "تم رفع جميع الملفات بنجاح! تم تعيين الحالة إلى قيد المراجعة.",
       "retry": "إعادة محاولة الملف الفاشل",
-      "cancel": "إلغاء الرفع"
+      "cancel": "إلغاء الرفع",
+      "status": "حالة الرفع",
+      "uploadAll_confirm": "تأكيد ورفع المستندات"
     },
     "table": {
       "title": "سجل مستندات الشركة",
@@ -1000,7 +1037,8 @@
       "expiring_soon": "قاربت على الانتهاء",
       "expired": "منتهي الصلاحية",
       "rejected": "مرفوض"
-    }
+    },
+    "uploaded_count": "تم رفع {count} مستند"
   },
   "portal_quotes": {
     "list": {
@@ -1050,7 +1088,13 @@
     },
     "customerTable": {
       "title": "حسابات الشركات",
-      "client": "العميل"
+      "client": "العميل",
+      "totalDocs": "إجمالي المستندات",
+      "expiring": "ينتهي قريباً",
+      "expired": "منتهي",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "inspect": "فحص الحساب"
     },
     "customers": {
       "pageTitle": "إدارة العملاء",
@@ -1065,7 +1109,15 @@
       "tabDocs": "المستندات",
       "tabGovernance": "الحوكمة",
       "tabProfile": "الملف",
-      "teamMembers": "أعضاء الفريق"
+      "teamMembers": "أعضاء الفريق",
+      "searchPlaceholder": "ابحث عن شركة، بريد، أو رقم هاتف...",
+      "filterAll": "جميع الحسابات",
+      "filterActive": "نشط",
+      "filterWarning": "تحذير / قيد المراجعة",
+      "filterInactive": "غير نشط",
+      "statusActive": "نشط",
+      "statusWarning": "قيد المراجعة",
+      "statusInactive": "غير نشط"
     },
     "notifications": {
       "title": "مركز التنبيهات",
@@ -1108,7 +1160,16 @@
         "readyToQuote": "جاهز لإرسال عرض السعر؟",
         "readyToQuoteDesc": "يمكنك مراجعة الأسعار المقترحة وإنشاء عرض سعر رسمي في الخطوة التالية.",
         "generateQuote": "إنشاء عرض سعر",
-        "serviceLabel": "خدمة"
+        "serviceLabel": "خدمة",
+        "quoteProvidedTitle": "عرض السعر مُقدَّم",
+        "quoteProvidedDesc": "تم إرسال عرض السعر للعميل وهو حالياً في انتظار الموافقة.",
+        "viewUpdateQuote": "عرض / تحديث عرض السعر",
+        "orderReadyTitle": "الطلب جاهز للتنفيذ",
+        "orderReadyDesc": "لقد وافق العميل على عرض السعر. قم بتأكيد الطلب لبدء عمليات التشغيل واللوجستيات.",
+        "confirmOrderBtn": "تأكيد الطلب وبدء التنفيذ",
+        "confirmingBtn": "جاري التأكيد...",
+        "orderProcessingTitle": "الطلب قيد التنفيذ",
+        "orderProcessingDesc": "هذا الطلب نشط حالياً وقيد التنفيذ."
       }
     },
     "review": {

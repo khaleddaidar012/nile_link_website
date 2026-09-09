@@ -31,14 +31,20 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       return NextResponse.json({ error: "Request not found" }, { status: 404 })
     }
 
-    const config = await ServiceConfig.findOne({ serviceKey: request.serviceType })
-    if (!config) {
-      return NextResponse.json({ error: "Service configuration not found" }, { status: 500 })
-    }
+    const allowedStatuses = [
+      "submitted",
+      "document_required",
+      "document_under_review",
+      "quote_pending",
+      "quote_provided",
+      "quote_accepted",
+      "processing",
+      "completed",
+      "cancelled"
+    ];
 
-    const statusConfig = config.statuses.find((s: any) => s.key === status)
-    if (!statusConfig) {
-      return NextResponse.json({ error: "Invalid status for this service" }, { status: 400 })
+    if (!allowedStatuses.includes(status)) {
+      return NextResponse.json({ error: "Invalid status" }, { status: 400 })
     }
 
     // Push new milestone to timeline

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter, Cairo } from "next/font/google"
 import "./globals.css"
 import { AnalyticsTracker } from "@/lib/analytics-client"
+import Script from "next/script"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,7 +76,26 @@ export default function RootLayout({
       className={`${inter.variable} ${cairo.variable}`}
       data-scroll-behavior="smooth"
     >
-      <head suppressHydrationWarning />
+      <head suppressHydrationWarning>
+        <Script
+          id="fdm-blocker"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Forcefully remove Free Download Manager injected div before React hydration
+              const observer = new MutationObserver((mutations) => {
+                const dzNode = document.getElementById('dz-acjicnehenlkmfnfpbjbpfnjegbelbpj-body');
+                if (dzNode) dzNode.remove();
+              });
+              observer.observe(document.documentElement, { childList: true, subtree: true });
+              window.addEventListener("DOMContentLoaded", () => {
+                const dzNode = document.getElementById('dz-acjicnehenlkmfnfpbjbpfnjegbelbpj-body');
+                if (dzNode) dzNode.remove();
+              });
+            `,
+          }}
+        />
+      </head>
       <body
         suppressHydrationWarning
         className="min-h-screen font-sans antialiased"

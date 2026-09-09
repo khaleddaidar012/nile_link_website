@@ -628,6 +628,37 @@
       "subtitle": "Track live shipments, customs clearances, and operations inquiries in real time",
       "activeRequests": "Active Service Requests",
       "activeRequestsSub": "Track your ongoing operations and shipments",
+      "status_pending": "Pending",
+      "status_in_progress": "In Progress",
+      "status_completed": "Completed",
+      "status_cancelled": "Cancelled",
+      "status_submitted": "Under Review",
+      "status_document_required": "Action Required",
+      "status_document_under_review": "Document Under Review",
+      "status_quote_pending": "Preparing Quotation",
+      "status_quote_provided": "Quotation Ready",
+      "status_quote_accepted": "Quotation Accepted",
+      "status_processing": "Processing",
+      "milestone_submitted_title": "Request Submitted by Client",
+      "milestone_submitted_comment": "Initial order inquiry received.",
+      "milestone_document_required_title": "Documents Required for {type}",
+      "milestone_document_required_comment": "Please upload the required documents (e.g., Commercial Invoice) to issue the {type} number.",
+      "milestone_document_under_review_title": "Documents Under Review",
+      "milestone_document_under_review_comment": "Our team is reviewing your uploaded documents.",
+      "milestone_quote_pending_title": "Quote Pending",
+      "milestone_quote_pending_comment": "We are preparing your official quotation.",
+      "milestone_quote_provided_title": "Quotation Issued",
+      "milestone_quote_provided_comment": "An official quotation has been provided. Please review and accept from the quotation card.",
+      "milestone_quote_accepted_title": "Quotation Accepted",
+      "milestone_quote_accepted_comment": "Thank you for accepting the quote. Operations will begin shortly.",
+      "milestone_quote_rejected_title": "Quotation Rejected",
+      "milestone_quote_rejected_comment": "The quote was rejected. We will contact you soon.",
+      "milestone_processing_title": "Processing",
+      "milestone_processing_comment": "Your request is currently being processed.",
+      "milestone_completed_title": "Completed",
+      "milestone_completed_comment": "All requested services have been completed successfully.",
+      "milestone_cancelled_title": "Cancelled",
+      "milestone_cancelled_comment": "The request has been cancelled.",
       "new": {
         "title": "Select a Service",
         "subtitle": "Choose the type of logistics operation you need.",
@@ -769,15 +800,6 @@
       "priority_high": "High",
       "priority_medium": "Medium",
       "priority_low": "Low",
-      "status_pending": "Pending",
-      "status_in_progress": "In Progress",
-      "status_completed": "Completed",
-      "status_cancelled": "Cancelled",
-      "status_submitted": "Submitted",
-      "milestone_submitted_title": "Request Submitted by Client",
-      "milestone_submitted_comment": "Initial order inquiry received.",
-      "status_under_review": "Under Review",
-      "status_waiting_customer": "Waiting for Customer",
       "details": {
         "title": "Request Details",
         "subtitle": "Provide the necessary details for your selected services.",
@@ -820,8 +842,20 @@
           "medium": "Medium",
           "high": "High",
           "urgent": "Urgent"
-        }
-      }
+        },
+        "action_required": "Action Required: Upload Documents",
+        "upload_docs_desc": "To obtain your {type} number, please upload the Commercial Invoice and any other required documentation below.",
+        "official_quotation": "Official Quotation & Offer",
+        "total_final_price": "Total Final Price",
+        "accept_quotation": "Accept Quotation",
+        "reject_quotation": "Reject Quotation",
+        "clearance_requirements": "Customs Clearance Requirements ({type})",
+        "clearance_desc": "To complete your request and begin execution, please apply for {type} number.",
+        "clearance_btn": "Apply for {type} to complete request",
+        "compliance_issued": "{type} Number :"
+      },
+      "milestone_documents_under_review_title": "{type} Documents Under Review",
+      "milestone_documents_under_review_comment": "The uploaded documents are being reviewed by our team to issue the {type} number."
     },
     "quotes": {
       "subtitle": "Review and manage shipping quotes sent to your company.",
@@ -958,7 +992,9 @@
       "uploading": "Uploading {current} of {total} files...",
       "success": "All documents uploaded successfully! Status set to Pending Review.",
       "retry": "Retry Failed File",
-      "cancel": "Cancel Upload"
+      "cancel": "Cancel Upload",
+      "status": "Upload Status",
+      "uploadAll_confirm": "Confirm & Upload Files"
     },
     "table": {
       "title": "Company Documents Registry",
@@ -1001,7 +1037,8 @@
       "expiring_soon": "Expiring Soon",
       "expired": "Expired",
       "rejected": "Rejected"
-    }
+    },
+    "uploaded_count": "{count} documents uploaded"
   },
   "admin": {
     "dashboard": {
@@ -1010,7 +1047,13 @@
     },
     "customerTable": {
       "title": "Customer Accounts",
-      "client": "Client"
+      "client": "Client",
+      "totalDocs": "Total Docs",
+      "expiring": "Expiring Soon",
+      "expired": "Expired",
+      "status": "Status",
+      "actions": "Actions",
+      "inspect": "Inspect Account"
     },
     "customers": {
       "pageTitle": "Customer Management",
@@ -1025,7 +1068,15 @@
       "tabDocs": "Documents",
       "tabGovernance": "Governance",
       "tabProfile": "Profile",
-      "teamMembers": "Team Members"
+      "teamMembers": "Team Members",
+      "searchPlaceholder": "Search company, email, or phone...",
+      "filterAll": "All Accounts",
+      "filterActive": "Active",
+      "filterWarning": "Warning / Review",
+      "filterInactive": "Inactive",
+      "statusActive": "Active",
+      "statusWarning": "Warning",
+      "statusInactive": "Inactive"
     },
     "notifications": {
       "title": "Notification Center",
@@ -1068,7 +1119,16 @@
         "readyToQuote": "Ready to Quote?",
         "readyToQuoteDesc": "You can review these suggested prices and generate an official quote in the next step.",
         "generateQuote": "Generate Quote",
-        "serviceLabel": "Service"
+        "serviceLabel": "Service",
+        "quoteProvidedTitle": "Quote Provided",
+        "quoteProvidedDesc": "A quote has been sent to the customer and is currently awaiting their approval.",
+        "viewUpdateQuote": "View / Update Quote",
+        "orderReadyTitle": "Order Ready for Processing",
+        "orderReadyDesc": "The customer has accepted the quotation. Confirm the order to begin processing and logistics operations.",
+        "confirmOrderBtn": "Confirm Order & Begin Processing",
+        "confirmingBtn": "Confirming...",
+        "orderProcessingTitle": "Order Processing",
+        "orderProcessingDesc": "This order is currently active and being processed."
       }
     },
     "review": {

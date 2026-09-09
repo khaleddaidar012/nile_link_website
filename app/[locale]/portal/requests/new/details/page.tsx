@@ -23,6 +23,8 @@ export default function RequestDetailsPage() {
     priority: "medium",
     origin: "",
     destination: "",
+    weight: "",
+    volume: "",
   })
 
   // Dynamic details per service. Keyed by service ID.
@@ -174,6 +176,28 @@ export default function RequestDetailsPage() {
                 </select>
               </div>
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">{t("portal.requests.details.weight") || "Weight (kg)"}</label>
+                <input
+                  type="number"
+                  name="weight"
+                  value={formData.weight}
+                  onChange={handleGlobalChange}
+                  className="w-full p-3 border rounded-lg dark:bg-secondary-800 dark:border-secondary-700 focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">{t("portal.requests.details.volume") || "Volume (CBM)"}</label>
+                <input
+                  type="number"
+                  name="volume"
+                  value={formData.volume}
+                  onChange={handleGlobalChange}
+                  className="w-full p-3 border rounded-lg dark:bg-secondary-800 dark:border-secondary-700 focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -184,26 +208,8 @@ export default function RequestDetailsPage() {
             <h2 className="text-lg font-bold mb-4 capitalize">
               {t(`portal.requests.new.${serviceId}`) || serviceId.replace("_", " ")} {t("common.details") || "Details"}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">{t("portal.requests.details.weight") || "Weight (kg)"}</label>
-                <input
-                  type="number"
-                  value={serviceDetails[serviceId]?.weight || ""}
-                  onChange={(e) => handleServiceChange(serviceId, "weight", e.target.value)}
-                  className="w-full p-3 border rounded-lg dark:bg-secondary-800 dark:border-secondary-700 focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">{t("portal.requests.details.volume") || "Volume (CBM)"}</label>
-                <input
-                  type="number"
-                  value={serviceDetails[serviceId]?.volume || ""}
-                  onChange={(e) => handleServiceChange(serviceId, "volume", e.target.value)}
-                  className="w-full p-3 border rounded-lg dark:bg-secondary-800 dark:border-secondary-700 focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-              <div className="sm:col-span-2">
                 <label className="block text-sm font-medium mb-1">{t("portal.requests.details.notes") || "Additional Notes"}</label>
                 <textarea
                   value={serviceDetails[serviceId]?.notes || ""}

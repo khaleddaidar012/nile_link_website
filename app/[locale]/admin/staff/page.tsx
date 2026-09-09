@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { AdminHeader } from "@/components/admin/AdminHeader"
 import { StaffTable } from "@/components/admin/staff/StaffTable"
+import { UpcomingFeaturesDropdown } from "@/components/admin/staff/UpcomingFeaturesDropdown"
 
 export default function AdminStaffPage() {
   const t = useTranslations()
@@ -14,7 +15,10 @@ export default function AdminStaffPage() {
         subtitle={t("admin.staff.subtitle") || "Create employee accounts and assign operational privileges"}
       />
 
-      <div className="p-6 sm:p-8">
+      <div className="p-6 sm:p-8 space-y-6">
+        {/* Upcoming Features Dropdown */}
+        <UpcomingFeaturesDropdown />
+
         <StaffTable />
       </div>
     </div>

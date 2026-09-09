@@ -55,17 +55,19 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <ThemeProvider>
-        <HtmlLang />
-        <div className="flex min-h-screen flex-col" dir={locale === "ar" ? "rtl" : "ltr"}>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Toaster />
-      </ThemeProvider>
+      <div id="nilelink-app" className="relative flex min-h-screen flex-col">
+        <OrganizationSchema />
+        <LocalBusinessSchema />
+        <ThemeProvider>
+          <HtmlLang />
+          <div className="flex min-h-screen flex-col flex-1" dir={locale === "ar" ? "rtl" : "ltr"}>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+        </ThemeProvider>
+      </div>
     </NextIntlClientProvider>
   )
 }
