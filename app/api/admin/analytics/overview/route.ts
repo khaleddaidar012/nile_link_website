@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
     const totalServiceRequests = await CustomerRequest.countDocuments()
     const pendingServiceRequests = await CustomerRequest.countDocuments({
-      status: { $in: ["submitted", "under_review", "in_progress"] },
+      status: { $in: ["submitted", "document_required", "document_under_review", "quote_pending", "quote_provided", "quote_accepted", "processing"] },
     })
 
     // Expiry horizon breakdown for charts

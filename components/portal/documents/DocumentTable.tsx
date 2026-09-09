@@ -242,7 +242,7 @@ export function DocumentTable({ onRenewClick, onPreviewClick }: DocumentTablePro
                     </td>
                     <td className="px-4 py-4">
                       <span className={cn("inline-flex items-center rounded-lg border px-2.5 py-0.5 text-[11px] font-semibold capitalize", getCategoryBadgeClass(doc.category))}>
-                        {t(`documents.categories.${doc.category}`) || doc.category.replace("_", " ")}
+                        {doc.category ? (t(`documents.categories.${doc.category}` as any) || doc.category.replace(/_/g, " ")) : "—"}
                       </span>
                     </td>
                     <td className="px-4 py-4 font-mono text-xs text-secondary-600 dark:text-secondary-300">
