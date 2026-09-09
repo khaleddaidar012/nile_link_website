@@ -54,7 +54,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       title: "Order Processing Started",
       message: `Your order ${request.trackingNumber} is now actively processing.`,
       type: "request_update",
-      severity: "success",
+      severity: "normal",
       channel: "in_app",
       relatedRequestId: request._id,
       actionUrl: `/portal/requests/${request._id}`
