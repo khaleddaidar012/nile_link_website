@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
       })
       const activeRequests = await CustomerRequest.countDocuments({
         customerId: user.customerId,
-        status: { $in: ["submitted", "under_review", "in_progress", "waiting_customer"] },
+        status: { $in: ["submitted", "document_required", "document_under_review", "quote_pending", "quote_provided", "quote_accepted", "processing"] },
       })
       const completedRequests = await CustomerRequest.countDocuments({
         customerId: user.customerId,

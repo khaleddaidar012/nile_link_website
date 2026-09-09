@@ -50,7 +50,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     // Push new milestone to timeline
     request.timeline.push({
       status,
-      title: statusConfig.labelEn,
+      title: status.replace(/_/g, " ").replace(/\b\w/g, (l: string) => l.toUpperCase()),
       comment: comment || "The status of your service request has been updated.",
       createdAt: new Date(),
     })

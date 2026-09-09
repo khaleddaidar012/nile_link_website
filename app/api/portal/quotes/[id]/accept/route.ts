@@ -34,9 +34,9 @@ export async function POST(
     // Update Request
     const request = await CustomerRequest.findById(quote.requestId)
     if (request) {
-      request.status = "active" // Moves from quote_provided to active
+      request.status = "quote_accepted" // Moves from quote_provided to quote_accepted
       request.timeline.push({
-        status: "active",
+        status: "quote_accepted",
         title: "Quote Accepted",
         comment: `Customer accepted quote ${quote.quoteNumber}. Operations will now commence.`,
         updatedBy: session.userId as any,

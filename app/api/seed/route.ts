@@ -413,10 +413,10 @@ export async function GET(req: NextRequest) {
       subject: "4x40ft FCL Alexandria to Hamburg",
       description: "Refrigerated citrus cargo, booking confirmation required.",
       priority: "high",
-      status: "in_progress",
+      status: "processing",
       timeline: [
-        { status: "submitted", title: "Order Submitted", comment: "Received from client.", createdAt: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000) },
-        { status: "in_progress", title: "Customs Manifest Processed", comment: "Clearance in progress at Alexandria Port.", createdAt: now },
+        { status: "submitted", title: "Request Submitted", comment: "Initial request created.", createdAt: new Date(now.getTime() - 24 * 60 * 60 * 1000) },
+        { status: "processing", title: "Customs Manifest Processed", comment: "Clearance in progress at Alexandria Port.", createdAt: now },
       ],
     })
 

@@ -34,9 +34,9 @@ export async function POST(
     // Update Request
     const request = await CustomerRequest.findById(quote.requestId)
     if (request) {
-      request.status = "quote_rejected"
+      request.status = "quote_pending"
       request.timeline.push({
-        status: "quote_rejected",
+        status: "quote_pending",
         title: "Quote Rejected",
         comment: `Customer rejected quote ${quote.quoteNumber}.`,
         updatedBy: session.userId as any,
